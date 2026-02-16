@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noor Academy | Professional Integrated Platform</title>
+    <title>Noor Academy | Integrated Platform</title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -11,91 +11,78 @@
 
     <style>
         :root { --primary: #4f46e5; --secondary: #9333ea; --teal: #0d9488; --bg: #f8fafc; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s ease; }
         body { background-color: var(--bg); color: #1e293b; overflow-x: hidden; }
+        body.rtl { direction: rtl; text-align: right; }
 
         nav { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .logo { font-weight: 800; color: var(--primary); font-size: 1.2rem; text-decoration: none; }
 
-        /* Admin Panels */
-        .admin-dashboard { display: none; background: #0f172a; color: white; padding: 25px; position: fixed; right: 0; top: 0; height: 100%; width: 320px; z-index: 2000; box-shadow: -5px 0 15px rgba(0,0,0,0.3); }
+        .btn-lang {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white; font-size: 11px; padding: 8px 16px; border-radius: 50px; border: none; font-weight: 800; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .admin-dashboard { display: none; background: #0f172a; color: white; padding: 25px; position: fixed; right: 0; top: 0; height: 100%; width: 350px; z-index: 2000; overflow-y: auto; }
+        body.rtl .admin-dashboard { right: auto; left: 0; }
+
         #adminLogin { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; align-items: center; justify-content: center; }
         .login-card { background: white; padding: 30px; border-radius: 20px; text-align: center; width: 320px; }
 
-        /* UI Elements */
         .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 60px 20px; text-align: center; }
         .main-container { max-width: 1000px; margin: -40px auto 50px; padding: 0 20px; }
         .card { background: white; border-radius: 24px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 25px; }
 
         .input-group { margin-bottom: 15px; }
         label { font-size: 11px; font-weight: 800; color: #94a3b8; margin-bottom: 5px; display: block; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 12px; border: 1.5px solid #e2e8f0; outline: none; font-size: 14px; }
         
-        input, select { 
-            width: 100%; padding: 12px; border-radius: 12px; border: 1.5px solid #e2e8f0; 
-            outline: none; transition: 0.3s; background-color: white; font-size: 14px;
-        }
-        
-        .admin-input { background: #1e293b; color: white; border: 1px solid #334155; }
         .btn-action { background: var(--teal); color: white; border: none; padding: 12px; width: 100%; border-radius: 12px; cursor: pointer; font-weight: bold; margin-top: 10px; }
-        
         .session-card { background: #f0fdf4; border: 1.5px solid #bcf0da; padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; }
         
-        /* Join Button States */
-        .btn-join { 
-            background: #cbd5e1; color: white; padding: 10px 20px; border-radius: 50px; 
-            text-decoration: none; font-weight: bold; font-size: 13px;
-            pointer-events: none; cursor: not-allowed; transition: 0.5s;
-        }
-        .btn-join.unlocked {
-            background: var(--teal);
-            pointer-events: auto;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
-        }
+        .btn-join { background: #cbd5e1; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 13px; pointer-events: none; opacity: 0.7; }
+        .btn-join.unlocked { background: var(--teal); pointer-events: auto; opacity: 1; cursor: pointer; }
 
         .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
         @media (max-width: 600px) { .booking-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
-<body id="mainBody">
+<body id="bodyTag">
 
     <div id="adminLogin">
         <div class="login-card">
-            <h3 style="color:#1e293b; margin-bottom:10px;">Admin Access</h3>
-            <input type="password" id="passInput" placeholder="Password" style="margin-bottom:15px; text-align:center;">
-            <button class="btn-action" style="background:var(--primary)" onclick="checkPass()">Login</button>
-            <p onclick="closeLogin()" style="font-size:12px; color:#94a3b8; cursor:pointer; margin-top:15px;">Cancel</p>
+            <h3 id="admLoginTitle">Admin Access</h3>
+            <input type="password" id="passInput" placeholder="Password" style="margin: 15px 0; text-align:center;">
+            <button class="btn-action" onclick="checkPass()" id="btnLogin">Login</button>
+            <p onclick="closeLogin()" id="btnCancel" style="cursor:pointer; margin-top:10px; color:#94a3b8;">Cancel</p>
         </div>
     </div>
 
     <nav>
         <a href="#" class="logo">NOOR.ACADEMY</a>
         <div style="display: flex; gap: 15px; align-items: center;">
-            <button onclick="toggleLanguage()" style="font-size:11px; padding:6px 12px; border-radius:15px; background:#f1f5f9; border:none; font-weight:bold; cursor:pointer;">العربية / EN</button>
-            <i class="fas fa-cog" style="font-size:1.3rem; color:#64748b; cursor:pointer;" onclick="showLogin()"></i>
+            <button onclick="toggleLanguage()" class="btn-lang" id="langBtnText">العربية</button>
+            <i class="fas fa-cog" style="cursor:pointer; color:#64748b;" onclick="showLogin()"></i>
         </div>
     </nav>
 
     <div class="admin-dashboard" id="dash">
-        <h3 style="margin-bottom:20px;">Settings</h3>
-        <div class="input-group">
-            <label>Price ($)</label>
-            <input type="number" id="adminPrice" class="admin-input" value="35">
-        </div>
-        <div class="input-group">
-            <label>Teacher Name</label>
-            <input type="text" id="adminTeacher" class="admin-input" value="Sheikh Omar">
-        </div>
-        <div class="input-group">
-            <label>Zoom Link</label>
-            <input type="text" id="adminZoomLink" class="admin-input" value="https://zoom.us/test">
-        </div>
-        <div class="input-group">
-            <label style="color: #f87171;">New Password</label>
-            <input type="password" id="newPassInput" class="admin-input" placeholder="Update password">
-        </div>
-        <button class="btn-action" onclick="applyChanges()">Save Changes</button>
-        <button class="btn-action" style="background:#475569" onclick="toggleDash()">Close</button>
+        <h3 id="admDashTitle">Management Panel</h3>
+        <label id="admPriceLbl">Set Fees ($)</label> 
+        <input type="number" id="adminPrice" style="background:#1e293b; color:white;" value="35">
+        
+        <label id="admDescLbl">Course Description</label> 
+        <textarea id="adminDesc" style="background:#1e293b; color:white;">Includes 60 mins live tutoring.</textarea>
+        
+        <label id="admTeacherLbl">Teacher Name</label> 
+        <input type="text" id="adminTeacher" style="background:#1e293b; color:white;" value="Sheikh Omar">
+        
+        <label id="admZoomLbl">Zoom Meeting Link</label> 
+        <input type="text" id="adminZoomLink" style="background:#1e293b; color:white;" value="https://zoom.us/test">
+        
+        <button class="btn-action" onclick="applyChanges()" id="admSaveBtn">Apply Settings</button>
+        <button class="btn-action" style="background:#475569" onclick="toggleDash()" id="admCloseBtn">Close Panel</button>
     </div>
 
     <header class="hero">
@@ -106,17 +93,20 @@
     <div class="main-container">
         <div class="card">
             <h2 id="bookingTitle">Book Your Lesson</h2>
-            
             <div class="booking-grid">
                 <div class="input-group">
                     <label id="lblStudent">Student Name</label>
-                    <input type="text" id="sName" placeholder="Full Name">
+                    <input type="text" id="sName" placeholder="Enter Full Name">
+                </div>
+                <div class="input-group">
+                    <label id="lblEmail">Email Address</label>
+                    <input type="email" id="sEmail" placeholder="example@mail.com">
                 </div>
                 <div class="input-group">
                     <label id="lblDate">Class Date</label>
                     <input type="date" value="2026-02-17" id="classDate">
                 </div>
-                <div class="input-group" style="grid-column: 1 / -1;">
+                <div class="input-group">
                     <label id="lblShift">Class Shift</label>
                     <select id="shiftSelect">
                         <option value="Morning" id="optMorning">Morning Shift</option>
@@ -138,8 +128,8 @@
         <div class="session-card">
             <div>
                 <h4 id="lblLive"><i class="fas fa-video"></i> Live Learning Hub</h4>
-                <p style="font-size: 12px;">Teacher: <span id="teacherName" style="font-weight:bold;">Sheikh Omar</span></p>
-                <p id="lockMsg" style="font-size: 10px; color: #ef4444; margin-top: 5px;"><i class="fas fa-lock"></i> Payment Required to Join</p>
+                <p><span id="txtTeacher">Teacher:</span> <span id="teacherName" style="font-weight:bold;">Sheikh Omar</span></p>
+                <p id="lockMsg" style="font-size: 10px; color: #ef4444;"><i class="fas fa-lock"></i> Payment Required</p>
             </div>
             <a href="https://zoom.us/test" id="zoomBtn" target="_blank" class="btn-join">Join Now</a>
         </div>
@@ -153,70 +143,120 @@
         function showLogin() { document.getElementById('adminLogin').style.display = 'flex'; }
         function closeLogin() { document.getElementById('adminLogin').style.display = 'none'; }
         
-        function checkPass() {
-            if(document.getElementById('passInput').value === adminPassword) {
-                closeLogin(); toggleDash();
-            } else { alert("Wrong Password!"); }
+        function checkPass() { 
+            const pass = document.getElementById('passInput').value;
+            if(pass === adminPassword) { closeLogin(); toggleDash(); } 
+            else { alert(isArabic ? "كلمة المرور غير صحيحة!" : "Incorrect Password!"); } 
         }
 
-        function toggleDash() {
-            const d = document.getElementById('dash');
-            d.style.display = (d.style.display === 'block') ? 'none' : 'block';
+        function toggleDash() { 
+            const d = document.getElementById('dash'); 
+            d.style.display = (d.style.display === 'block') ? 'none' : 'block'; 
         }
 
         function applyChanges() {
             currentPrice = parseFloat(document.getElementById('adminPrice').value).toFixed(2);
             document.getElementById('finalPrice').innerText = "$" + currentPrice;
+            document.getElementById('courseDesc').innerText = document.getElementById('adminDesc').value;
             document.getElementById('teacherName').innerText = document.getElementById('adminTeacher').value;
             document.getElementById('zoomBtn').href = document.getElementById('adminZoomLink').value;
-            
-            if(document.getElementById('newPassInput').value.trim() !== "") {
-                adminPassword = document.getElementById('newPassInput').value;
-            }
-            alert("Updated!"); toggleDash();
+            alert(isArabic ? "تم حفظ التغييرات!" : "Settings Applied Successfully!"); 
+            toggleDash();
         }
 
         function toggleLanguage() {
             isArabic = !isArabic;
-            const elements = {
-                heroTitle: isArabic ? "تعلم القرآن واللغة العربية" : "Interactive Quran & Arabic",
-                heroSub: isArabic ? "تجربة تعليمية شخصية 1-1" : "1-on-1 Personalized Learning Experience",
-                bookingTitle: isArabic ? "احجز موعدك" : "Book Your Lesson",
-                lblStudent: isArabic ? "اسم الطالب" : "Student Name",
-                lblDate: isArabic ? "تاريخ الحصة" : "Class Date",
-                lblShift: isArabic ? "فترة الحصة" : "Class Shift",
-                optMorning: isArabic ? "الفترة الصباحية" : "Morning Shift",
-                optEvening: isArabic ? "الفترة المسائية" : "Evening Shift",
-                courseLabel: isArabic ? "حصة قياسية" : "Standard Session",
-                courseDesc: isArabic ? "تشمل 60 دقيقة تعليم مباشر" : "Includes 60 mins live tutoring.",
-                lblLive: isArabic ? "مركز التعلم المباشر" : "Live Learning Hub",
-                lockMsg: isArabic ? "يجب الدفع لتفعيل الزर" : "Payment Required to Join"
-            };
+            const body = document.getElementById('bodyTag');
+            
+            if(isArabic) {
+                body.classList.add('rtl');
+                document.getElementById('langBtnText').innerText = "English";
+                
+                // Content
+                update('heroTitle', "تعلم القرآن واللغة العربية");
+                update('heroSub', "تجربة تعليمية شخصية 1-1 من منزلك");
+                update('bookingTitle', "احجز حصتك المباشرة");
+                update('lblStudent', "اسم الطالب كامل");
+                update('lblEmail', "البريد الإلكتروني");
+                update('lblDate', "تاريخ الحصة");
+                update('lblShift', "توقيت الحصة");
+                update('optMorning', "الفترة الصباحية");
+                update('optEvening', "الفترة المسائية");
+                update('courseLabel', "الجلسة القياسية");
+                update('lblLive', "مركز البث المباشر");
+                update('txtTeacher', "المعلم:");
+                update('lockMsg', "يرجى الدفع أولاً لتفعيل الرابط");
+                update('zoomBtn', "انضم للحصة الآن");
 
-            for (let id in elements) {
-                let el = document.getElementById(id);
-                if(el) {
-                    el.innerText = elements[id];
-                    el.style.textAlign = isArabic ? "right" : "left";
-                }
+                // Admin
+                update('admDashTitle', "لوحة التحكم في الإعدادات");
+                update('admPriceLbl', "تعديل السعر ($)");
+                update('admDescLbl', "وصف الدورة التعليمية");
+                update('admTeacherLbl', "اسم المدرس الحالي");
+                update('admSaveBtn', "تطبيق وحفظ التغييرات");
+                update('admCloseBtn', "إغلاق اللوحة");
+                update('admLoginTitle', "دخول المشرف");
+                update('btnLogin', "تسجيل الدخول");
+                update('btnCancel', "إلغاء");
+
+                // Placeholders
+                document.getElementById('sName').placeholder = "اكتب الاسم هنا";
+                document.getElementById('sEmail').placeholder = "example@mail.com";
+                document.getElementById('passInput').placeholder = "كلمة المرور";
+
+            } else {
+                body.classList.remove('rtl');
+                document.getElementById('langBtnText').innerText = "العربية";
+
+                update('heroTitle', "Interactive Quran & Arabic");
+                update('heroSub', "1-on-1 Personalized Learning Experience");
+                update('bookingTitle', "Book Your Lesson");
+                update('lblStudent', "Student Name");
+                update('lblEmail', "Email Address");
+                update('lblDate', "Class Date");
+                update('lblShift', "Class Shift");
+                update('optMorning', "Morning Shift");
+                update('optEvening', "Evening Shift");
+                update('courseLabel', "Standard Session");
+                update('lblLive', "Live Learning Hub");
+                update('txtTeacher', "Teacher:");
+                update('lockMsg', "Payment Required to Join");
+                update('zoomBtn', "Join Now");
+
+                update('admDashTitle', "Management Panel");
+                update('admPriceLbl', "Set Fees ($)");
+                update('admDescLbl', "Course Description");
+                update('admTeacherLbl', "Teacher Name");
+                update('admSaveBtn', "Apply Settings");
+                update('admCloseBtn', "Close Panel");
+                update('admLoginTitle', "Admin Access");
+                update('btnLogin', "Login");
+                update('btnCancel', "Cancel");
+
+                document.getElementById('sName').placeholder = "Enter Full Name";
+                document.getElementById('sEmail').placeholder = "example@mail.com";
+                document.getElementById('passInput').placeholder = "Password";
             }
-            document.querySelectorAll('input, select').forEach(input => {
-                input.style.textAlign = isArabic ? "right" : "left";
-            });
+        }
+
+        function update(id, text) {
+            const el = document.getElementById(id);
+            if(el) el.innerText = text;
         }
 
         paypal.Buttons({
             createOrder: (data, actions) => {
-                if(!document.getElementById('sName').value) { alert("Enter Name!"); return; }
+                if(!document.getElementById('sName').value) { 
+                    alert(isArabic ? "يرجى كتابة اسم الطالب!" : "Please enter student name!"); 
+                    return; 
+                }
                 return actions.order.create({ purchase_units: [{ amount: { value: currentPrice } }] });
             },
             onApprove: (data, actions) => {
-                return actions.order.capture().then((details) => {
-                    alert('Success! Class Unlocked for ' + details.payer.name.given_name);
+                return actions.order.capture().then(() => {
                     document.getElementById('zoomBtn').classList.add('unlocked');
-                    const lockMsg = document.getElementById('lockMsg');
-                    lockMsg.innerHTML = '<i class="fas fa-check-circle"></i> Ready to Join!';
-                    lockMsg.style.color = "#16a34a";
+                    document.getElementById('lockMsg').innerHTML = isArabic ? 'تم تفعيل الرابط!' : 'Link Unlocked!';
+                    document.getElementById('lockMsg').style.color = "#16a34a";
                 });
             }
         }).render('#paypal-button-container');
