@@ -214,7 +214,7 @@
                 <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery & Payment Panel</h3>
                 
                 <label>💳 आपकी अपनी UPI ID (जहाँ से आप पेमेंट भेजेंगे):</label>
-                <input type="text" id="adminUpi" value="7869969190@ybl" placeholder="जैसे: 7869969190@ybl">
+                <input type="text" id="adminUpi" value="78699691901@ybl" placeholder="जैसे: 78699691901@ybl">
 
                 <label>🎵 बैकग्राउंड म्यूजिक फाइल चुनें (MP3):</label>
                 <input type="file" id="musicFile" accept="audio/*">
@@ -547,8 +547,8 @@
             currentOpenMediaId = id;
             document.getElementById("mediaModal").style.display = "flex";
             document.getElementById("modalCaption").innerHTML = "💬 " + senderName;
-            document.getElementById("modalJoke").innerHTML = `💬 <b>Joke/Shayari:</b> ${jokeText}`;
-            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
+            document.getElementById("modalJoke").innerHTML = `💬 <b>Joke/Shayari यह सिर्फ मनोरंज है दिल पर न ले । :</b> ${jokeText}`;
+            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift 100% Cashback:</b> ${giftText}`;
             document.getElementById("friendNameInput").value = "";
             document.getElementById("friendUpiInput").value = "";
 
@@ -581,7 +581,7 @@
             let friendUpiOrNo = document.getElementById("friendUpiInput").value.trim();
 
             if(!friendName || !friendUpiOrNo) {
-                alert("कृपया अपना नाम और अपना PhonePe नंबर/UPI ID दोनों दर्ज करें!");
+                alert("कृपया अपना Full Name और अपना PhonePe नंबर/UPI ID दोनों दर्ज करें!");
                 return;
             }
 
