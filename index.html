@@ -147,16 +147,23 @@
             background-color: rgba(0, 0, 0, 0.92); justify-content: center; align-items: center; flex-direction: column; padding: 15px; overflow-y: auto;
         }
         .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 450px; width: 100%; text-align: center; margin: auto; }
-        .modal img, .modal video { max-width: 100%; max-height: 35vh; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); object-fit: contain; }
-        .modal-caption { margin-top: 8px; font-size: 1.1rem; color: #fbc531; font-weight: bold; }
+        .modal img, .modal video { max-width: 100%; max-height: 38vh; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); object-fit: contain; }
+        .modal-caption { margin-top: 10px; font-size: 1.15rem; color: #fbc531; font-weight: bold; }
         
         .modal-extra-box {
-            background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255,107,129,0.5); padding: 10px; border-radius: 10px; margin-top: 8px; width: 100%; text-align: left;
+            background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255,107,129,0.5); padding: 10px; border-radius: 10px; margin-top: 10px; width: 100%; text-align: left;
+            display: none; /* Initially hidden until claimed */
+            animation: bounceIn 0.6s ease;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
         .modal-extra-box p { font-size: 0.85rem; margin: 3px 0; color: #ff9ff3; }
 
         .claim-box {
-            background: rgba(46, 204, 113, 0.12); border: 1px solid rgba(46, 204, 113, 0.4); padding: 12px; border-radius: 12px; margin-top: 8px; width: 100%; text-align: center;
+            background: rgba(46, 204, 113, 0.12); border: 1px solid rgba(46, 204, 113, 0.4); padding: 12px; border-radius: 12px; margin-top: 10px; width: 100%; text-align: center;
         }
         .claim-box h4 { color: #2ecc71; font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; }
         .claim-box input {
@@ -166,24 +173,6 @@
             background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 9px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.9rem;
         }
         .claim-btn:disabled { background: #555; cursor: not-allowed; }
-
-        /* Gift Box Opening Popup Screen */
-        .gift-reveal-overlay {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); justify-content: center; align-items: center; flex-direction: column; padding: 20px; text-align: center;
-        }
-        .gift-box-icon { font-size: 5rem; animation: bounceBox 1s infinite alternate; margin-bottom: 15px; }
-        @keyframes bounceBox { from { transform: translateY(0) scale(1); } to { transform: translateY(-15px) scale(1.1); } }
-        .gift-reveal-content h2 { color: #fbc531; font-size: 1.8rem; margin-bottom: 10px; }
-        .gift-reveal-content p { color: #fff; font-size: 1.1rem; margin-bottom: 20px; }
-        .prize-card {
-            background: linear-gradient(135deg, #e84393, #fd79a8); padding: 15px 25px; border-radius: 15px; font-size: 1.4rem; font-weight: bold; color: #fff; margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(232,67,147,0.5); animation: popIn 0.5s ease;
-        }
-        @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
-        .exit-safe-btn {
-            background: linear-gradient(135deg, #fbc531, #e1b12c); color: #000; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; font-size: 1rem; cursor: pointer;
-        }
 
         .close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 32px; cursor: pointer; z-index: 1001; }
 
@@ -210,7 +199,7 @@
 
             <div class="top-bar">
                 <button class="action-btn" onclick="toggleMusic()">🎵 Play Music</button>
-                <button class="action-btn" onclick="askSafeHome()">🏠 Home</button>
+                <button class="action-btn" onclick="requestExit()">🏠 Exit / Home</button>
             </div>
 
             <div id="adminPanel">
@@ -240,7 +229,7 @@
                 <label>😂 जोक या शायरी:</label>
                 <input type="text" id="mediaJoke" placeholder="जैसे: पार्टी कब दे रहा है?">
                 
-                <label>🎁 रिटर्न गिफ्ट विवरण (गुप्त):</label>
+                <label>🎁 रिटर्न गिफ्ट विवरण:</label>
                 <input type="text" id="mediaGift" placeholder="जैसे: 100 Rs Cash 💸">
                 
                 <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें</button>
@@ -262,11 +251,13 @@
                 </div>
             </div>
 
+            <!-- Birthday Gallery Section -->
             <div id="birthdayGallerySection">
                 <h2 class="section-title">🎂 Birthday Gallery & Highlights</h2>
                 <div class="gallery-grid" id="birthdayContainer"></div>
             </div>
 
+            <!-- All Wishes Section -->
             <h2 class="section-title">💬 Friends Wishes & Gifts</h2>
             <div class="gallery-grid" id="galleryContainer"></div>
 
@@ -275,36 +266,24 @@
         </div>
     </div>
 
-    <!-- Modal Box -->
     <div id="mediaModal" class="modal" onclick="closeModal()">
         <span class="close-btn">&times;</span>
         <div class="modal-content-box" onclick="event.stopPropagation()">
             <div id="modalMediaContainer"></div>
             <div id="modalCaption" class="modal-caption"></div>
             
-            <div class="modal-extra-box">
+            <!-- Hidden until claimed -->
+            <div class="modal-extra-box" id="modalExtraBox">
                 <p id="modalJoke">💬 <b>Joke:</b> -</p>
-                <!-- Gift prize is hidden until claimed -->
-                <p id="modalGift" style="display:none;">🎁 <b>Return Gift:</b> -</p>
+                <p id="modalGift">🎁 <b>Return Gift:</b> -</p>
             </div>
 
             <div class="claim-box" id="modalClaimBox">
-                <h4 id="claimBoxTitle">🎁 अपना रिटर्न गिफ्ट क्लेम करें (सरप्राइज खोलें)</h4>
+                <h4 id="claimBoxTitle">🎁 अपना रिटर्न गिफ्ट क्लेम करें</h4>
                 <input type="text" id="friendNameInput" placeholder="अपना पूरा नाम दर्ज करें">
                 <input type="text" id="friendUpiInput" placeholder="PhonePe नंबर या UPI ID दर्ज करें">
-                <button class="claim-btn" id="modalClaimBtn" onclick="submitClaimRequest()">🎁 Open Gift & Claim</button>
+                <button class="claim-btn" id="modalClaimBtn" onclick="submitClaimRequest()">🎁 Open Gift & Submit</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Full Screen Gift Opening & Celebration Popup -->
-    <div id="giftRevealOverlay" class="gift-reveal-overlay">
-        <div class="gift-box-icon" id="giftBoxAnimationIcon">🎁</div>
-        <div class="gift-reveal-content">
-            <h2 id="revealThankYouTitle">Thank You!</h2>
-            <p id="revealFriendNameDisplay"></p>
-            <div class="prize-card" id="revealPrizeText"></div>
-            <button class="exit-safe-btn" onclick="closeGiftRevealAndExitModal()">✓ Done & Exit safely</button>
         </div>
     </div>
 
@@ -315,13 +294,21 @@
     <script>
         let isAdminLoggedIn = false;
         let currentOpenMediaId = null;
-        let currentActiveItemData = null;
 
         window.onload = function() {
             confetti({ particleCount: 70, spread: 50, origin: { y: 0.7 } });
             loadSavedMedia();
             loadAdminRequests();
             
+            // Push state to prevent back button from exiting without confirmation
+            history.pushState(null, null, window.location.href);
+            window.onpopstate = function () {
+                history.pushState(null, null, window.location.href);
+                if(document.getElementById('galleryPage').style.display === 'block') {
+                    requestExit();
+                }
+            };
+
             let savedUpi = localStorage.getItem('suryaAdminUpi');
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
 
@@ -329,13 +316,6 @@
             if(savedMusic) {
                 document.getElementById('bgMusic').src = savedMusic;
             }
-
-            // Lock browser back button to prevent accidental exit
-            history.pushState(null, null, location.href);
-            window.onpopstate = function () {
-                history.pushState(null, null, location.href);
-                alert("⚠️ कृपया पहले पेज या गिफ्ट सेक्शन से सुरक्षित रूप से एग्जिट करें!");
-            };
         };
 
         function openGallery(isAdmin = false) {
@@ -358,14 +338,14 @@
 
         function adminLogin() { openGallery(true); }
 
-        function askSafeHome() {
-            let confirmation = prompt("होम पेज पर जाने के लिए अपना नाम टाइप करें:");
-            if(confirmation && confirmation.trim() !== "") {
-                alert(`✨ धन्यवाद ${confirmation}! सुरक्षित रूप से होम पर जा रहे हैं।`);
+        function requestExit() {
+            let name = prompt("सुरक्षा जाँच: बाहर जाने के लिए कृपया अपना नाम दर्ज करें:");
+            if (name && name.trim() !== "") {
+                alert(`धन्यवाद ${name}! आपका दिन शुभ हो। 🤍`);
                 document.getElementById('galleryPage').style.display = 'none';
                 document.getElementById('entryPage').style.display = 'block';
             } else {
-                alert("❌ नाम दर्ज करना अनिवार्य है!");
+                alert("❌ जब तक आप नाम दर्ज करके कन्फर्म नहीं करेंगे, आप बाहर नहीं जा सकते!");
             }
         }
 
@@ -489,7 +469,7 @@
                 document.getElementById("mediaGift").value = "";
                 alert("✨ सफलतापूर्वक सेव हो गया!");
             } catch (error) {
-                alert("❌ स्टोरेज फुल हो गई है! कृपया कुछ पुरानी फाइलें डिलीट करें।");
+                alert("❌ स्टोरेज फुल हो गई है! कृपया कुछ पुरानी या बड़ी फाइलें डिलीट करें।");
             }
         }
 
@@ -518,9 +498,9 @@
             newCard.className = "img-card";
             newCard.setAttribute("data-category", category);
             
-            let itemObj = { id, type, url, name, category, joke, gift, claimed };
-            let encodedItem = encodeURIComponent(JSON.stringify(itemObj));
-            newCard.setAttribute("onclick", `openModal('${encodedItem}')`);
+            let safeJoke = joke.replace(/'/g, "\\'");
+            let safeGift = gift.replace(/'/g, "\\'");
+            newCard.setAttribute("onclick", `openModal('${id}', '${type}', '${url}', '${name}', '${safeJoke}', '${safeGift}', ${claimed})`);
             
             let icon = category === 'birthday' ? '🎂' : category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
             let deleteBtn = (isAdminLoggedIn && id !== 'id_default') ? `<button class="del-card-btn" style="display:block;" onclick="deleteCard(event, '${id}')">×</button>` : '';
@@ -549,44 +529,41 @@
             }
         }
 
-        function openModal(encodedStr) {
-            let item = JSON.parse(decodeURIComponent(encodedStr));
-            currentOpenMediaId = item.id;
-            currentActiveItemData = item;
-
+        function openModal(id, type, mediaSrc, senderName, jokeText, giftText, claimed) {
+            currentOpenMediaId = id;
             document.getElementById("mediaModal").style.display = "flex";
-            document.getElementById("modalCaption").innerText = "💬 " + item.name;
-            document.getElementById("modalJoke").innerHTML = `💬 <b>Joke:</b> ${item.joke}`;
+            document.getElementById("modalCaption").innerText = "💬 " + senderName;
+            document.getElementById("modalJoke").innerHTML = `💬 <b>Joke:</b> ${jokeText}`;
+            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
             
-            let giftElem = document.getElementById("modalGift");
             let nameInput = document.getElementById("friendNameInput");
             let upiInput = document.getElementById("friendUpiInput");
             let claimBtn = document.getElementById("modalClaimBtn");
             let claimTitle = document.getElementById("claimBoxTitle");
+            let extraBox = document.getElementById("modalExtraBox");
 
-            if(item.claimed) {
-                giftElem.style.display = "block";
-                giftElem.innerHTML = `🎁 <b>Return Gift:</b> ${item.gift}`;
+            if(claimed) {
+                extraBox.style.display = "block"; // Show if already claimed
                 nameInput.value = "Already Claimed";
                 upiInput.value = "Gift Dispatched";
                 nameInput.disabled = true;
                 upiInput.disabled = true;
                 claimBtn.disabled = true;
                 claimBtn.innerText = "✓ Gift Already Claimed";
-                claimTitle.innerText = "🎁 यह गिफ्ट पहले ही क्लेम हो चुका है!";
+                claimTitle.innerText = "🎁 यह गिफ्ट पहले ही ओपन और क्लेम हो चुका है!";
             } else {
-                giftElem.style.display = "none"; // Hidden until claimed
+                extraBox.style.display = "none"; // Hidden until claim button is pressed
                 nameInput.value = "";
                 upiInput.value = "";
                 nameInput.disabled = false;
                 upiInput.disabled = false;
                 claimBtn.disabled = false;
-                claimBtn.innerText = "🎁 Open Gift & Claim";
-                claimTitle.innerText = "🎁 अपना रिटर्न गिफ्ट क्लेम करें (सरप्राइज खोलें)";
+                claimBtn.innerText = "🎁 Open Gift & Submit";
+                claimTitle.innerText = "🎁 अपना रिटर्न गिफ्ट क्लेम करें";
             }
 
             let mediaContainer = document.getElementById("modalMediaContainer");
-            mediaContainer.innerHTML = item.type === 'video' ? `<video src="${item.url}" controls autoplay></video>` : `<img src="${item.url}">`;
+            mediaContainer.innerHTML = type === 'video' ? `<video src="${mediaSrc}" controls autoplay></video>` : `<img src="${mediaSrc}">`;
         }
 
         function closeModal() {
@@ -598,9 +575,18 @@
             let friendName = document.getElementById("friendNameInput").value.trim();
             let friendUpiOrNo = document.getElementById("friendUpiInput").value.trim();
 
-            if(!friendName || !friendUpiOrNo) return alert("कृपया अपना नाम और PhonePe/UPI ID दर्ज करें!");
+            if(!friendName || !friendUpiOrNo) return alert("नाम और UPI ID भरें!");
 
-            // Update Storage
+            // Trigger full screen celebration
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.5 }
+            });
+
+            // Show hidden gift box & prize details
+            document.getElementById("modalExtraBox").style.display = "block";
+
             let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
             savedMedia = savedMedia.map(item => {
                 if(item.id === currentOpenMediaId) item.claimed = true;
@@ -612,42 +598,15 @@
             claimRequests.push({ name: friendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
-            // Close standard modal and trigger Full Screen Gift Box Reveal Animation & Confetti Celebration
-            closeModal();
-            triggerFull CelebrationAndGiftReveal(friendName, currentActiveItemData.gift);
-        }
+            let claimBtn = document.getElementById("modalClaimBtn");
+            claimBtn.disabled = true;
+            claimBtn.innerText = "🎉 Gift Opened & Claimed Successfully!";
+            document.getElementById("claimBoxTitle").innerText = `🎉 बधाई हो ${friendName}! गिफ्ट बॉक्स खुल गया है!`;
 
-        function triggerFull CelebrationAndGiftReveal(name, giftPrize) {
-            let overlay = document.getElementById("giftRevealOverlay");
-            document.getElementById("revealThankYouTitle").innerText = `🎉 Thank You, ${name}! 🎉`;
-            document.getElementById("revealFriendNameDisplay").innerText = `बर्थडे विश भेजने और गिफ्ट क्लेम करने के लिए दिल से शुक्रिया! आपका सरप्राइज गिफ्ट ये रहा:`;
-            document.getElementById("revealPrizeText").innerText = `${giftPrize}`;
-            
-            overlay.style.display = "flex";
-
-            // Full screen continuous celebration confetti
-            var duration = 3 * 1000;
-            var end = Date.now() + duration;
-            (function frame() {
-                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
-                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
-
-            loadSavedMedia();
-            loadAdminRequests();
-        }
-
-        function closeGiftRevealAndExitModal() {
-            let confirmation = prompt("एग्जिट कन्फर्म करने के लिए अपना वही नाम टाइप करें:");
-            if(confirmation && confirmation.trim() !== "") {
-                document.getElementById("giftRevealOverlay").style.display = "none";
-                alert(`✨ अलविदा ${confirmation}! आपका गिफ्ट रिकॉर्ड सुरक्षित रूप से सेव हो गया है।`);
-            } else {
-                alert("❌ नाम टाइप करना अनिवार्य है!");
-            }
+            setTimeout(() => {
+                loadSavedMedia();
+                loadAdminRequests();
+            }, 500);
         }
 
         function loadAdminRequests() {
