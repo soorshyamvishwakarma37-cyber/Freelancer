@@ -71,9 +71,9 @@
         .action-btn:hover { background: #fbc531; color: #000; box-shadow: 0 5px 15px rgba(251,197,49,0.4); transform: translateY(-2px); }
 
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.75); padding: 25px; border-radius: 20px;
+            display: none; background: rgba(0, 0, 0, 0.85); padding: 25px; border-radius: 20px;
             margin-bottom: 30px; border: 1px dashed rgba(251,197,49,0.6); text-align: left;
-            max-width: 550px; margin-left: auto; margin-right: auto; backdrop-filter: blur(15px);
+            max-width: 650px; margin-left: auto; margin-right: auto; backdrop-filter: blur(15px);
             box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
         #adminPanel label { display: block; font-size: 0.92rem; color: #fbc531; margin-top: 12px; font-weight: 600; }
@@ -83,12 +83,30 @@
         }
         #adminPanel input:focus, #adminPanel select:focus { border-color: #fbc531; background: rgba(255,255,255,0.1); }
         #adminPanel input[type="file"] { padding: 10px; cursor: pointer; background: rgba(251, 197, 49, 0.08); border: 1px dashed #fbc531; }
+        
         .save-btn {
             padding: 14px 20px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; border: none; 
             border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.1rem; 
             box-shadow: 0 6px 20px rgba(255,71,87,0.4); transition: 0.3s;
         }
         .save-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,71,87,0.6); }
+
+        /* Admin Claim Requests Box */
+        .admin-requests-box {
+            background: rgba(46, 204, 113, 0.08); border: 1px solid rgba(46, 204, 113, 0.3);
+            border-radius: 15px; padding: 15px; margin-top: 25px; max-height: 300px; overflow-y: auto;
+        }
+        .request-item {
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px;
+            border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+        }
+        .request-info p { font-size: 0.88rem; color: #fff; margin: 0; text-align: left; }
+        .pay-now-btn {
+            background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none;
+            padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(46,204,113,0.4); transition: 0.2s; text-decoration: none; display: inline-block;
+        }
+        .pay-now-btn:hover { transform: scale(1.05); }
 
         .controls-container { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-bottom: 30px; }
         .search-box {
@@ -193,9 +211,9 @@
             </div>
 
             <div id="adminPanel">
-                <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery Panel</h3>
+                <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery & Payment Panel</h3>
                 
-                <label>💳 आपकी अपनी UPI ID (जहाँ दोस्त पैसे भेजेंगे):</label>
+                <label>💳 आपकी अपनी UPI ID (जहाँ से आप पेमेंट भेजेंगे):</label>
                 <input type="text" id="adminUpi" value="7869969190@ybl" placeholder="जैसे: 7869969190@ybl">
 
                 <label>🎵 बैकग्राउंड म्यूजिक फाइल चुनें (MP3):</label>
@@ -222,6 +240,12 @@
                 <input type="text" id="mediaGift" placeholder="जैसे: Cash Gift / 100 Rs 💸">
                 
                 <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें (High Quality)</button>
+
+                <!-- LIVE PENDING CLAIM REQUESTS SECTION IN ADMIN PANEL -->
+                <h3 style="color: #2ecc71; margin-top: 25px; margin-bottom: 10px; font-size: 1.1rem;">🎁 दोस्तों की क्लेम रिक्वेस्ट (Live Requests):</h3>
+                <div class="admin-requests-box" id="adminRequestsContainer">
+                    <p style="color: #a4b0be; text-align: center; font-size: 0.9rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं आई है।</p>
+                </div>
             </div>
 
             <div class="controls-container">
@@ -256,7 +280,7 @@
                 <h4>🎁 अपना रिटर्न गिफ्ट (UPI/PhonePe) क्लेम करें</h4>
                 <input type="text" id="friendNameInput" placeholder="अपना पूरा नाम दर्ज करें">
                 <input type="text" id="friendUpiInput" placeholder="अपना PhonePe नंबर या UPI ID दर्ज करें">
-                <button class="claim-btn" onclick="claimGiftViaUpi()">🚀 Claim Now & Send Money</button>
+                <button class="claim-btn" onclick="submitClaimRequest()">🚀 Submit Claim Request</button>
             </div>
         </div>
     </div>
@@ -278,6 +302,7 @@
         window.onload = function() {
             confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
             loadSavedMedia();
+            loadAdminRequests();
             
             let savedUpi = localStorage.getItem('suryaAdminUpi');
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
@@ -299,6 +324,7 @@
                     alert("✨ स्वागत है सूर्या! एडमिन पैनल खुल रहा है...");
                     isAdminLoggedIn = true;
                     document.getElementById('adminPanel').style.display = 'block';
+                    loadAdminRequests();
                 } else {
                     alert("❌ गलत पासवर्ड! केवल व्यू मोड में खोला जा रहा है।");
                 }
@@ -407,7 +433,6 @@
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
                         
-                        // High resolution settings for crystal clear photos
                         let MAX_WIDTH = 900;
                         let MAX_HEIGHT = 900;
                         let width = img.width;
@@ -446,7 +471,6 @@
                 savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift, claimedList: [] });
                 
                 localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
-
                 loadSavedMedia();
 
                 fileInput.value = "";
@@ -551,7 +575,8 @@
             mediaContainer.innerHTML = "";
         }
 
-        function claimGiftViaUpi() {
+        // Friend submits claim -> Saves in Admin Panel Request List
+        function submitClaimRequest() {
             let friendName = document.getElementById("friendNameInput").value.trim();
             let friendUpiOrNo = document.getElementById("friendUpiInput").value.trim();
 
@@ -560,34 +585,58 @@
                 return;
             }
 
-            let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-            let currentItem = savedMedia.find(item => item.id === currentOpenMediaId);
-
-            if(!currentItem && currentOpenMediaId === 'id_default') {
-                alert("यह एक डेमो कार्ड है। कृपया एडमिन से अपनी खुद की फोटो अपलोड करें!");
+            let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
+            
+            // Check duplicate
+            let exists = claimRequests.some(req => req.upi === friendUpiOrNo);
+            if(exists) {
+                alert("⚠️ इस नंबर/UPI से रिक्वेस्ट पहले ही भेजी जा चुकी है। एडमिन जल्द ही चेक कर रहे हैं!");
+                closeModal();
                 return;
             }
 
-            if(currentItem) {
-                if(!currentItem.claimedList) currentItem.claimedList = [];
+            claimRequests.push({ name: friendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
+            localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
-                if(currentItem.claimedList.includes(friendUpiOrNo)) {
-                    alert("❌ सुरक्षा चेतावनी: इस नंबर/UPI से इस गिफ्ट को पहले ही क्लेम किया जा चुका है!");
-                    return;
-                }
+            alert(`✨ धन्यवाद ${friendName}!\n\nआपकी रिटर्न गिफ्ट क्लेम रिक्वेस्ट सीधे सूर्या के एडमिन पैनल में भेज दी गई है।`);
+            closeModal();
+            loadAdminRequests();
+        }
 
-                currentItem.claimedList.push(friendUpiOrNo);
-                localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
+        // Load claims inside Admin Panel
+        function loadAdminRequests() {
+            let container = document.getElementById("adminRequestsContainer");
+            if(!container) return;
+
+            let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
+            container.innerHTML = "";
+
+            if(claimRequests.length === 0) {
+                container.innerHTML = `<p style="color: #a4b0be; text-align: center; font-size: 0.9rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं आई है।</p>`;
+                return;
             }
 
-            let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
-            let remarkNote = `SendMoneyTo_${encodeURIComponent(friendName)}_${encodeURIComponent(friendUpiOrNo)}`;
-            
-            // Correct UPI Intent URL to trigger Send Money / Pay Popup in PhonePe/GooglePay
-            let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayGift&am=10&cu=INR&tn=${remarkNote}`;
+            claimRequests.forEach((req, index) => {
+                let upiIntentUrl = `upi://pay?pa=${req.upi}&pn=${encodeURIComponent(req.name)}&am=10&cu=INR&tn=BirthdayGiftReturn`;
+                
+                let div = document.createElement("div");
+                div.className = "request-item";
+                div.innerHTML = `
+                    <div class="request-info">
+                        <p>👤 <b>${req.name}</b></p>
+                        <p>💳 UPI/No: <span style="color: #fbc531;">${req.upi}</span></p>
+                    </div>
+                    <a href="${upiIntentUrl}" class="pay-now-btn" onclick="removeRequest(${index})">💸 Pay ₹10 Now</a>
+                `;
+                container.appendChild(div);
+            });
+        }
 
-            alert(`✨ धन्यवाद ${friendName}!\n\nअब आपके मोबाइल में PhonePe / Google Pay का 'Send Money' ऐप ओपन हो रहा है।`);
-            window.location.href = upiIntentUrl;
+        function removeRequest(index) {
+            let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
+            claimRequests.splice(index, 1);
+            localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
+            setTimeout(loadAdminRequests, 1000);
         }
     </script>
 </body>
