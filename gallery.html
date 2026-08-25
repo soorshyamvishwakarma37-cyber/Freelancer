@@ -55,15 +55,19 @@
 
         /* Admin Panel */
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 15px;
+            display: none; background: rgba(0, 0, 0, 0.6); padding: 25px; border-radius: 15px;
             margin-bottom: 25px; border: 1px dashed #fbc531; text-align: left;
+            max-width: 500px; margin-left: auto; margin-right: auto;
         }
+        #adminPanel label { display: block; font-size: 0.9rem; color: #fbc531; margin-top: 10px; font-weight: 600; }
         #adminPanel input, #adminPanel select {
-            padding: 9px; margin: 5px 0; border-radius: 5px; border: none; width: 100%; max-width: 300px; display: block;
+            padding: 10px; margin: 5px 0 10px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; width: 100%; display: block;
         }
-        #adminPanel button {
-            padding: 9px 20px; background: #e84393; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 5px;
+        #adminPanel input[type="file"] { padding: 8px; cursor: pointer; background: rgba(251, 197, 49, 0.1); border: 1px dashed #fbc531; }
+        #adminPanel button.save-btn {
+            padding: 12px 20px; background: linear-gradient(45deg, #ff4757, #ff6b81); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(255,71,87,0.4); transition: 0.3s;
         }
+        #adminPanel button.save-btn:hover { transform: scale(1.02); }
 
         /* Gallery Grid */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 30px; }
@@ -75,7 +79,7 @@
         .img-card img, .img-card video { width: 100%; height: 300px; object-fit: cover; display: block; pointer-events: none; }
         
         .video-badge {
-            position: absolute; top: 10px; left: 10px; background: rgba(255, 0, 0, 0.8); color: white;
+            position: absolute; top: 10px; left: 10px; background: rgba(255, 0, 0, 0.85); color: white;
             padding: 4px 10px; font-size: 0.75rem; border-radius: 5px; font-weight: bold;
         }
 
@@ -120,23 +124,30 @@
             <a href="index.html" class="action-btn">🏠 Back to Home</a>
         </div>
 
-        <!-- Admin Panel -->
+        <!-- Admin Panel with Direct Gallery Upload -->
         <div id="adminPanel">
-            <h3 style="color: #fbc531; margin-bottom: 10px;">⚙️ Admin Control Panel (Add Media)</h3>
-            <select id="mediaType">
-                <option value="image">📸 Photo / Screenshot</option>
-                <option value="video">🎥 Video File</option>
-            </select>
-            <input type="text" id="mediaUrl" placeholder="फाइल का नाम (जैसे: v1.mp4 या ss5.png)">
-            <input type="text" id="mediaName" placeholder="भेजने वाले का नाम (जैसे: Aman)">
+            <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery Panel</h3>
+            
+            <label>📂 गैलरी से फोटो या वीडियो चुनें:</label>
+            <input type="file" id="mediaFile" accept="image/*,video/*">
+
+            <label>👤 भेजने वाले का नाम:</label>
+            <input type="text" id="mediaName" placeholder="जैसे: Aman">
+
+            <label>📁 कैटेगरी चुनें:</label>
             <select id="mediaCategory">
                 <option value="whatsapp">WhatsApp Wishes</option>
                 <option value="instagram">Instagram Stories</option>
                 <option value="special">Special Friends</option>
             </select>
-            <input type="text" id="mediaJoke" placeholder="इस विश के लिए खास जोक/शायरी">
-            <input type="text" id="mediaGift" placeholder="इस दोस्त के लिए रिटर्न गिफ्ट (जैसे: 1 चॉकलेट 🍫)">
-            <button onclick="addNewMedia()">मीडिया (Photo/Video) सेव करें</button>
+
+            <label>😂 जोक या शायरी:</label>
+            <input type="text" id="mediaJoke" placeholder="जैसे: भाई पार्टी कब दे रहा है?">
+
+            <label>🎁 रिटर्न गिफ्ट:</label>
+            <input type="text" id="mediaGift" placeholder="जैसे: 1 चॉकलेट 🍫">
+
+            <button class="save-btn" onclick="addNewMedia()">🚀 गैलरी में जोड़ें</button>
         </div>
 
         <!-- Search & Tabs -->
@@ -157,12 +168,6 @@
             <div class="img-card" data-category="whatsapp" onclick="openModal('image', 'ss1.png', 'राहुल (Rahul)', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: एक कप कड़क चाय ☕')">
                 <img src="ss1.png" alt="Wish 1">
                 <div class="sender-name">💬 राहुल (Rahul)</div>
-            </div>
-            <!-- Default Pre-set Video Card Example -->
-            <div class="img-card" data-category="special" onclick="openModal('video', 'v1.mp4', 'अमित (Amit)', '😎 आधी रात को वीडियो कॉल करके विश करने वाले लीजेंड!', '🎁 रिटर्न गिफ्ट: अनलिमिटेड कोल्ड ड्रिंक 🥤')">
-                <div class="video-badge">▶ VIDEO</div>
-                <video src="v1.mp4" muted></video>
-                <div class="sender-name">❤️ अमित (Amit) - Video</div>
             </div>
         </div>
 
@@ -240,30 +245,43 @@
             });
         }
 
+        // डायरेक्ट गैलरी से फाइल उठाने और सेव करने का फंक्शन
         function addNewMedia() {
-            let type = document.getElementById("mediaType").value;
-            let url = document.getElementById("mediaUrl").value;
+            let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value;
             let category = document.getElementById("mediaCategory").value;
             let joke = document.getElementById("mediaJoke").value || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
             let gift = document.getElementById("mediaGift").value || "🎁 रिटर्न गिफ्ट: स्पेशल चॉकलेट 🍫";
 
-            if(!url || !name) {
-                alert("कृपया फाइल नाम और नाम भरें!");
+            if (fileInput.files.length === 0 || !name) {
+                alert("कृपया फाइल (फोटो/वीडियो) और भेजने वाले का नाम भरें!");
                 return;
             }
 
-            let savedMedia = JSON.parse(localStorage.getItem('suryaMediaVault') || '[]');
-            savedMedia.push({ type, url, name, category, joke, gift });
-            localStorage.setItem('suryaMediaVault', JSON.stringify(savedMedia));
+            let file = fileInput.files[0];
+            let reader = new FileReader();
 
-            renderMediaCard(type, url, name, category, joke, gift);
-            
-            document.getElementById("mediaUrl").value = "";
-            document.getElementById("mediaName").value = "";
-            document.getElementById("mediaJoke").value = "";
-            document.getElementById("mediaGift").value = "";
-            alert("नया मीडिया, जोक और गिफ्ट सफलतापूर्वक जुड़ गया है!");
+            reader.onload = function(e) {
+                let mediaDataUrl = e.target.result;
+                let fileType = file.type.startsWith('video') ? 'video' : 'image';
+
+                // लोकलस्टोरेज में सेव करना
+                let savedMedia = JSON.parse(localStorage.getItem('suryaDirectVault') || '[]');
+                savedMedia.push({ type: fileType, url: mediaDataUrl, name, category, joke, gift });
+                localStorage.setItem('suryaDirectVault', JSON.stringify(savedMedia));
+
+                // स्क्रीन पर दिखाना
+                renderMediaCard(fileType, mediaDataUrl, name, category, joke, gift);
+
+                // फॉर्म रीसेट करना
+                fileInput.value = "";
+                document.getElementById("mediaName").value = "";
+                document.getElementById("mediaJoke").value = "";
+                document.getElementById("mediaGift").value = "";
+                alert("✨ फोटो/वीडियो सफलतापूर्वक गैलरी में जुड़ गया है!");
+            };
+
+            reader.readAsDataURL(file);
         }
 
         function renderMediaCard(type, url, name, category, joke, gift) {
@@ -294,7 +312,7 @@
         }
 
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaMediaVault') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaDirectVault') || '[]');
             savedMedia.forEach(item => { 
                 renderMediaCard(item.type, item.url, item.name, item.category, item.joke, item.gift); 
             });
