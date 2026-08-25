@@ -167,7 +167,6 @@
         }
         .claim-btn:disabled { background: #555; cursor: not-allowed; }
 
-        /* Secret Gift Box Revealed Style */
         .secret-gift-reveal {
             background: rgba(255, 215, 0, 0.15); border: 2px dashed #fbc531; border-radius: 12px; padding: 15px; margin-top: 12px; text-align: center; display: none;
             animation: bounceIn 0.6s ease;
@@ -214,7 +213,7 @@
 
                 <label>🎵 बैकग्राउंड म्यूजिक (MP3):</label>
                 <input type="file" id="musicFile" accept="audio/*">
-                <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक सेव करें</button>
+                <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक परमानेंट सेव करें</button>
 
                 <label>📂 फोटो या वीडियो चुनें (HD Optimized):</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
@@ -280,7 +279,7 @@
                 <p id="modalJoke">💬 <b>Joke:</b> -</p>
             </div>
 
-            <!-- Secret Gift Box Revealed Section (Hidden until claimed) -->
+            <!-- Secret Gift Box Revealed Section -->
             <div class="secret-gift-reveal" id="secretGiftRevealBox">
                 <h3 style="color: #fbc531; font-size: 1.1rem; margin-bottom: 5px;">🎉 🎁 Gift Unlocked! 🎁 🎉</h3>
                 <p id="modalGift" style="font-size: 1rem; color: #fff; font-weight: bold;"></p>
@@ -304,22 +303,45 @@
         let currentOpenMediaId = null;
 
         window.onload = function() {
-            confetti({ particleCount: 70, spread: 50, origin: { y: 0.7 } });
+            // Entry page par bhi celebration
+            confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
             loadSavedMedia();
             loadAdminRequests();
             
             let savedUpi = localStorage.getItem('suryaAdminUpi');
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
 
+            // Permanent Custom Music Load
             let savedMusic = localStorage.getItem('suryaCustomMusic');
             if(savedMusic) {
-                document.getElementById('bgMusic').src = savedMusic;
+                let music = document.getElementById('bgMusic');
+                music.src = savedMusic;
+                music.load();
             }
+
+            // Browser Back / Exit Interception Setup
+            window.history.pushState({page: 1}, "", "");
+            window.onpopstate = function(event) {
+                let confirmExit = confirm("क्या आप वाकई इस पेज से बाहर जाना चाहते हैं?");
+                if (confirmExit) {
+                    let visitorName = prompt("बाहर जाने से पहले अपना नाम बताएं:");
+                    if(visitorName && visitorName.trim() !== "") {
+                        alert(`🙏 धन्यवाद ${visitorName}! सूर्या के बर्थडे वॉल्ट पर आने के लिए दिल से शुक्रिया। ✨`);
+                    }
+                    history.back();
+                } else {
+                    window.history.pushState({page: 1}, "", "");
+                }
+            };
         };
 
         function openGallery(isAdmin = false) {
+            // View section me entry hote hi celebration
+            confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } });
+            
             document.getElementById('entryPage').style.display = 'none';
             document.getElementById('galleryPage').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
             if(isAdmin) {
                 let pass = prompt("🔐 एडमिन पासवर्ड दर्ज करें:");
@@ -337,7 +359,7 @@
 
         function adminLogin() { openGallery(true); }
 
-        // Exit / Home Confirmation Feature Added Here
+        // Home Button Exit Confirmation
         function goHome() {
             let confirmExit = confirm("क्या आप वाकई इस पेज से बाहर (Home) जाना चाहते हैं?");
             if (confirmExit) {
@@ -373,8 +395,10 @@
             let reader = new FileReader();
             reader.onload = function(e) {
                 localStorage.setItem('suryaCustomMusic', e.target.result);
-                document.getElementById('bgMusic').src = e.target.result;
-                alert("🎵 म्यूजिक सेव हो गया!");
+                let music = document.getElementById('bgMusic');
+                music.src = e.target.result;
+                music.load();
+                alert("🎵 म्यूजिक परमानेंट सेव हो गया!");
             };
             reader.readAsDataURL(fileInput.files[0]);
         }
@@ -479,7 +503,7 @@
                 document.getElementById("mediaName").value = "";
                 document.getElementById("mediaJoke").value = "";
                 document.getElementById("mediaGift").value = "";
-                alert("✨ सफलतापूर्वक सेव हो गया!");
+                alert("✨ परमानेंट सेव हो गया!");
             } catch (error) {
                 alert("❌ स्टोरेज फुल हो गई है! कृपया कुछ पुरानी फाइलें डिलीट करें।");
             }
@@ -510,9 +534,13 @@
             newCard.className = "img-card";
             newCard.setAttribute("data-category", category);
             
-            let safeJoke = joke.replace(/'/g, "\\'");
-            let safeGift = gift.replace(/'/g, "\\'");
-            newCard.setAttribute("onclick", `openModal('${id}', '${type}', '${url}', '${name}', '${safeJoke}', '${safeGift}', ${claimed})`);
+            // Fixed quotes issue for modal opening
+            let safeJoke = joke.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            let safeGift = gift.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            
+            newCard.onclick = function() {
+                openModal(id, type, url, name, joke, gift, claimed);
+            };
             
             let icon = category === 'birthday' ? '🎂' : category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
             let deleteBtn = (isAdminLoggedIn && id !== 'id_default') ? `<button class="del-card-btn" style="display:block;" onclick="deleteCard(event, '${id}')">×</button>` : '';
@@ -608,9 +636,10 @@
             claimRequests.push({ name: friendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
+            // Box open hote hi heavy Celebration
             confetti({
-                particleCount: 200,
-                spread: 100,
+                particleCount: 250,
+                spread: 120,
                 origin: { y: 0.6 }
             });
 
