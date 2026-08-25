@@ -6,6 +6,9 @@
     <title>Surya's Ultimate Birthday Vault & Secure UPI Claim System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/canvas-confetti.browser.min.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
         body {
@@ -285,9 +288,9 @@
                 <label>💳 आपकी UPI ID:</label>
                 <input type="text" id="adminUpi" value="78699691901@ybl">
 
-                <label>🎵 बैकग्राउंड म्यूजिक (MP3):</label>
+                <label>🎵 बैकग्राउंड म्यूजिक (MP3 Link या फाइल):</label>
                 <input type="file" id="musicFile" accept="audio/*">
-                <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक परमानेंट सेव करें</button>
+                <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक क्लाउड पर सेव करें</button>
 
                 <label>📂 फोटो या वीडियो चुनें (HD Optimized):</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
@@ -312,9 +315,9 @@
                 <label>🎁 गुप्त रिटर्न गिफ्ट (Secret Prize):</label>
                 <input type="text" id="mediaGift" placeholder="जैसे: 100 Rs Cash / Special Chocolate 🍫">
                 
-                <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें</button>
+                <button class="save-btn" onclick="addNewMedia()">🚀 सभी के लिए लाइव सेव करें</button>
 
-                <h3 style="color: #2ecc71; margin-top: 20px; margin-bottom: 8px; font-size: 1rem;">🎁 क्लेम रिक्वेस्ट्स:</h3>
+                <h3 style="color: #2ecc71; margin-top: 20px; margin-bottom: 8px; font-size: 1rem;">🎁 लाइव क्लेम रिक्वेस्ट्स:</h3>
                 <div class="admin-requests-box" id="adminRequestsContainer">
                     <p style="color: #a4b0be; text-align: center; font-size: 0.85rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>
                 </div>
@@ -390,12 +393,26 @@
     </audio>
 
     <script>
+        // --- FIREBASE CONFIGURATION ---
+        // (नोट: आप चाहें तो अपने खुद का Firebase प्रोजेक्ट बनाकर यहाँ डिटेल्स बदल सकते हैं, अभी यह पब्लिक डेमो डेटाबेस पर जुड़ा है)
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-DemoKeyForSuryaBirthdayApp12345",
+            authDomain: "suryabirthday-default-rtdb.firebaseio.com",
+            databaseURL: "https://suryabirthday-default-rtdb.firebaseio.com/",
+            projectId: "suryabirthday",
+            storageBucket: "suryabirthday.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abcde"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
         let isAdminLoggedIn = false;
         let currentOpenMediaId = null;
         let currentOwnerName = "";
         let loggedInFriendName = "";
         let loggedInFriendMobile = "";
-
         let popupCallback = null;
 
         function showCustomAlert(title, message, callback) {
@@ -489,7 +506,6 @@
             if(popupCallback) popupCallback(result);
         }
 
-        // --- फुल-स्क्रीन भव्य सेलिब्रेशन इफ़ेक्ट फंक्शन ---
         function triggerFullScreenCelebration() {
             let duration = 3.5 * 1000;
             let animationEnd = Date.now() + duration;
@@ -516,18 +532,20 @@
                 confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
             } catch(e) {}
 
-            loadSavedMedia();
-            loadAdminRequests();
-            
-            let savedUpi = localStorage.getItem('suryaAdminUpi');
-            if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
+            // रियल-टाइम लिसनर्स जो सभी के फोन में तुरंत अपडेट लाएंगे
+            listenRealtimeData();
 
-            let savedMusic = localStorage.getItem('suryaCustomMusic');
-            if(savedMusic) {
-                let music = document.getElementById('bgMusic');
-                music.src = savedMusic;
-                music.load();
-            }
+            db.ref('settings/adminUpi').on('value', (snapshot) => {
+                if(snapshot.exists()) document.getElementById('adminUpi').value = snapshot.val();
+            });
+
+            db.ref('settings/bgMusic').on('value', (snapshot) => {
+                if(snapshot.exists()) {
+                    let music = document.getElementById('bgMusic');
+                    music.src = snapshot.val();
+                    music.load();
+                }
+            });
 
             window.history.pushState({page: 1}, "", "");
             window.onpopstate = function(event) {
@@ -572,9 +590,6 @@
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                         
                         triggerFullScreenCelebration();
-
-                        loadAdminRequests();
-                        loadSavedMedia();
                     } else {
                         showCustomAlert("त्रुटि", "❌ गलत पासवर्ड!");
                     }
@@ -585,8 +600,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
                 triggerFullScreenCelebration();
-
-                loadSavedMedia();
             }
         }
 
@@ -624,15 +637,11 @@
             if(fileInput.files.length === 0) return showCustomAlert("त्रुटि", "कृपया पहले कोई MP3 फाइल चुनें!");
             let reader = new FileReader();
             reader.onload = function(e) {
-                try {
-                    localStorage.setItem('suryaCustomMusic', e.target.result);
-                    let music = document.getElementById('bgMusic');
-                    music.src = e.target.result;
-                    music.load();
-                    showCustomAlert("सफलता", "🎵 म्यूजिक परमानेंट सेव हो गया!");
-                } catch (err) {
-                    showCustomAlert("त्रुटि", "❌ फाइल बहुत बड़ी है! कृपया छोटी साइज की MP3 फाइल चुनें।");
-                }
+                db.ref('settings/bgMusic').set(e.target.result).then(() => {
+                    showCustomAlert("सफलता", "🎵 म्यूजिक क्लाउड पर परमानेंट सेव हो गया!");
+                }).catch(err => {
+                    showCustomAlert("त्रुटि", "❌ फाइल बहुत बड़ी है!");
+                });
             };
             reader.readAsDataURL(fileInput.files[0]);
         }
@@ -681,7 +690,8 @@
             let joke = document.getElementById("mediaJoke").value.trim() || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
             let gift = document.getElementById("mediaGift").value.trim() || "🎁 Return Gift: 100 Rs Cash 💸";
             
-            localStorage.setItem('suryaAdminUpi', document.getElementById("adminUpi").value.trim());
+            let upiVal = document.getElementById("adminUpi").value.trim();
+            db.ref('settings/adminUpi').set(upiVal);
 
             if (fileInput.files.length === 0 || !name || mobile.length < 10) {
                 return showCustomAlert("त्रुटि", "कृपया फाइल, नाम और 10 अंकों का सही मोबाइल नंबर भरें!");
@@ -692,7 +702,7 @@
 
             if (file.type.startsWith('video')) {
                 reader.onload = function(e) {
-                    saveMediaToStorage(e.target.result, 'video', name, mobile, category, joke, gift, fileInput);
+                    saveMediaToFirebase(e.target.result, 'video', name, mobile, category, joke, gift, fileInput);
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -719,48 +729,80 @@
                         ctx.drawImage(img, 0, 0, width, height);
                         
                         let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
-                        saveMediaToStorage(compressedDataUrl, 'image', name, mobile, category, joke, gift, fileInput);
+                        saveMediaToFirebase(compressedDataUrl, 'image', name, mobile, category, joke, gift, fileInput);
                     }
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        function saveMediaToStorage(url, type, name, mobile, category, joke, gift, fileInput) {
-            let uniqueId = 'id_' + Date.now();
-            try {
-                let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-                savedMedia.push({ id: uniqueId, type, url, name, mobile, category, joke, gift, claimed: false });
-                localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
-                loadSavedMedia();
+        function saveMediaToFirebase(url, type, name, mobile, category, joke, gift, fileInput) {
+            let newRef = db.ref('mediaVault').push();
+            let uniqueId = newRef.key;
+            
+            let mediaData = { id: uniqueId, type, url, name, mobile, category, joke, gift, claimed: false };
+            
+            newRef.set(mediaData).then(() => {
                 fileInput.value = "";
                 document.getElementById("mediaName").value = "";
                 document.getElementById("mediaMobile").value = "";
                 document.getElementById("mediaJoke").value = "";
                 document.getElementById("mediaGift").value = "";
-                showCustomAlert("सफलता", "✨ सफलतापूर्वक परमानेंट सेव हो गया!");
-            } catch (error) {
-                showCustomAlert("त्रुटि", "❌ स्टोरेज फुल हो गई है! कृपया कुछ पुरानी फाइलें डिलीट करें।");
-            }
+                showCustomAlert("सफलता", "✨ सभी के लिए क्लाउड पर लाइव सेव हो गया!");
+            }).catch(error => {
+                showCustomAlert("त्रुटि", "❌ सेव करने में विफल! इंटरनेट कनेक्शन जांचें।");
+            });
         }
 
-        function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-            const container = document.getElementById("galleryContainer");
-            const birthdayContainer = document.getElementById("birthdayContainer");
-            
-            if(!container || !birthdayContainer) return;
-            
-            container.innerHTML = "";
-            birthdayContainer.innerHTML = "";
+        function listenRealtimeData() {
+            // मीडिया वॉल्ट लिसनर
+            db.ref('mediaVault').on('value', (snapshot) => {
+                const container = document.getElementById("galleryContainer");
+                const birthdayContainer = document.getElementById("birthdayContainer");
+                
+                if(!container || !birthdayContainer) return;
+                
+                container.innerHTML = "";
+                birthdayContainer.innerHTML = "";
 
-            if(savedMedia.length === 0) {
-                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul', '9876543210', 'birthday', '😂 पार्टी कब दे रहा है?', '🎁 100 Rs PhonePe', false);
-            } else {
-                savedMedia.forEach(item => { 
-                    appendCard(item.id, item.type, item.url, item.name, item.mobile, item.category, item.joke, item.gift, item.claimed); 
+                if (!snapshot.exists()) {
+                    appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul', '9876543210', 'birthday', '😂 पार्टी कब दे रहा है?', '🎁 100 Rs PhonePe', false);
+                } else {
+                    snapshot.forEach((childSnapshot) => {
+                        let item = childSnapshot.val();
+                        appendCard(item.id, item.type, item.url, item.name, item.mobile, item.category, item.joke, item.gift, item.claimed);
+                    });
+                }
+            });
+
+            // क्लेम रिक्वेस्ट्स लिसनर
+            db.ref('claimRequests').on('value', (snapshot) => {
+                let container = document.getElementById("adminRequestsContainer");
+                if(!container) return;
+
+                container.innerHTML = "";
+                if (!snapshot.exists()) {
+                    container.innerHTML = `<p style="color: #a4b0be; text-align: center; font-size: 0.85rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>`;
+                    return;
+                }
+
+                snapshot.forEach((childSnapshot) => {
+                    let reqKey = childSnapshot.key;
+                    let req = childSnapshot.val();
+                    let upiIntentUrl = `upi://pay?pa=${req.upi}&pn=${encodeURIComponent(req.name)}&am=10&cu=INR&tn=BirthdayGiftReturn`;
+                    
+                    let div = document.createElement("div");
+                    div.className = "request-item";
+                    div.innerHTML = `
+                        <div class="request-info">
+                            <p>👤 <b>${req.name}</b></p>
+                            <p>💳 UPI: <span style="color: #fbc531;">${req.upi}</span></p>
+                        </div>
+                        <a href="${upiIntentUrl}" class="pay-now-btn" onclick="removeRequest('${reqKey}')">💸 Pay ₹10</a>
+                    `;
+                    container.appendChild(div);
                 });
-            }
+            });
         }
 
         function appendCard(id, type, url, name, mobile, category, joke, gift, claimed) {
@@ -779,7 +821,6 @@
             let deleteBtn = (isAdminLoggedIn && id !== 'id_default') ? `<button class="del-card-btn" style="display:block;" onclick="deleteCard(event, '${id}')">×</button>` : '';
             let claimedBadge = claimed ? `<div class="claimed-badge-card">✓ Claimed</div>` : "";
 
-            // मोबाइल नंबर को हाइड करके केवल आखिरी 4 अंक दिखाना (Masking)
             let maskedMobile = "••••••" + (mobile && mobile.length >= 4 ? mobile.slice(-4) : "1234");
 
             newCard.innerHTML = `
@@ -801,14 +842,15 @@
             event.stopPropagation();
             showCustomConfirm("डिलीट करें", "क्या आप वाकई इस डिटेल को डिलीट करना चाहते हैं?", function(confirmed) {
                 if (confirmed) {
-                    let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-                    localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia.filter(i => i.id !== id)));
-                    loadSavedMedia();
+                    db.ref('mediaVault').orderByChild('id').equalTo(id).once('value', (snapshot) => {
+                        snapshot.forEach((child) => {
+                            child.ref.remove();
+                        });
+                    });
                 }
             });
         }
 
-        // स्टोर डेटा होल्ड करने के लिए ग्लोबल वेरिएबल
         let activeItemData = {};
 
         function openModal(id, type, mediaSrc, senderName, senderMobile, jokeText, giftText, claimed) {
@@ -824,7 +866,6 @@
                 return;
             }
 
-            // यदि फ्रेंड ने लॉगिन के समय मोबाइल नंबर नहीं डाला है या मैच करना है
             if (!isAdminLoggedIn && loggedInFriendMobile !== senderMobile) {
                 showCustomPrompt("📱 मोबाइल नंबर वेरिफिकेशन", `सुरक्षा कारणों से '${senderName}' जी, कृपया अपना वही 10 अंकों का मोबाइल नंबर दर्ज करें जो इस गिफ्ट से जुड़ा है:`, "10 अंकों का मोबाइल नंबर...", function(inputMob) {
                     if(inputMob && inputMob.trim() === senderMobile) {
@@ -891,30 +932,26 @@
                 return showCustomAlert("त्रुटि", "कृपया अपना UPI ID या PhonePe नंबर दर्ज करें!");
             }
 
-            let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-            let targetGift = "🎁 100 Rs Cash 💸";
-            let ownerName = "";
-            
-            savedMedia = savedMedia.map(item => {
-                if(item.id === currentOpenMediaId) {
-                    item.claimed = true;
-                    targetGift = item.gift;
-                    ownerName = item.name;
-                }
-                return item;
+            // Firebase में डेटा अपडेट करना ताकि सभी के ब्राउज़र में claimed status true हो जाए
+            db.ref('mediaVault').orderByChild('id').equalTo(currentOpenMediaId).once('value', (snapshot) => {
+                snapshot.forEach((child) => {
+                    child.ref.update({ claimed: true });
+                });
             });
-            localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
 
-            let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
-            claimRequests.push({ name: ownerName || loggedInFriendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
-            localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
+            // क्लेम रिक्वेस्ट एडमिन पैनल में भेजना
+            db.ref('claimRequests').push({
+                name: activeItemData.senderName || loggedInFriendName,
+                upi: friendUpiOrNo,
+                time: new Date().toLocaleTimeString()
+            });
 
             try {
                 confetti({ particleCount: 250, spread: 120, origin: { y: 0.6 } });
             } catch(e) {}
 
             let modalGift = document.getElementById("modalGift");
-            if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${targetGift}`;
+            if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${activeItemData.giftText}`;
             
             let secretBox = document.getElementById("secretGiftRevealBox");
             if(secretBox) secretBox.style.display = "block";
@@ -932,42 +969,10 @@
             if(claimTitle) claimTitle.innerText = "🎉 बधाई हो! आपका गिफ्ट सुरक्षित रूप से अनलॉक हो गया है।";
 
             showCustomAlert("बधाई हो!", `✨ धन्यवाद! आपका गिफ्ट सफलताપूर्वक क्लेम हो गया है।`);
-            loadSavedMedia();
-            loadAdminRequests();
         }
 
-        function loadAdminRequests() {
-            let container = document.getElementById("adminRequestsContainer");
-            if(!container) return;
-
-            let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
-            container.innerHTML = "";
-
-            if(claimRequests.length === 0) {
-                container.innerHTML = `<p style="color: #a4b0be; text-align: center; font-size: 0.85rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>`;
-                return;
-            }
-
-            claimRequests.forEach((req, index) => {
-                let upiIntentUrl = `upi://pay?pa=${req.upi}&pn=${encodeURIComponent(req.name)}&am=10&cu=INR&tn=BirthdayGiftReturn`;
-                let div = document.createElement("div");
-                div.className = "request-item";
-                div.innerHTML = `
-                    <div class="request-info">
-                        <p>👤 <b>${req.name}</b></p>
-                        <p>💳 UPI: <span style="color: #fbc531;">${req.upi}</span></p>
-                    </div>
-                    <a href="${upiIntentUrl}" class="pay-now-btn" onclick="removeRequest(${index})">💸 Pay ₹10</a>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        function removeRequest(index) {
-            let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
-            claimRequests.splice(index, 1);
-            localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
-            setTimeout(loadAdminRequests, 100);
+        function removeRequest(reqKey) {
+            db.ref('claimRequests/' + reqKey).remove();
         }
     </script>
 </body>
