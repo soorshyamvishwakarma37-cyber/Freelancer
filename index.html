@@ -66,7 +66,7 @@
 
         /* Admin Panel */
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.75); padding: 25px; border-radius: 15px;
+            display: none; background: rgba(0, 0, 0, 0.85); padding: 25px; border-radius: 15px;
             margin-bottom: 25px; border: 1px dashed #fbc531; text-align: left;
             max-width: 500px; margin-left: auto; margin-right: auto;
         }
@@ -104,6 +104,12 @@
             padding: 4px 10px; font-size: 0.75rem; border-radius: 5px; font-weight: bold;
         }
         .sender-name { padding: 12px; font-size: 1.1rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.2); text-align: center; }
+        
+        /* Delete Button for Admin inside Card */
+        .del-card-btn {
+            position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.9); color: white;
+            border: none; border-radius: 50%; width: 30px; height: 30px; font-weight: bold; cursor: pointer; display: none; z-index: 10;
+        }
 
         .badge {
             background: linear-gradient(45deg, #e84393, #fd79a8); color: white; padding: 12px 35px;
@@ -239,6 +245,15 @@
     </audio>
 
     <script>
+        // Exit Confirmation (यदि कोई पेज बंद करने की कोशिश करेगा तो वार्निंग देगा)
+        window.onbeforeunload = function(event) {
+            event.preventDefault();
+            event.returnValue = "क्या आप वाकई इस पेज से बाहर जाना चाहते हैं?";
+            return event.returnValue;
+        };
+
+        let isAdminLoggedIn = false;
+
         window.onload = function() {
             confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
             loadSavedMedia();
@@ -250,7 +265,9 @@
             document.getElementById('entryPage').style.display = 'none';
             document.getElementById('galleryPage').style.display = 'block';
             if(isAdmin) {
+                isAdminLoggedIn = true;
                 document.getElementById('adminPanel').style.display = 'block';
+                loadSavedMedia(); // एडमिन मोड में डिलीट बटन दिखाने के लिए री-लोड
             }
             confetti({ particleCount: 70, spread: 60 });
         }
@@ -266,8 +283,10 @@
         }
 
         function goHome() {
-            document.getElementById('galleryPage').style.display = 'none';
-            document.getElementById('entryPage').style.display = 'block';
+            if(confirm("क्या आप वाकई होम पेज पर जाना चाहते हैं?")) {
+                document.getElementById('galleryPage').style.display = 'none';
+                document.getElementById('entryPage').style.display = 'block';
+            }
         }
 
         let isPlaying = false;
@@ -312,7 +331,7 @@
             });
         }
 
-        // परमानेंट सेव करने का फंक्शन (डेटा हमेशा सुरक्षित रहेगा)
+        // परमानेंट सेव करने का फंक्शन (जब तक आप खुद न हटाएं, तब तक नहीं हटेगा)
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value.trim();
@@ -331,18 +350,18 @@
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            alert("⏳ फाइल परमानेंट सेव हो रही है, कृपया थोड़ा इंतज़ार करें...");
+            alert("⏳ फाइल परमानेंट सेव हो रही है...");
 
             reader.onload = function(e) {
                 let mediaDataUrl = e.target.result;
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
+                let uniqueId = 'id_' + Date.now(); // हर कार्ड की यूनिक आईडी
 
                 try {
-                    let savedMedia = JSON.parse(localStorage.getItem('suryaFinalVaultData') || '[]');
-                    savedMedia.push({ type: fileType, url: mediaDataUrl, name, category, joke, gift });
+                    let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v2') || '[]');
+                    savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift });
                     
-                    // ब्राउज़र में परमानेंट स्टोर करना
-                    localStorage.setItem('suryaFinalVaultData', JSON.stringify(savedMedia));
+                    localStorage.setItem('suryaPermanentStore_v2', JSON.stringify(savedMedia));
 
                     loadSavedMedia();
 
@@ -350,31 +369,30 @@
                     document.getElementById("mediaName").value = "";
                     document.getElementById("mediaJoke").value = "";
                     document.getElementById("mediaGift").value = "";
-                    alert("✨ सफलता! फोटो और जानकारी हमेशा के लिए परमानेंट सेव हो चुकी है।");
+                    alert("✨ सफलता! डेटा हमेशा के लिए परमानेंट सेव हो गया है। अब यह कभी डिलीट नहीं होगा जब तक आप खुद एडमिन पैनल से न हटाएं।");
                 } catch (error) {
-                    alert("❌ एरर: यह फाइल साइज़ में बहुत बड़ी है। कृपया थोड़ी छोटी फाइल चुनें।");
+                    alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है। कृपया दूसरी फाइल चुनें।");
                 }
             };
             reader.readAsDataURL(file);
         }
 
-        // लाइन से एक के बाद एक कार्ड दिखाने का फंक्शन
+        // डेटा लोड करना
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaFinalVaultData') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v2') || '[]');
             const container = document.getElementById("galleryContainer");
             container.innerHTML = "";
 
             if(savedMedia.length === 0) {
-                // डिफ़ॉल्ट सैंपल कार्ड
-                appendCard('image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸');
+                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸');
             } else {
                 savedMedia.forEach(item => { 
-                    appendCard(item.type, item.url, item.name, item.category, item.joke, item.gift); 
+                    appendCard(item.id, item.type, item.url, item.name, item.category, item.joke, item.gift); 
                 });
             }
         }
 
-        function appendCard(type, url, name, category, joke, gift) {
+        function appendCard(id, type, url, name, category, joke, gift) {
             const container = document.getElementById("galleryContainer");
             const newCard = document.createElement("div");
             newCard.className = "img-card";
@@ -386,19 +404,40 @@
             
             let icon = category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
 
+            let deleteBtnHtml = "";
+            // अगर एडमिन लॉग्ड इन है, तो कार्ड पर डिलीट बटन दिखेगा ताकि आप अपनी मर्जी से हटा सकें
+            if(isAdminLoggedIn && id !== 'id_default') {
+                deleteBtnHtml = `<button class="del-card-btn" onclick="deleteCard(event, '${id}')" title="हटाएं">×</button>`;
+                setTimeout(() => { newCard.querySelector('.del-card-btn').style.display = 'block'; }, 100);
+            }
+
             if(type === 'video') {
                 newCard.innerHTML = `
+                    ${deleteBtnHtml}
                     <div class="video-badge">▶ VIDEO</div>
                     <video src="${url}" muted></video>
                     <div class="sender-name">${icon} ${name}</div>
                 `;
             } else {
                 newCard.innerHTML = `
+                    ${deleteBtnHtml}
                     <img src="${url}" alt="Wish">
                     <div class="sender-name">${icon} ${name}</div>
                 `;
             }
             container.appendChild(newCard);
+        }
+
+        // सिर्फ एडमिन के हटाने पर ही कार्ड डिलीट होगा
+        function deleteCard(event, id) {
+            event.stopPropagation(); // ताकि मोडल न खुले
+            if(confirm("क्या आप वाकई इस फोटो/वीडियो को हमेशा के लिए डिलीट करना चाहते हैं?")) {
+                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v2') || '[]');
+                let updatedMedia = savedMedia.filter(item => item.id !== id);
+                localStorage.setItem('suryaPermanentStore_v2', JSON.stringify(updatedMedia));
+                loadSavedMedia();
+                alert("🗑️ डेटा सफलतापूर्वक हटा दिया गया है।");
+            }
         }
 
         function openModal(type, mediaSrc, senderName, jokeText, giftText) {
@@ -431,7 +470,7 @@
             mediaContainer.innerHTML = "";
         }
 
-        // फोनपे / यूपीआई रिक्वेस्ट भेजने और पेमेंट करने का फंक्शन
+        // फोनपे / यूपीआई रिक्वेस्ट भेजने का फंक्शन
         function claimGiftViaUpi() {
             let friendUpi = document.getElementById("friendUpiInput").value.trim();
             if(!friendUpi) {
@@ -441,10 +480,10 @@
 
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
             
-            // UPI Intent URI ताकि आपके फोनपे (7869969190) पर डायरेक्ट रिक्वेस्ट जनरेट हो सके
+            // UPI Intent URI जो आपके फोनपे ऐप को ट्रिगर करेगा
             let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=GiftClaimBy_${encodeURIComponent(friendUpi)}`;
 
-            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) के पास भेजी जा रही है।\n\nअब आपके फोन में PhonePe / Google Pay ऐप खुलेगी जहाँ से सूर्या आपको पेमेंट भेज सकेंगे:`);
+            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) के पास भेजी जा रही है।\n\nअब आपके मोबाइल में PhonePe / Google Pay ऐप खुलेगी:`);
             
             window.location.href = upiIntentUrl;
         }
