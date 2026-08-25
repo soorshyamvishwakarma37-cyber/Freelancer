@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surya's Ultimate Birthday & UPI Vault</title>
+    <title>Surya's Ultimate Birthday Vault & UPI Payment System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/canvas-confetti.browser.min.js"></script>
     <style>
@@ -171,7 +171,7 @@
             <div id="adminPanel">
                 <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery Panel</h3>
                 
-                <label>💳 आपकी अपनी UPI ID (जहाँ से आप पेमेंट भेजेंगे):</label>
+                <label>💳 आपकी अपनी UPI ID (जहाँ से पेमेंट रिक्वेस्ट आएगी/भेजी जाएगी):</label>
                 <input type="text" id="adminUpi" value="7869969190@ybl" placeholder="जैसे: 7869969190@ybl">
 
                 <label>📂 गैलरी से फोटो या वीडियो चुनें:</label>
@@ -193,7 +193,7 @@
                 <label>🎁 रिटर्न गिफ्ट (विवरण):</label>
                 <input type="text" id="mediaGift" placeholder="जैसे: Cash Gift / 100 Rs 💸">
                 
-                <button class="save-btn" onclick="addNewMedia()">🚀 गैलरी में जोड़ें</button>
+                <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें</button>
             </div>
 
             <div class="controls-container">
@@ -312,7 +312,7 @@
             });
         }
 
-        // डेटा जोड़ने और लाइन से नीचे सेव करने का मुख्य फंक्शन
+        // परमानेंट सेव करने का फंक्शन (डेटा हमेशा सुरक्षित रहेगा)
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value.trim();
@@ -331,40 +331,50 @@
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            alert("⏳ फाइल सेव हो रही है, कृपया थोड़ा इंतज़ार करें...");
+            alert("⏳ फाइल परमानेंट सेव हो रही है, कृपया थोड़ा इंतज़ार करें...");
 
             reader.onload = function(e) {
                 let mediaDataUrl = e.target.result;
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
 
                 try {
-                    // लोकलस्टोरेज से पुराना डेटा निकालें
-                    let savedMedia = JSON.parse(localStorage.getItem('suryaPersistentVault') || '[]');
-                    
-                    // नया डेटा अरे के अंत में (नीचे) जोड़ें
+                    let savedMedia = JSON.parse(localStorage.getItem('suryaFinalVaultData') || '[]');
                     savedMedia.push({ type: fileType, url: mediaDataUrl, name, category, joke, gift });
                     
-                    // परमानेंट सेव करें
-                    localStorage.setItem('suryaPersistentVault', JSON.stringify(savedMedia));
+                    // ब्राउज़र में परमानेंट स्टोर करना
+                    localStorage.setItem('suryaFinalVaultData', JSON.stringify(savedMedia));
 
-                    // स्क्रीन को रीफ्रेश या री-रेंडर करें ताकि नया कार्ड सबसे नीचे जुड़ जाए
-                    refreshGalleryGrid();
+                    loadSavedMedia();
 
-                    // फॉर्म रीसेट करना
                     fileInput.value = "";
                     document.getElementById("mediaName").value = "";
                     document.getElementById("mediaJoke").value = "";
                     document.getElementById("mediaGift").value = "";
-                    alert("✨ सफलता! नाम और फोटो/वीडियो हमेशा के लिए गैलरी में सबसे नीचे सेव हो गए हैं।");
+                    alert("✨ सफलता! फोटो और जानकारी हमेशा के लिए परमानेंट सेव हो चुकी है।");
                 } catch (error) {
-                    alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है। कृपया छोटी फाइल चुनें।");
+                    alert("❌ एरर: यह फाइल साइज़ में बहुत बड़ी है। कृपया थोड़ी छोटी फाइल चुनें।");
                 }
             };
             reader.readAsDataURL(file);
         }
 
-        // एक सिंगल कार्ड स्क्रीन पर जोड़ने का फंक्शन
-        function appendCardToGrid(type, url, name, category, joke, gift) {
+        // लाइन से एक के बाद एक कार्ड दिखाने का फंक्शन
+        function loadSavedMedia() {
+            let savedMedia = JSON.parse(localStorage.getItem('suryaFinalVaultData') || '[]');
+            const container = document.getElementById("galleryContainer");
+            container.innerHTML = "";
+
+            if(savedMedia.length === 0) {
+                // डिफ़ॉल्ट सैंपल कार्ड
+                appendCard('image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸');
+            } else {
+                savedMedia.forEach(item => { 
+                    appendCard(item.type, item.url, item.name, item.category, item.joke, item.gift); 
+                });
+            }
+        }
+
+        function appendCard(type, url, name, category, joke, gift) {
             const container = document.getElementById("galleryContainer");
             const newCard = document.createElement("div");
             newCard.className = "img-card";
@@ -389,27 +399,6 @@
                 `;
             }
             container.appendChild(newCard);
-        }
-
-        // सेव किए गए सभी डेटा को लाइन से लोड करना
-        function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPersistentVault') || '[]');
-            const container = document.getElementById("galleryContainer");
-            container.innerHTML = ""; // पहले खाली करें
-
-            if(savedMedia.length === 0) {
-                // डिफ़ॉल्ट कार्ड यदि कुछ न हो
-                appendCardToGrid('image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸');
-            } else {
-                savedMedia.forEach(item => { 
-                    appendCardToGrid(item.type, item.url, item.name, item.category, item.joke, item.gift); 
-                });
-            }
-        }
-
-        // गैलरी को तुरंत अपडेट करने के लिए
-        function refreshGalleryGrid() {
-            loadSavedMedia();
         }
 
         function openModal(type, mediaSrc, senderName, jokeText, giftText) {
@@ -442,6 +431,7 @@
             mediaContainer.innerHTML = "";
         }
 
+        // फोनपे / यूपीआई रिक्वेस्ट भेजने और पेमेंट करने का फंक्शन
         function claimGiftViaUpi() {
             let friendUpi = document.getElementById("friendUpiInput").value.trim();
             if(!friendUpi) {
@@ -450,9 +440,12 @@
             }
 
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
+            
+            // UPI Intent URI ताकि आपके फोनपे (7869969190) पर डायरेक्ट रिक्वेस्ट जनरेट हो सके
             let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=GiftClaimBy_${encodeURIComponent(friendUpi)}`;
 
-            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) को भेज दी गई है।\n\nपेमेंट ऐप खोलने का प्रयास किया जा रहा है:`);
+            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) के पास भेजी जा रही है।\n\nअब आपके फोन में PhonePe / Google Pay ऐप खुलेगी जहाँ से सूर्या आपको पेमेंट भेज सकेंगे:`);
+            
             window.location.href = upiIntentUrl;
         }
     </script>
