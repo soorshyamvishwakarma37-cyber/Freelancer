@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surya's Ultimate Birthday Vault</title>
+    <title>Surya's Ultimate Birthday Vault & UPI Gift Vault</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/canvas-confetti.browser.min.js"></script>
     <style>
@@ -15,10 +15,9 @@
             display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 20px;
         }
         
-        /* Views */
         .view-section { width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; }
         
-        /* Entry Card Style */
+        /* Entry Card */
         .entry-card {
             background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px;
@@ -31,7 +30,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Main Gallery Vault Card */
+        /* Main Gallery Card */
         .main-card {
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px;
@@ -80,7 +79,6 @@
             padding: 12px 20px; background: linear-gradient(45deg, #ff4757, #ff6b81); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(255,71,87,0.4);
         }
 
-        /* Controls & Search */
         .controls-container { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-bottom: 25px; }
         .search-box {
             width: 100%; max-width: 400px; padding: 10px 20px; border-radius: 30px;
@@ -115,16 +113,31 @@
         /* Modal Lightbox */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.92); justify-content: center; align-items: center; flex-direction: column; padding: 20px;
+            background-color: rgba(0, 0, 0, 0.92); justify-content: center; align-items: center; flex-direction: column; padding: 15px; overflow-y: auto;
         }
-        .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 500px; width: 100%; text-align: center; }
-        .modal img, .modal video { max-width: 100%; max-height: 45vh; border-radius: 10px; border: 2px solid #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
-        .modal-caption { margin-top: 10px; font-size: 1.4rem; color: #fbc531; font-weight: bold; }
+        .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 480px; width: 100%; text-align: center; margin: auto; }
+        .modal img, .modal video { max-width: 100%; max-height: 38vh; border-radius: 10px; border: 2px solid #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        .modal-caption { margin-top: 8px; font-size: 1.3rem; color: #fbc531; font-weight: bold; }
+        
         .modal-extra-box {
-            background: rgba(255, 255, 255, 0.08); border: 1px dashed #ff6b81; padding: 12px; border-radius: 10px; margin-top: 15px; width: 100%; text-align: left;
+            background: rgba(255, 255, 255, 0.08); border: 1px dashed #ff6b81; padding: 10px; border-radius: 10px; margin-top: 10px; width: 100%; text-align: left;
         }
-        .modal-extra-box p { font-size: 0.95rem; margin: 4px 0; color: #ff9ff3; text-align: left; }
-        .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+        .modal-extra-box p { font-size: 0.9rem; margin: 3px 0; color: #ff9ff3; text-align: left; }
+
+        /* Claim Gift Box */
+        .claim-box {
+            background: rgba(46, 204, 113, 0.15); border: 1px solid #2ecc71; padding: 12px; border-radius: 10px; margin-top: 10px; width: 100%; text-align: center;
+        }
+        .claim-box h4 { color: #2ecc71; font-size: 0.95rem; margin-bottom: 6px; }
+        .claim-box input {
+            width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.4); color: #fff; font-size: 0.9rem; margin-bottom: 8px; outline: none;
+        }
+        .claim-btn {
+            background: linear-gradient(45deg, #2ecc71, #27ae60); color: white; border: none; padding: 8px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(46,204,113,0.4); transition: 0.3s;
+        }
+        .claim-btn:hover { transform: scale(1.02); }
+
+        .close-btn { position: absolute; top: 15px; right: 25px; color: #fff; font-size: 35px; cursor: pointer; z-index: 1001; }
 
         footer { margin-top: 20px; font-size: 0.85rem; color: #aaa; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; text-align: center; padding-top: 15px; }
         footer span { color: #fbc531; font-weight: bold; }
@@ -133,10 +146,10 @@
 <body>
 
     <div class="view-section">
-        <!-- 1. ENTRY PAGE VIEW -->
+        <!-- 1. ENTRY PAGE -->
         <div class="entry-card" id="entryPage">
             <h1>✨ Surya's Birthday ✨</h1>
-            <p>बर्थडे विशेस, फोटो, वीडियो, जोक्स और गिफ्ट्स के इस शानदार खजाने में आपका स्वागत है!</p>
+            <p>बर्थडे विशेस, फोटो, वीडियो, जोक्स और रिटर्न गिफ्ट्स के इस शानदार खजाने में आपका स्वागत है!</p>
             <div class="btn-group">
                 <button class="btn admin-btn" onclick="adminLogin()">👨‍💻 Admin Login</button>
                 <button class="btn friend-btn" onclick="openGallery()">👥 View as Friend</button>
@@ -144,7 +157,7 @@
             <footer style="margin-top:25px; border:none;">Reserved by <span>Surya</span> © 2026</footer>
         </div>
 
-        <!-- 2. MAIN GALLERY & ADMIN VAULT VIEW -->
+        <!-- 2. MAIN GALLERY & ADMIN VAULT -->
         <div class="main-card" id="galleryPage">
             <h1>✨ Surya's Birthday Vault ✨</h1>
             <p>यादों की तस्वीरें, वीडियोज़, जोक्स और रिटर्न गिफ्ट्स का खजाना! 🤍🎂</p>
@@ -154,23 +167,32 @@
                 <button class="action-btn" onclick="goHome()">🏠 Home</button>
             </div>
 
-            <!-- Admin Direct Upload Panel -->
+            <!-- Admin Panel -->
             <div id="adminPanel">
                 <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery Panel</h3>
+                
+                <label>💳 आपकी अपनी UPI ID (जहाँ से आप पेमेंट भेजेंगे):</label>
+                <input type="text" id="adminUpi" value="7869969190@ybl" placeholder="जैसे: 7869969190@ybl">
+
                 <label>📂 गैलरी से फोटो या वीडियो चुनें:</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
+                
                 <label>👤 भेजने वाले का नाम:</label>
                 <input type="text" id="mediaName" placeholder="जैसे: Aman">
+                
                 <label>📁 कैटेगरी चुनें:</label>
                 <select id="mediaCategory">
                     <option value="whatsapp">WhatsApp Wishes</option>
                     <option value="instagram">Instagram Stories</option>
                     <option value="special">Special Friends</option>
                 </select>
+                
                 <label>😂 जोक या शायरी:</label>
                 <input type="text" id="mediaJoke" placeholder="जैसे: भाई पार्टी कब दे रहा है?">
-                <label>🎁 रिटर्न गिफ्ट:</label>
-                <input type="text" id="mediaGift" placeholder="जैसे: 1 चॉकलेट 🍫">
+                
+                <label>🎁 रिटर्न गिफ्ट (विवरण):</label>
+                <input type="text" id="mediaGift" placeholder="जैसे: Cash Gift / 100 Rs 💸">
+                
                 <button class="save-btn" onclick="addNewMedia()">🚀 गैलरी में जोड़ें</button>
             </div>
 
@@ -184,7 +206,6 @@
                 </div>
             </div>
 
-            <!-- Gallery Grid Container -->
             <div class="gallery-grid" id="galleryContainer"></div>
 
             <div class="badge">🎉 THANK YOU ALL FROM THE BOTTOM OF MY HEART! 🙏</div>
@@ -192,15 +213,23 @@
         </div>
     </div>
 
-    <!-- Lightbox Modal Popup -->
+    <!-- Lightbox Modal -->
     <div id="mediaModal" class="modal" onclick="closeModal()">
         <span class="close-btn">&times;</span>
         <div class="modal-content-box" onclick="event.stopPropagation()">
             <div id="modalMediaContainer"></div>
             <div id="modalCaption" class="modal-caption"></div>
+            
             <div class="modal-extra-box">
                 <p id="modalJoke">💬 <b>Joke/Shayari:</b> -</p>
                 <p id="modalGift">🎁 <b>Return Gift:</b> -</p>
+            </div>
+
+            <!-- PhonePe / UPI Claim Section for Friends -->
+            <div class="claim-box">
+                <h4>🎁 अपना रिटर्न गिफ्ट (UPI/PhonePe) क्लेम करें</h4>
+                <input type="text" id="friendUpiInput" placeholder="अपनी UPI ID या PhonePe नंबर दर्ज करें (जैसे: 9876543210@ybl)">
+                <button class="claim-btn" onclick="claimGiftViaUpi()">🚀 Claim Now & Request Surya</button>
             </div>
         </div>
     </div>
@@ -213,6 +242,9 @@
         window.onload = function() {
             confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
             loadSavedMedia();
+            // सेव्ड एडमिन यूपीआई लोड करना
+            let savedUpi = localStorage.getItem('suryaAdminUpi');
+            if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
         };
 
         function openGallery(isAdmin = false) {
@@ -225,8 +257,8 @@
         }
 
         function adminLogin() {
-            let pass = prompt("🔐 कृपया एडमिन पासवर्ड दर्ज करें (Password: surya123):");
-            if (pass === "surya123") {
+            let pass = prompt("🔐 कृपया एडमिन पासवर्ड दर्ज करें (Password):");
+            if (pass === "surya6260") {
                 alert("✨ स्वागत है सूर्या! एडमिन पैनल खुल रहा है...");
                 openGallery(true);
             } else if (pass !== null) {
@@ -286,7 +318,10 @@
             let name = document.getElementById("mediaName").value;
             let category = document.getElementById("mediaCategory").value;
             let joke = document.getElementById("mediaJoke").value || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
-            let gift = document.getElementById("mediaGift").value || "🎁 रिटर्न गिफ्ट: स्पेशल चॉकलेट 🍫";
+            let gift = document.getElementById("mediaGift").value || "🎁 रिटर्न गिफ्ट: Cash Gift 💸";
+            let adminUpiVal = document.getElementById("adminUpi").value;
+
+            localStorage.setItem('suryaAdminUpi', adminUpiVal);
 
             if (fileInput.files.length === 0 || !name) {
                 alert("कृपया फाइल (फोटो/वीडियो) और भेजने वाले का नाम भरें!");
@@ -303,9 +338,9 @@
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
 
                 try {
-                    let savedMedia = JSON.parse(localStorage.getItem('suryaSingleVault') || '[]');
+                    let savedMedia = JSON.parse(localStorage.getItem('suryaUpiVault') || '[]');
                     savedMedia.push({ type: fileType, url: mediaDataUrl, name, category, joke, gift });
-                    localStorage.setItem('suryaSingleVault', JSON.stringify(savedMedia));
+                    localStorage.setItem('suryaUpiVault', JSON.stringify(savedMedia));
 
                     renderMediaCard(fileType, mediaDataUrl, name, category, joke, gift);
 
@@ -313,9 +348,9 @@
                     document.getElementById("mediaName").value = "";
                     document.getElementById("mediaJoke").value = "";
                     document.getElementById("mediaGift").value = "";
-                    alert("✨ शानदार! फोटो/वीडियो गैलरी में जुड़ गया है।");
+                    alert("✨ शानदार! फोटो/वीडियो और गिफ्ट डिटेल्स जुड़ गए हैं।");
                 } catch (error) {
-                    alert("❌ एरर: यह फाइल साइज़ में बहुत बड़ी है। कृपया कोई छोटी फाइल चुनें।");
+                    alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है। छोटी फाइल चुनें।");
                 }
             };
             reader.readAsDataURL(file);
@@ -349,11 +384,9 @@
         }
 
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaSingleVault') || '[]');
-            
-            // अगर कोई डेटा पहले से नहीं है, तो एक डिफ़ॉल्ट सैंपल कार्ड दिखाएं
+            let savedMedia = JSON.parse(localStorage.getItem('suryaUpiVault') || '[]');
             if(savedMedia.length === 0) {
-                renderMediaCard('image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: एक कप कड़क चाय ☕');
+                renderMediaCard('image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸');
             } else {
                 savedMedia.forEach(item => { 
                     renderMediaCard(item.type, item.url, item.name, item.category, item.joke, item.gift); 
@@ -366,6 +399,7 @@
             document.getElementById("modalCaption").innerHTML = "💬 " + senderName;
             document.getElementById("modalJoke").innerHTML = `💬 <b>Joke/Shayari:</b> ${jokeText}`;
             document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
+            document.getElementById("friendUpiInput").value = "";
 
             let mediaContainer = document.getElementById("modalMediaContainer");
             mediaContainer.innerHTML = "";
@@ -388,6 +422,26 @@
             document.getElementById("mediaModal").style.display = "none";
             let mediaContainer = document.getElementById("modalMediaContainer");
             mediaContainer.innerHTML = "";
+        }
+
+        // दोस्त द्वारा UPI/PhonePe क्लेम करने का लॉजिक (डायरेक्ट PhonePe ऐप या पेमेंट लिंक ट्रिगर करना)
+        function claimGiftViaUpi() {
+            let friendUpi = document.getElementById("friendUpiInput").value.trim();
+            if(!friendUpi) {
+                alert("कृपया अपनी UPI ID या PhonePe नंबर सही से दर्ज करें!");
+                return;
+            }
+
+            let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
+
+            // मोबाइल या कंप्यूटर पर PhonePe/GooglePay UPI Intent URI बनाना
+            // इससे सीधे यूजर के फोन में पेमेंट ऐप खुल जाएगी या सूर्या (आप) के पास रिक्वेस्ट चली जाएगी
+            let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=GiftClaimBy_${encodeURIComponent(friendUpi)}`;
+
+            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) को भेज दी गई है।\n\nआप चाहें तो नीचे दिए गए ऑप्शन से डायरेक्ट ऐप ओपन कर सकते हैं:`);
+
+            // फोन पे / गूगल पे ऐप खोलने का प्रयास
+            window.location.href = upiIntentUrl;
         }
     </script>
 </body>
