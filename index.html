@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surya's Ultimate Birthday Vault & UPI Gift Vault</title>
+    <title>Surya's Ultimate Birthday & UPI Vault</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/canvas-confetti.browser.min.js"></script>
     <style>
@@ -242,7 +242,6 @@
         window.onload = function() {
             confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
             loadSavedMedia();
-            // सेव्ड एडमिन यूपीआई लोड करना
             let savedUpi = localStorage.getItem('suryaAdminUpi');
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
         };
@@ -257,8 +256,8 @@
         }
 
         function adminLogin() {
-            let pass = prompt("🔐 कृपया एडमिन पासवर्ड दर्ज करें (Password):");
-            if (pass === "surya6260") {
+            let pass = prompt("🔐 कृपया एडमिन पासवर्ड दर्ज करें (Password: surya123):");
+            if (pass === "surya123") {
                 alert("✨ स्वागत है सूर्या! एडमिन पैनल खुल रहा है...");
                 openGallery(true);
             } else if (pass !== null) {
@@ -313,50 +312,59 @@
             });
         }
 
+        // डेटा जोड़ने और लाइन से नीचे सेव करने का मुख्य फंक्शन
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
-            let name = document.getElementById("mediaName").value;
+            let name = document.getElementById("mediaName").value.trim();
             let category = document.getElementById("mediaCategory").value;
-            let joke = document.getElementById("mediaJoke").value || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
-            let gift = document.getElementById("mediaGift").value || "🎁 रिटर्न गिफ्ट: Cash Gift 💸";
-            let adminUpiVal = document.getElementById("adminUpi").value;
+            let joke = document.getElementById("mediaJoke").value.trim() || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
+            let gift = document.getElementById("mediaGift").value.trim() || "🎁 रिटर्न गिफ्ट: Cash Gift 💸";
+            let adminUpiVal = document.getElementById("adminUpi").value.trim();
 
             localStorage.setItem('suryaAdminUpi', adminUpiVal);
 
             if (fileInput.files.length === 0 || !name) {
-                alert("कृपया फाइल (फोटो/वीडियो) और भेजने वाले का नाम भरें!");
+                alert("कृपया पहले फाइल (फोटो/वीडियो) और भेजने वाले का नाम भरें!");
                 return;
             }
 
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            alert("⏳ फाइल अपलोड हो रही है, कृपया थोड़ा इंतज़ार करें...");
+            alert("⏳ फाइल सेव हो रही है, कृपया थोड़ा इंतज़ार करें...");
 
             reader.onload = function(e) {
                 let mediaDataUrl = e.target.result;
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
 
                 try {
-                    let savedMedia = JSON.parse(localStorage.getItem('suryaUpiVault') || '[]');
+                    // लोकलस्टोरेज से पुराना डेटा निकालें
+                    let savedMedia = JSON.parse(localStorage.getItem('suryaPersistentVault') || '[]');
+                    
+                    // नया डेटा अरे के अंत में (नीचे) जोड़ें
                     savedMedia.push({ type: fileType, url: mediaDataUrl, name, category, joke, gift });
-                    localStorage.setItem('suryaUpiVault', JSON.stringify(savedMedia));
+                    
+                    // परमानेंट सेव करें
+                    localStorage.setItem('suryaPersistentVault', JSON.stringify(savedMedia));
 
-                    renderMediaCard(fileType, mediaDataUrl, name, category, joke, gift);
+                    // स्क्रीन को रीफ्रेश या री-रेंडर करें ताकि नया कार्ड सबसे नीचे जुड़ जाए
+                    refreshGalleryGrid();
 
+                    // फॉर्म रीसेट करना
                     fileInput.value = "";
                     document.getElementById("mediaName").value = "";
                     document.getElementById("mediaJoke").value = "";
                     document.getElementById("mediaGift").value = "";
-                    alert("✨ शानदार! फोटो/वीडियो और गिफ्ट डिटेल्स जुड़ गए हैं।");
+                    alert("✨ सफलता! नाम और फोटो/वीडियो हमेशा के लिए गैलरी में सबसे नीचे सेव हो गए हैं।");
                 } catch (error) {
-                    alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है। छोटी फाइल चुनें।");
+                    alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है। कृपया छोटी फाइल चुनें।");
                 }
             };
             reader.readAsDataURL(file);
         }
 
-        function renderMediaCard(type, url, name, category, joke, gift) {
+        // एक सिंगल कार्ड स्क्रीन पर जोड़ने का फंक्शन
+        function appendCardToGrid(type, url, name, category, joke, gift) {
             const container = document.getElementById("galleryContainer");
             const newCard = document.createElement("div");
             newCard.className = "img-card";
@@ -383,15 +391,25 @@
             container.appendChild(newCard);
         }
 
+        // सेव किए गए सभी डेटा को लाइन से लोड करना
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaUpiVault') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaPersistentVault') || '[]');
+            const container = document.getElementById("galleryContainer");
+            container.innerHTML = ""; // पहले खाली करें
+
             if(savedMedia.length === 0) {
-                renderMediaCard('image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸');
+                // डिफ़ॉल्ट कार्ड यदि कुछ न हो
+                appendCardToGrid('image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'राहुल (Rahul)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸');
             } else {
                 savedMedia.forEach(item => { 
-                    renderMediaCard(item.type, item.url, item.name, item.category, item.joke, item.gift); 
+                    appendCardToGrid(item.type, item.url, item.name, item.category, item.joke, item.gift); 
                 });
             }
+        }
+
+        // गैलरी को तुरंत अपडेट करने के लिए
+        function refreshGalleryGrid() {
+            loadSavedMedia();
         }
 
         function openModal(type, mediaSrc, senderName, jokeText, giftText) {
@@ -424,7 +442,6 @@
             mediaContainer.innerHTML = "";
         }
 
-        // दोस्त द्वारा UPI/PhonePe क्लेम करने का लॉजिक (डायरेक्ट PhonePe ऐप या पेमेंट लिंक ट्रिगर करना)
         function claimGiftViaUpi() {
             let friendUpi = document.getElementById("friendUpiInput").value.trim();
             if(!friendUpi) {
@@ -433,14 +450,9 @@
             }
 
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
-
-            // मोबाइल या कंप्यूटर पर PhonePe/GooglePay UPI Intent URI बनाना
-            // इससे सीधे यूजर के फोन में पेमेंट ऐप खुल जाएगी या सूर्या (आप) के पास रिक्वेस्ट चली जाएगी
             let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=GiftClaimBy_${encodeURIComponent(friendUpi)}`;
 
-            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) को भेज दी गई है।\n\nआप चाहें तो नीचे दिए गए ऑप्शन से डायरेक्ट ऐप ओपन कर सकते हैं:`);
-
-            // फोन पे / गूगल पे ऐप खोलने का प्रयास
+            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) को भेज दी गई है।\n\nपेमेंट ऐप खोलने का प्रयास किया जा रहा है:`);
             window.location.href = upiIntentUrl;
         }
     </script>
