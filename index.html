@@ -140,7 +140,7 @@
             backdrop-filter: blur(10px);
         }
         .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 500px; width: 100%; text-align: center; margin: auto; }
-        .modal img, .modal video { max-width: 100%; max-height: 40vh; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .modal img, .modal video { max-width: 100%; max-height: 45vh; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.6); object-fit: contain; }
         .modal-caption { margin-top: 12px; font-size: 1.35rem; color: #fbc531; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
         
         .modal-extra-box {
@@ -195,7 +195,7 @@
             <div id="adminPanel">
                 <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery Panel</h3>
                 
-                <label>💳 आपकी अपनी UPI ID:</label>
+                <label>💳 आपकी अपनी UPI ID (जहाँ दोस्त पैसे भेजेंगे):</label>
                 <input type="text" id="adminUpi" value="7869969190@ybl" placeholder="जैसे: 7869969190@ybl">
 
                 <label>🎵 बैकग्राउंड म्यूजिक फाइल चुनें (MP3):</label>
@@ -221,7 +221,7 @@
                 <label>🎁 रिटर्न गिफ्ट (विवरण):</label>
                 <input type="text" id="mediaGift" placeholder="जैसे: Cash Gift / 100 Rs 💸">
                 
-                <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें (500+ Capacity)</button>
+                <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें (High Quality)</button>
             </div>
 
             <div class="controls-container">
@@ -256,7 +256,7 @@
                 <h4>🎁 अपना रिटर्न गिफ्ट (UPI/PhonePe) क्लेम करें</h4>
                 <input type="text" id="friendNameInput" placeholder="अपना पूरा नाम दर्ज करें">
                 <input type="text" id="friendUpiInput" placeholder="अपना PhonePe नंबर या UPI ID दर्ज करें">
-                <button class="claim-btn" onclick="claimGiftViaUpi()">🚀 Claim Now & Request Surya</button>
+                <button class="claim-btn" onclick="claimGiftViaUpi()">🚀 Claim Now & Send Money</button>
             </div>
         </div>
     </div>
@@ -276,15 +276,6 @@
         let currentOpenMediaId = null;
 
         window.onload = function() {
-            // Force clear old variant crashes and set fresh state
-            try {
-                let savedUpiTemp = localStorage.getItem('suryaAdminUpi');
-                let savedMusicTemp = localStorage.getItem('suryaCustomMusic');
-                localStorage.clear(); 
-                if(savedUpiTemp) localStorage.setItem('suryaAdminUpi', savedUpiTemp);
-                if(savedMusicTemp) localStorage.setItem('suryaCustomMusic', savedMusicTemp);
-            } catch(e) {}
-
             confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
             loadSavedMedia();
             
@@ -348,10 +339,6 @@
                 return;
             }
             let file = fileInput.files[0];
-            if(file.size > 2 * 1024 * 1024) {
-                alert("⚠️ ऑडियो फाइल का साइज़ 2MB से कम होना चाहिए।");
-                return;
-            }
             let reader = new FileReader();
             reader.onload = function(e) {
                 localStorage.setItem('suryaCustomMusic', e.target.result);
@@ -408,7 +395,7 @@
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            alert("⏳ फोटो को सुपर-कम्प्रेस (500+ क्षमता) किया जा रहा है...");
+            alert("⏳ फोटो प्रोसेस हो रही है (हाई क्वालिटी क्लियर)...");
 
             reader.onload = function(e) {
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
@@ -420,8 +407,9 @@
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
                         
-                        let MAX_WIDTH = 350;
-                        let MAX_HEIGHT = 350;
+                        // High resolution settings for crystal clear photos
+                        let MAX_WIDTH = 900;
+                        let MAX_HEIGHT = 900;
                         let width = img.width;
                         let height = img.height;
 
@@ -441,14 +429,10 @@
                         canvas.height = height;
                         ctx.drawImage(img, 0, 0, width, height);
 
-                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.35);
-                        saveMediaToStorage(compressedDataUrl, 'image', name, category, joke, gift, fileInput);
+                        let clearDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                        saveMediaToStorage(clearDataUrl, 'image', name, category, joke, gift, fileInput);
                     };
                 } else {
-                    if(file.size > 1 * 1024 * 1024) {
-                        alert("⚠️ वीडियो का साइज़ 1MB से कम होना चाहिए।");
-                        return;
-                    }
                     saveMediaToStorage(e.target.result, 'video', name, category, joke, gift, fileInput);
                 }
             };
@@ -469,9 +453,9 @@
                 document.getElementById("mediaName").value = "";
                 document.getElementById("mediaJoke").value = "";
                 document.getElementById("mediaGift").value = "";
-                alert("✨ सफलता! फोटो सफलतापूर्वक सेव हो गई है।");
+                alert("✨ सफलता! फोटो व्यू पेज पर जोड़ दी गई है और परमानेंट सेव हो गई है।");
             } catch (error) {
-                alert("❌ स्टोरेज की सीमा पूरी हो चुकी है। कृपया कुछ पुरानी पोस्ट डिलीट करें।");
+                alert("❌ स्टोरेज फुल हो गई है। कृपया पुरानी फोटो डिलीट करें।");
             }
         }
 
@@ -481,7 +465,7 @@
             container.innerHTML = "";
 
             if(savedMedia.length === 0) {
-                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500', 'Rahul (Demo)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸', []);
+                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul (Demo)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸', []);
             } else {
                 savedMedia.forEach(item => { 
                     appendCard(item.id, item.type, item.url, item.name, item.category, item.joke, item.gift, item.claimedList || []); 
@@ -580,7 +564,7 @@
             let currentItem = savedMedia.find(item => item.id === currentOpenMediaId);
 
             if(!currentItem && currentOpenMediaId === 'id_default') {
-                alert("यह एक डेमो कार्ड है। कृपया एडमिन से अपनी खुद की फोटो अपलोड करके टेस्ट करें!");
+                alert("यह एक डेमो कार्ड है। कृपया एडमिन से अपनी खुद की फोटो अपलोड करें!");
                 return;
             }
 
@@ -588,7 +572,7 @@
                 if(!currentItem.claimedList) currentItem.claimedList = [];
 
                 if(currentItem.claimedList.includes(friendUpiOrNo)) {
-                    alert("❌ सुरक्षा चेतावनी: इस नंबर/UPI से इस फोटो पर गिफ्ट पहले ही क्लेम किया जा चुका है!");
+                    alert("❌ सुरक्षा चेतावनी: इस नंबर/UPI से इस गिफ्ट को पहले ही क्लेम किया जा चुका है!");
                     return;
                 }
 
@@ -597,10 +581,12 @@
             }
 
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
-            let remarkNote = `GiftClaim_${encodeURIComponent(friendName)}_${encodeURIComponent(friendUpiOrNo)}`;
-            let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=${remarkNote}`;
+            let remarkNote = `SendMoneyTo_${encodeURIComponent(friendName)}_${encodeURIComponent(friendUpiOrNo)}`;
+            
+            // Correct UPI Intent URL to trigger Send Money / Pay Popup in PhonePe/GooglePay
+            let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayGift&am=10&cu=INR&tn=${remarkNote}`;
 
-            alert(`✨ धन्यवाद ${friendName}!\n\nअब आपके मोबाइल में PhonePe / Google Pay ऐप खुलेगी।`);
+            alert(`✨ धन्यवाद ${friendName}!\n\nअब आपके मोबाइल में PhonePe / Google Pay का 'Send Money' ऐप ओपन हो रहा है।`);
             window.location.href = upiIntentUrl;
         }
     </script>
