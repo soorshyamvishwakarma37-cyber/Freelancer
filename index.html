@@ -393,16 +393,16 @@
     </audio>
 
     <script>
-        // --- FIREBASE CONFIGURATION ---
-        // (नोट: आप चाहें तो अपने खुद का Firebase प्रोजेक्ट बनाकर यहाँ डिटेल्स बदल सकते हैं, अभी यह पब्लिक डेमो डेटाबेस पर जुड़ा है)
+        // --- YOUR ACTUAL FIREBASE CONFIGURATION ---
         const firebaseConfig = {
-            apiKey: "AIzaSyD-DemoKeyForSuryaBirthdayApp12345",
-            authDomain: "suryabirthday-default-rtdb.firebaseio.com",
-            databaseURL: "https://suryabirthday-default-rtdb.firebaseio.com/",
-            projectId: "suryabirthday",
-            storageBucket: "suryabirthday.appspot.com",
-            messagingSenderId: "1234567890",
-            appId: "1:1234567890:web:abcde"
+            apiKey: "AIzaSyAL9dsBvNrp-ijxAk7ZYZcbN0BPaZ5gYtw",
+            authDomain: "sewaastra.firebaseapp.com",
+            databaseURL: "https://sewaastra-default-rtdb.firebaseio.com",
+            projectId: "sewaastra",
+            storageBucket: "sewaastra.firebasestorage.app",
+            messagingSenderId: "211091351218",
+            appId: "1:211091351218:web:94b1b91178596d04464bab",
+            measurementId: "G-W5R761HZ7E"
         };
 
         firebase.initializeApp(firebaseConfig);
@@ -532,7 +532,6 @@
                 confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
             } catch(e) {}
 
-            // रियल-टाइम लिसनर्स जो सभी के फोन में तुरंत अपडेट लाएंगे
             listenRealtimeData();
 
             db.ref('settings/adminUpi').on('value', (snapshot) => {
@@ -750,12 +749,11 @@
                 document.getElementById("mediaGift").value = "";
                 showCustomAlert("सफलता", "✨ सभी के लिए क्लाउड पर लाइव सेव हो गया!");
             }).catch(error => {
-                showCustomAlert("त्रुटि", "❌ सेव करने में विफल! इंटरनेट कनेक्शन जांचें।");
+                showCustomAlert("त्रुटि", "❌ सेव करने में विफल! Firebase Database Rules चेक करें (Read/Write true होना चाहिए)।");
             });
         }
 
         function listenRealtimeData() {
-            // मीडिया वॉल्ट लिसनर
             db.ref('mediaVault').on('value', (snapshot) => {
                 const container = document.getElementById("galleryContainer");
                 const birthdayContainer = document.getElementById("birthdayContainer");
@@ -775,7 +773,6 @@
                 }
             });
 
-            // क्लेम रिक्वेस्ट्स लिसनर
             db.ref('claimRequests').on('value', (snapshot) => {
                 let container = document.getElementById("adminRequestsContainer");
                 if(!container) return;
@@ -932,14 +929,12 @@
                 return showCustomAlert("त्रुटि", "कृपया अपना UPI ID या PhonePe नंबर दर्ज करें!");
             }
 
-            // Firebase में डेटा अपडेट करना ताकि सभी के ब्राउज़र में claimed status true हो जाए
             db.ref('mediaVault').orderByChild('id').equalTo(currentOpenMediaId).once('value', (snapshot) => {
                 snapshot.forEach((child) => {
                     child.ref.update({ claimed: true });
                 });
             });
 
-            // क्लेम रिक्वेस्ट एडमिन पैनल में भेजना
             db.ref('claimRequests').push({
                 name: activeItemData.senderName || loggedInFriendName,
                 upi: friendUpiOrNo,
