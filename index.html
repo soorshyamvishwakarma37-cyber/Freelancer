@@ -2,16 +2,16 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Surya's Ultimate Birthday Vault & Secure UPI Claim System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/canvas-confetti.browser.min.js"></script>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
         body {
             background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
             color: #fff; min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 20px;
+            display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px;
         }
         
         .view-section { width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; }
@@ -19,10 +19,10 @@
         .entry-card {
             background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 35px;
-            padding: 50px 30px; max-width: 480px; width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 30px;
+            padding: 40px 20px; max-width: 450px; width: 100%;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            text-align: center; animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 60px;
+            text-align: center; animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 40px;
         }
         @keyframes zoomIn {
             from { opacity: 0; transform: scale(0.9) translateY(20px); }
@@ -32,8 +32,8 @@
         .main-card {
             background: rgba(255, 255, 255, 0.025); backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px;
-            padding: 35px; max-width: 1150px; width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px;
+            padding: 20px; max-width: 1150px; width: 100%;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7); text-align: center; margin-top: 10px; display: none;
             animation: fadeIn 0.6s ease-in-out;
         }
@@ -43,148 +43,133 @@
         }
 
         h1 {
-            font-size: 2.6rem; font-weight: 700;
+            font-size: 2.2rem; font-weight: 700;
             background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fbc531 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 12px; filter: drop-shadow(0 2px 10px rgba(255,154,158,0.3));
+            margin-bottom: 10px; filter: drop-shadow(0 2px 10px rgba(255,154,158,0.3));
         }
-        p { font-size: 1.05rem; color: #dcdde1; margin-bottom: 25px; line-height: 1.6; }
+        p { font-size: 0.95rem; color: #dcdde1; margin-bottom: 20px; line-height: 1.5; }
 
-        .btn-group { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+        .btn-group { display: flex; flex-direction: column; gap: 14px; margin-top: 15px; }
         .btn {
-            padding: 15px 25px; font-size: 1.15rem; font-weight: 600;
+            padding: 14px 20px; font-size: 1.05rem; font-weight: 600;
             border-radius: 30px; border: none; cursor: pointer;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none;
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
         .admin-btn { background: linear-gradient(135deg, #fbc531, #e1b12c); color: #000; }
-        .admin-btn:hover, .friend-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 25px rgba(251,197,49,0.4); }
         .friend-btn { background: linear-gradient(135deg, #ff4757, #ff6b81); color: #fff; box-shadow: 0 8px 20px rgba(255,71,87,0.4); }
-        .friend-btn:hover { box-shadow: 0 12px 25px rgba(255,71,87,0.6); }
 
-        .top-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .top-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .action-btn {
             background: rgba(255,255,255,0.06); border: 1px solid rgba(251,197,49,0.4); color: #fbc531;
-            padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;
+            padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
-        .action-btn:hover { background: #fbc531; color: #000; box-shadow: 0 5px 15px rgba(251,197,49,0.4); transform: translateY(-2px); }
+        .action-btn:hover { background: #fbc531; color: #000; }
 
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.85); padding: 25px; border-radius: 20px;
-            margin-bottom: 30px; border: 1px dashed rgba(251,197,49,0.6); text-align: left;
+            display: none; background: rgba(0, 0, 0, 0.85); padding: 20px; border-radius: 15px;
+            margin-bottom: 25px; border: 1px dashed rgba(251,197,49,0.6); text-align: left;
             max-width: 650px; margin-left: auto; margin-right: auto; backdrop-filter: blur(15px);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
-        #adminPanel label { display: block; font-size: 0.92rem; color: #fbc531; margin-top: 12px; font-weight: 600; }
+        #adminPanel label { display: block; font-size: 0.85rem; color: #fbc531; margin-top: 10px; font-weight: 600; }
         #adminPanel input, #adminPanel select {
-            padding: 12px 15px; margin: 6px 0 12px 0; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); 
-            background: rgba(255,255,255,0.06); color: white; width: 100%; display: block; font-size: 0.95rem; outline: none; transition: 0.3s;
+            padding: 10px 12px; margin: 5px 0 10px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); 
+            background: rgba(255,255,255,0.06); color: white; width: 100%; display: block; font-size: 0.9rem; outline: none;
         }
-        #adminPanel input:focus, #adminPanel select:focus { border-color: #fbc531; background: rgba(255,255,255,0.1); }
-        #adminPanel input[type="file"] { padding: 10px; cursor: pointer; background: rgba(251, 197, 49, 0.08); border: 1px dashed #fbc531; }
+        #adminPanel input[type="file"] { padding: 8px; cursor: pointer; background: rgba(251, 197, 49, 0.08); border: 1px dashed #fbc531; }
         
         .save-btn {
-            padding: 14px 20px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; border: none; 
-            border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.1rem; 
-            box-shadow: 0 6px 20px rgba(255,71,87,0.4); transition: 0.3s;
+            padding: 12px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; border: none; 
+            border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; font-size: 1rem; 
         }
-        .save-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,71,87,0.6); }
 
-        /* Admin Claim Requests Box */
         .admin-requests-box {
             background: rgba(46, 204, 113, 0.08); border: 1px solid rgba(46, 204, 113, 0.3);
-            border-radius: 15px; padding: 15px; margin-top: 25px; max-height: 300px; overflow-y: auto;
+            border-radius: 12px; padding: 12px; margin-top: 20px; max-height: 250px; overflow-y: auto;
         }
         .request-item {
-            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px;
-            border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px;
+            border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
         }
-        .request-info p { font-size: 0.88rem; color: #fff; margin: 0; text-align: left; }
+        .request-info p { font-size: 0.82rem; color: #fff; margin: 0; text-align: left; }
         .pay-now-btn {
             background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none;
-            padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(46,204,113,0.4); transition: 0.2s; text-decoration: none; display: inline-block;
+            padding: 6px 12px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; cursor: pointer; text-decoration: none;
         }
-        .pay-now-btn:hover { transform: scale(1.05); }
 
-        .controls-container { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-bottom: 30px; }
+        .controls-container { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-bottom: 25px; }
         .search-box {
-            width: 100%; max-width: 450px; padding: 12px 25px; border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff; font-size: 1rem; outline: none;
-            transition: 0.3s; backdrop-filter: blur(10px);
+            width: 100%; max-width: 400px; padding: 10px 20px; border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff; font-size: 0.95rem; outline: none;
         }
-        .search-box:focus { border-color: #fbc531; box-shadow: 0 0 15px rgba(251,197,49,0.2); }
         
-        .tabs { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
         .tab-btn {
             background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff; padding: 9px 22px; border-radius: 25px; cursor: pointer; font-weight: 500; transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            color: #fff; padding: 7px 16px; border-radius: 20px; cursor: pointer; font-weight: 500; font-size: 0.85rem; transition: all 0.3s ease;
         }
-        .tab-btn.active, .tab-btn:hover { background: linear-gradient(135deg, #ff4757, #ff6b81); border-color: transparent; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,71,87,0.3); }
+        .tab-btn.active, .tab-btn:hover { background: linear-gradient(135deg, #ff4757, #ff6b81); border-color: transparent; }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 35px; }
+        .section-title { font-size: 1.4rem; color: #fbc531; margin: 25px 0 12px 0; text-align: left; border-left: 4px solid #ff4757; padding-left: 10px; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 25px; }
         .img-card {
-            background: rgba(255, 255, 255, 0.04); border-radius: 20px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3); cursor: pointer; position: relative; text-align: left;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.04); border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3); cursor: pointer; position: relative; text-align: left;
         }
-        .img-card:hover { transform: translateY(-8px); border-color: #fbc531; box-shadow: 0 15px 35px rgba(251, 197, 49, 0.25); }
-        .img-card img, .img-card video { width: 100%; height: 280px; object-fit: cover; display: block; pointer-events: none; }
+        .img-card:hover { transform: translateY(-5px); border-color: #fbc531; }
+        .img-card img, .img-card video { width: 100%; height: 240px; object-fit: cover; display: block; pointer-events: none; }
         .video-badge {
-            position: absolute; top: 12px; left: 12px; background: rgba(255, 0, 0, 0.85); color: white;
-            padding: 5px 12px; font-size: 0.75rem; border-radius: 8px; font-weight: bold; backdrop-filter: blur(5px);
+            position: absolute; top: 10px; left: 10px; background: rgba(255, 0, 0, 0.85); color: white;
+            padding: 4px 10px; font-size: 0.7rem; border-radius: 6px; font-weight: bold;
         }
-        .sender-name { padding: 14px; font-size: 1.15rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.3); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .claimed-badge-card {
+            position: absolute; top: 10px; right: 10px; background: rgba(46, 204, 113, 0.9); color: white;
+            padding: 4px 8px; font-size: 0.65rem; border-radius: 6px; font-weight: bold;
+        }
+        .sender-name { padding: 10px; font-size: 1rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.3); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         
         .del-card-btn {
-            position: absolute; top: 12px; right: 12px; background: rgba(255, 0, 0, 0.85); color: white;
-            border: none; border-radius: 50%; width: 32px; height: 32px; font-weight: bold; cursor: pointer; display: none; z-index: 10;
-            transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.85); color: white;
+            border: none; border-radius: 50%; width: 28px; height: 28px; font-weight: bold; cursor: pointer; display: none; z-index: 10;
         }
-        .del-card-btn:hover { transform: scale(1.1); background: #ff4757; }
 
         .badge {
-            background: linear-gradient(135deg, #e84393, #fd79a8); color: white; padding: 14px 38px;
-            font-size: 1.12rem; font-weight: bold; border-radius: 40px; display: inline-block; 
-            box-shadow: 0 8px 25px rgba(232, 67, 147, 0.4); letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #e84393, #fd79a8); color: white; padding: 10px 25px;
+            font-size: 0.95rem; font-weight: bold; border-radius: 30px; display: inline-block; margin-top: 15px;
         }
 
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.92); justify-content: center; align-items: center; flex-direction: column; padding: 20px; overflow-y: auto;
-            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.92); justify-content: center; align-items: center; flex-direction: column; padding: 15px; overflow-y: auto;
         }
-        .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 500px; width: 100%; text-align: center; margin: auto; }
-        .modal img, .modal video { max-width: 100%; max-height: 45vh; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.6); object-fit: contain; }
-        .modal-caption { margin-top: 12px; font-size: 1.35rem; color: #fbc531; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 450px; width: 100%; text-align: center; margin: auto; }
+        .modal img, .modal video { max-width: 100%; max-height: 38vh; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); object-fit: contain; }
+        .modal-caption { margin-top: 10px; font-size: 1.15rem; color: #fbc531; font-weight: bold; }
         
         .modal-extra-box {
-            background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255,107,129,0.5); padding: 14px; border-radius: 12px; margin-top: 12px; width: 100%; text-align: left;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255,107,129,0.5); padding: 10px; border-radius: 10px; margin-top: 10px; width: 100%; text-align: left;
         }
-        .modal-extra-box p { font-size: 0.95rem; margin: 4px 0; color: #ff9ff3; text-align: left; }
+        .modal-extra-box p { font-size: 0.85rem; margin: 3px 0; color: #ff9ff3; }
 
         .claim-box {
-            background: rgba(46, 204, 113, 0.12); border: 1px solid rgba(46, 204, 113, 0.4); padding: 15px; border-radius: 15px; margin-top: 14px; width: 100%; text-align: center;
-            backdrop-filter: blur(10px); box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: rgba(46, 204, 113, 0.12); border: 1px solid rgba(46, 204, 113, 0.4); padding: 12px; border-radius: 12px; margin-top: 10px; width: 100%; text-align: center;
         }
-        .claim-box h4 { color: #2ecc71; font-size: 1rem; margin-bottom: 8px; font-weight: 600; }
+        .claim-box h4 { color: #2ecc71; font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; }
         .claim-box input {
-            width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: #fff; font-size: 0.95rem; margin-bottom: 10px; outline: none; transition: 0.3s;
+            width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: #fff; font-size: 0.9rem; margin-bottom: 8px; outline: none;
         }
-        .claim-box input:focus { border-color: #2ecc71; box-shadow: 0 0 10px rgba(46,204,113,0.3); }
         .claim-btn {
-            background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 11px 20px; border-radius: 25px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1rem; box-shadow: 0 5px 15px rgba(46,204,113,0.4); transition: 0.3s;
+            background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 9px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.9rem;
         }
-        .claim-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(46,204,113,0.6); }
+        .claim-btn:disabled { background: #555; cursor: not-allowed; }
 
-        .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; z-index: 1001; transition: 0.2s; }
-        .close-btn:hover { color: #ff4757; transform: scale(1.1); }
+        .close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 32px; cursor: pointer; z-index: 1001; }
 
-        footer { margin-top: 25px; font-size: 0.88rem; color: #a4b0be; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.08); width: 100%; text-align: center; padding-top: 18px; }
+        footer { margin-top: 20px; font-size: 0.8rem; color: #a4b0be; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.08); width: 100%; text-align: center; padding-top: 15px; }
         footer span { color: #fbc531; font-weight: bold; }
     </style>
 </head>
@@ -198,7 +183,7 @@
                 <button class="btn admin-btn" onclick="adminLogin()">👨‍💻 Admin Login</button>
                 <button class="btn friend-btn" onclick="openGallery(false)">👥 View as Friend</button>
             </div>
-            <footer style="margin-top:30px; border:none;">Reserved by <span>Surya</span> © 2026</footer>
+            <footer style="margin-top:25px; border:none;">Reserved by <span>Surya</span> © 2026</footer>
         </div>
 
         <div class="main-card" id="galleryPage">
@@ -206,58 +191,67 @@
             <p>यादों की तस्वीरें, वीडियोज़, जोक्स और रिटर्न गिफ्ट्स का खजाना! 🤍🎂</p>
 
             <div class="top-bar">
-                <button class="action-btn" onclick="toggleMusic()">🎵 Play Birthday Vibe</button>
+                <button class="action-btn" onclick="toggleMusic()">🎵 Play Music</button>
                 <button class="action-btn" onclick="goHome()">🏠 Home</button>
             </div>
 
             <div id="adminPanel">
-                <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery & Payment Panel</h3>
+                <h3 style="color: #fbc531; margin-bottom: 12px; text-align: center; font-size: 1.1rem;">⚙️ Admin Panel</h3>
                 
-                <label>💳 आपकी अपनी UPI ID (जहाँ से आप पेमेंट भेजेंगे):</label>
-                <input type="text" id="adminUpi" value="78699691901@ybl" placeholder="जैसे: 78699691901@ybl">
+                <label>💳 आपकी UPI ID:</label>
+                <input type="text" id="adminUpi" value="78699691901@ybl">
 
-                <label>🎵 बैकग्राउंड म्यूजिक फाइल चुनें (MP3):</label>
+                <label>🎵 बैकग्राउंड म्यूजिक (MP3):</label>
                 <input type="file" id="musicFile" accept="audio/*">
                 <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक सेव करें</button>
 
-                <label>📂 गैलरी से फोटो या वीडियो चुनें:</label>
+                <label>📂 फोटो या वीडियो चुनें:</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
                 
                 <label>👤 भेजने वाले का नाम:</label>
                 <input type="text" id="mediaName" placeholder="जैसे: Aman">
                 
-                <label>📁 कैटेगरी चुनें:</label>
+                <label>📁 कैटेगरी:</label>
                 <select id="mediaCategory">
-                    <option value="whatsapp">WhatsApp Wishes</option>
-                    <option value="instagram">Instagram Stories</option>
-                    <option value="special">Special Friends</option>
+                    <option value="birthday">🎂 Birthday Gallery (Special Memories)</option>
+                    <option value="whatsapp">💬 WhatsApp Wishes</option>
+                    <option value="instagram">📸 Instagram Stories</option>
+                    <option value="special">❤️ Special Friends</option>
                 </select>
                 
                 <label>😂 जोक या शायरी:</label>
-                <input type="text" id="mediaJoke" placeholder="जैसे: भाई पार्टी कब दे रहा है?">
+                <input type="text" id="mediaJoke" placeholder="जैसे: पार्टी कब दे रहा है?">
                 
-                <label>🎁 रिटर्न गिफ्ट (विवरण):</label>
-                <input type="text" id="mediaGift" placeholder="जैसे: Cash Gift / 100 Rs 💸">
+                <label>🎁 रिटर्न गिफ्ट विवरण:</label>
+                <input type="text" id="mediaGift" placeholder="जैसे: 100 Rs Cash 💸">
                 
-                <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें (High Quality)</button>
+                <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें</button>
 
-                <!-- LIVE PENDING CLAIM REQUESTS SECTION IN ADMIN PANEL -->
-                <h3 style="color: #2ecc71; margin-top: 25px; margin-bottom: 10px; font-size: 1.1rem;">🎁 दोस्तों की क्लेम रिक्वेस्ट (Live Requests):</h3>
+                <h3 style="color: #2ecc71; margin-top: 20px; margin-bottom: 8px; font-size: 1rem;">🎁 क्लेम रिक्वेस्ट्स:</h3>
                 <div class="admin-requests-box" id="adminRequestsContainer">
-                    <p style="color: #a4b0be; text-align: center; font-size: 0.9rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं आई है।</p>
+                    <p style="color: #a4b0be; text-align: center; font-size: 0.85rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>
                 </div>
             </div>
 
             <div class="controls-container">
                 <input type="text" class="search-box" id="searchInput" placeholder="🔍 नाम से खोजें..." onkeyup="searchWishes()">
                 <div class="tabs">
-                    <button class="tab-btn active" onclick="filterGallery('all', event)">🌟 All Wishes</button>
+                    <button class="tab-btn active" onclick="filterGallery('all', event)">🌟 All</button>
+                    <button class="tab-btn" onclick="filterGallery('birthday', event)">🎂 Birthday</button>
                     <button class="tab-btn" onclick="filterGallery('whatsapp', event)">💬 WhatsApp</button>
                     <button class="tab-btn" onclick="filterGallery('instagram', event)">📸 Instagram</button>
                     <button class="tab-btn" onclick="filterGallery('special', event)">❤️ Special</button>
                 </div>
             </div>
 
+            <!-- Birthday Gallery Section -->
+            <div id="birthdayGallerySection">
+                <h2 class="section-title">🎂 Birthday Gallery & Highlights</h2>
+                <div class="gallery-grid" id="birthdayContainer"></div>
+            </div>
+
+            <!-- All Wishes Section -->
+            <h2 class="section-title">💬 Friends Wishes & Gifts</h2>
             <div class="gallery-grid" id="galleryContainer"></div>
 
             <div class="badge">🎉 THANK YOU ALL FROM THE BOTTOM OF MY HEART! 🙏</div>
@@ -272,15 +266,15 @@
             <div id="modalCaption" class="modal-caption"></div>
             
             <div class="modal-extra-box">
-                <p id="modalJoke">💬 <b>Joke/Shayari:</b> -</p>
+                <p id="modalJoke">💬 <b>Joke:</b> -</p>
                 <p id="modalGift">🎁 <b>Return Gift:</b> -</p>
             </div>
 
-            <div class="claim-box">
-                <h4>🎁 अपना रिटर्न गिफ्ट (UPI/PhonePe) क्लेम करें</h4>
+            <div class="claim-box" id="modalClaimBox">
+                <h4 id="claimBoxTitle">🎁 अपना रिटर्न गिफ्ट क्लेम करें</h4>
                 <input type="text" id="friendNameInput" placeholder="अपना पूरा नाम दर्ज करें">
-                <input type="text" id="friendUpiInput" placeholder="अपना PhonePe नंबर या UPI ID दर्ज करें">
-                <button class="claim-btn" onclick="submitClaimRequest()">🚀 Submit Claim Request</button>
+                <input type="text" id="friendUpiInput" placeholder="PhonePe नंबर या UPI ID दर्ज करें">
+                <button class="claim-btn" id="modalClaimBtn" onclick="submitClaimRequest()">🚀 Submit Claim Request</button>
             </div>
         </div>
     </div>
@@ -290,17 +284,11 @@
     </audio>
 
     <script>
-        window.addEventListener('beforeunload', function (e) {
-            e.preventDefault();
-            e.returnValue = 'क्या आप वाकई इस पेज से बाहर जाना चाहते हैं?';
-            return 'क्या आप वाकई इस पेज से बाहर जाना चाहते हैं?';
-        });
-
         let isAdminLoggedIn = false;
         let currentOpenMediaId = null;
 
         window.onload = function() {
-            confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
+            confetti({ particleCount: 70, spread: 50, origin: { y: 0.7 } });
             loadSavedMedia();
             loadAdminRequests();
             
@@ -309,8 +297,7 @@
 
             let savedMusic = localStorage.getItem('suryaCustomMusic');
             if(savedMusic) {
-                let musicElem = document.getElementById('bgMusic');
-                musicElem.src = savedMusic;
+                document.getElementById('bgMusic').src = savedMusic;
             }
         };
 
@@ -319,26 +306,23 @@
             document.getElementById('galleryPage').style.display = 'block';
             
             if(isAdmin) {
-                let pass = prompt("🔐 कृपया एडमिन पासवर्ड दर्ज करें (Password:):");
+                let pass = prompt("🔐 एडमिन पासवर्ड दर्ज करें:");
                 if (pass === "surya6260") {
-                    alert("✨ स्वागत है सूर्या! एडमिन पैनल खुल रहा है...");
+                    alert("✨ स्वागत है सूर्या!");
                     isAdminLoggedIn = true;
                     document.getElementById('adminPanel').style.display = 'block';
                     loadAdminRequests();
                 } else {
-                    alert("❌ गलत पासवर्ड! केवल व्यू मोड में खोला जा रहा है।");
+                    alert("❌ गलत पासवर्ड!");
                 }
             }
             loadSavedMedia();
-            confetti({ particleCount: 70, spread: 60 });
         }
 
-        function adminLogin() {
-            openGallery(true);
-        }
+        function adminLogin() { openGallery(true); }
 
         function goHome() {
-            if(confirm("क्या आप वाकई होम पेज पर जाना चाहते हैं?")) {
+            if(confirm("होम पेज पर जाना चाहते हैं?")) {
                 document.getElementById('galleryPage').style.display = 'none';
                 document.getElementById('entryPage').style.display = 'block';
             }
@@ -349,10 +333,10 @@
             let music = document.getElementById('bgMusic');
             if (isPlaying) {
                 music.pause();
-                event.target.innerText = "🎵 Play Birthday Vibe";
+                event.target.innerText = "🎵 Play Music";
                 isPlaying = false;
             } else {
-                music.play().catch(e => alert("म्यूजिक प्ले करने के लिए स्क्रीन पर क्लिक करें"));
+                music.play().catch(e => alert("स्क्रीन पर क्लिक करके म्यूजिक ऑन करें"));
                 event.target.innerText = "🔇 Pause Music";
                 isPlaying = true;
             }
@@ -360,19 +344,14 @@
 
         function saveCustomMusic() {
             let fileInput = document.getElementById('musicFile');
-            if(fileInput.files.length === 0) {
-                alert("कृपया पहले कोई MP3 ऑडियो फाइल चुनें!");
-                return;
-            }
-            let file = fileInput.files[0];
+            if(fileInput.files.length === 0) return alert("फाइल चुनें!");
             let reader = new FileReader();
             reader.onload = function(e) {
                 localStorage.setItem('suryaCustomMusic', e.target.result);
-                let musicElem = document.getElementById('bgMusic');
-                musicElem.src = e.target.result;
-                alert("🎵 बैकग्राउंड म्यूजिक सफलतापूर्वक सेव हो गया है!");
+                document.getElementById('bgMusic').src = e.target.result;
+                alert("🎵 म्यूजिक सेव हो गया!");
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(fileInput.files[0]);
         }
 
         function filterGallery(category, event) {
@@ -380,6 +359,15 @@
             let buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
+
+            let birthdaySection = document.getElementById('birthdayGallerySection');
+            if(category === 'birthday') {
+                birthdaySection.style.display = 'block';
+            } else if(category !== 'all') {
+                birthdaySection.style.display = 'none';
+            } else {
+                birthdaySection.style.display = 'block';
+            }
 
             cards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-category') === category) {
@@ -395,11 +383,7 @@
             let cards = document.querySelectorAll('.img-card');
             cards.forEach(card => {
                 let name = card.querySelector('.sender-name').innerText.toLowerCase();
-                if (name.includes(input)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+                card.style.display = name.includes(input) ? "block" : "none";
             });
         }
 
@@ -408,202 +392,184 @@
             let name = document.getElementById("mediaName").value.trim();
             let category = document.getElementById("mediaCategory").value;
             let joke = document.getElementById("mediaJoke").value.trim() || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
-            let gift = document.getElementById("mediaGift").value.trim() || "🎁 रिटर्न गिफ्ट: Cash Gift 💸";
-            let adminUpiVal = document.getElementById("adminUpi").value.trim();
+            let gift = document.getElementById("mediaGift").value.trim() || "🎁 Return Gift: 100 Rs 💸";
+            
+            localStorage.setItem('suryaAdminUpi', document.getElementById("adminUpi").value.trim());
 
-            localStorage.setItem('suryaAdminUpi', adminUpiVal);
-
-            if (fileInput.files.length === 0 || !name) {
-                alert("कृपया पहले फाइल (फोटो/वीडियो) और भेजने वाले का नाम भरें!");
-                return;
-            }
+            if (fileInput.files.length === 0 || !name) return alert("कृपया फाइल और नाम भरें!");
 
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            alert("⏳ फोटो प्रोसेस हो रही है (हाई क्वालिटी क्लियर)...");
-
             reader.onload = function(e) {
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
-
+                
                 if (fileType === 'image') {
+                    // Compress image to save storage space
                     let img = new Image();
                     img.src = e.target.result;
                     img.onload = function() {
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
-                        
-                        let MAX_WIDTH = 900;
-                        let MAX_HEIGHT = 900;
+                        let MAX_WIDTH = 800;
+                        let MAX_HEIGHT = 800;
                         let width = img.width;
                         let height = img.height;
 
                         if (width > height) {
-                            if (width > MAX_WIDTH) {
-                                height *= MAX_WIDTH / width;
-                                width = MAX_WIDTH;
-                            }
+                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
                         } else {
-                            if (height > MAX_HEIGHT) {
-                                width *= MAX_HEIGHT / height;
-                                height = MAX_HEIGHT;
-                            }
+                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
                         }
-
                         canvas.width = width;
                         canvas.height = height;
                         ctx.drawImage(img, 0, 0, width, height);
-
-                        let clearDataUrl = canvas.toDataURL('image/jpeg', 0.85);
-                        saveMediaToStorage(clearDataUrl, 'image', name, category, joke, gift, fileInput);
-                    };
+                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                        saveMediaToStorage(compressedDataUrl, fileType, name, category, joke, gift, fileInput);
+                    }
                 } else {
-                    saveMediaToStorage(e.target.result, 'video', name, category, joke, gift, fileInput);
+                    // For video
+                    saveMediaToStorage(e.target.result, fileType, name, category, joke, gift, fileInput);
                 }
             };
             reader.readAsDataURL(file);
         }
 
-        function saveMediaToStorage(mediaDataUrl, fileType, name, category, joke, gift, fileInput) {
+        function saveMediaToStorage(url, type, name, category, joke, gift, fileInput) {
             let uniqueId = 'id_' + Date.now();
             try {
                 let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-                savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift, claimedList: [] });
-                
+                savedMedia.push({ id: uniqueId, type, url, name, category, joke, gift, claimed: false });
                 localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
                 loadSavedMedia();
-
                 fileInput.value = "";
                 document.getElementById("mediaName").value = "";
                 document.getElementById("mediaJoke").value = "";
                 document.getElementById("mediaGift").value = "";
-                alert("✨ सफलता! फोटो व्यू पेज पर जोड़ दी गई है और परमानेंट सेव हो गई है।");
+                alert("✨ सफलतापूर्वक सेव हो गया!");
             } catch (error) {
-                alert("❌ स्टोरेज फुल हो गई है। कृपया पुरानी फोटो डिलीट करें।");
+                alert("❌ स्टोरेज फुल है! कृपया छोटी साइज़ की फोटो या वीडियो अपलोड करें।");
             }
         }
 
         function loadSavedMedia() {
             let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
             const container = document.getElementById("galleryContainer");
+            const birthdayContainer = document.getElementById("birthdayContainer");
+            
             container.innerHTML = "";
+            birthdayContainer.innerHTML = "";
 
             if(savedMedia.length === 0) {
-                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul (Demo)', 'whatsapp', '😂 भाई विश करने में कंजूसी की, पर पार्टी फुल चाहिए!', '🎁 रिटर्न गिफ्ट: 100 Rs PhonePe 💸', []);
+                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul (Demo)', 'birthday', '😂 पार्टी कब दे रहा है?', '🎁 100 Rs PhonePe', false);
             } else {
                 savedMedia.forEach(item => { 
-                    appendCard(item.id, item.type, item.url, item.name, item.category, item.joke, item.gift, item.claimedList || []); 
+                    appendCard(item.id, item.type, item.url, item.name, item.category, item.joke, item.gift, item.claimed); 
                 });
             }
         }
 
-        function appendCard(id, type, url, name, category, joke, gift, claimedList) {
+        function appendCard(id, type, url, name, category, joke, gift, claimed) {
             const container = document.getElementById("galleryContainer");
+            const birthdayContainer = document.getElementById("birthdayContainer");
+            
             const newCard = document.createElement("div");
             newCard.className = "img-card";
             newCard.setAttribute("data-category", category);
             
             let safeJoke = joke.replace(/'/g, "\\'");
             let safeGift = gift.replace(/'/g, "\\'");
-            newCard.setAttribute("onclick", `openModal('${id}', '${type}', '${url}', '${name}', '${safeJoke}', '${safeGift}')`);
+            newCard.setAttribute("onclick", `openModal('${id}', '${type}', '${url}', '${name}', '${safeJoke}', '${safeGift}', ${claimed})`);
             
-            let icon = category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
+            let icon = category === 'birthday' ? '🎂' : category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
+            let deleteBtn = (isAdminLoggedIn && id !== 'id_default') ? `<button class="del-card-btn" style="display:block;" onclick="deleteCard(event, '${id}')">×</button>` : '';
+            let claimedBadge = claimed ? `<div class="claimed-badge-card">✓ Claimed</div>` : "";
 
-            let deleteBtnHtml = "";
-            if(isAdminLoggedIn && id !== 'id_default') {
-                deleteBtnHtml = `<button class="del-card-btn" onclick="deleteCard(event, '${id}')" title="हटाएं">×</button>`;
-                setTimeout(() => { newCard.querySelector('.del-card-btn').style.display = 'block'; }, 100);
-            }
+            newCard.innerHTML = `
+                ${deleteBtn}
+                ${claimedBadge}
+                ${type === 'video' ? '<div class="video-badge">▶ VIDEO</div>' : ''}
+                ${type === 'video' ? `<video src="${url}" muted></video>` : `<img src="${url}" alt="Wish">`}
+                <div class="sender-name">${icon} ${name}</div>
+            `;
 
-            if(type === 'video') {
-                newCard.innerHTML = `
-                    ${deleteBtnHtml}
-                    <div class="video-badge">▶ VIDEO</div>
-                    <video src="${url}" muted></video>
-                    <div class="sender-name">${icon} ${name}</div>
-                `;
-            } else {
-                newCard.innerHTML = `
-                    ${deleteBtnHtml}
-                    <img src="${url}" alt="Wish">
-                    <div class="sender-name">${icon} ${name}</div>
-                `;
+            if(category === 'birthday') {
+                birthdayContainer.appendChild(newCard.cloneNode(true));
             }
             container.appendChild(newCard);
         }
 
         function deleteCard(event, id) {
             event.stopPropagation();
-            if(confirm("क्या आप वाकई इस फोटो/वीडियो को हमेशा के लिए डिलीट करना चाहते हैं?")) {
+            if(confirm("डिटेल डिलीट करें?")) {
                 let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-                let updatedMedia = savedMedia.filter(item => item.id !== id);
-                localStorage.setItem('suryaStoreFinal', JSON.stringify(updatedMedia));
+                localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia.filter(i => i.id !== id)));
                 loadSavedMedia();
-                alert("🗑️ डेटा सफलतापूर्वक हटा दिया गया है।");
             }
         }
 
-        function openModal(id, type, mediaSrc, senderName, jokeText, giftText) {
+        function openModal(id, type, mediaSrc, senderName, jokeText, giftText, claimed) {
             currentOpenMediaId = id;
             document.getElementById("mediaModal").style.display = "flex";
-            document.getElementById("modalCaption").innerHTML = "💬 " + senderName;
-            document.getElementById("modalJoke").innerHTML = `💬 <b>Joke/Shayari यह सिर्फ मनोरंज है दिल पर न ले । :</b> ${jokeText}`;
-            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift 100% Cashback:</b> ${giftText}`;
-            document.getElementById("friendNameInput").value = "";
-            document.getElementById("friendUpiInput").value = "";
+            document.getElementById("modalCaption").innerText = "💬 " + senderName;
+            document.getElementById("modalJoke").innerHTML = `💬 <b>Joke:</b> ${jokeText}`;
+            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
+            
+            let nameInput = document.getElementById("friendNameInput");
+            let upiInput = document.getElementById("friendUpiInput");
+            let claimBtn = document.getElementById("modalClaimBtn");
+            let claimTitle = document.getElementById("claimBoxTitle");
+
+            if(claimed) {
+                nameInput.value = "Already Claimed";
+                upiInput.value = "Gift Dispatched";
+                nameInput.disabled = true;
+                upiInput.disabled = true;
+                claimBtn.disabled = true;
+                claimBtn.innerText = "✓ Gift Already Claimed";
+                claimTitle.innerText = "🎁 यह गिफ्ट पहले ही क्लेम हो चुका है!";
+            } else {
+                nameInput.value = "";
+                upiInput.value = "";
+                nameInput.disabled = false;
+                upiInput.disabled = false;
+                claimBtn.disabled = false;
+                claimBtn.innerText = "🚀 Submit Claim Request";
+                claimTitle.innerText = "🎁 अपना रिटर्न गिफ्ट क्लेम करें";
+            }
 
             let mediaContainer = document.getElementById("modalMediaContainer");
-            mediaContainer.innerHTML = "";
-
-            if(type === 'video') {
-                let vid = document.createElement("video");
-                vid.src = mediaSrc;
-                vid.controls = true;
-                vid.autoplay = true;
-                mediaContainer.appendChild(vid);
-            } else {
-                let img = document.createElement("img");
-                img.src = mediaSrc;
-                mediaContainer.appendChild(img);
-            }
-            confetti({ particleCount: 40, spread: 50, origin: { y: 0.5 } });
+            mediaContainer.innerHTML = type === 'video' ? `<video src="${mediaSrc}" controls autoplay></video>` : `<img src="${mediaSrc}">`;
         }
 
         function closeModal() {
             document.getElementById("mediaModal").style.display = "none";
-            let mediaContainer = document.getElementById("modalMediaContainer");
-            mediaContainer.innerHTML = "";
+            document.getElementById("modalMediaContainer").innerHTML = "";
         }
 
-        // Friend submits claim -> Saves in Admin Panel Request List
         function submitClaimRequest() {
             let friendName = document.getElementById("friendNameInput").value.trim();
             let friendUpiOrNo = document.getElementById("friendUpiInput").value.trim();
 
-            if(!friendName || !friendUpiOrNo) {
-                alert("कृपया अपना Full Name और अपना PhonePe नंबर/UPI ID दोनों दर्ज करें!");
-                return;
-            }
+            if(!friendName || !friendUpiOrNo) return alert("नाम और UPI ID भरें!");
+
+            let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
+            savedMedia = savedMedia.map(item => {
+                if(item.id === currentOpenMediaId) item.claimed = true;
+                return item;
+            });
+            localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
 
             let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
-            
-            // Check duplicate
-            let exists = claimRequests.some(req => req.upi === friendUpiOrNo);
-            if(exists) {
-                alert("⚠️ इस नंबर/UPI से रिक्वेस्ट पहले ही भेजी जा चुकी है।");
-                closeModal();
-                return;
-            }
-
             claimRequests.push({ name: friendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
-            alert(`✨ धन्यवाद ${friendName}!\n\nआपकी गिफ्ट क्लेम रिक्वेस्ट  भेज दी गई है।`);
+            alert(`✨ धन्यवाद ${friendName}! क्लेम रिक्वेस्ट भेज दी गई है।`);
             closeModal();
+            loadSavedMedia();
             loadAdminRequests();
         }
 
-        // Load claims inside Admin Panel
         function loadAdminRequests() {
             let container = document.getElementById("adminRequestsContainer");
             if(!container) return;
@@ -612,21 +578,20 @@
             container.innerHTML = "";
 
             if(claimRequests.length === 0) {
-                container.innerHTML = `<p style="color: #a4b0be; text-align: center; font-size: 0.9rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं आई है।</p>`;
+                container.innerHTML = `<p style="color: #a4b0be; text-align: center; font-size: 0.85rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>`;
                 return;
             }
 
             claimRequests.forEach((req, index) => {
                 let upiIntentUrl = `upi://pay?pa=${req.upi}&pn=${encodeURIComponent(req.name)}&am=10&cu=INR&tn=BirthdayGiftReturn`;
-                
                 let div = document.createElement("div");
                 div.className = "request-item";
                 div.innerHTML = `
                     <div class="request-info">
                         <p>👤 <b>${req.name}</b></p>
-                        <p>💳 UPI/No: <span style="color: #fbc531;">${req.upi}</span></p>
+                        <p>💳 UPI: <span style="color: #fbc531;">${req.upi}</span></p>
                     </div>
-                    <a href="${upiIntentUrl}" class="pay-now-btn" onclick="removeRequest(${index})">💸 Pay ₹10 Now</a>
+                    <a href="${upiIntentUrl}" class="pay-now-btn" onclick="removeRequest(${index})">💸 Pay ₹10</a>
                 `;
                 container.appendChild(div);
             });
