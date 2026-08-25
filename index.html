@@ -71,7 +71,7 @@
         .action-btn:hover { background: #fbc531; color: #000; box-shadow: 0 5px 15px rgba(251,197,49,0.4); transform: translateY(-2px); }
 
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.7); padding: 25px; border-radius: 20px;
+            display: none; background: rgba(0, 0, 0, 0.75); padding: 25px; border-radius: 20px;
             margin-bottom: 30px; border: 1px dashed rgba(251,197,49,0.6); text-align: left;
             max-width: 550px; margin-left: auto; margin-right: auto; backdrop-filter: blur(15px);
             box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
@@ -195,8 +195,12 @@
             <div id="adminPanel">
                 <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery Panel</h3>
                 
-                <label>💳 आपकी अपनी UPI ID (जहाँ से पेमेंट रिक्वेस्ट आएगी/भेजी जाएगी):</label>
+                <label>💳 आपकी अपनी UPI ID:</label>
                 <input type="text" id="adminUpi" value="7869969190@ybl" placeholder="जैसे: 7869969190@ybl">
+
+                <label>🎵 बैकग्राउंड म्यूजिक फाइल चुनें (MP3):</label>
+                <input type="file" id="musicFile" accept="audio/*">
+                <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक सेव करें</button>
 
                 <label>📂 गैलरी से फोटो या वीडियो चुनें:</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
@@ -250,8 +254,8 @@
 
             <div class="claim-box">
                 <h4>🎁 अपना रिटर्न गिफ्ट (UPI/PhonePe) क्लेम करें</h4>
-                <input type="text" id="friendNameInput" placeholder="अपना पूरा नाम दर्ज करें (जैसे: Rahul Sharma)">
-                <input type="text" id="friendUpiInput" placeholder="अपना PhonePe नंबर या UPI ID दर्ज करें (जैसे: 9876543210)">
+                <input type="text" id="friendNameInput" placeholder="अपना पूरा नाम दर्ज करें">
+                <input type="text" id="friendUpiInput" placeholder="अपना PhonePe नंबर या UPI ID दर्ज करें">
                 <button class="claim-btn" onclick="claimGiftViaUpi()">🚀 Claim Now & Request Surya</button>
             </div>
         </div>
@@ -272,17 +276,26 @@
         let currentOpenMediaId = null;
 
         window.onload = function() {
-            // Auto-clean old corrupted keys to free up space immediately
-            if (!localStorage.getItem('suryaAutoCleanDone_v7')) {
-                localStorage.removeItem('suryaPermanentStore_v5');
-                localStorage.removeItem('suryaPermanentStore_v6');
-                localStorage.setItem('suryaAutoCleanDone_v7', 'true');
-            }
+            // Force clear old variant crashes and set fresh state
+            try {
+                let savedUpiTemp = localStorage.getItem('suryaAdminUpi');
+                let savedMusicTemp = localStorage.getItem('suryaCustomMusic');
+                localStorage.clear(); 
+                if(savedUpiTemp) localStorage.setItem('suryaAdminUpi', savedUpiTemp);
+                if(savedMusicTemp) localStorage.setItem('suryaCustomMusic', savedMusicTemp);
+            } catch(e) {}
 
             confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
             loadSavedMedia();
+            
             let savedUpi = localStorage.getItem('suryaAdminUpi');
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
+
+            let savedMusic = localStorage.getItem('suryaCustomMusic');
+            if(savedMusic) {
+                let musicElem = document.getElementById('bgMusic');
+                musicElem.src = savedMusic;
+            }
         };
 
         function openGallery(isAdmin = false) {
@@ -322,10 +335,31 @@
                 event.target.innerText = "🎵 Play Birthday Vibe";
                 isPlaying = false;
             } else {
-                music.play();
+                music.play().catch(e => alert("म्यूजिक प्ले करने के लिए स्क्रीन पर क्लिक करें"));
                 event.target.innerText = "🔇 Pause Music";
                 isPlaying = true;
             }
+        }
+
+        function saveCustomMusic() {
+            let fileInput = document.getElementById('musicFile');
+            if(fileInput.files.length === 0) {
+                alert("कृपया पहले कोई MP3 ऑडियो फाइल चुनें!");
+                return;
+            }
+            let file = fileInput.files[0];
+            if(file.size > 2 * 1024 * 1024) {
+                alert("⚠️ ऑडियो फाइल का साइज़ 2MB से कम होना चाहिए।");
+                return;
+            }
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                localStorage.setItem('suryaCustomMusic', e.target.result);
+                let musicElem = document.getElementById('bgMusic');
+                musicElem.src = e.target.result;
+                alert("🎵 बैकग्राउंड म्यूजिक सफलतापूर्वक सेव हो गया है!");
+            };
+            reader.readAsDataURL(file);
         }
 
         function filterGallery(category, event) {
@@ -374,7 +408,7 @@
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            alert("⏳ फोटो को 500+ क्षमता के लिए ऑप्टिमाइज़ किया जा रहा है...");
+            alert("⏳ फोटो को सुपर-कम्प्रेस (500+ क्षमता) किया जा रहा है...");
 
             reader.onload = function(e) {
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
@@ -386,8 +420,8 @@
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
                         
-                        let MAX_WIDTH = 400;
-                        let MAX_HEIGHT = 400;
+                        let MAX_WIDTH = 350;
+                        let MAX_HEIGHT = 350;
                         let width = img.width;
                         let height = img.height;
 
@@ -407,12 +441,12 @@
                         canvas.height = height;
                         ctx.drawImage(img, 0, 0, width, height);
 
-                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.4);
+                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.35);
                         saveMediaToStorage(compressedDataUrl, 'image', name, category, joke, gift, fileInput);
                     };
                 } else {
-                    if(file.size > 1.5 * 1024 * 1024) {
-                        alert("⚠️ वीडियो का साइज़ 1.5MB से कम होना चाहिए।");
+                    if(file.size > 1 * 1024 * 1024) {
+                        alert("⚠️ वीडियो का साइज़ 1MB से कम होना चाहिए।");
                         return;
                     }
                     saveMediaToStorage(e.target.result, 'video', name, category, joke, gift, fileInput);
@@ -424,10 +458,10 @@
         function saveMediaToStorage(mediaDataUrl, fileType, name, category, joke, gift, fileInput) {
             let uniqueId = 'id_' + Date.now();
             try {
-                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
+                let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
                 savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift, claimedList: [] });
                 
-                localStorage.setItem('suryaPermanentStore_v7', JSON.stringify(savedMedia));
+                localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
 
                 loadSavedMedia();
 
@@ -437,12 +471,12 @@
                 document.getElementById("mediaGift").value = "";
                 alert("✨ सफलता! फोटो सफलतापूर्वक सेव हो गई है।");
             } catch (error) {
-                alert("❌ स्टोरेज फुल है। कृपया पुरानी पोस्ट डिलीट करें।");
+                alert("❌ स्टोरेज की सीमा पूरी हो चुकी है। कृपया कुछ पुरानी पोस्ट डिलीट करें।");
             }
         }
 
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
             const container = document.getElementById("galleryContainer");
             container.innerHTML = "";
 
@@ -493,9 +527,9 @@
         function deleteCard(event, id) {
             event.stopPropagation();
             if(confirm("क्या आप वाकई इस फोटो/वीडियो को हमेशा के लिए डिलीट करना चाहते हैं?")) {
-                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
+                let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
                 let updatedMedia = savedMedia.filter(item => item.id !== id);
-                localStorage.setItem('suryaPermanentStore_v7', JSON.stringify(updatedMedia));
+                localStorage.setItem('suryaStoreFinal', JSON.stringify(updatedMedia));
                 loadSavedMedia();
                 alert("🗑️ डेटा सफलतापूर्वक हटा दिया गया है।");
             }
@@ -542,7 +576,7 @@
                 return;
             }
 
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
             let currentItem = savedMedia.find(item => item.id === currentOpenMediaId);
 
             if(!currentItem && currentOpenMediaId === 'id_default') {
@@ -559,7 +593,7 @@
                 }
 
                 currentItem.claimedList.push(friendUpiOrNo);
-                localStorage.setItem('suryaPermanentStore_v7', JSON.stringify(savedMedia));
+                localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
             }
 
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
