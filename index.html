@@ -167,6 +167,17 @@
         }
         .claim-btn:disabled { background: #555; cursor: not-allowed; }
 
+        /* Secret Gift Box Revealed Style */
+        .secret-gift-reveal {
+            background: rgba(255, 215, 0, 0.15); border: 2px dashed #fbc531; border-radius: 12px; padding: 15px; margin-top: 12px; text-align: center; display: none;
+            animation: bounceIn 0.6s ease;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         .close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 32px; cursor: pointer; z-index: 1001; }
 
         footer { margin-top: 20px; font-size: 0.8rem; color: #a4b0be; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.08); width: 100%; text-align: center; padding-top: 15px; }
@@ -205,7 +216,7 @@
                 <input type="file" id="musicFile" accept="audio/*">
                 <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक सेव करें</button>
 
-                <label>📂 फोटो या वीडियो चुनें:</label>
+                <label>📂 फोटो या वीडियो चुनें (HD Optimized):</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
                 
                 <label>👤 भेजने वाले का नाम:</label>
@@ -222,8 +233,8 @@
                 <label>😂 जोक या शायरी:</label>
                 <input type="text" id="mediaJoke" placeholder="जैसे: पार्टी कब दे रहा है?">
                 
-                <label>🎁 रिटर्न गिफ्ट विवरण:</label>
-                <input type="text" id="mediaGift" placeholder="जैसे: 100 Rs Cash 💸">
+                <label>🎁 गुप्त रिटर्न गिफ्ट (Secret Prize):</label>
+                <input type="text" id="mediaGift" placeholder="जैसे: 100 Rs Cash / Special Chocolate 🍫">
                 
                 <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें</button>
 
@@ -267,14 +278,19 @@
             
             <div class="modal-extra-box">
                 <p id="modalJoke">💬 <b>Joke:</b> -</p>
-                <p id="modalGift">🎁 <b>Return Gift:</b> -</p>
+            </div>
+
+            <!-- Secret Gift Box Revealed Section (Hidden until claimed) -->
+            <div class="secret-gift-reveal" id="secretGiftRevealBox">
+                <h3 style="color: #fbc531; font-size: 1.1rem; margin-bottom: 5px;">🎉 🎁 Gift Unlocked! 🎁 🎉</h3>
+                <p id="modalGift" style="font-size: 1rem; color: #fff; font-weight: bold;"></p>
             </div>
 
             <div class="claim-box" id="modalClaimBox">
-                <h4 id="claimBoxTitle">🎁 अपना रिटर्न गिफ्ट क्लेम करें</h4>
+                <h4 id="claimBoxTitle">🎁 अपना रिटर्न गिफ्ट क्लेम करें (गिफ्ट बॉक्स खोलें)</h4>
                 <input type="text" id="friendNameInput" placeholder="अपना पूरा नाम दर्ज करें">
                 <input type="text" id="friendUpiInput" placeholder="PhonePe नंबर या UPI ID दर्ज करें">
-                <button class="claim-btn" id="modalClaimBtn" onclick="submitClaimRequest()">🚀 Submit Claim Request</button>
+                <button class="claim-btn" id="modalClaimBtn" onclick="submitClaimRequest()">🎁 Open Gift Box & Submit</button>
             </div>
         </div>
     </div>
@@ -322,7 +338,9 @@
         function adminLogin() { openGallery(true); }
 
         function goHome() {
-            if(confirm("होम पेज पर जाना चाहते हैं?")) {
+            let visitorName = prompt("घर (Home) जाने से पहले अपना नाम बताएं:");
+            if(visitorName) {
+                alert(`🙏 धन्यवाद ${visitorName}! सूर्या के बर्थडे वॉल्ट पर आने के लिए दिल से शुक्रिया। ✨`);
                 document.getElementById('galleryPage').style.display = 'none';
                 document.getElementById('entryPage').style.display = 'block';
             }
@@ -392,7 +410,7 @@
             let name = document.getElementById("mediaName").value.trim();
             let category = document.getElementById("mediaCategory").value;
             let joke = document.getElementById("mediaJoke").value.trim() || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
-            let gift = document.getElementById("mediaGift").value.trim() || "🎁 Return Gift: 100 Rs 💸";
+            let gift = document.getElementById("mediaGift").value.trim() || "🎁 Return Gift: 100 Rs Cash 💸";
             
             localStorage.setItem('suryaAdminUpi', document.getElementById("adminUpi").value.trim());
 
@@ -401,38 +419,46 @@
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            reader.onload = function(e) {
-                let fileType = file.type.startsWith('video') ? 'video' : 'image';
-                
-                if (fileType === 'image') {
-                    // Compress image to save storage space
+            if (file.type.startsWith('video')) {
+                reader.onload = function(e) {
+                    saveMediaToStorage(e.target.result, 'video', name, category, joke, gift, fileInput);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                reader.onload = function(event) {
                     let img = new Image();
-                    img.src = e.target.result;
+                    img.src = event.target.result;
                     img.onload = function() {
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
-                        let MAX_WIDTH = 800;
-                        let MAX_HEIGHT = 800;
+                        
+                        let MAX_WIDTH = 900;
+                        let MAX_HEIGHT = 900;
                         let width = img.width;
                         let height = img.height;
 
                         if (width > height) {
-                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                            if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                            }
                         } else {
-                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+                            if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                            }
                         }
+
                         canvas.width = width;
                         canvas.height = height;
                         ctx.drawImage(img, 0, 0, width, height);
-                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
-                        saveMediaToStorage(compressedDataUrl, fileType, name, category, joke, gift, fileInput);
+                        
+                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.75);
+                        saveMediaToStorage(compressedDataUrl, 'image', name, category, joke, gift, fileInput);
                     }
-                } else {
-                    // For video
-                    saveMediaToStorage(e.target.result, fileType, name, category, joke, gift, fileInput);
-                }
-            };
-            reader.readAsDataURL(file);
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
         function saveMediaToStorage(url, type, name, category, joke, gift, fileInput) {
@@ -448,7 +474,7 @@
                 document.getElementById("mediaGift").value = "";
                 alert("✨ सफलतापूर्वक सेव हो गया!");
             } catch (error) {
-                alert("❌ स्टोरेज फुल है! कृपया छोटी साइज़ की फोटो या वीडियो अपलोड करें।");
+                alert("❌ स्टोरेज फुल हो गई है! कृपया कुछ पुरानी फाइलें डिलीट करें।");
             }
         }
 
@@ -513,12 +539,13 @@
             document.getElementById("mediaModal").style.display = "flex";
             document.getElementById("modalCaption").innerText = "💬 " + senderName;
             document.getElementById("modalJoke").innerHTML = `💬 <b>Joke:</b> ${jokeText}`;
-            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
             
             let nameInput = document.getElementById("friendNameInput");
             let upiInput = document.getElementById("friendUpiInput");
             let claimBtn = document.getElementById("modalClaimBtn");
             let claimTitle = document.getElementById("claimBoxTitle");
+            let secretBox = document.getElementById("secretGiftRevealBox");
+            let modalGift = document.getElementById("modalGift");
 
             if(claimed) {
                 nameInput.value = "Already Claimed";
@@ -528,14 +555,21 @@
                 claimBtn.disabled = true;
                 claimBtn.innerText = "✓ Gift Already Claimed";
                 claimTitle.innerText = "🎁 यह गिफ्ट पहले ही क्लेम हो चुका है!";
+                
+                // Show gift if already claimed
+                modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
+                secretBox.style.display = "block";
             } else {
                 nameInput.value = "";
                 upiInput.value = "";
                 nameInput.disabled = false;
                 upiInput.disabled = false;
                 claimBtn.disabled = false;
-                claimBtn.innerText = "🚀 Submit Claim Request";
-                claimTitle.innerText = "🎁 अपना रिटर्न गिफ्ट क्लेम करें";
+                claimBtn.innerText = "🎁 Open Gift Box & Submit";
+                claimTitle.innerText = "🎁 अपना रिटर्न गिफ्ट क्लेम करें (गिफ्ट बॉक्स खोलें)";
+                
+                // Hide gift until user claims it
+                secretBox.style.display = "none";
             }
 
             let mediaContainer = document.getElementById("modalMediaContainer");
@@ -554,8 +588,13 @@
             if(!friendName || !friendUpiOrNo) return alert("नाम और UPI ID भरें!");
 
             let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
+            let targetGift = "🎁 100 Rs Cash 💸";
+            
             savedMedia = savedMedia.map(item => {
-                if(item.id === currentOpenMediaId) item.claimed = true;
+                if(item.id === currentOpenMediaId) {
+                    item.claimed = true;
+                    targetGift = item.gift;
+                }
                 return item;
             });
             localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
@@ -564,8 +603,30 @@
             claimRequests.push({ name: friendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
-            alert(`✨ धन्यवाद ${friendName}! क्लेम रिक्वेस्ट भेज दी गई है।`);
-            closeModal();
+            // Full screen celebration explosion!
+            confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.6 }
+            });
+
+            // Reveal gift box inside modal instantly
+            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${targetGift}`;
+            document.getElementById("secretGiftRevealBox").style.display = "block";
+
+            // Lock form inputs
+            let nameInput = document.getElementById("friendNameInput");
+            let upiInput = document.getElementById("friendUpiInput");
+            let claimBtn = document.getElementById("modalClaimBtn");
+            nameInput.value = "Claim Successful";
+            upiInput.value = "Sent to Admin";
+            nameInput.disabled = true;
+            upiInput.disabled = true;
+            claimBtn.disabled = true;
+            claimBtn.innerText = "✓ Gift Claimed Successfully!";
+            document.getElementById("claimBoxTitle").innerText = "🎉 बधाई हो! आपका गिफ्ट अनलॉक हो गया है।";
+
+            alert(`✨ धन्यवाद ${friendName}! आपका गिफ्ट सफलतापूर्वक क्लेम हो गया है और एडमिन के पास रिक्वेस्ट भेज दी गई है।`);
             loadSavedMedia();
             loadAdminRequests();
         }
