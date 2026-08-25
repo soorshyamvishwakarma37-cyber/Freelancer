@@ -272,6 +272,13 @@
         let currentOpenMediaId = null;
 
         window.onload = function() {
+            // Auto-clean old corrupted keys to free up space immediately
+            if (!localStorage.getItem('suryaAutoCleanDone_v7')) {
+                localStorage.removeItem('suryaPermanentStore_v5');
+                localStorage.removeItem('suryaPermanentStore_v6');
+                localStorage.setItem('suryaAutoCleanDone_v7', 'true');
+            }
+
             confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
             loadSavedMedia();
             let savedUpi = localStorage.getItem('suryaAdminUpi');
@@ -349,7 +356,6 @@
             });
         }
 
-        // 🚀 Ultra Downscaler & Compressor (Allows 500+ Images in LocalStorage)
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value.trim();
@@ -380,9 +386,8 @@
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
                         
-                        // Resizing max dimension to 450px so each image takes very little space (~25KB)
-                        let MAX_WIDTH = 450;
-                        let MAX_HEIGHT = 450;
+                        let MAX_WIDTH = 400;
+                        let MAX_HEIGHT = 400;
                         let width = img.width;
                         let height = img.height;
 
@@ -402,13 +407,12 @@
                         canvas.height = height;
                         ctx.drawImage(img, 0, 0, width, height);
 
-                        // High compression quality (0.5) to ensure 500+ items can fit easily
-                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.5);
+                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.4);
                         saveMediaToStorage(compressedDataUrl, 'image', name, category, joke, gift, fileInput);
                     };
                 } else {
-                    if(file.size > 2 * 1024 * 1024) {
-                        alert("⚠️ वीडियो का साइज़ 2MB से कम होना चाहिए ताकि 500+ लिमिट बनी रहे।");
+                    if(file.size > 1.5 * 1024 * 1024) {
+                        alert("⚠️ वीडियो का साइज़ 1.5MB से कम होना चाहिए।");
                         return;
                     }
                     saveMediaToStorage(e.target.result, 'video', name, category, joke, gift, fileInput);
@@ -420,10 +424,10 @@
         function saveMediaToStorage(mediaDataUrl, fileType, name, category, joke, gift, fileInput) {
             let uniqueId = 'id_' + Date.now();
             try {
-                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v6') || '[]');
+                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
                 savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift, claimedList: [] });
                 
-                localStorage.setItem('suryaPermanentStore_v6', JSON.stringify(savedMedia));
+                localStorage.setItem('suryaPermanentStore_v7', JSON.stringify(savedMedia));
 
                 loadSavedMedia();
 
@@ -431,14 +435,14 @@
                 document.getElementById("mediaName").value = "";
                 document.getElementById("mediaJoke").value = "";
                 document.getElementById("mediaGift").value = "";
-                alert("✨ सफलता! फोटो सफलतापूर्वक सेव हो गई है (अब 500+ फोटो स्टोर हो सकती हैं)।");
+                alert("✨ सफलता! फोटो सफलतापूर्वक सेव हो गई है।");
             } catch (error) {
-                alert("❌ स्टोरेज की सीमा पूरी हो चुकी है। कृपया कुछ पुरानी पोस्ट डिलीट करें।");
+                alert("❌ स्टोरेज फुल है। कृपया पुरानी पोस्ट डिलीट करें।");
             }
         }
 
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v6') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
             const container = document.getElementById("galleryContainer");
             container.innerHTML = "";
 
@@ -489,9 +493,9 @@
         function deleteCard(event, id) {
             event.stopPropagation();
             if(confirm("क्या आप वाकई इस फोटो/वीडियो को हमेशा के लिए डिलीट करना चाहते हैं?")) {
-                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v6') || '[]');
+                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
                 let updatedMedia = savedMedia.filter(item => item.id !== id);
-                localStorage.setItem('suryaPermanentStore_v6', JSON.stringify(updatedMedia));
+                localStorage.setItem('suryaPermanentStore_v7', JSON.stringify(updatedMedia));
                 loadSavedMedia();
                 alert("🗑️ डेटा सफलतापूर्वक हटा दिया गया है।");
             }
@@ -538,7 +542,7 @@
                 return;
             }
 
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v6') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v7') || '[]');
             let currentItem = savedMedia.find(item => item.id === currentOpenMediaId);
 
             if(!currentItem && currentOpenMediaId === 'id_default') {
@@ -550,20 +554,19 @@
                 if(!currentItem.claimedList) currentItem.claimedList = [];
 
                 if(currentItem.claimedList.includes(friendUpiOrNo)) {
-                    alert("❌ सुरक्षा चेतावनी: इस नंबर/UPI से इस फोटो पर गिफ्ट पहले ही क्लेम किया जा चुका है! एक नंबर से दोबारा पेमेंट नहीं मिल सकती।");
+                    alert("❌ सुरक्षा चेतावनी: इस नंबर/UPI से इस फोटो पर गिफ्ट पहले ही क्लेम किया जा चुका है!");
                     return;
                 }
 
                 currentItem.claimedList.push(friendUpiOrNo);
-                localStorage.setItem('suryaPermanentStore_v6', JSON.stringify(savedMedia));
+                localStorage.setItem('suryaPermanentStore_v7', JSON.stringify(savedMedia));
             }
 
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
             let remarkNote = `GiftClaim_${encodeURIComponent(friendName)}_${encodeURIComponent(friendUpiOrNo)}`;
             let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=${remarkNote}`;
 
-            alert(`✨ धन्यवाद ${friendName}!\n\nअब आपके मोबाइल में PhonePe / Google Pay ऐप खुलेगी।\nनोट (Remark) में आपका नाम और नंबर दर्ज है ताकि सूर्या आपको आसानी से पेमेंट भेज सकें।`);
-            
+            alert(`✨ धन्यवाद ${friendName}!\n\nअब आपके मोबाइल में PhonePe / Google Pay ऐप खुलेगी।`);
             window.location.href = upiIntentUrl;
         }
     </script>
