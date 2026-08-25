@@ -270,7 +270,7 @@
     </div>
 
     <div id="mediaModal" class="modal" onclick="closeModal()">
-        <span class="close-btn">&times;</span>
+        <span class="close-btn" onclick="closeModal()">&times;</span>
         <div class="modal-content-box" onclick="event.stopPropagation()">
             <div id="modalMediaContainer"></div>
             <div id="modalCaption" class="modal-caption"></div>
@@ -303,15 +303,18 @@
         let currentOpenMediaId = null;
 
         window.onload = function() {
-            // Entry page par bhi celebration
-            confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+            // 1. Entry page par load hote hi celebration
+            try {
+                confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+            } catch(e) {}
+
             loadSavedMedia();
             loadAdminRequests();
             
             let savedUpi = localStorage.getItem('suryaAdminUpi');
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
 
-            // Permanent Custom Music Load
+            // 2. Permanent Custom Music Load
             let savedMusic = localStorage.getItem('suryaCustomMusic');
             if(savedMusic) {
                 let music = document.getElementById('bgMusic');
@@ -319,7 +322,7 @@
                 music.load();
             }
 
-            // Browser Back / Exit Interception Setup
+            // 3. Browser Back / Exit Confirmation Setup
             window.history.pushState({page: 1}, "", "");
             window.onpopstate = function(event) {
                 let confirmExit = confirm("क्या आप वाकई इस पेज से बाहर जाना चाहते हैं?");
@@ -337,7 +340,9 @@
 
         function openGallery(isAdmin = false) {
             // View section me entry hote hi celebration
-            confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } });
+            try {
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } });
+            } catch(e) {}
             
             document.getElementById('entryPage').style.display = 'none';
             document.getElementById('galleryPage').style.display = 'block';
@@ -359,7 +364,6 @@
 
         function adminLogin() { openGallery(true); }
 
-        // Home Button Exit Confirmation
         function goHome() {
             let confirmExit = confirm("क्या आप वाकई इस पेज से बाहर (Home) जाना चाहते हैं?");
             if (confirmExit) {
@@ -383,22 +387,29 @@
                 event.target.innerText = "🎵 Play Music";
                 isPlaying = false;
             } else {
-                music.play().catch(e => alert("स्क्रीन पर क्लिक करके म्यूजिक ऑन करें"));
-                event.target.innerText = "🔇 Pause Music";
-                isPlaying = true;
+                music.play().then(() => {
+                    event.target.innerText = "🔇 Pause Music";
+                    isPlaying = true;
+                }).catch(e => {
+                    alert("म्यूजिक प्ले करने के लिए स्क्रीन पर क्लिक करें!");
+                });
             }
         }
 
         function saveCustomMusic() {
             let fileInput = document.getElementById('musicFile');
-            if(fileInput.files.length === 0) return alert("फाइल चुनें!");
+            if(fileInput.files.length === 0) return alert("कृपया पहले कोई MP3 फाइल चुनें!");
             let reader = new FileReader();
             reader.onload = function(e) {
-                localStorage.setItem('suryaCustomMusic', e.target.result);
-                let music = document.getElementById('bgMusic');
-                music.src = e.target.result;
-                music.load();
-                alert("🎵 म्यूजिक परमानेंट सेव हो गया!");
+                try {
+                    localStorage.setItem('suryaCustomMusic', e.target.result);
+                    let music = document.getElementById('bgMusic');
+                    music.src = e.target.result;
+                    music.load();
+                    alert("🎵 म्यूजिक परमानेंट सेव हो गया!");
+                } catch (err) {
+                    alert("❌ फाइल बहुत बड़ी है! कृपया छोटी साइज की MP3 फाइल चुनें।");
+                }
             };
             reader.readAsDataURL(fileInput.files[0]);
         }
@@ -407,7 +418,7 @@
             let cards = document.querySelectorAll('.img-card');
             let buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if(event && event.target) event.target.classList.add('active');
 
             let birthdaySection = document.getElementById('birthdayGallerySection');
             if(category === 'birthday') {
@@ -431,8 +442,11 @@
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.querySelectorAll('.img-card');
             cards.forEach(card => {
-                let name = card.querySelector('.sender-name').innerText.toLowerCase();
-                card.style.display = name.includes(input) ? "block" : "none";
+                let nameElement = card.querySelector('.sender-name');
+                if(nameElement) {
+                    let name = nameElement.innerText.toLowerCase();
+                    card.style.display = name.includes(input) ? "block" : "none";
+                }
             });
         }
 
@@ -445,7 +459,7 @@
             
             localStorage.setItem('suryaAdminUpi', document.getElementById("adminUpi").value.trim());
 
-            if (fileInput.files.length === 0 || !name) return alert("कृपया फाइल और नाम भरें!");
+            if (fileInput.files.length === 0 || !name) return alert("कृपया फाइल और नाम दोनों भरें!");
 
             let file = fileInput.files[0];
             let reader = new FileReader();
@@ -463,28 +477,22 @@
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
                         
-                        let MAX_WIDTH = 900;
-                        let MAX_HEIGHT = 900;
+                        let MAX_WIDTH = 800;
+                        let MAX_HEIGHT = 800;
                         let width = img.width;
                         let height = img.height;
 
                         if (width > height) {
-                            if (width > MAX_WIDTH) {
-                                height *= MAX_WIDTH / width;
-                                width = MAX_WIDTH;
-                            }
+                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
                         } else {
-                            if (height > MAX_HEIGHT) {
-                                width *= MAX_HEIGHT / height;
-                                height = MAX_HEIGHT;
-                            }
+                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
                         }
 
                         canvas.width = width;
                         canvas.height = height;
                         ctx.drawImage(img, 0, 0, width, height);
                         
-                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.75);
+                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
                         saveMediaToStorage(compressedDataUrl, 'image', name, category, joke, gift, fileInput);
                     }
                 };
@@ -503,7 +511,7 @@
                 document.getElementById("mediaName").value = "";
                 document.getElementById("mediaJoke").value = "";
                 document.getElementById("mediaGift").value = "";
-                alert("✨ परमानेंट सेव हो गया!");
+                alert("✨ सफलतापूर्वक परमानेंट सेव हो गया!");
             } catch (error) {
                 alert("❌ स्टोरेज फुल हो गई है! कृपया कुछ पुरानी फाइलें डिलीट करें।");
             }
@@ -513,6 +521,8 @@
             let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
             const container = document.getElementById("galleryContainer");
             const birthdayContainer = document.getElementById("birthdayContainer");
+            
+            if(!container || !birthdayContainer) return;
             
             container.innerHTML = "";
             birthdayContainer.innerHTML = "";
@@ -534,10 +544,7 @@
             newCard.className = "img-card";
             newCard.setAttribute("data-category", category);
             
-            // Fixed quotes issue for modal opening
-            let safeJoke = joke.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-            let safeGift = gift.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-            
+            // Safe Click Event Binding
             newCard.onclick = function() {
                 openModal(id, type, url, name, joke, gift, claimed);
             };
@@ -562,7 +569,7 @@
 
         function deleteCard(event, id) {
             event.stopPropagation();
-            if(confirm("डिटेल डिलीट करें?")) {
+            if(confirm("क्या आप वाकई इस डिटेल को डिलीट करना चाहते हैं?")) {
                 let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
                 localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia.filter(i => i.id !== id)));
                 loadSavedMedia();
@@ -571,9 +578,14 @@
 
         function openModal(id, type, mediaSrc, senderName, jokeText, giftText, claimed) {
             currentOpenMediaId = id;
-            document.getElementById("mediaModal").style.display = "flex";
-            document.getElementById("modalCaption").innerText = "💬 " + senderName;
-            document.getElementById("modalJoke").innerHTML = `💬 <b>Joke:</b> ${jokeText}`;
+            let modal = document.getElementById("mediaModal");
+            if(modal) modal.style.display = "flex";
+            
+            let caption = document.getElementById("modalCaption");
+            if(caption) caption.innerText = "💬 " + senderName;
+            
+            let jokeBox = document.getElementById("modalJoke");
+            if(jokeBox) jokeBox.innerHTML = `💬 <b>Joke:</b> ${jokeText}`;
             
             let nameInput = document.getElementById("friendNameInput");
             let upiInput = document.getElementById("friendUpiInput");
@@ -583,42 +595,43 @@
             let modalGift = document.getElementById("modalGift");
 
             if(claimed) {
-                nameInput.value = "Already Claimed";
-                upiInput.value = "Gift Dispatched";
-                nameInput.disabled = true;
-                upiInput.disabled = true;
-                claimBtn.disabled = true;
-                claimBtn.innerText = "✓ Gift Already Claimed";
-                claimTitle.innerText = "🎁 यह गिफ्ट पहले ही क्लेम हो चुका है!";
-                
-                modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
-                secretBox.style.display = "block";
+                if(nameInput) { nameInput.value = "Already Claimed"; nameInput.disabled = true; }
+                if(upiInput) { upiInput.value = "Gift Dispatched"; upiInput.disabled = true; }
+                if(claimBtn) { claimBtn.disabled = true; claimBtn.innerText = "✓ Gift Already Claimed"; }
+                if(claimTitle) claimTitle.innerText = "🎁 यह गिफ्ट पहले ही क्लेम हो चुका है!";
+                if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
+                if(secretBox) secretBox.style.display = "block";
             } else {
-                nameInput.value = "";
-                upiInput.value = "";
-                nameInput.disabled = false;
-                upiInput.disabled = false;
-                claimBtn.disabled = false;
-                claimBtn.innerText = "🎁 Open Gift Box & Submit";
-                claimTitle.innerText = "🎁 अपना रिटर्न गिफ्ट क्लेम करें (गिफ्ट बॉक्स खोलें)";
-                
-                secretBox.style.display = "none";
+                if(nameInput) { nameInput.value = ""; nameInput.disabled = false; }
+                if(upiInput) { upiInput.value = ""; upiInput.disabled = false; }
+                if(claimBtn) { claimBtn.disabled = false; claimBtn.innerText = "🎁 Open Gift Box & Submit"; }
+                if(claimTitle) claimTitle.innerText = "🎁 अपना रिटर्न गिफ्ट क्लेम करें (गिफ्ट बॉक्स खोलें)";
+                if(secretBox) secretBox.style.display = "none";
             }
 
             let mediaContainer = document.getElementById("modalMediaContainer");
-            mediaContainer.innerHTML = type === 'video' ? `<video src="${mediaSrc}" controls autoplay></video>` : `<img src="${mediaSrc}">`;
+            if(mediaContainer) {
+                mediaContainer.innerHTML = type === 'video' ? `<video src="${mediaSrc}" controls autoplay></video>` : `<img src="${mediaSrc}">`;
+            }
         }
 
         function closeModal() {
-            document.getElementById("mediaModal").style.display = "none";
-            document.getElementById("modalMediaContainer").innerHTML = "";
+            let modal = document.getElementById("mediaModal");
+            if(modal) modal.style.display = "none";
+            let mediaContainer = document.getElementById("modalMediaContainer");
+            if(mediaContainer) mediaContainer.innerHTML = "";
         }
 
         function submitClaimRequest() {
-            let friendName = document.getElementById("friendNameInput").value.trim();
-            let friendUpiOrNo = document.getElementById("friendUpiInput").value.trim();
+            let friendNameElem = document.getElementById("friendNameInput");
+            let friendUpiElem = document.getElementById("friendUpiInput");
+            
+            if(!friendNameElem || !friendUpiElem) return;
+            
+            let friendName = friendNameElem.value.trim();
+            let friendUpiOrNo = friendUpiElem.value.trim();
 
-            if(!friendName || !friendUpiOrNo) return alert("नाम और UPI ID भरें!");
+            if(!friendName || !friendUpiOrNo) return alert("कृपया अपना नाम और UPI ID / PhonePe नंबर दर्ज करें!");
 
             let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
             let targetGift = "🎁 100 Rs Cash 💸";
@@ -637,25 +650,29 @@
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
             // Box open hote hi heavy Celebration
-            confetti({
-                particleCount: 250,
-                spread: 120,
-                origin: { y: 0.6 }
-            });
+            try {
+                confetti({ particleCount: 250, spread: 120, origin: { y: 0.6 } });
+            } catch(e) {}
 
-            document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${targetGift}`;
-            document.getElementById("secretGiftRevealBox").style.display = "block";
+            let modalGift = document.getElementById("modalGift");
+            if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${targetGift}`;
+            
+            let secretBox = document.getElementById("secretGiftRevealBox");
+            if(secretBox) secretBox.style.display = "block";
 
-            let nameInput = document.getElementById("friendNameInput");
-            let upiInput = document.getElementById("friendUpiInput");
+            friendNameElem.value = "Claim Successful";
+            friendUpiElem.value = "Sent to Admin";
+            friendNameElem.disabled = true;
+            friendUpiElem.disabled = true;
+            
             let claimBtn = document.getElementById("modalClaimBtn");
-            nameInput.value = "Claim Successful";
-            upiInput.value = "Sent to Admin";
-            nameInput.disabled = true;
-            upiInput.disabled = true;
-            claimBtn.disabled = true;
-            claimBtn.innerText = "✓ Gift Claimed Successfully!";
-            document.getElementById("claimBoxTitle").innerText = "🎉 बधाई हो! आपका गिफ्ट अनलॉक हो गया है।";
+            if(claimBtn) {
+                claimBtn.disabled = true;
+                claimBtn.innerText = "✓ Gift Claimed Successfully!";
+            }
+            
+            let claimTitle = document.getElementById("claimBoxTitle");
+            if(claimTitle) claimTitle.innerText = "🎉 बधाई हो! आपका गिफ्ट अनलॉक हो गया है।";
 
             alert(`✨ धन्यवाद ${friendName}! आपका गिफ्ट सफलतापूर्वक क्लेम हो गया है और एडमिन के पास रिक्वेस्ट भेज दी गई है।`);
             loadSavedMedia();
