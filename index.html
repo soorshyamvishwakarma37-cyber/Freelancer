@@ -136,6 +136,7 @@
             padding: 4px 8px; font-size: 0.65rem; border-radius: 6px; font-weight: bold;
         }
         .sender-name { padding: 10px; font-size: 1rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.3); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .masked-mobile-hint { font-size: 0.75rem; color: #a4b0be; text-align: center; padding-bottom: 8px; background: rgba(0, 0, 0, 0.3); }
         
         .del-card-btn {
             position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.85); color: white;
@@ -221,6 +222,7 @@
             font-size: 1rem;
             outline: none;
             text-align: center;
+            margin-bottom: 5px;
         }
         .custom-popup-btns {
             display: flex;
@@ -264,7 +266,7 @@
                 <button class="btn admin-btn" onclick="adminLogin()">👨‍💻 Admin Login</button>
                 <button class="btn friend-btn" onclick="friendLoginPrompt()">👥 View as Friend</button>
             </div>
-            <footer style="margin-top:25px; border:none;">Reserved by <span>Surya</span> © 2026</footer>
+            <footer style="margin-top:25px; border:none;">Reserved by <span>Surya Vishwakarma</span> © 2026</footer>
         </div>
 
         <div class="main-card" id="galleryPage">
@@ -280,7 +282,7 @@
             <div id="adminPanel">
                 <h3 style="color: #fbc531; margin-bottom: 12px; text-align: center; font-size: 1.1rem;">⚙️ Admin Panel</h3>
                 
-                <label>💳 आपकी डिफ़ॉल्ट UPI ID:</label>
+                <label>💳 आपकी UPI ID:</label>
                 <input type="text" id="adminUpi" value="78699691901@ybl">
 
                 <label>🎵 बैकग्राउंड म्यूजिक (MP3):</label>
@@ -290,15 +292,12 @@
                 <label>📂 फोटो या वीडियो चुनें (HD Optimized):</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
                 
-                <label>👤 भेजने वाले / गिफ्ट पाने वाले का सही नाम:</label>
+                <label>👤 भेजने वाले / गिफ्ट पाने वाले का सही नाम (Security Lock):</label>
                 <input type="text" id="mediaName" placeholder="जैसे: Aman">
+
+                <label>📱 मित्र का मोबाइल नंबर (गिफ्ट वेरिफिकेशन के लिए):</label>
+                <input type="tel" id="mediaMobile" placeholder="जैसे: 9876543210" maxlength="10">
                 
-                <label>📱 मित्र का मोबाइल नंबर (यहाँ टाइप नंबर हाइड रहेगा):</label>
-                <input type="password" id="mediaPhone" placeholder="जैसे: 9876543210 (सिक्योरिटी मैच के लिए)">
-
-                <label>💳 इस गिफ्ट के लिए कस्टम UPI ID (वैकल्पिक):</label>
-                <input type="text" id="mediaCustomUpi" placeholder="खाली छोड़ने पर डिफ़ॉल्ट UPI ID का उपयोग होगा">
-
                 <label>📁 कैटेगरी:</label>
                 <select id="mediaCategory">
                     <option value="birthday">🎂 Birthday Gallery (Special Memories)</option>
@@ -326,7 +325,7 @@
                 <div class="tabs">
                     <button class="tab-btn active" onclick="filterGallery('all', event)">🌟 All</button>
                     <button class="tab-btn" onclick="filterGallery('birthday', event)">🎂 Birthday</button>
-                    <button class="tab-btn" onclick="filterGallery('whatsapp', event)">💬 WhatsApp</button>
+                    <button class="tab-btn" onclick="filterGallery('whatsapp', event)">💬 WhatsApp/Call</button>
                     <button class="tab-btn" onclick="filterGallery('instagram', event)">📸 Instagram</button>
                     <button class="tab-btn" onclick="filterGallery('special', event)">❤️ Special</button>
                 </div>
@@ -365,33 +364,23 @@
 
             <div class="claim-box" id="modalClaimBox">
                 <h4 id="claimBoxTitle">🎁 अपना रिटर्न गिफ्ट क्लेम करें</h4>
-                <input type="text" id="friendUpiInput" placeholder="अपनी UPI ID या PhonePe नंबर दर्ज करें">
-                <button class="claim-btn" id="modalClaimBtn" onclick="submitClaimRequest()">🎁 Open Gift Box & Claim</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- फ्रेंड लॉगिन के लिए कस्टम ड्यूल-इनपुट मोडल (नाम और मोबाइल नंबर) -->
-    <div id="friendLoginModal" class="modal" style="z-index: 2000;">
-        <div class="custom-popup-box" onclick="event.stopPropagation()">
-            <div class="custom-popup-title">✨ फ्रेंड लॉगिन</div>
-            <div class="custom-popup-msg">कृपया अपना सही नाम और मोबाइल नंबर दर्ज करें (जो एडमिन ने सेव किया है):</div>
-            <input type="text" class="custom-popup-input" id="loginFriendNameInput" placeholder="अपना नाम दर्ज करें..." style="margin-bottom: 8px;">
-            <input type="password" class="custom-popup-input" id="loginFriendPhoneInput" placeholder="अपना मोबाइल नंबर दर्ज करें..." style="margin-bottom: 15px;">
-            <div class="custom-popup-btns">
-                <button class="popup-btn popup-btn-cancel" onclick="closeFriendLoginModal(false)">रद्द करें</button>
-                <button class="popup-btn popup-btn-confirm" onclick="verifyFriendLogin()">लॉगिन करें</button>
+                <input type="text" id="friendUpiInput" placeholder="PhonePe नंबर या UPI ID दर्ज करें">
+                <button class="claim-btn" id="modalClaimBtn" onclick="verifyAndClaimGift()">🎁 Open Gift Box & Claim</button>
             </div>
         </div>
     </div>
 
     <!-- यूनिवर्सल कस्टम पॉप-अप मोडल -->
-    <div id="customPopupModal" class="modal" style="z-index: 2500;">
-        <div class="custom-popup-box" onclick="event.stopPropagation()">
+    <div id="customPopupModal" class="modal" style="z-index: 2000;">
+        <div class="custom-popup-box" id="customPopupBoxContent" onclick="event.stopPropagation()">
             <div class="custom-popup-title" id="customPopupTitle">✨ सूचना</div>
             <div class="custom-popup-msg" id="customPopupMsg">मैसेज यहाँ आएगा</div>
-            <div id="customPopupBtnContainer" style="margin-top: 15px;">
-                <button class="popup-btn popup-btn-confirm" onclick="closeCustomPopup(true)">ठीक है</button>
+            <div id="customPopupInputContainer" style="display:none;">
+                <input type="text" class="custom-popup-input" id="customPopupInput1" placeholder="यहाँ टाइप करें...">
+                <input type="tel" class="custom-popup-input" id="customPopupInput2" placeholder="मोबाइल नंबर (10 अंक)..." maxlength="10" style="display:none; margin-top:8px;">
+            </div>
+            <div class="custom-popup-btns" id="customPopupBtnContainer">
+                <button class="popup-btn popup-btn-confirm" id="customPopupOkBtn" onclick="closeCustomPopup(true)">ठीक है</button>
             </div>
         </div>
     </div>
@@ -405,13 +394,15 @@
         let currentOpenMediaId = null;
         let currentOwnerName = "";
         let loggedInFriendName = "";
-        let loggedInFriendPhone = "";
+        let loggedInFriendMobile = "";
 
         let popupCallback = null;
 
         function showCustomAlert(title, message, callback) {
             document.getElementById('customPopupTitle').innerText = title;
             document.getElementById('customPopupMsg').innerText = message;
+            document.getElementById('customPopupInputContainer').style.display = 'none';
+            document.getElementById('customPopupBtnContainer').innerHTML = `<button class="popup-btn popup-btn-confirm" onclick="closeCustomPopup(true)">ठीक है</button>`;
             document.getElementById('customPopupModal').style.display = 'flex';
             popupCallback = callback;
         }
@@ -419,6 +410,7 @@
         function showCustomConfirm(title, message, callback) {
             document.getElementById('customPopupTitle').innerText = title;
             document.getElementById('customPopupMsg').innerText = message;
+            document.getElementById('customPopupInputContainer').style.display = 'none';
             document.getElementById('customPopupBtnContainer').innerHTML = `
                 <button class="popup-btn popup-btn-cancel" onclick="closeCustomPopup(false)">नहीं</button>
                 <button class="popup-btn popup-btn-confirm" onclick="closeCustomPopup(true)">हाँ</button>
@@ -427,17 +419,81 @@
             popupCallback = callback;
         }
 
+        function showCustomLoginPrompt(title, message, callback) {
+            document.getElementById('customPopupTitle').innerText = title;
+            document.getElementById('customPopupMsg').innerText = message;
+            
+            let input1 = document.getElementById('customPopupInput1');
+            let input2 = document.getElementById('customPopupInput2');
+            
+            input1.value = "";
+            input1.placeholder = "Enter Your Full Name ...";
+            input1.style.display = 'block';
+
+            input2.value = "";
+            input2.placeholder = "Enter Mobile No. ...";
+            input2.style.display = 'block';
+
+            document.getElementById('customPopupInputContainer').style.display = 'block';
+            document.getElementById('customPopupBtnContainer').innerHTML = `
+                <button class="popup-btn popup-btn-cancel" onclick="closeCustomLoginPrompt(null)">रद्द करें</button>
+                <button class="popup-btn popup-btn-confirm" onclick="submitCustomLoginPrompt()">लॉगिन करें</button>
+            `;
+            document.getElementById('customPopupModal').style.display = 'flex';
+            popupCallback = callback;
+            setTimeout(() => input1.focus(), 100);
+        }
+
+        function showCustomPrompt(title, message, placeholder, callback) {
+            document.getElementById('customPopupTitle').innerText = title;
+            document.getElementById('customPopupMsg').innerText = message;
+            
+            let input1 = document.getElementById('customPopupInput1');
+            let input2 = document.getElementById('customPopupInput2');
+            
+            input1.value = "";
+            input1.placeholder = placeholder || "यहाँ टाइप करें...";
+            input1.style.display = 'block';
+            input2.style.display = 'none';
+
+            document.getElementById('customPopupInputContainer').style.display = 'block';
+            document.getElementById('customPopupBtnContainer').innerHTML = `
+                <button class="popup-btn popup-btn-cancel" onclick="closeCustomPopup(null)">रद्द करें</button>
+                <button class="popup-btn popup-btn-confirm" onclick="submitSinglePrompt()">सबमिट</button>
+            `;
+            document.getElementById('customPopupModal').style.display = 'flex';
+            popupCallback = callback;
+            setTimeout(() => input1.focus(), 100);
+        }
+
+        function submitSinglePrompt() {
+            let val = document.getElementById('customPopupInput1').value;
+            document.getElementById('customPopupModal').style.display = 'none';
+            if(popupCallback) popupCallback(val);
+        }
+
+        function submitCustomLoginPrompt() {
+            let name = document.getElementById('customPopupInput1').value.trim();
+            let mobile = document.getElementById('customPopupInput2').value.trim();
+            document.getElementById('customPopupModal').style.display = 'none';
+            if(popupCallback) popupCallback({ name, mobile });
+        }
+
+        function closeCustomLoginPrompt(result) {
+            document.getElementById('customPopupModal').style.display = 'none';
+            if(popupCallback) popupCallback(result);
+        }
+
         function closeCustomPopup(result) {
             document.getElementById('customPopupModal').style.display = 'none';
-            document.getElementById('customPopupBtnContainer').innerHTML = `<button class="popup-btn popup-btn-confirm" onclick="closeCustomPopup(true)">ठीक है</button>`;
             if(popupCallback) popupCallback(result);
         }
 
         // --- फुल-स्क्रीन भव्य सेलिब्रेशन इफ़ेक्ट फंक्शन ---
         function triggerFullScreenCelebration() {
-            let duration = 4.0 * 1000;
+            let duration = 3.5 * 1000;
             let animationEnd = Date.now() + duration;
-            let defaults = { startVelocity: 35, spread: 360, ticks: 80, zIndex: 9999 };
+            let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
 
             function randomInRange(min, max) {
                 return Math.random() * (max - min) + min;
@@ -448,11 +504,11 @@
                 if (timeLeft <= 0) {
                     return clearInterval(interval);
                 }
-                let particleCount = 60 * (timeLeft / duration);
+                let particleCount = 50 * (timeLeft / duration);
                 
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 200);
+            }, 250);
         }
 
         window.onload = function() {
@@ -489,65 +545,32 @@
         };
 
         function friendLoginPrompt() {
-            document.getElementById('loginFriendNameInput').value = "";
-            document.getElementById('loginFriendPhoneInput').value = "";
-            document.getElementById('friendLoginModal').style.display = 'flex';
-            setTimeout(() => document.getElementById('loginFriendNameInput').focus(), 100);
-        }
-
-        function closeFriendLoginModal(proceed) {
-            document.getElementById('friendLoginModal').style.display = 'none';
-        }
-
-        function verifyFriendLogin() {
-            let nameInput = document.getElementById('loginFriendNameInput').value.trim();
-            let phoneInput = document.getElementById('loginFriendPhoneInput').value.trim();
-
-            if (!nameInput || !phoneInput) {
-                showCustomAlert("त्रुटि", "❌ कृपया अपना नाम और मोबाइल नंबर दोनों दर्ज करें!");
-                return;
-            }
-
-            let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-            
-            // डिफ़ॉल्ट कार्ड (राहुल) के लिए टेस्टिंग सुविधा
-            if(savedMedia.length === 0 && nameInput.toLowerCase() === 'rahul' && phoneInput === '9876543210') {
-                loggedInFriendName = "Rahul";
-                loggedInFriendPhone = "9876543210";
-                document.getElementById('friendLoginModal').style.display = 'none';
-                document.getElementById('loggedUserTag').innerText = `👤 Rahul`;
-                openGallery(false);
-                return;
-            }
-
-            // डेटाबेस में नाम और फोन नंबर मैच करना
-            let foundMatch = savedMedia.find(item => item.name.trim().toLowerCase() === nameInput.toLowerCase() && item.phone === phoneInput);
-
-            if (foundMatch) {
-                loggedInFriendName = foundMatch.name;
-                loggedInFriendPhone = foundMatch.phone;
-                document.getElementById('friendLoginModal').style.display = 'none';
+            showCustomLoginPrompt("✨ फ्रेंड लॉगिन", "कृपया अपना नाम और मोबाइल नंबर दर्ज करें:", function(data) {
+                if (!data || !data.name || data.name.trim() === "" || !data.mobile || data.mobile.length < 10) {
+                    showCustomAlert("त्रुटि", "❌ नाम और सही 10 अंकों का मोबाइल नंबर दर्ज करना अनिवार्य है!");
+                    return;
+                }
+                loggedInFriendName = data.name.trim();
+                loggedInFriendMobile = data.mobile.trim();
                 document.getElementById('loggedUserTag').innerText = `👤 ${loggedInFriendName}`;
                 openGallery(false);
-            } else {
-                showCustomAlert("मैच असफल", "❌ आपका नाम या मोबाइल नंबर डेटाबेस से मैच नहीं हुआ! कृपया एडमिन द्वारा दर्ज सही जानकारी भरें।");
-            }
+            });
         }
 
         function openGallery(isAdmin = false) {
             if(isAdmin) {
-                showCustomPromptPass("🔐 एडमिन लॉगिन", "एडमिन पासवर्ड दर्ज करें:", function(pass) {
+                showCustomPrompt("🔐 एडमिन लॉगिन", "एडमिन पासवर्ड दर्ज करें:", "पासवर्ड...", function(pass) {
                     if (pass === "surya6260") {
                         showCustomAlert("सफलता", "✨ स्वागत है सूर्या!");
                         isAdminLoggedIn = true;
                         loggedInFriendName = "Admin Surya";
+                        loggedInFriendMobile = "Admin";
                         document.getElementById('loggedUserTag').innerText = `👨‍💻 Admin`;
                         document.getElementById('adminPanel').style.display = 'block';
                         document.getElementById('entryPage').style.display = 'none';
                         document.getElementById('galleryPage').style.display = 'block';
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                         
-                        // फुल स्क्रीन सेलिब्रेशन
                         triggerFullScreenCelebration();
 
                         loadAdminRequests();
@@ -561,17 +584,10 @@
                 document.getElementById('galleryPage').style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                // फुल स्क्रीन सेलिब्रेशन
                 triggerFullScreenCelebration();
 
                 loadSavedMedia();
             }
-        }
-
-        function showCustomPromptPass(title, message, callback) {
-            // छोटा प्रॉम्प्ट बॉक्स हैंडलर पासवर्ड के लिए
-            let val = prompt(title + "\n" + message);
-            if(val !== null) callback(val);
         }
 
         function adminLogin() { openGallery(true); }
@@ -660,16 +676,15 @@
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value.trim();
-            let phone = document.getElementById("mediaPhone").value.trim();
-            let customUpi = document.getElementById("mediaCustomUpi").value.trim();
+            let mobile = document.getElementById("mediaMobile").value.trim();
             let category = document.getElementById("mediaCategory").value;
             let joke = document.getElementById("mediaJoke").value.trim() || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
             let gift = document.getElementById("mediaGift").value.trim() || "🎁 Return Gift: 100 Rs Cash 💸";
             
             localStorage.setItem('suryaAdminUpi', document.getElementById("adminUpi").value.trim());
 
-            if (fileInput.files.length === 0 || !name || !phone) {
-                return showCustomAlert("त्रुटि", "कृपया फाइल, भेजने वाले का नाम और मोबाइल नंबर तीनों भरना अनिवार्य है!");
+            if (fileInput.files.length === 0 || !name || mobile.length < 10) {
+                return showCustomAlert("त्रुटि", "कृपया फाइल, नाम और 10 अंकों का सही मोबाइल नंबर भरें!");
             }
 
             let file = fileInput.files[0];
@@ -677,7 +692,7 @@
 
             if (file.type.startsWith('video')) {
                 reader.onload = function(e) {
-                    saveMediaToStorage(e.target.result, 'video', name, phone, customUpi, category, joke, gift, fileInput);
+                    saveMediaToStorage(e.target.result, 'video', name, mobile, category, joke, gift, fileInput);
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -704,24 +719,23 @@
                         ctx.drawImage(img, 0, 0, width, height);
                         
                         let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
-                        saveMediaToStorage(compressedDataUrl, 'image', name, phone, customUpi, category, joke, gift, fileInput);
+                        saveMediaToStorage(compressedDataUrl, 'image', name, mobile, category, joke, gift, fileInput);
                     }
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        function saveMediaToStorage(url, type, name, phone, customUpi, category, joke, gift, fileInput) {
+        function saveMediaToStorage(url, type, name, mobile, category, joke, gift, fileInput) {
             let uniqueId = 'id_' + Date.now();
             try {
                 let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
-                savedMedia.push({ id: uniqueId, type, url, name, phone, customUpi, category, joke, gift, claimed: false });
+                savedMedia.push({ id: uniqueId, type, url, name, mobile, category, joke, gift, claimed: false });
                 localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
                 loadSavedMedia();
                 fileInput.value = "";
                 document.getElementById("mediaName").value = "";
-                document.getElementById("mediaPhone").value = "";
-                document.getElementById("mediaCustomUpi").value = "";
+                document.getElementById("mediaMobile").value = "";
                 document.getElementById("mediaJoke").value = "";
                 document.getElementById("mediaGift").value = "";
                 showCustomAlert("सफलता", "✨ सफलतापूर्वक परमानेंट सेव हो गया!");
@@ -741,15 +755,15 @@
             birthdayContainer.innerHTML = "";
 
             if(savedMedia.length === 0) {
-                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul', '9876543210', '', 'birthday', '😂 पार्टी कब दे रहा है?', '🎁 100 Rs PhonePe', false);
+                appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul', '9876543210', 'birthday', '😂 पार्टी कब दे रहा है?', '🎁 100 Rs PhonePe', false);
             } else {
                 savedMedia.forEach(item => { 
-                    appendCard(item.id, item.type, item.url, item.name, item.phone, item.customUpi, item.category, item.joke, item.gift, item.claimed); 
+                    appendCard(item.id, item.type, item.url, item.name, item.mobile, item.category, item.joke, item.gift, item.claimed); 
                 });
             }
         }
 
-        function appendCard(id, type, url, name, phone, customUpi, category, joke, gift, claimed) {
+        function appendCard(id, type, url, name, mobile, category, joke, gift, claimed) {
             const container = document.getElementById("galleryContainer");
             const birthdayContainer = document.getElementById("birthdayContainer");
             
@@ -758,12 +772,15 @@
             newCard.setAttribute("data-category", category);
             
             newCard.onclick = function() {
-                openModal(id, type, url, name, phone, customUpi, joke, gift, claimed);
+                openModal(id, type, url, name, mobile, joke, gift, claimed);
             };
             
             let icon = category === 'birthday' ? '🎂' : category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
             let deleteBtn = (isAdminLoggedIn && id !== 'id_default') ? `<button class="del-card-btn" style="display:block;" onclick="deleteCard(event, '${id}')">×</button>` : '';
             let claimedBadge = claimed ? `<div class="claimed-badge-card">✓ Claimed</div>` : "";
+
+            // मोबाइल नंबर को हाइड करके केवल आखिरी 4 अंक दिखाना (Masking)
+            let maskedMobile = "••••••" + (mobile && mobile.length >= 4 ? mobile.slice(-4) : "1234");
 
             newCard.innerHTML = `
                 ${deleteBtn}
@@ -771,6 +788,7 @@
                 ${type === 'video' ? '<div class="video-badge">▶ VIDEO</div>' : ''}
                 ${type === 'video' ? `<video src="${url}" muted></video>` : `<img src="${url}" alt="Wish">`}
                 <div class="sender-name">${icon} ${name}</div>
+                <div class="masked-mobile-hint">📞 Mob: ${maskedMobile}</div>
             `;
 
             if(category === 'birthday') {
@@ -790,24 +808,46 @@
             });
         }
 
-        function openModal(id, type, mediaSrc, senderName, senderPhone, customUpi, jokeText, giftText, claimed) {
+        // स्टोर डेटा होल्ड करने के लिए ग्लोबल वेरिएबल
+        let activeItemData = {};
+
+        function openModal(id, type, mediaSrc, senderName, senderMobile, jokeText, giftText, claimed) {
             currentOpenMediaId = id;
             currentOwnerName = senderName.trim().toLowerCase();
             
-            // सिक्योरिटी चेक: अगर एडमिन नहीं है, तो केवल वही मित्र अपना बॉक्स खोल सकता है जिसका मोबाइल नंबर और नाम मैच हुआ है
-            if (!isAdminLoggedIn && (loggedInFriendName.toLowerCase() !== currentOwnerName || loggedInFriendPhone !== senderPhone)) {
-                showCustomAlert("🔒 सुरक्षा लॉक", `यह गिफ्ट बॉक्स सिर्फ '${senderName}' के लिए सुरक्षित है। आप इसे नहीं खोल सकते!`);
+            activeItemData = {
+                id, type, mediaSrc, senderName, senderMobile, jokeText, giftText, claimed
+            };
+
+            if (!isAdminLoggedIn && loggedInFriendName.toLowerCase() !== currentOwnerName) {
+                showCustomAlert("🔒 सुरक्षा लॉक", `यह गिफ्ट बॉक्स सिर्फ '${senderName}' के नाम पर है। चूंकि आपने '${loggedInFriendName}' के नाम से लॉगिन किया है, इसलिए आप यह गिफ्ट नहीं खोल सकते!`);
                 return;
             }
 
+            // यदि फ्रेंड ने लॉगिन के समय मोबाइल नंबर नहीं डाला है या मैच करना है
+            if (!isAdminLoggedIn && loggedInFriendMobile !== senderMobile) {
+                showCustomPrompt("📱 मोबाइल नंबर वेरिफिकेशन", `सुरक्षा कारणों से '${senderName}' जी, कृपया अपना वही 10 अंकों का मोबाइल नंबर दर्ज करें जो इस गिफ्ट से जुड़ा है:`, "10 अंकों का मोबाइल नंबर...", function(inputMob) {
+                    if(inputMob && inputMob.trim() === senderMobile) {
+                        proceedToOpenModal(activeItemData);
+                    } else {
+                        showCustomAlert("त्रुटि", "❌ गलत मोबाइल नंबर! आप यह गिफ्ट नहीं खोल सकते।");
+                    }
+                });
+                return;
+            }
+
+            proceedToOpenModal(activeItemData);
+        }
+
+        function proceedToOpenModal(item) {
             let modal = document.getElementById("mediaModal");
             if(modal) modal.style.display = "flex";
             
             let caption = document.getElementById("modalCaption");
-            if(caption) caption.innerText = "💬 " + senderName + " का स्पेशल गिफ्ट बॉक्स";
+            if(caption) caption.innerText = "💬 " + item.senderName + " का स्पेशल गिफ्ट बॉक्स";
             
             let jokeBox = document.getElementById("modalJoke");
-            if(jokeBox) jokeBox.innerHTML = `💬 <b>Joke:</b> ${jokeText}`;
+            if(jokeBox) jokeBox.innerHTML = `💬 <b>Joke:</b> ${item.jokeText}`;
             
             let upiInput = document.getElementById("friendUpiInput");
             let claimBtn = document.getElementById("modalClaimBtn");
@@ -815,22 +855,22 @@
             let secretBox = document.getElementById("secretGiftRevealBox");
             let modalGift = document.getElementById("modalGift");
 
-            if(claimed) {
+            if(item.claimed) {
                 if(upiInput) { upiInput.value = "Gift Dispatched"; upiInput.disabled = true; }
                 if(claimBtn) { claimBtn.disabled = true; claimBtn.innerText = "✓ Gift Already Claimed"; }
                 if(claimTitle) claimTitle.innerText = "🎁 यह गिफ्ट पहले ही क्लेम हो चुका है!";
-                if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
+                if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${item.giftText}`;
                 if(secretBox) secretBox.style.display = "block";
             } else {
                 if(upiInput) { upiInput.disabled = false; upiInput.value = ""; }
                 if(claimBtn) { claimBtn.disabled = false; claimBtn.innerText = "🎁 Open Gift Box & Claim"; }
-                if(claimTitle) claimTitle.innerText = `🎁 ${senderName} जी, अपना UPI ID या PhonePe नंबर दर्ज करें!`;
+                if(claimTitle) claimTitle.innerText = `🎁 ${item.senderName} जी, अपना UPI ID या PhonePe नंबर दर्ज करें!`;
                 if(secretBox) secretBox.style.display = "none";
             }
 
             let mediaContainer = document.getElementById("modalMediaContainer");
             if(mediaContainer) {
-                mediaContainer.innerHTML = type === 'video' ? `<video src="${mediaSrc}" controls autoplay></video>` : `<img src="${mediaSrc}">`;
+                mediaContainer.innerHTML = item.type === 'video' ? `<video src="${item.mediaSrc}" controls autoplay></video>` : `<img src="${item.mediaSrc}">`;
             }
         }
 
@@ -841,7 +881,7 @@
             if(mediaContainer) mediaContainer.innerHTML = "";
         }
 
-        function submitClaimRequest() {
+        function verifyAndClaimGift() {
             let friendUpiElem = document.getElementById("friendUpiInput");
             if(!friendUpiElem) return;
             
@@ -853,23 +893,20 @@
 
             let savedMedia = JSON.parse(localStorage.getItem('suryaStoreFinal') || '[]');
             let targetGift = "🎁 100 Rs Cash 💸";
-            let targetCustomUpi = "";
-            let defaultAdminUpi = document.getElementById("adminUpi").value.trim();
+            let ownerName = "";
             
             savedMedia = savedMedia.map(item => {
                 if(item.id === currentOpenMediaId) {
                     item.claimed = true;
                     targetGift = item.gift;
-                    targetCustomUpi = item.customUpi;
+                    ownerName = item.name;
                 }
                 return item;
             });
             localStorage.setItem('suryaStoreFinal', JSON.stringify(savedMedia));
 
-            let finalUpiToSave = targetCustomUpi ? targetCustomUpi : defaultAdminUpi;
-
             let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
-            claimRequests.push({ name: loggedInFriendName, upi: friendUpiOrNo, destUpi: finalUpiToSave, time: new Date().toLocaleTimeString() });
+            claimRequests.push({ name: ownerName || loggedInFriendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
             try {
@@ -892,9 +929,9 @@
             }
             
             let claimTitle = document.getElementById("claimBoxTitle");
-            if(claimTitle) claimTitle.innerText = "🎉 बधाई हो! आपका गिफ्ट सुरक्षित रूप से क्लेम हो गया है।";
+            if(claimTitle) claimTitle.innerText = "🎉 बधाई हो! आपका गिफ्ट सुरक्षित रूप से अनलॉक हो गया है।";
 
-            showCustomAlert("बधाई हो!", `✨ धन्यवाद ${loggedInFriendName}! आपका गिफ्ट सफलताપूर्वक क्लेम हो गया है।`);
+            showCustomAlert("बधाई हो!", `✨ धन्यवाद! आपका गिफ्ट सफलताપूर्वक क्लेम हो गया है।`);
             loadSavedMedia();
             loadAdminRequests();
         }
@@ -912,14 +949,13 @@
             }
 
             claimRequests.forEach((req, index) => {
-                let upiTarget = req.destUpi ? req.destUpi : document.getElementById("adminUpi").value.trim();
                 let upiIntentUrl = `upi://pay?pa=${req.upi}&pn=${encodeURIComponent(req.name)}&am=10&cu=INR&tn=BirthdayGiftReturn`;
                 let div = document.createElement("div");
                 div.className = "request-item";
                 div.innerHTML = `
                     <div class="request-info">
                         <p>👤 <b>${req.name}</b></p>
-                        <p>💳 User UPI: <span style="color: #fbc531;">${req.upi}</span></p>
+                        <p>💳 UPI: <span style="color: #fbc531;">${req.upi}</span></p>
                     </div>
                     <a href="${upiIntentUrl}" class="pay-now-btn" onclick="removeRequest(${index})">💸 Pay ₹10</a>
                 `;
@@ -931,7 +967,7 @@
             let claimRequests = JSON.parse(localStorage.getItem('suryaClaimRequests') || '[]');
             claimRequests.splice(index, 1);
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
-            setTimeout(loadAdminRequests, 1000);
+            setTimeout(loadAdminRequests, 100);
         }
     </script>
 </body>
