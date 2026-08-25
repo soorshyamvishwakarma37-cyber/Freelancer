@@ -319,8 +319,8 @@
             document.getElementById('galleryPage').style.display = 'block';
             
             if(isAdmin) {
-                let pass = prompt("🔐 कृपया एडमिन पासवर्ड दर्ज करें (Password: surya123):");
-                if (pass === "surya123") {
+                let pass = prompt("🔐 कृपया एडमिन पासवर्ड दर्ज करें (Password:):");
+                if (pass === "surya6260") {
                     alert("✨ स्वागत है सूर्या! एडमिन पैनल खुल रहा है...");
                     isAdminLoggedIn = true;
                     document.getElementById('adminPanel').style.display = 'block';
@@ -590,7 +590,7 @@
             // Check duplicate
             let exists = claimRequests.some(req => req.upi === friendUpiOrNo);
             if(exists) {
-                alert("⚠️ इस नंबर/UPI से रिक्वेस्ट पहले ही भेजी जा चुकी है। एडमिन जल्द ही चेक कर रहे हैं!");
+                alert("⚠️ इस नंबर/UPI से रिक्वेस्ट पहले ही भेजी जा चुकी है।");
                 closeModal();
                 return;
             }
@@ -598,7 +598,7 @@
             claimRequests.push({ name: friendName, upi: friendUpiOrNo, time: new Date().toLocaleTimeString() });
             localStorage.setItem('suryaClaimRequests', JSON.stringify(claimRequests));
 
-            alert(`✨ धन्यवाद ${friendName}!\n\nआपकी रिटर्न गिफ्ट क्लेम रिक्वेस्ट सीधे सूर्या के एडमिन पैनल में भेज दी गई है।`);
+            alert(`✨ धन्यवाद ${friendName}!\n\nआपकी गिफ्ट क्लेम रिक्वेस्ट  भेज दी गई है।`);
             closeModal();
             loadAdminRequests();
         }
