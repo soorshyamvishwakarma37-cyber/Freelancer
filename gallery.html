@@ -55,7 +55,7 @@
 
         /* Admin Panel */
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.6); padding: 25px; border-radius: 15px;
+            display: none; background: rgba(0, 0, 0, 0.7); padding: 25px; border-radius: 15px;
             margin-bottom: 25px; border: 1px dashed #fbc531; text-align: left;
             max-width: 500px; margin-left: auto; margin-right: auto;
         }
@@ -245,7 +245,6 @@
             });
         }
 
-        // डायरेक्ट गैलरी से फाइल उठाने और सेव करने का फंक्शन
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value;
@@ -254,31 +253,35 @@
             let gift = document.getElementById("mediaGift").value || "🎁 रिटर्न गिफ्ट: स्पेशल चॉकलेट 🍫";
 
             if (fileInput.files.length === 0 || !name) {
-                alert("कृपया फाइल (फोटो/वीडियो) और भेजने वाले का नाम भरें!");
+                alert("कृपया पहले गैलरी से फोटो/वीडियो चुनें और नाम भरें!");
                 return;
             }
 
             let file = fileInput.files[0];
             let reader = new FileReader();
 
+            // लोडिंग मैसेज ताकि पता चले काम हो रहा है
+            alert("⏳ फाइल अपलोड हो रही है, कृपया थोड़ा इंतज़ार करें...");
+
             reader.onload = function(e) {
                 let mediaDataUrl = e.target.result;
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
 
-                // लोकलस्टोरेज में सेव करना
-                let savedMedia = JSON.parse(localStorage.getItem('suryaDirectVault') || '[]');
-                savedMedia.push({ type: fileType, url: mediaDataUrl, name, category, joke, gift });
-                localStorage.setItem('suryaDirectVault', JSON.stringify(savedMedia));
+                try {
+                    let savedMedia = JSON.parse(localStorage.getItem('suryaDirectVault') || '[]');
+                    savedMedia.push({ type: fileType, url: mediaDataUrl, name, category, joke, gift });
+                    localStorage.setItem('suryaDirectVault', JSON.stringify(savedMedia));
 
-                // स्क्रीन पर दिखाना
-                renderMediaCard(fileType, mediaDataUrl, name, category, joke, gift);
+                    renderMediaCard(fileType, mediaDataUrl, name, category, joke, gift);
 
-                // फॉर्म रीसेट करना
-                fileInput.value = "";
-                document.getElementById("mediaName").value = "";
-                document.getElementById("mediaJoke").value = "";
-                document.getElementById("mediaGift").value = "";
-                alert("✨ फोटो/वीडियो सफलतापूर्वक गैलरी में जुड़ गया है!");
+                    fileInput.value = "";
+                    document.getElementById("mediaName").value = "";
+                    document.getElementById("mediaJoke").value = "";
+                    document.getElementById("mediaGift").value = "";
+                    alert("✨ शानदार! फोटो/वीडियो गैलरी में जुड़ गया है।");
+                } catch (error) {
+                    alert("❌ एरर: यह फाइल साइज़ में बहुत बड़ी है। कृपया कोई छोटी फोटो या छोटा वीडियो चुनें।");
+                }
             };
 
             reader.readAsDataURL(file);
