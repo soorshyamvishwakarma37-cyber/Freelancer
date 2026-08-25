@@ -64,17 +64,17 @@
         }
         .action-btn:hover { background: #fbc531; color: #000; }
 
-        /* Admin Panel */
-        #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.85); padding: 25px; border-radius: 15px;
+        /* Form Panels (Admin & Friend Upload) */
+        .panel-box {
+            background: rgba(0, 0, 0, 0.85); padding: 25px; border-radius: 15px;
             margin-bottom: 25px; border: 1px dashed #fbc531; text-align: left;
-            max-width: 500px; margin-left: auto; margin-right: auto;
+            max-width: 500px; margin-left: auto; margin-right: auto; display: none;
         }
-        #adminPanel label { display: block; font-size: 0.9rem; color: #fbc531; margin-top: 10px; font-weight: 600; }
-        #adminPanel input, #adminPanel select {
+        .panel-box label { display: block; font-size: 0.9rem; color: #fbc531; margin-top: 10px; font-weight: 600; }
+        .panel-box input, .panel-box select {
             padding: 10px; margin: 5px 0 10px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; width: 100%; display: block;
         }
-        #adminPanel input[type="file"] { padding: 8px; cursor: pointer; background: rgba(251, 197, 49, 0.1); border: 1px dashed #fbc531; }
+        .panel-box input[type="file"] { padding: 8px; cursor: pointer; background: rgba(251, 197, 49, 0.1); border: 1px dashed #fbc531; }
         .save-btn {
             padding: 12px 20px; background: linear-gradient(45deg, #ff4757, #ff6b81); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(255,71,87,0.4);
         }
@@ -105,7 +105,6 @@
         }
         .sender-name { padding: 12px; font-size: 1.1rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.2); text-align: center; }
         
-        /* Delete Button for Admin inside Card */
         .del-card-btn {
             position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.9); color: white;
             border: none; border-radius: 50%; width: 30px; height: 30px; font-weight: bold; cursor: pointer; display: none; z-index: 10;
@@ -158,12 +157,12 @@
             <p>बर्थडे विशेस, फोटो, वीडियो, जोक्स और रिटर्न गिफ्ट्स के इस शानदार खजाने में आपका स्वागत है!</p>
             <div class="btn-group">
                 <button class="btn admin-btn" onclick="adminLogin()">👨‍💻 Admin Login</button>
-                <button class="btn friend-btn" onclick="openGallery()">👥 View as Friend</button>
+                <button class="btn friend-btn" onclick="openGallery(false)">👥 View as Friend</button>
             </div>
             <footer style="margin-top:25px; border:none;">Reserved by <span>Surya</span> © 2026</footer>
         </div>
 
-        <!-- 2. MAIN GALLERY & ADMIN VAULT -->
+        <!-- 2. MAIN GALLERY -->
         <div class="main-card" id="galleryPage">
             <h1>✨ Surya's Birthday Vault ✨</h1>
             <p>यादों की तस्वीरें, वीडियोज़, जोक्स और रिटर्न गिफ्ट्स का खजाना! 🤍🎂</p>
@@ -174,13 +173,13 @@
             </div>
 
             <!-- Admin Panel -->
-            <div id="adminPanel">
+            <div id="adminPanel" class="panel-box">
                 <h3 style="color: #fbc531; margin-bottom: 15px; text-align: center;">⚙️ Admin Direct Gallery Panel</h3>
                 
-                <label>💳 आपकी अपनी UPI ID (जहाँ से पेमेंट रिक्वेस्ट आएगी/भेजी जाएगी):</label>
+                <label>💳 आपकी अपनी UPI ID (जहाँ पेमेंट रिक्वेस्ट आएगी):</label>
                 <input type="text" id="adminUpi" value="7869969190@ybl" placeholder="जैसे: 7869969190@ybl">
 
-                <label>📂 गैलरी से फोटो या वीडियो चुनें:</label>
+                <label>📂 फोटो या वीडियो चुनें:</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
                 
                 <label>👤 भेजने वाले का नाम:</label>
@@ -200,6 +199,32 @@
                 <input type="text" id="mediaGift" placeholder="जैसे: Cash Gift / 100 Rs 💸">
                 
                 <button class="save-btn" onclick="addNewMedia()">🚀 परमानेंट सेव करें</button>
+            </div>
+
+            <!-- Friend Upload Panel -->
+            <div id="friendPanel" class="panel-box" style="border-color: #ff6b81;">
+                <h3 style="color: #ff6b81; margin-bottom: 15px; text-align: center;">📸 अपनी विश या फोटो जोड़ें</h3>
+                
+                <label>📂 फोटो या वीडियो चुनें:</label>
+                <input type="file" id="friendMediaFile" accept="image/*,video/*">
+                
+                <label>👤 आपका नाम:</label>
+                <input type="text" id="friendMediaName" placeholder="अपना नाम लिखें">
+                
+                <label>📁 कैटेगरी चुनें:</label>
+                <select id="friendMediaCategory">
+                    <option value="whatsapp">WhatsApp Wishes</option>
+                    <option value="instagram">Instagram Stories</option>
+                    <option value="special">Special Friends</option>
+                </select>
+                
+                <label>😂 जोक या शायरी:</label>
+                <input type="text" id="friendMediaJoke" placeholder="अपनी शायरी या जोक लिखें">
+                
+                <label>🎁 रिटर्न गिफ्ट:</label>
+                <input type="text" id="friendMediaGift" placeholder="🎁 रिटर्न गिफ्ट: Cash Gift 💸">
+                
+                <button class="save-btn" style="background:linear-gradient(45deg, #2ecc71, #27ae60);" onclick="addFriendMedia()">🚀 गैलरी में परमानेंट जोड़ें</button>
             </div>
 
             <div class="controls-container">
@@ -231,10 +256,11 @@
                 <p id="modalGift">🎁 <b>Return Gift:</b> -</p>
             </div>
 
-            <!-- PhonePe / UPI Claim Section for Friends -->
+            <!-- Claim Section with Name, Number and One-Time Lock -->
             <div class="claim-box">
                 <h4>🎁 अपना रिटर्न गिफ्ट (UPI/PhonePe) क्लेम करें</h4>
-                <input type="text" id="friendUpiInput" placeholder="अपनी UPI ID या PhonePe नंबर दर्ज करें (जैसे: 9876543210@ybl)">
+                <input type="text" id="claimSenderName" placeholder="अपना पूरा नाम दर्ज करें (जैसे: Rahul Sharma)">
+                <input type="text" id="friendUpiInput" placeholder="अपना मोबाइल नंबर या UPI ID दर्ज करें (जैसे: 9876543210)">
                 <button class="claim-btn" onclick="claimGiftViaUpi()">🚀 Claim Now & Request Surya</button>
             </div>
         </div>
@@ -245,7 +271,6 @@
     </audio>
 
     <script>
-        // Exit Confirmation (यदि कोई पेज बंद करने की कोशिश करेगा तो वार्निंग देगा)
         window.onbeforeunload = function(event) {
             event.preventDefault();
             event.returnValue = "क्या आप वाकई इस पेज से बाहर जाना चाहते हैं?";
@@ -261,14 +286,19 @@
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
         };
 
-        function openGallery(isAdmin = false) {
+        function openGallery(isAdmin) {
             document.getElementById('entryPage').style.display = 'none';
             document.getElementById('galleryPage').style.display = 'block';
             if(isAdmin) {
                 isAdminLoggedIn = true;
                 document.getElementById('adminPanel').style.display = 'block';
-                loadSavedMedia(); // एडमिन मोड में डिलीट बटन दिखाने के लिए री-लोड
+                document.getElementById('friendPanel').style.display = 'none';
+            } else {
+                isAdminLoggedIn = false;
+                document.getElementById('adminPanel').style.display = 'none';
+                document.getElementById('friendPanel').style.display = 'block'; // दोस्तों के लिए अपलोड फॉर्म चालू
             }
+            loadSavedMedia();
             confetti({ particleCount: 70, spread: 60 });
         }
 
@@ -331,7 +361,7 @@
             });
         }
 
-        // परमानेंट सेव करने का फंक्शन (जब तक आप खुद न हटाएं, तब तक नहीं हटेगा)
+        // 1. Admin Permanent Save Function
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value.trim();
@@ -349,37 +379,63 @@
 
             let file = fileInput.files[0];
             let reader = new FileReader();
-
             alert("⏳ फाइल परमानेंट सेव हो रही है...");
 
             reader.onload = function(e) {
-                let mediaDataUrl = e.target.result;
-                let fileType = file.type.startsWith('video') ? 'video' : 'image';
-                let uniqueId = 'id_' + Date.now(); // हर कार्ड की यूनिक आईडी
-
-                try {
-                    let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v2') || '[]');
-                    savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift });
-                    
-                    localStorage.setItem('suryaPermanentStore_v2', JSON.stringify(savedMedia));
-
-                    loadSavedMedia();
-
-                    fileInput.value = "";
-                    document.getElementById("mediaName").value = "";
-                    document.getElementById("mediaJoke").value = "";
-                    document.getElementById("mediaGift").value = "";
-                    alert("✨ सफलता! डेटा हमेशा के लिए परमानेंट सेव हो गया है। अब यह कभी डिलीट नहीं होगा जब तक आप खुद एडमिन पैनल से न हटाएं।");
-                } catch (error) {
-                    alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है। कृपया दूसरी फाइल चुनें।");
-                }
+                saveDataToStorage(file.type.startsWith('video') ? 'video' : 'image', e.target.result, name, category, joke, gift);
+                fileInput.value = "";
+                document.getElementById("mediaName").value = "";
+                document.getElementById("mediaJoke").value = "";
+                document.getElementById("mediaGift").value = "";
+                alert("✨ सफलता! डेटा हमेशा के लिए परमानेंट सेव हो गया है।");
             };
             reader.readAsDataURL(file);
         }
 
-        // डेटा लोड करना
+        // 2. Friend Permanent Save Function (View as Friend से जोड़ा गया)
+        function addFriendMedia() {
+            let fileInput = document.getElementById("friendMediaFile");
+            let name = document.getElementById("friendMediaName").value.trim();
+            let category = document.getElementById("friendMediaCategory").value;
+            let joke = document.getElementById("friendMediaJoke").value.trim() || "😂 जन्मदिन की ढेरों शुभकामनाएं!";
+            let gift = document.getElementById("friendMediaGift").value.trim() || "🎁 रिटर्न गिफ्ट: Cash Gift 💸";
+
+            if (fileInput.files.length === 0 || !name) {
+                alert("कृपया पहले फोटो/वीडियो और अपना नाम दर्ज करें!");
+                return;
+            }
+
+            let file = fileInput.files[0];
+            let reader = new FileReader();
+            alert("⏳ आपकी विश परमानेंट सेव की जा रही है...");
+
+            reader.onload = function(e) {
+                saveDataToStorage(file.type.startsWith('video') ? 'video' : 'image', e.target.result, name, category, joke, gift);
+                fileInput.value = "";
+                document.getElementById("friendMediaName").value = "";
+                document.getElementById("friendMediaJoke").value = "";
+                document.getElementById("friendMediaGift").value = "";
+                alert("✨ बधाई हो! आपकी विश और फोटो गैलरी में परमानेंट सेव हो गई है।");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Common Core Save Logic
+        function saveDataToStorage(type, url, name, category, joke, gift) {
+            try {
+                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v3') || '[]');
+                let uniqueId = 'id_' + Date.now();
+                savedMedia.push({ id: uniqueId, type, url, name, category, joke, gift });
+                localStorage.setItem('suryaPermanentStore_v3', JSON.stringify(savedMedia));
+                loadSavedMedia();
+            } catch (error) {
+                alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है।");
+            }
+        }
+
+        // Load & Display
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v2') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v3') || '[]');
             const container = document.getElementById("galleryContainer");
             container.innerHTML = "";
 
@@ -403,9 +459,8 @@
             newCard.setAttribute("onclick", `openModal('${type}', '${url}', '${name}', '${safeJoke}', '${safeGift}')`);
             
             let icon = category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
-
             let deleteBtnHtml = "";
-            // अगर एडमिन लॉग्ड इन है, तो कार्ड पर डिलीट बटन दिखेगा ताकि आप अपनी मर्जी से हटा सकें
+            
             if(isAdminLoggedIn && id !== 'id_default') {
                 deleteBtnHtml = `<button class="del-card-btn" onclick="deleteCard(event, '${id}')" title="हटाएं">×</button>`;
                 setTimeout(() => { newCard.querySelector('.del-card-btn').style.display = 'block'; }, 100);
@@ -428,13 +483,12 @@
             container.appendChild(newCard);
         }
 
-        // सिर्फ एडमिन के हटाने पर ही कार्ड डिलीट होगा
         function deleteCard(event, id) {
-            event.stopPropagation(); // ताकि मोडल न खुले
-            if(confirm("क्या आप वाकई इस फोटो/वीडियो को हमेशा के लिए डिलीट करना चाहते हैं?")) {
-                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v2') || '[]');
+            event.stopPropagation();
+            if(confirm("क्या आप वाकई इस कार्ड को हमेशा के लिए डिलीट करना चाहते हैं?")) {
+                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v3') || '[]');
                 let updatedMedia = savedMedia.filter(item => item.id !== id);
-                localStorage.setItem('suryaPermanentStore_v2', JSON.stringify(updatedMedia));
+                localStorage.setItem('suryaPermanentStore_v3', JSON.stringify(updatedMedia));
                 loadSavedMedia();
                 alert("🗑️ डेटा सफलतापूर्वक हटा दिया गया है।");
             }
@@ -445,6 +499,7 @@
             document.getElementById("modalCaption").innerHTML = "💬 " + senderName;
             document.getElementById("modalJoke").innerHTML = `💬 <b>Joke/Shayari:</b> ${jokeText}`;
             document.getElementById("modalGift").innerHTML = `🎁 <b>Return Gift:</b> ${giftText}`;
+            document.getElementById("claimSenderName").value = "";
             document.getElementById("friendUpiInput").value = "";
 
             let mediaContainer = document.getElementById("modalMediaContainer");
@@ -470,20 +525,34 @@
             mediaContainer.innerHTML = "";
         }
 
-        // फोनपे / यूपीआई रिक्वेस्ट भेजने का फंक्शन
+        // 3. One-Time Claim Lock & Name-Number UPI Request Function
         function claimGiftViaUpi() {
-            let friendUpi = document.getElementById("friendUpiInput").value.trim();
-            if(!friendUpi) {
-                alert("कृपया अपनी UPI ID या PhonePe नंबर सही से दर्ज करें!");
+            let senderName = document.getElementById("claimSenderName").value.trim();
+            let friendInput = document.getElementById("friendUpiInput").value.trim();
+
+            if(!senderName || !friendInput) {
+                alert("कृपया अपना नाम और मोबाइल नंबर/UPI ID दोनों दर्ज करें!");
                 return;
             }
 
+            // एक बार क्लेम करने की जाँच (One-Time Claim Check via LocalStorage)
+            let claimedList = JSON.parse(localStorage.getItem('suryaClaimedUsers') || '[]');
+            if(claimedList.includes(friendInput)) {
+                alert("❌ इस नंबर या UPI से पहले ही गिफ्ट क्लेम किया जा चुका है! एक व्यक्ति को दोबारा पेमेंट नहीं मिल सकती।");
+                return;
+            }
+
+            // नंबर को लॉक लिस्ट में जोड़ें ताकि दोबारा क्लेम न हो सके
+            claimedList.push(friendInput);
+            localStorage.setItem('suryaClaimedUsers', JSON.stringify(claimedList));
+
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
             
-            // UPI Intent URI जो आपके फोनपे ऐप को ट्रिगर करेगा
-            let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=GiftClaimBy_${encodeURIComponent(friendUpi)}`;
+            // Remark (tn) में नाम और नंबर भेजना ताकि PhonePe पर साफ़ दिखे
+            let remarkText = `GiftClaim: ${senderName} (${friendInput})`;
+            let upiIntentUrl = `upi://pay?pa=${adminUpi}&pn=SuryaBirthdayVault&am=10&cu=INR&tn=${encodeURIComponent(remarkText)}`;
 
-            alert(`✨ धन्यवाद! आपकी गिफ्ट रिक्वेस्ट सूर्या (7869969190) के पास भेजी जा रही है।\n\nअब आपके मोबाइल में PhonePe / Google Pay ऐप खुलेगी:`);
+            alert(`✨ धन्यवाद ${senderName}! आपकी गिफ्ट रिक्वेस्ट रिकॉर्ड कर ली गई है और यह नंबर लॉक कर दिया गया है।\n\nअब आपके फोन में PhonePe ऐप खुलेगी:`);
             
             window.location.href = upiIntentUrl;
         }
