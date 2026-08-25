@@ -4,147 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surya's Ultimate Birthday Vault & Secure UPI Claim System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/canvas-confetti.browser.min.js"></script>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+            background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
             color: #fff; min-height: 100vh;
             display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 20px;
         }
         
         .view-section { width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; }
         
-        /* Entry Card */
+        /* Ultra Advanced Entry Card */
         .entry-card {
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px;
-            padding: 50px 30px; max-width: 450px; width: 100%;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7); text-align: center;
-            animation: fadeIn 1s ease-in-out; margin-top: 50px;
+            background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 35px;
+            padding: 50px 30px; max-width: 480px; width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            text-align: center; animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 60px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         /* Main Gallery Card */
         .main-card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px;
-            padding: 30px; max-width: 1100px; width: 100%;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6); text-align: center; margin-top: 10px; display: none;
+            background: rgba(255, 255, 255, 0.025); backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px;
+            padding: 35px; max-width: 1150px; width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7); text-align: center; margin-top: 10px; display: none;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc531);
+            font-size: 2.6rem; font-weight: 700;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fbc531 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 12px; filter: drop-shadow(0 2px 10px rgba(255,154,158,0.3));
         }
-        p { font-size: 1rem; color: #dcdde1; margin-bottom: 20px; line-height: 1.5; }
+        p { font-size: 1.05rem; color: #dcdde1; margin-bottom: 25px; line-height: 1.6; }
 
-        .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        .btn-group { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
         .btn {
-            padding: 14px 20px; font-size: 1.1rem; font-weight: 600;
+            padding: 15px 25px; font-size: 1.15rem; font-weight: 600;
             border-radius: 30px; border: none; cursor: pointer;
-            transition: all 0.3s ease; text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
-        .admin-btn { background: linear-gradient(45deg, #fbc531, #e1b12c); color: #000; }
-        .admin-btn:hover, .friend-btn:hover { transform: scale(1.05); }
-        .friend-btn { background: linear-gradient(45deg, #ff4757, #ff6b81); color: #fff; }
+        .admin-btn { background: linear-gradient(135deg, #fbc531, #e1b12c); color: #000; }
+        .admin-btn:hover, .friend-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 25px rgba(251,197,49,0.4); }
+        .friend-btn { background: linear-gradient(135deg, #ff4757, #ff6b81); color: #fff; box-shadow: 0 8px 20px rgba(255,71,87,0.4); }
+        .friend-btn:hover { box-shadow: 0 12px 25px rgba(255,71,87,0.6); }
 
-        .top-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .top-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .action-btn {
-            background: rgba(255,255,255,0.1); border: 1px solid #fbc531; color: #fbc531;
-            padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 600; transition: 0.3s;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(251,197,49,0.4); color: #fbc531;
+            padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
-        .action-btn:hover { background: #fbc531; color: #000; }
+        .action-btn:hover { background: #fbc531; color: #000; box-shadow: 0 5px 15px rgba(251,197,49,0.4); transform: translateY(-2px); }
 
         /* Admin Panel */
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.85); padding: 25px; border-radius: 15px;
-            margin-bottom: 25px; border: 1px dashed #fbc531; text-align: left;
-            max-width: 500px; margin-left: auto; margin-right: auto;
+            display: none; background: rgba(0, 0, 0, 0.7); padding: 25px; border-radius: 20px;
+            margin-bottom: 30px; border: 1px dashed rgba(251,197,49,0.6); text-align: left;
+            max-width: 550px; margin-left: auto; margin-right: auto; backdrop-filter: blur(15px);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
-        #adminPanel label { display: block; font-size: 0.9rem; color: #fbc531; margin-top: 10px; font-weight: 600; }
+        #adminPanel label { display: block; font-size: 0.92rem; color: #fbc531; margin-top: 12px; font-weight: 600; }
         #adminPanel input, #adminPanel select {
-            padding: 10px; margin: 5px 0 10px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; width: 100%; display: block;
+            padding: 12px 15px; margin: 6px 0 12px 0; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); 
+            background: rgba(255,255,255,0.06); color: white; width: 100%; display: block; font-size: 0.95rem; outline: none; transition: 0.3s;
         }
-        #adminPanel input[type="file"] { padding: 8px; cursor: pointer; background: rgba(251, 197, 49, 0.1); border: 1px dashed #fbc531; }
+        #adminPanel input:focus, #adminPanel select:focus { border-color: #fbc531; background: rgba(255,255,255,0.1); }
+        #adminPanel input[type="file"] { padding: 10px; cursor: pointer; background: rgba(251, 197, 49, 0.08); border: 1px dashed #fbc531; }
         .save-btn {
-            padding: 12px 20px; background: linear-gradient(45deg, #ff4757, #ff6b81); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(255,71,87,0.4);
+            padding: 14px 20px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; border: none; 
+            border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.1rem; 
+            box-shadow: 0 6px 20px rgba(255,71,87,0.4); transition: 0.3s;
         }
+        .save-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,71,87,0.6); }
 
-        .controls-container { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-bottom: 25px; }
+        .controls-container { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-bottom: 30px; }
         .search-box {
-            width: 100%; max-width: 400px; padding: 10px 20px; border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff; font-size: 1rem; outline: none;
+            width: 100%; max-width: 450px; padding: 12px 25px; border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff; font-size: 1rem; outline: none;
+            transition: 0.3s; backdrop-filter: blur(10px);
         }
-        .tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .search-box:focus { border-color: #fbc531; box-shadow: 0 0 15px rgba(251,197,49,0.2); }
+        
+        .tabs { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .tab-btn {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: #fff; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 500; transition: 0.3s;
+            background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff; padding: 9px 22px; border-radius: 25px; cursor: pointer; font-weight: 500; transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
-        .tab-btn.active, .tab-btn:hover { background: linear-gradient(45deg, #ff4757, #ff6b81); border-color: transparent; }
+        .tab-btn.active, .tab-btn:hover { background: linear-gradient(135deg, #ff4757, #ff6b81); border-color: transparent; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,71,87,0.3); }
 
         /* Gallery Grid */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 35px; }
         .img-card {
-            background: rgba(255, 255, 255, 0.05); border-radius: 15px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; position: relative; text-align: left;
+            background: rgba(255, 255, 255, 0.04); border-radius: 20px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3); cursor: pointer; position: relative; text-align: left;
+            backdrop-filter: blur(10px);
         }
-        .img-card:hover { transform: translateY(-8px); border-color: #fbc531; box-shadow: 0 12px 30px rgba(251, 197, 49, 0.3); }
+        .img-card:hover { transform: translateY(-8px); border-color: #fbc531; box-shadow: 0 15px 35px rgba(251, 197, 49, 0.25); }
         .img-card img, .img-card video { width: 100%; height: 280px; object-fit: cover; display: block; pointer-events: none; }
         .video-badge {
-            position: absolute; top: 10px; left: 10px; background: rgba(255, 0, 0, 0.85); color: white;
-            padding: 4px 10px; font-size: 0.75rem; border-radius: 5px; font-weight: bold;
+            position: absolute; top: 12px; left: 12px; background: rgba(255, 0, 0, 0.85); color: white;
+            padding: 5px 12px; font-size: 0.75rem; border-radius: 8px; font-weight: bold; backdrop-filter: blur(5px);
         }
-        .sender-name { padding: 12px; font-size: 1.1rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.2); text-align: center; }
+        .sender-name { padding: 14px; font-size: 1.15rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.3); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         
         .del-card-btn {
-            position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.9); color: white;
-            border: none; border-radius: 50%; width: 30px; height: 30px; font-weight: bold; cursor: pointer; display: none; z-index: 10;
+            position: absolute; top: 12px; right: 12px; background: rgba(255, 0, 0, 0.85); color: white;
+            border: none; border-radius: 50%; width: 32px; height: 32px; font-weight: bold; cursor: pointer; display: none; z-index: 10;
+            transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         }
+        .del-card-btn:hover { transform: scale(1.1); background: #ff4757; }
 
         .badge {
-            background: linear-gradient(45deg, #e84393, #fd79a8); color: white; padding: 12px 35px;
-            font-size: 1.1rem; font-weight: bold; border-radius: 35px; display: inline-block; box-shadow: 0 5px 20px rgba(232, 67, 147, 0.4);
+            background: linear-gradient(135deg, #e84393, #fd79a8); color: white; padding: 14px 38px;
+            font-size: 1.12rem; font-weight: bold; border-radius: 40px; display: inline-block; 
+            box-shadow: 0 8px 25px rgba(232, 67, 147, 0.4); letter-spacing: 0.5px;
         }
 
         /* Modal Lightbox */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.92); justify-content: center; align-items: center; flex-direction: column; padding: 15px; overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.92); justify-content: center; align-items: center; flex-direction: column; padding: 20px; overflow-y: auto;
+            backdrop-filter: blur(10px);
         }
-        .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 480px; width: 100%; text-align: center; margin: auto; }
-        .modal img, .modal video { max-width: 100%; max-height: 38vh; border-radius: 10px; border: 2px solid #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
-        .modal-caption { margin-top: 8px; font-size: 1.3rem; color: #fbc531; font-weight: bold; }
+        .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 500px; width: 100%; text-align: center; margin: auto; }
+        .modal img, .modal video { max-width: 100%; max-height: 40vh; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .modal-caption { margin-top: 12px; font-size: 1.35rem; color: #fbc531; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
         
         .modal-extra-box {
-            background: rgba(255, 255, 255, 0.08); border: 1px dashed #ff6b81; padding: 10px; border-radius: 10px; margin-top: 10px; width: 100%; text-align: left;
+            background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255,107,129,0.5); padding: 14px; border-radius: 12px; margin-top: 12px; width: 100%; text-align: left;
+            backdrop-filter: blur(10px);
         }
-        .modal-extra-box p { font-size: 0.9rem; margin: 3px 0; color: #ff9ff3; text-align: left; }
+        .modal-extra-box p { font-size: 0.95rem; margin: 4px 0; color: #ff9ff3; text-align: left; }
 
         /* Claim Gift Box */
         .claim-box {
-            background: rgba(46, 204, 113, 0.15); border: 1px solid #2ecc71; padding: 12px; border-radius: 10px; margin-top: 10px; width: 100%; text-align: center;
+            background: rgba(46, 204, 113, 0.12); border: 1px solid rgba(46, 204, 113, 0.4); padding: 15px; border-radius: 15px; margin-top: 14px; width: 100%; text-align: center;
+            backdrop-filter: blur(10px); box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
-        .claim-box h4 { color: #2ecc71; font-size: 0.95rem; margin-bottom: 6px; }
+        .claim-box h4 { color: #2ecc71; font-size: 1rem; margin-bottom: 8px; font-weight: 600; }
         .claim-box input {
-            width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.4); color: #fff; font-size: 0.9rem; margin-bottom: 8px; outline: none;
+            width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: #fff; font-size: 0.95rem; margin-bottom: 10px; outline: none; transition: 0.3s;
         }
+        .claim-box input:focus { border-color: #2ecc71; box-shadow: 0 0 10px rgba(46,204,113,0.3); }
         .claim-btn {
-            background: linear-gradient(45deg, #2ecc71, #27ae60); color: white; border: none; padding: 8px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(46,204,113,0.4); transition: 0.3s;
+            background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 11px 20px; border-radius: 25px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1rem; box-shadow: 0 5px 15px rgba(46,204,113,0.4); transition: 0.3s;
         }
-        .claim-btn:hover { transform: scale(1.02); }
+        .claim-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(46,204,113,0.6); }
 
-        .close-btn { position: absolute; top: 15px; right: 25px; color: #fff; font-size: 35px; cursor: pointer; z-index: 1001; }
+        .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; z-index: 1001; transition: 0.2s; }
+        .close-btn:hover { color: #ff4757; transform: scale(1.1); }
 
-        footer { margin-top: 20px; font-size: 0.85rem; color: #aaa; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; text-align: center; padding-top: 15px; }
+        footer { margin-top: 25px; font-size: 0.88rem; color: #a4b0be; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.08); width: 100%; text-align: center; padding-top: 18px; }
         footer span { color: #fbc531; font-weight: bold; }
     </style>
 </head>
@@ -159,7 +187,7 @@
                 <button class="btn admin-btn" onclick="adminLogin()">👨‍💻 Admin Login</button>
                 <button class="btn friend-btn" onclick="openGallery(false)">👥 View as Friend</button>
             </div>
-            <footer style="margin-top:25px; border:none;">Reserved by <span>Surya</span> © 2026</footer>
+            <footer style="margin-top:30px; border:none;">Reserved by <span>Surya</span> © 2026</footer>
         </div>
 
         <!-- 2. MAIN GALLERY & ADMIN VAULT -->
@@ -245,7 +273,7 @@
     </audio>
 
     <script>
-        // 🔒 Strict Exit Confirmation (जब कोई टैब बंद, रीफ्रेश या पीछे जाने की कोशिश करेगा)
+        // 🔒 Strict Exit Confirmation
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
             e.returnValue = 'क्या आप वाकई इस पेज से बाहर जाना चाहते हैं?';
@@ -333,6 +361,7 @@
             });
         }
 
+        // 🚀 Auto-Compressor Function (Prevents Storage Size Error Completely)
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
             let name = document.getElementById("mediaName").value.trim();
@@ -351,35 +380,75 @@
             let file = fileInput.files[0];
             let reader = new FileReader();
 
-            alert("⏳ फाइल परमानेंट सेव हो रही है...");
+            alert("⏳ फाइल प्रोसेस और ऑप्टिमाइज़ हो रही है...");
 
             reader.onload = function(e) {
-                let mediaDataUrl = e.target.result;
                 let fileType = file.type.startsWith('video') ? 'video' : 'image';
-                let uniqueId = 'id_' + Date.now();
 
-                try {
-                    let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v3') || '[]');
-                    savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift, claimedList: [] });
-                    
-                    localStorage.setItem('suryaPermanentStore_v3', JSON.stringify(savedMedia));
+                if (fileType === 'image') {
+                    let img = new Image();
+                    img.src = e.target.result;
+                    img.onload = function() {
+                        let canvas = document.createElement('canvas');
+                        let ctx = canvas.getContext('2d');
+                        
+                        let MAX_WIDTH = 800;
+                        let MAX_HEIGHT = 800;
+                        let width = img.width;
+                        let height = img.height;
 
-                    loadSavedMedia();
+                        if (width > height) {
+                            if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                            }
+                        } else {
+                            if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                            }
+                        }
 
-                    fileInput.value = "";
-                    document.getElementById("mediaName").value = "";
-                    document.getElementById("mediaJoke").value = "";
-                    document.getElementById("mediaGift").value = "";
-                    alert("✨ सफलता! डेटा हमेशा के लिए परमानेंट सेव हो गया है।");
-                } catch (error) {
-                    alert("❌ एरर: फाइल का साइज़ बहुत बड़ा है। कृपया दूसरी फाइल चुनें।");
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                        saveMediaToStorage(compressedDataUrl, 'image', name, category, joke, gift, fileInput);
+                    };
+                } else {
+                    if(file.size > 3 * 1024 * 1024) {
+                        alert("⚠️ वीडियो का साइज़ थोड़ा बड़ा है। कृपया 3MB से छोटा वीडियो चुनें ताकि वह आसानी से सेव हो सके।");
+                        return;
+                    }
+                    saveMediaToStorage(e.target.result, 'video', name, category, joke, gift, fileInput);
                 }
             };
             reader.readAsDataURL(file);
         }
 
+        function saveMediaToStorage(mediaDataUrl, fileType, name, category, joke, gift, fileInput) {
+            let uniqueId = 'id_' + Date.now();
+            try {
+                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v5') || '[]');
+                savedMedia.push({ id: uniqueId, type: fileType, url: mediaDataUrl, name, category, joke, gift, claimedList: [] });
+                
+                localStorage.setItem('suryaPermanentStore_v5', JSON.stringify(savedMedia));
+
+                loadSavedMedia();
+
+                fileInput.value = "";
+                document.getElementById("mediaName").value = "";
+                document.getElementById("mediaJoke").value = "";
+                document.getElementById("mediaGift").value = "";
+                alert("✨ सफलता! डेटा हमेशा के लिए परमानेंट सेव हो गया है।");
+            } catch (error) {
+                alert("❌ स्टोरेज फुल हो गई है। कृपया पुरानी कुछ पोस्ट डिलीट करें।");
+            }
+        }
+
         function loadSavedMedia() {
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v3') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v5') || '[]');
             const container = document.getElementById("galleryContainer");
             container.innerHTML = "";
 
@@ -430,9 +499,9 @@
         function deleteCard(event, id) {
             event.stopPropagation();
             if(confirm("क्या आप वाकई इस फोटो/वीडियो को हमेशा के लिए डिलीट करना चाहते हैं?")) {
-                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v3') || '[]');
+                let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v5') || '[]');
                 let updatedMedia = savedMedia.filter(item => item.id !== id);
-                localStorage.setItem('suryaPermanentStore_v3', JSON.stringify(updatedMedia));
+                localStorage.setItem('suryaPermanentStore_v5', JSON.stringify(updatedMedia));
                 loadSavedMedia();
                 alert("🗑️ डेटा सफलतापूर्वक हटा दिया गया है।");
             }
@@ -479,7 +548,7 @@
                 return;
             }
 
-            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v3') || '[]');
+            let savedMedia = JSON.parse(localStorage.getItem('suryaPermanentStore_v5') || '[]');
             let currentItem = savedMedia.find(item => item.id === currentOpenMediaId);
 
             if(!currentItem && currentOpenMediaId === 'id_default') {
@@ -496,7 +565,7 @@
                 }
 
                 currentItem.claimedList.push(friendUpiOrNo);
-                localStorage.setItem('suryaPermanentStore_v3', JSON.stringify(savedMedia));
+                localStorage.setItem('suryaPermanentStore_v5', JSON.stringify(savedMedia));
             }
 
             let adminUpi = localStorage.getItem('suryaAdminUpi') || "7869969190@ybl";
