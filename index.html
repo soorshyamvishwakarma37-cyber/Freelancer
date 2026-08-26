@@ -14,7 +14,8 @@
         body {
             background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
             color: #fff; min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px;
+            display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 12px;
+            overflow-x: hidden;
         }
         
         .view-section { width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; }
@@ -22,10 +23,10 @@
         .entry-card {
             background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 30px;
-            padding: 40px 20px; max-width: 450px; width: 100%;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            text-align: center; animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 24px;
+            padding: 30px 15px; max-width: 420px; width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            text-align: center; animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 30px;
         }
         @keyframes zoomIn {
             from { opacity: 0; transform: scale(0.9) translateY(20px); }
@@ -35,9 +36,9 @@
         .main-card {
             background: rgba(255, 255, 255, 0.025); backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px;
-            padding: 20px; max-width: 1150px; width: 100%;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7); text-align: center; margin-top: 10px; display: none;
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+            padding: 15px; max-width: 1100px; width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7); text-align: center; margin-top: 10px; display: none;
             animation: fadeIn 0.6s ease-in-out;
         }
         @keyframes fadeIn {
@@ -46,140 +47,245 @@
         }
 
         h1 {
-            font-size: 2.2rem; font-weight: 700;
+            font-size: clamp(1.8rem, 5vw, 2.2rem); font-weight: 700;
             background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fbc531 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px; filter: drop-shadow(0 2px 10px rgba(255,154,158,0.3));
+            margin-bottom: 8px; filter: drop-shadow(0 2px 10px rgba(255,154,158,0.3));
         }
-        p { font-size: 0.95rem; color: #dcdde1; margin-bottom: 20px; line-height: 1.5; }
+        p { font-size: clamp(0.85rem, 3vw, 0.95rem); color: #dcdde1; margin-bottom: 15px; line-height: 1.4; }
 
-        .btn-group { display: flex; flex-direction: column; gap: 14px; margin-top: 15px; }
+        .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
         .btn {
-            padding: 14px 20px; font-size: 1.05rem; font-weight: 600;
-            border-radius: 30px; border: none; cursor: pointer;
+            padding: 12px 18px; font-size: 1rem; font-weight: 600;
+            border-radius: 25px; border: none; cursor: pointer;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4); width: 100%;
         }
         .admin-btn { background: linear-gradient(135deg, #fbc531, #e1b12c); color: #000; }
-        .friend-btn { background: linear-gradient(135deg, #ff4757, #ff6b81); color: #fff; box-shadow: 0 8px 20px rgba(255,71,87,0.4); }
+        .friend-btn { background: linear-gradient(135deg, #ff4757, #ff6b81); color: #fff; box-shadow: 0 6px 15px rgba(255,71,87,0.4); }
 
-        .top-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+        .top-bar { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; }
         .action-btn {
             background: rgba(255,255,255,0.06); border: 1px solid rgba(251,197,49,0.4); color: #fbc531;
-            padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;
+            padding: 6px 14px; border-radius: 18px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
         .action-btn:hover { background: #fbc531; color: #000; }
         
         .welcome-user-tag {
             background: rgba(255, 71, 87, 0.15); border: 1px solid #ff4757; color: #ff6b81;
-            padding: 6px 15px; border-radius: 20px; font-weight: 600; font-size: 0.9rem;
+            padding: 5px 12px; border-radius: 18px; font-weight: 600; font-size: 0.85rem;
         }
 
         #adminPanel {
-            display: none; background: rgba(0, 0, 0, 0.85); padding: 20px; border-radius: 15px;
-            margin-bottom: 25px; border: 1px dashed rgba(251,197,49,0.6); text-align: left;
-            max-width: 650px; margin-left: auto; margin-right: auto; backdrop-filter: blur(15px);
+            display: none; background: rgba(0, 0, 0, 0.85); padding: 15px; border-radius: 14px;
+            margin-bottom: 20px; border: 1px dashed rgba(251,197,49,0.6); text-align: left;
+            max-width: 600px; margin-left: auto; margin-right: auto; backdrop-filter: blur(15px);
         }
-        #adminPanel label { display: block; font-size: 0.85rem; color: #fbc531; margin-top: 10px; font-weight: 600; }
+        #adminPanel label { display: block; font-size: 0.8rem; color: #fbc531; margin-top: 8px; font-weight: 600; }
         #adminPanel input, #adminPanel select {
-            padding: 10px 12px; margin: 5px 0 10px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); 
-            background: rgba(255,255,255,0.06); color: white; width: 100%; display: block; font-size: 0.9rem; outline: none;
+            padding: 8px 10px; margin: 4px 0 8px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); 
+            background: rgba(255,255,255,0.06); color: white; width: 100%; display: block; font-size: 0.85rem; outline: none;
         }
-        #adminPanel input[type="file"] { padding: 8px; cursor: pointer; background: rgba(251, 197, 49, 0.08); border: 1px dashed #fbc531; }
+        #adminPanel input[type="file"] { padding: 6px; cursor: pointer; background: rgba(251, 197, 49, 0.08); border: 1px dashed #fbc531; }
         
         .save-btn {
-            padding: 12px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; border: none; 
-            border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; font-size: 1rem; 
+            padding: 10px; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; border: none; 
+            border-radius: 20px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 8px; font-size: 0.95rem; 
         }
 
         .admin-requests-box {
             background: rgba(46, 204, 113, 0.08); border: 1px solid rgba(46, 204, 113, 0.3);
-            border-radius: 12px; padding: 12px; margin-top: 20px; max-height: 250px; overflow-y: auto;
+            border-radius: 10px; padding: 10px; margin-top: 15px; max-height: 200px; overflow-y: auto;
         }
         .request-item {
-            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px;
-            border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 6px 10px;
+            border-radius: 8px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;
         }
-        .request-info p { font-size: 0.82rem; color: #fff; margin: 0; text-align: left; }
+        .request-info p { font-size: 0.78rem; color: #fff; margin: 0; text-align: left; }
         .pay-now-btn {
             background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none;
-            padding: 6px 12px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; cursor: pointer; text-decoration: none;
+            padding: 5px 10px; border-radius: 12px; font-weight: bold; font-size: 0.75rem; cursor: pointer; text-decoration: none;
         }
 
-        .controls-container { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-bottom: 25px; }
+        .controls-container { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-bottom: 20px; }
         .search-box {
-            width: 100%; max-width: 400px; padding: 10px 20px; border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff; font-size: 0.95rem; outline: none;
+            width: 100%; max-width: 380px; padding: 8px 16px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff; font-size: 0.9rem; outline: none;
         }
         
-        .tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .tabs { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
         .tab-btn {
             background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff; padding: 7px 16px; border-radius: 20px; cursor: pointer; font-weight: 500; font-size: 0.85rem; transition: all 0.3s ease;
+            color: #fff; padding: 6px 14px; border-radius: 18px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;
         }
         .tab-btn.active, .tab-btn:hover { background: linear-gradient(135deg, #ff4757, #ff6b81); border-color: transparent; }
 
-        .section-title { font-size: 1.4rem; color: #fbc531; margin: 25px 0 12px 0; text-align: left; border-left: 4px solid #ff4757; padding-left: 10px; }
+        .section-title { font-size: clamp(1.1rem, 3vw, 1.3rem); color: #fbc531; margin: 20px 0 10px 0; text-align: left; border-left: 3px solid #ff4757; padding-left: 8px; }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 25px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px; width: 100%; }
         .img-card {
-            background: rgba(255, 255, 255, 0.04); border-radius: 16px; overflow: hidden;
+            background: rgba(255, 255, 255, 0.04); border-radius: 14px; overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3); cursor: pointer; position: relative; text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative; text-align: left;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .img-card:hover { transform: translateY(-5px); border-color: #fbc531; }
-        .img-card img, .img-card video { width: 100%; height: 240px; object-fit: cover; display: block; pointer-events: none; }
+        .img-card:hover { transform: translateY(-3px); border-color: #fbc531; }
+        .img-card img, .img-card video { width: 100%; height: 180px; object-fit: cover; display: block; }
         .video-badge {
-            position: absolute; top: 10px; left: 10px; background: rgba(255, 0, 0, 0.85); color: white;
-            padding: 4px 10px; font-size: 0.7rem; border-radius: 6px; font-weight: bold;
+            position: absolute; top: 8px; left: 8px; background: rgba(255, 0, 0, 0.85); color: white;
+            padding: 3px 8px; font-size: 0.65rem; border-radius: 5px; font-weight: bold; z-index: 5;
         }
         .claimed-badge-card {
-            position: absolute; top: 10px; right: 10px; background: rgba(46, 204, 113, 0.9); color: white;
-            padding: 4px 8px; font-size: 0.65rem; border-radius: 6px; font-weight: bold;
+            position: absolute; top: 8px; right: 8px; background: rgba(46, 204, 113, 0.9); color: white;
+            padding: 3px 6px; font-size: 0.6rem; border-radius: 5px; font-weight: bold; z-index: 5;
         }
-        .sender-name { padding: 10px; font-size: 1rem; font-weight: 600; color: #f5cd79; background: rgba(0, 0, 0, 0.3); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        .masked-mobile-hint { font-size: 0.75rem; color: #a4b0be; text-align: center; padding-bottom: 8px; background: rgba(0, 0, 0, 0.3); }
+        .pending-badge-card {
+            position: absolute; top: 8px; right: 8px; background: rgba(241, 196, 15, 0.9); color: black;
+            padding: 3px 6px; font-size: 0.6rem; border-radius: 5px; font-weight: bold; z-index: 5;
+        }
+        .card-content-area { padding: 8px; background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .sender-name { font-size: 0.95rem; font-weight: 600; color: #f5cd79; }
+        .masked-mobile-hint { font-size: 0.7rem; color: #a4b0be; margin-bottom: 6px; }
         
+        .card-open-btn {
+            background: linear-gradient(135deg, #ff4757, #ff6b81); color: #fff; border: none;
+            padding: 6px 12px; border-radius: 15px; font-weight: 600; font-size: 0.8rem; cursor: pointer;
+            width: 100%; box-shadow: 0 3px 10px rgba(255,71,87,0.4); transition: 0.2s;
+        }
+        .card-open-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
         .del-card-btn {
-            position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.85); color: white;
-            border: none; border-radius: 50%; width: 28px; height: 28px; font-weight: bold; cursor: pointer; display: none; z-index: 10;
+            position: absolute; top: 8px; right: 8px; background: rgba(255, 0, 0, 0.85); color: white;
+            border: none; border-radius: 50%; width: 24px; height: 24px; font-weight: bold; cursor: pointer; display: none; z-index: 10; font-size: 0.8rem;
         }
 
         .badge {
-            background: linear-gradient(135deg, #e84393, #fd79a8); color: white; padding: 10px 25px;
-            font-size: 0.95rem; font-weight: bold; border-radius: 30px; display: inline-block; margin-top: 15px;
+            background: linear-gradient(135deg, #e84393, #fd79a8); color: white; padding: 8px 20px;
+            font-size: 0.85rem; font-weight: bold; border-radius: 20px; display: inline-block; margin-top: 10px;
         }
 
-        /* --- कस्टम मॉडल्स --- */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.88); backdrop-filter: blur(8px);
-            justify-content: center; align-items: center; flex-direction: column; padding: 15px; overflow-y: auto;
+            background-color: rgba(10, 8, 25, 0.9); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            justify-content: center; align-items: center; padding: 10px; overflow-y: auto;
         }
-        .modal-content-box { display: flex; flex-direction: column; align-items: center; max-width: 450px; width: 100%; text-align: center; margin: auto; }
-        .modal img, .modal video { max-width: 100%; max-height: 35vh; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); object-fit: contain; }
-        .modal-caption { margin-top: 8px; font-size: 1.1rem; color: #fbc531; font-weight: bold; }
+        
+        .modal-content-box {
+            background: linear-gradient(145deg, rgba(35, 30, 65, 0.95), rgba(15, 12, 35, 0.99));
+            border: 1px solid rgba(251, 197, 49, 0.3);
+            border-radius: 20px;
+            padding: 15px 12px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            position: relative;
+            animation: modalScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-height: 88vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalScaleUp {
+            from { opacity: 0; transform: scale(0.85) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-media-wrapper {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0,0,0,0.4);
+            max-height: 26vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal img, .modal video {
+            width: 100%;
+            max-height: 26vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .modal-caption {
+            font-size: 1rem;
+            color: #fbc531;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 8px rgba(251,197,49,0.3);
+        }
         
         .modal-extra-box {
-            background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255,107,129,0.5); padding: 8px 12px; border-radius: 10px; margin-top: 8px; width: 100%; text-align: left;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px dashed rgba(255, 107, 129, 0.4);
+            padding: 6px 10px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            width: 100%;
+            text-align: left;
         }
-        .modal-extra-box p { font-size: 0.85rem; margin: 2px 0; color: #ff9ff3; }
+        .modal-extra-box p { font-size: 0.8rem; margin: 0; color: #ff9ff3; line-height: 1.3; word-break: break-word; }
 
         .claim-box {
-            background: rgba(46, 204, 113, 0.12); border: 1px solid rgba(46, 204, 113, 0.4); padding: 12px; border-radius: 12px; margin-top: 10px; width: 100%; text-align: center;
+            background: rgba(46, 204, 113, 0.08);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            padding: 10px;
+            border-radius: 14px;
+            width: 100%;
+            text-align: center;
+            margin-top: 2px;
         }
-        .claim-box h4 { color: #2ecc71; font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; }
-        .claim-box input {
-            width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: #fff; font-size: 0.9rem; margin-bottom: 8px; outline: none;
+        .claim-box h4 { color: #2ecc71; font-size: 0.85rem; margin-bottom: 6px; font-weight: 600; }
+        
+        .claim-gift-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #fbc531;
+            margin: 0 auto 8px auto;
+            display: block;
+            box-shadow: 0 4px 15px rgba(251, 197, 49, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
+        .claim-gift-img:hover { transform: scale(1.08); }
+
         .claim-btn {
-            background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 9px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.9rem;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+            transition: 0.3s;
         }
-        .claim-btn:disabled { background: #555; cursor: not-allowed; }
+        .claim-btn:hover { opacity: 0.95; transform: translateY(-2px); }
+        .claim-btn:disabled { background: #555; cursor: not-allowed; box-shadow: none; transform: none; }
 
         .secret-gift-reveal {
-            background: rgba(255, 215, 0, 0.15); border: 2px dashed #fbc531; border-radius: 12px; padding: 12px; margin-top: 10px; text-align: center; display: none;
+            background: rgba(255, 215, 0, 0.12);
+            border: 2px dashed #fbc531;
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 8px;
+            text-align: center;
+            display: none;
+            width: 100%;
             animation: bounceIn 0.6s ease;
         }
         @keyframes bounceIn {
@@ -188,74 +294,57 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        .close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 32px; cursor: pointer; z-index: 1001; }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+        .close-btn:hover { background: #ff4757; border-color: #ff4757; }
 
-        /* --- कस्टम अलर्ट/कंफर्म/प्रॉम्प्ट बॉक्स --- */
         .custom-popup-box {
-            background: rgba(20, 18, 45, 0.95);
+            background: rgba(20, 18, 45, 0.96);
             border: 1px solid rgba(251, 197, 49, 0.3);
-            border-radius: 22px;
-            padding: 25px 20px;
-            max-width: 360px;
+            border-radius: 18px;
+            padding: 20px 15px;
+            max-width: 340px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.8);
             animation: zoomIn 0.3s ease;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
-        .custom-popup-title {
-            font-size: 1.2rem;
-            color: #fbc531;
-            font-weight: 700;
-        }
-        .custom-popup-msg {
-            font-size: 0.95rem;
-            color: #dcdde1;
-            line-height: 1.4;
-        }
+        .custom-popup-title { font-size: 1.1rem; color: #fbc531; font-weight: 700; }
+        .custom-popup-msg { font-size: 0.9rem; color: #dcdde1; line-height: 1.35; }
         .custom-popup-input {
-            width: 100%;
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.5);
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            text-align: center;
-            margin-bottom: 5px;
+            width: 100%; padding: 8px 12px; border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5);
+            color: #fff; font-size: 0.9rem; outline: none; text-align: center; margin-bottom: 4px;
         }
-        .custom-popup-btns {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 5px;
-        }
+        .custom-popup-btns { display: flex; gap: 8px; justify-content: center; margin-top: 4px; }
         .popup-btn {
-            flex: 1;
-            padding: 10px;
-            border-radius: 20px;
-            border: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: 0.2s;
+            flex: 1; padding: 8px; border-radius: 16px; border: none;
+            font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.2s;
         }
-        .popup-btn-confirm {
-            background: linear-gradient(135deg, #ff4757, #ff6b81);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(255,71,87,0.4);
-        }
-        .popup-btn-cancel {
-            background: rgba(255,255,255,0.08);
-            color: #dcdde1;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
+        .popup-btn-confirm { background: linear-gradient(135deg, #ff4757, #ff6b81); color: #fff; box-shadow: 0 3px 12px rgba(255,71,87,0.4); }
+        .popup-btn-cancel { background: rgba(255,255,255,0.08); color: #dcdde1; border: 1px solid rgba(255,255,255,0.15); }
         .popup-btn:hover { opacity: 0.9; transform: scale(1.02); }
 
-        footer { margin-top: 20px; font-size: 0.8rem; color: #a4b0be; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.08); width: 100%; text-align: center; padding-top: 15px; }
+        footer { margin-top: 15px; font-size: 0.75rem; color: #a4b0be; letter-spacing: 0.5px; border-top: 1px solid rgba(255,255,255,0.08); width: 100%; text-align: center; padding-top: 10px; }
         footer span { color: #fbc531; font-weight: bold; }
     </style>
 </head>
@@ -264,18 +353,18 @@
     <div class="view-section">
         <div class="entry-card" id="entryPage">
             <h1>✨ Surya's Birthday ✨</h1>
-            <p> Wellcome! सूर्या की तरफ से छोटी सी भेट 🙏</p>
+            <p>Welcome! सूर्या की तरफ से छोटी सी भेट 🙏</p>
             <div class="btn-group">
                 <button class="btn admin-btn" onclick="adminLogin()">👨‍💻 Admin Login</button>
-                <button class="btn friend-btn" onclick="friendLoginPrompt()">👥 Enter </button>
+                <button class="btn friend-btn" onclick="friendLoginPrompt()">👥 Friend Login </button>
             </div>
-            <footer style="margin-top:25px; border:none;">Designed by <span>Surya Vishwakarma</span>© 2026</footer>
+            <footer style="margin-top:20px; border:none;">Designed by <span>Surya Vishwakarma</span>© 2026</footer>
         </div>
 
         <div class="main-card" id="galleryPage">
             <h1>✨ Surya's Birthday Vault ✨</h1>
-            <p>कल किसी कारण से साइड क्रैश हो गया था जिससे आप सभीं को असुविधा हुआ होगा (sorry)!  🤍🎂</p>
-            <p> कृपया आपका भेट लेके ही जाएं ! मैं आप सभी के पास नई आ सकता इसके लिए ही ये बनाया हूँ </p>
+            <p>"Another year of life, another year of spreading positivity, kindness, and chasing big dreams."! 🤍🎂</p>
+            <p>"उम्र की गिनती से फर्क नहीं पड़ता, इरादे कल भी बुलंद थे और आज भी बेमिसाल हैं।"</p>
 
             <div class="top-bar">
                 <button class="action-btn" onclick="toggleMusic()">🎵 Play Music</button>
@@ -284,19 +373,19 @@
             </div>
 
             <div id="adminPanel">
-                <h3 style="color: #fbc531; margin-bottom: 12px; text-align: center; font-size: 1.1rem;">⚙️ Admin Panel</h3>
+                <h3 style="color: #fbc531; margin-bottom: 10px; text-align: center; font-size: 1rem;">⚙️ Admin Panel</h3>
                 
                 <label>💳 आपकी UPI ID:</label>
                 <input type="text" id="adminUpi" value="78699691901@ybl">
 
                 <label>🎵 बैकग्राउंड म्यूजिक (MP3 Link या फाइल):</label>
                 <input type="file" id="musicFile" accept="audio/*">
-                <button class="action-btn" style="width:100%; margin-bottom: 10px;" onclick="saveCustomMusic()">💾 म्यूजिक क्लाउड पर सेव करें</button>
+                <button class="action-btn" style="width:100%; margin-bottom: 8px;" onclick="saveCustomMusic()">💾 म्यूजिक क्लाउड पर सेव करें</button>
 
-                <label>📂 फोटो या वीडियो चुनें (HD Optimized):</label>
+                <label>📂 गिफ्ट/फोटो या वीडियो चुनें:</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*">
                 
-                <label>👤 भेजने वाले / गिफ्ट पाने वाले का सही नाम (Security Lock):</label>
+                <label>👤 भेजने वाले / गिफ्ट पाने वाले का नाम:</label>
                 <input type="text" id="mediaName" placeholder="जैसे: Aman">
 
                 <label>📱 मित्र का मोबाइल नंबर (गिफ्ट वेरिफिकेशन के लिए):</label>
@@ -307,20 +396,23 @@
                     <option value="birthday">🎂 Birthday Gallery (Special Memories)</option>
                     <option value="whatsapp">💬 WhatsApp Wishes</option>
                     <option value="instagram">📸 Instagram Stories</option>
-                    <option value="special">❤️ Special Friends</option>
+                    <option value="special">Roshni Friend</option>
                 </select>
                 
                 <label>😂 जोक या शायरी:</label>
                 <input type="text" id="mediaJoke" placeholder="जैसे: पार्टी कब दे रहा है?">
                 
-                <label>🎁 गुप्त रिटर्न गिफ्ट (Secret Prize):</label>
+                <label>🎁 गुप्त रिटर्न गिफ्ट (Secret Prize Name):</label>
                 <input type="text" id="mediaGift" placeholder="जैसे: 100 Rs Cash / Special Chocolate 🍫">
+
+                <label>🍫 रिटर्न गिफ्ट की फोटो (चॉकलेट / गिफ्ट इमेज):</label>
+                <input type="file" id="giftPhotoFile" accept="image/*">
                 
                 <button class="save-btn" onclick="addNewMedia()">🚀 सभी के लिए लाइव सेव करें</button>
 
-                <h3 style="color: #2ecc71; margin-top: 20px; margin-bottom: 8px; font-size: 1rem;">🎁 लाइव क्लेम रिक्वेस्ट्स:</h3>
+                <h3 style="color: #2ecc71; margin-top: 15px; margin-bottom: 6px; font-size: 0.9rem;">🎁 लाइव क्लेम रिक्वेस्ट्स:</h3>
                 <div class="admin-requests-box" id="adminRequestsContainer">
-                    <p style="color: #a4b0be; text-align: center; font-size: 0.85rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>
+                    <p style="color: #a4b0be; text-align: center; font-size: 0.8rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>
                 </div>
             </div>
 
@@ -329,9 +421,9 @@
                 <div class="tabs">
                     <button class="tab-btn active" onclick="filterGallery('all', event)">🌟 All</button>
                     <button class="tab-btn" onclick="filterGallery('birthday', event)">🎂 Birthday</button>
-                    <button class="tab-btn" onclick="filterGallery('whatsapp', event)">💬 WhatsApp/Call</button>
+                    <button class="tab-btn" onclick="filterGallery('whatsapp', event)">💬 WhatsApp</button>
                     <button class="tab-btn" onclick="filterGallery('instagram', event)">📸 Instagram</button>
-                    <button class="tab-btn" onclick="filterGallery('special', event)">❤️ Special</button>
+                    <button class="tab-btn" onclick="filterGallery('special', event)">Roshni</button>
                 </div>
             </div>
 
@@ -352,9 +444,11 @@
 
     <!-- मीडिया व्यूअर मोडल -->
     <div id="mediaModal" class="modal" onclick="closeModal()">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
         <div class="modal-content-box" onclick="event.stopPropagation()">
-            <div id="modalMediaContainer"></div>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            
+            <div class="modal-media-wrapper" id="modalMediaContainer"></div>
+            
             <div id="modalCaption" class="modal-caption"></div>
             
             <div class="modal-extra-box">
@@ -362,14 +456,14 @@
             </div>
 
             <div class="secret-gift-reveal" id="secretGiftRevealBox">
-                <h3 style="color: #fbc531; font-size: 1.1rem; margin-bottom: 5px;">🎉 🎁 Gift Unlocked! 🎁 🎉</h3>
-                <p id="modalGift" style="font-size: 1rem; color: #fff; font-weight: bold;"></p>
+                <h3 style="color: #fbc531; font-size: 0.9rem; margin-bottom: 3px;">🎉 🎁 Gift Unlocked! 🎁 🎉</h3>
+                <img id="modalClaimGiftImg" class="claim-gift-img" src="" alt="Gift Image" onclick="previewGiftPhoto(this.src)" title="बड़ा देखने के लिए क्लिक करें" style="display:none; margin-bottom: 6px;">
+                <p id="modalGift" style="font-size: 0.85rem; color: #fff; font-weight: bold;"></p>
             </div>
 
             <div class="claim-box" id="modalClaimBox">
                 <h4 id="claimBoxTitle">🎁 अपना रिटर्न गिफ्ट क्लेम करें</h4>
-                <input type="text" id="friendUpiInput" placeholder="PhonePe नंबर या UPI ID दर्ज करें">
-                <button class="claim-btn" id="modalClaimBtn" onclick="verifyAndClaimGift()">🎁 Open Gift Box & Claim</button>
+                <button class="claim-btn" id="modalClaimBtn" onclick="openGiftBoxAction()">🎁 Open Gift Box & Claim</button>
             </div>
         </div>
     </div>
@@ -377,11 +471,12 @@
     <!-- यूनिवर्सल कस्टम पॉप-अप मोडल -->
     <div id="customPopupModal" class="modal" style="z-index: 2000;">
         <div class="custom-popup-box" id="customPopupBoxContent" onclick="event.stopPropagation()">
+            <span class="close-btn" id="customPopupCloseBtn" style="display:none;" onclick="handleCustomPopupClose()">&times;</span>
             <div class="custom-popup-title" id="customPopupTitle">✨ सूचना</div>
             <div class="custom-popup-msg" id="customPopupMsg">मैसेज यहाँ आएगा</div>
             <div id="customPopupInputContainer" style="display:none;">
                 <input type="text" class="custom-popup-input" id="customPopupInput1" placeholder="यहाँ टाइप करें...">
-                <input type="tel" class="custom-popup-input" id="customPopupInput2" placeholder="मोबाइल नंबर (10 अंक)..." maxlength="10" style="display:none; margin-top:8px;">
+                <input type="tel" class="custom-popup-input" id="customPopupInput2" placeholder="मोबाइल नंबर (10 अंक)..." maxlength="10" style="display:none; margin-top:6px;">
             </div>
             <div class="custom-popup-btns" id="customPopupBtnContainer">
                 <button class="popup-btn popup-btn-confirm" id="customPopupOkBtn" onclick="closeCustomPopup(true)">ठीक है</button>
@@ -394,7 +489,6 @@
     </audio>
 
     <script>
-        // --- YOUR ACTUAL FIREBASE CONFIGURATION ---
         const firebaseConfig = {
             apiKey: "AIzaSyAL9dsBvNrp-ijxAk7ZYZcbN0BPaZ5gYtw",
             authDomain: "sewaastra.firebaseapp.com",
@@ -415,10 +509,13 @@
         let loggedInFriendName = "";
         let loggedInFriendMobile = "";
         let popupCallback = null;
+        let activeItemData = {};
+        let upiPopupTimer = null;
 
         function showCustomAlert(title, message, callback) {
             document.getElementById('customPopupTitle').innerText = title;
             document.getElementById('customPopupMsg').innerText = message;
+            document.getElementById('customPopupCloseBtn').style.display = 'none';
             document.getElementById('customPopupInputContainer').style.display = 'none';
             document.getElementById('customPopupBtnContainer').innerHTML = `<button class="popup-btn popup-btn-confirm" onclick="closeCustomPopup(true)">ठीक है</button>`;
             document.getElementById('customPopupModal').style.display = 'flex';
@@ -428,6 +525,7 @@
         function showCustomConfirm(title, message, callback) {
             document.getElementById('customPopupTitle').innerText = title;
             document.getElementById('customPopupMsg').innerText = message;
+            document.getElementById('customPopupCloseBtn').style.display = 'none';
             document.getElementById('customPopupInputContainer').style.display = 'none';
             document.getElementById('customPopupBtnContainer').innerHTML = `
                 <button class="popup-btn popup-btn-cancel" onclick="closeCustomPopup(false)">नहीं</button>
@@ -440,6 +538,7 @@
         function showCustomLoginPrompt(title, message, callback) {
             document.getElementById('customPopupTitle').innerText = title;
             document.getElementById('customPopupMsg').innerText = message;
+            document.getElementById('customPopupCloseBtn').style.display = 'none';
             
             let input1 = document.getElementById('customPopupInput1');
             let input2 = document.getElementById('customPopupInput2');
@@ -462,9 +561,12 @@
             setTimeout(() => input1.focus(), 100);
         }
 
-        function showCustomPrompt(title, message, placeholder, callback) {
+        function showCustomPrompt(title, message, placeholder, callback, showCloseButton = false) {
             document.getElementById('customPopupTitle').innerText = title;
             document.getElementById('customPopupMsg').innerText = message;
+            
+            let closeBtn = document.getElementById('customPopupCloseBtn');
+            closeBtn.style.display = showCloseButton ? 'flex' : 'none';
             
             let input1 = document.getElementById('customPopupInput1');
             let input2 = document.getElementById('customPopupInput2');
@@ -476,7 +578,7 @@
 
             document.getElementById('customPopupInputContainer').style.display = 'block';
             document.getElementById('customPopupBtnContainer').innerHTML = `
-                <button class="popup-btn popup-btn-cancel" onclick="closeCustomPopup(null)">रद्द करें</button>
+                ${showCloseButton ? '<button class="popup-btn popup-btn-cancel" onclick="handleCustomPopupClose()">रद्द करें</button>' : ''}
                 <button class="popup-btn popup-btn-confirm" onclick="submitSinglePrompt()">सबमिट</button>
             `;
             document.getElementById('customPopupModal').style.display = 'flex';
@@ -486,8 +588,30 @@
 
         function submitSinglePrompt() {
             let val = document.getElementById('customPopupInput1').value;
+            if(!val || val.trim() === "") return;
             document.getElementById('customPopupModal').style.display = 'none';
-            if(popupCallback) popupCallback(val);
+            if(popupCallback) {
+                let cb = popupCallback;
+                popupCallback = null;
+                cb(val);
+            }
+        }
+
+        function handleCustomPopupClose() {
+            document.getElementById('customPopupModal').style.display = 'none';
+            if(upiPopupTimer) clearTimeout(upiPopupTimer);
+            
+            let claimBtn = document.getElementById("modalClaimBtn");
+            let claimTitle = document.getElementById("claimBoxTitle");
+            
+            if(claimBtn) {
+                claimBtn.disabled = false;
+                claimBtn.innerText = "🎁 Receive Gift";
+            }
+            if(claimTitle) {
+                claimTitle.innerText = `🎁 ${activeItemData.senderName || 'मित्र'} जी, अपना गिफ्ट क्लेम करें!`;
+            }
+            popupCallback = null;
         }
 
         function submitCustomLoginPrompt() {
@@ -504,35 +628,31 @@
 
         function closeCustomPopup(result) {
             document.getElementById('customPopupModal').style.display = 'none';
-            if(popupCallback) popupCallback(result);
+            if(popupCallback) {
+                let cb = popupCallback;
+                popupCallback = null;
+                cb(result);
+            }
         }
 
-        function triggerFullScreenCelebration() {
-            let duration = 3.5 * 1000;
+        function triggerHeavyFullScreenCelebration() {
+            let duration = 5 * 1000;
             let animationEnd = Date.now() + duration;
-            let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+            let defaults = { startVelocity: 35, spread: 360, ticks: 80, zIndex: 9999 };
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
 
             let interval = setInterval(function() {
                 let timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) {
-                    return clearInterval(interval);
-                }
-                let particleCount = 50 * (timeLeft / duration);
+                if (timeLeft <= 0) return clearInterval(interval);
+                let particleCount = 60 * (timeLeft / duration);
                 
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 } }));
             }, 250);
         }
 
         window.onload = function() {
-            try {
-                confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
-            } catch(e) {}
-
             listenRealtimeData();
 
             db.ref('settings/adminUpi').on('value', (snapshot) => {
@@ -588,8 +708,7 @@
                         document.getElementById('entryPage').style.display = 'none';
                         document.getElementById('galleryPage').style.display = 'block';
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                        
-                        triggerFullScreenCelebration();
+                        triggerHeavyFullScreenCelebration();
                     } else {
                         showCustomAlert("त्रुटि", "❌ गलत पासवर्ड!");
                     }
@@ -598,8 +717,7 @@
                 document.getElementById('entryPage').style.display = 'none';
                 document.getElementById('galleryPage').style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                triggerFullScreenCelebration();
+                triggerHeavyFullScreenCelebration();
             }
         }
 
@@ -663,7 +781,7 @@
 
             cards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = "block";
+                    card.style.display = "flex";
                 } else {
                     card.style.display = "none";
                 }
@@ -677,13 +795,14 @@
                 let nameElement = card.querySelector('.sender-name');
                 if(nameElement) {
                     let name = nameElement.innerText.toLowerCase();
-                    card.style.display = name.includes(input) ? "block" : "none";
+                    card.style.display = name.includes(input) ? "flex" : "none";
                 }
             });
         }
 
         function addNewMedia() {
             let fileInput = document.getElementById("mediaFile");
+            let giftPhotoInput = document.getElementById("giftPhotoFile");
             let name = document.getElementById("mediaName").value.trim();
             let mobile = document.getElementById("mediaMobile").value.trim();
             let category = document.getElementById("mediaCategory").value;
@@ -698,11 +817,38 @@
             }
 
             let file = fileInput.files[0];
+            
+            if (giftPhotoInput.files.length > 0) {
+                let giftReader = new FileReader();
+                giftReader.onload = function(e) {
+                    let giftImg = new Image();
+                    giftImg.src = e.target.result;
+                    giftImg.onload = function() {
+                        let canvas = document.createElement('canvas');
+                        let ctx = canvas.getContext('2d');
+                        let w = giftImg.width, h = giftImg.height;
+                        if (w > 350) { h *= 350 / w; w = 350; }
+                        canvas.width = w; canvas.height = h;
+                        ctx.drawImage(giftImg, 0, 0, w, h);
+                        let giftPhotoUrl = canvas.toDataURL('image/jpeg', 0.7);
+                        processAndUploadFile(file, name, mobile, category, joke, gift, giftPhotoUrl, fileInput, giftPhotoInput);
+                    }
+                };
+                giftReader.readAsDataURL(giftPhotoInput.files[0]);
+            } else {
+                let defaultGiftPhoto = "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400";
+                processAndUploadFile(file, name, mobile, category, joke, gift, defaultGiftPhoto, fileInput, giftPhotoInput);
+            }
+        }
+
+        function processAndUploadFile(file, name, mobile, category, joke, gift, giftPhotoUrl, mainFileInput, giftPhotoInput) {
             let reader = new FileReader();
 
             if (file.type.startsWith('video')) {
                 reader.onload = function(e) {
-                    saveMediaToFirebase(e.target.result, 'video', name, mobile, category, joke, gift, fileInput);
+                    saveMediaToFirebase(e.target.result, 'video', name, mobile, category, joke, gift, giftPhotoUrl, () => {
+                        resetAdminForm(mainFileInput, giftPhotoInput);
+                    });
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -712,46 +858,36 @@
                     img.onload = function() {
                         let canvas = document.createElement('canvas');
                         let ctx = canvas.getContext('2d');
-                        
-                        let MAX_WIDTH = 800;
-                        let MAX_HEIGHT = 800;
-                        let width = img.width;
-                        let height = img.height;
-
-                        if (width > height) {
-                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
-                        } else {
-                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
-                        }
-
-                        canvas.width = width;
-                        canvas.height = height;
+                        let width = img.width, height = img.height;
+                        if (width > height) { if (width > 700) { height *= 700 / width; width = 700; } }
+                        else { if (height > 700) { width *= 700 / height; height = 700; } }
+                        canvas.width = width; canvas.height = height;
                         ctx.drawImage(img, 0, 0, width, height);
-                        
                         let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
-                        saveMediaToFirebase(compressedDataUrl, 'image', name, mobile, category, joke, gift, fileInput);
+                        saveMediaToFirebase(compressedDataUrl, 'image', name, mobile, category, joke, gift, giftPhotoUrl, () => {
+                            resetAdminForm(mainFileInput, giftPhotoInput);
+                        });
                     }
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        function saveMediaToFirebase(url, type, name, mobile, category, joke, gift, fileInput) {
+        function resetAdminForm(mainFileInput, giftPhotoInput) {
+            mainFileInput.value = "";
+            if(giftPhotoInput) giftPhotoInput.value = "";
+            document.getElementById("mediaName").value = "";
+            document.getElementById("mediaMobile").value = "";
+            document.getElementById("mediaJoke").value = "";
+            document.getElementById("mediaGift").value = "";
+            showCustomAlert("सफलता", "✨ फाइल क्लाउड पर लाइव सेव हो गई!");
+        }
+
+        function saveMediaToFirebase(url, type, name, mobile, category, joke, gift, giftPhotoUrl, callback) {
             let newRef = db.ref('mediaVault').push();
             let uniqueId = newRef.key;
-            
-            let mediaData = { id: uniqueId, type, url, name, mobile, category, joke, gift, claimed: false };
-            
-            newRef.set(mediaData).then(() => {
-                fileInput.value = "";
-                document.getElementById("mediaName").value = "";
-                document.getElementById("mediaMobile").value = "";
-                document.getElementById("mediaJoke").value = "";
-                document.getElementById("mediaGift").value = "";
-                showCustomAlert("सफलता", "✨ सभी के लिए क्लाउड पर लाइव सेव हो गया!");
-            }).catch(error => {
-                showCustomAlert("त्रुटि", "❌ सेव करने में विफल! Firebase Database Rules चेक करें (Read/Write true होना चाहिए)।");
-            });
+            let mediaData = { id: uniqueId, type, url, name, mobile, category, joke, gift, giftPhotoUrl, claimed: false, status: 'unclaimed' };
+            newRef.set(mediaData).then(() => { if(callback) callback(); }).catch(error => { if(callback) callback(); });
         }
 
         function listenRealtimeData() {
@@ -765,11 +901,11 @@
                 birthdayContainer.innerHTML = "";
 
                 if (!snapshot.exists()) {
-                    appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul', '9876543210', 'birthday', '😂 पार्टी कब दे रहा है?', '🎁 100 Rs PhonePe', false);
+                    appendCard('id_default', 'image', 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', 'Rahul', '9876543210', 'whatsapp', '😂 पार्टी कब दे रहा है?', '🎁 100 Rs PhonePe', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400', false, 'unclaimed');
                 } else {
                     snapshot.forEach((childSnapshot) => {
                         let item = childSnapshot.val();
-                        appendCard(item.id, item.type, item.url, item.name, item.mobile, item.category, item.joke, item.gift, item.claimed);
+                        appendCard(item.id, item.type, item.url, item.name, item.mobile, item.category, item.joke, item.gift, item.giftPhotoUrl, item.claimed, item.status || 'unclaimed');
                     });
                 }
             });
@@ -780,7 +916,7 @@
 
                 container.innerHTML = "";
                 if (!snapshot.exists()) {
-                    container.innerHTML = `<p style="color: #a4b0be; text-align: center; font-size: 0.85rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>`;
+                    container.innerHTML = `<p style="color: #a4b0be; text-align: center; font-size: 0.8rem;">अभी कोई नई क्लेम रिक्वेस्ट नहीं है।</p>`;
                     return;
                 }
 
@@ -794,16 +930,16 @@
                     div.innerHTML = `
                         <div class="request-info">
                             <p>👤 <b>${req.name}</b></p>
-                            <p>💳 UPI: <span style="color: #fbc531;">${req.upi}</span></p>
+                            <p>💳 UPI/No: <span style="color: #fbc531;">${req.upi}</span></p>
                         </div>
-                        <a href="${upiIntentUrl}" class="pay-now-btn" onclick="removeRequest('${reqKey}')">💸 Pay ₹10</a>
+                        <a href="${upiIntentUrl}" class="pay-now-btn" onclick="markAsClaimed('${req.mediaId}', '${reqKey}')">💸 Pay & Mark</a>
                     `;
                     container.appendChild(div);
                 });
             });
         }
 
-        function appendCard(id, type, url, name, mobile, category, joke, gift, claimed) {
+        function appendCard(id, type, url, name, mobile, category, joke, gift, giftPhotoUrl, claimed, status) {
             const container = document.getElementById("galleryContainer");
             const birthdayContainer = document.getElementById("birthdayContainer");
             
@@ -811,29 +947,44 @@
             newCard.className = "img-card";
             newCard.setAttribute("data-category", category);
             
-            newCard.onclick = function() {
-                openModal(id, type, url, name, mobile, joke, gift, claimed);
-            };
-            
             let icon = category === 'birthday' ? '🎂' : category === 'whatsapp' ? '💬' : category === 'instagram' ? '📸' : '❤️';
             let deleteBtn = (isAdminLoggedIn && id !== 'id_default') ? `<button class="del-card-btn" style="display:block;" onclick="deleteCard(event, '${id}')">×</button>` : '';
-            let claimedBadge = claimed ? `<div class="claimed-badge-card">✓ Claimed</div>` : "";
+            
+            let statusBadge = "";
+            if(status === 'claimed') {
+                statusBadge = `<div class="claimed-badge-card">✓ Claimed</div>`;
+            } else if(status === 'pending') {
+                statusBadge = `<div class="pending-badge-card">⏳ Pending</div>`;
+            }
 
             let maskedMobile = "••••••" + (mobile && mobile.length >= 4 ? mobile.slice(-4) : "1234");
 
+            let actionButtonHtml = "";
+            if (category === 'birthday') {
+                newCard.onclick = function() {
+                    openStandardMediaViewer(type, url, name, joke);
+                };
+            } else {
+                actionButtonHtml = `<button class="card-open-btn" onclick="openModal('${id}', '${type}', '${url}', '${name}', '${mobile}', '${joke}', '${gift}', '${giftPhotoUrl}', ${claimed}, '${status}')">🎁 Open </button>`;
+            }
+
             newCard.innerHTML = `
                 ${deleteBtn}
-                ${claimedBadge}
+                ${statusBadge}
                 ${type === 'video' ? '<div class="video-badge">▶ VIDEO</div>' : ''}
                 ${type === 'video' ? `<video src="${url}" muted></video>` : `<img src="${url}" alt="Wish">`}
-                <div class="sender-name">${icon} ${name}</div>
-                <div class="masked-mobile-hint">📞 Mob: ${maskedMobile}</div>
+                <div class="card-content-area">
+                    <div class="sender-name">${icon} ${name}</div>
+                    <div class="masked-mobile-hint">📞 Mob: ${maskedMobile}</div>
+                    ${actionButtonHtml}
+                </div>
             `;
 
             if(category === 'birthday') {
                 birthdayContainer.appendChild(newCard.cloneNode(true));
+            } else {
+                container.appendChild(newCard);
             }
-            container.appendChild(newCard);
         }
 
         function deleteCard(event, id) {
@@ -841,23 +992,35 @@
             showCustomConfirm("डिलीट करें", "क्या आप वाकई इस डिटेल को डिलीट करना चाहते हैं?", function(confirmed) {
                 if (confirmed) {
                     db.ref('mediaVault').orderByChild('id').equalTo(id).once('value', (snapshot) => {
-                        snapshot.forEach((child) => {
-                            child.ref.remove();
-                        });
+                        snapshot.forEach((child) => { child.ref.remove(); });
                     });
                 }
             });
         }
 
-        let activeItemData = {};
+        function openStandardMediaViewer(type, mediaSrc, senderName, jokeText) {
+            let modal = document.getElementById("mediaModal");
+            if(modal) modal.style.display = "flex";
+            
+            document.getElementById("modalCaption").innerText = "🎂 " + senderName + " की स्पेशल मेमोरी";
+            document.getElementById("modalJoke").innerHTML = `💬 <b>Note:</b> ${jokeText}`;
+            
+            document.getElementById("secretGiftRevealBox").style.display = "none";
+            document.getElementById("modalClaimBox").style.display = "none";
 
-        function openModal(id, type, mediaSrc, senderName, senderMobile, jokeText, giftText, claimed) {
+            let mediaContainer = document.getElementById("modalMediaContainer");
+            if(mediaContainer) {
+                mediaContainer.innerHTML = type === 'video' ? `<video src="${mediaSrc}" controls autoplay></video>` : `<img src="${mediaSrc}" onclick="previewGiftPhoto(this.src)" style="cursor:pointer;" title="बड़ा देखने के लिए क्लिक करें">`;
+            }
+        }
+
+        function openModal(id, type, mediaSrc, senderName, senderMobile, jokeText, giftText, giftPhotoUrl, claimed, status) {
             currentOpenMediaId = id;
             currentOwnerName = senderName.trim().toLowerCase();
             
-            activeItemData = {
-                id, type, mediaSrc, senderName, senderMobile, jokeText, giftText, claimed
-            };
+            activeItemData = { id, type, mediaSrc, senderName, senderMobile, jokeText, giftText, giftPhotoUrl, claimed, status };
+
+            document.getElementById("modalClaimBox").style.display = "block";
 
             if (!isAdminLoggedIn && loggedInFriendName.toLowerCase() !== currentOwnerName) {
                 showCustomAlert("🔒 सुरक्षा लॉक", `यह गिफ्ट बॉक्स सिर्फ '${senderName}' के नाम पर है। चूंकि आपने '${loggedInFriendName}' के नाम से लॉगिन किया है, इसलिए आप यह गिफ्ट नहीं खोल सकते!`);
@@ -883,34 +1046,53 @@
             if(modal) modal.style.display = "flex";
             
             let caption = document.getElementById("modalCaption");
-            if(caption) caption.innerText = "💬 " + item.senderName + " का स्पेशल गिफ्ट बॉक्स";
+            if(caption) caption.innerText = "💬 " + item.senderName + " Thanks For Wish🥰";
             
             let jokeBox = document.getElementById("modalJoke");
-            if(jokeBox) jokeBox.innerHTML = `💬 <b>Joke:</b> ${item.jokeText}`;
+            if(jokeBox) jokeBox.innerHTML = `💬 <b>Note:</b> ${item.jokeText}`;
             
-            let upiInput = document.getElementById("friendUpiInput");
             let claimBtn = document.getElementById("modalClaimBtn");
             let claimTitle = document.getElementById("claimBoxTitle");
             let secretBox = document.getElementById("secretGiftRevealBox");
             let modalGift = document.getElementById("modalGift");
+            let claimGiftImg = document.getElementById("modalClaimGiftImg");
 
-            if(item.claimed) {
-                if(upiInput) { upiInput.value = "Gift Dispatched"; upiInput.disabled = true; }
-                if(claimBtn) { claimBtn.disabled = true; claimBtn.innerText = "✓ Gift Already Claimed"; }
+            if(claimGiftImg) {
+                claimGiftImg.src = item.giftPhotoUrl || "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400";
+            }
+
+            if(item.status === 'claimed') {
+                if(claimBtn) { claimBtn.disabled = true; claimBtn.innerText = "✓ Gift Successful Claimed"; }
                 if(claimTitle) claimTitle.innerText = "🎁 यह गिफ्ट पहले ही क्लेम हो चुका है!";
                 if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${item.giftText}`;
                 if(secretBox) secretBox.style.display = "block";
+                if(claimGiftImg) claimGiftImg.style.display = "block";
+            } else if(item.status === 'pending') {
+                if(claimBtn) { claimBtn.disabled = true; claimBtn.innerText = "⏳ Pending Gift Amount"; }
+                if(claimTitle) claimTitle.innerText = "⏳ Please Wait !";
+                if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${item.giftText}`;
+                if(secretBox) secretBox.style.display = "block";
+                if(claimGiftImg) claimGiftImg.style.display = "block";
             } else {
-                if(upiInput) { upiInput.disabled = false; upiInput.value = ""; }
-                if(claimBtn) { claimBtn.disabled = false; claimBtn.innerText = "🎁 Open Gift Box & Claim"; }
-                if(claimTitle) claimTitle.innerText = `🎁 ${item.senderName} जी, अपना UPI ID या PhonePe नंबर दर्ज करें!`;
+                if(claimBtn) { claimBtn.disabled = false; claimBtn.innerText = "🎁 Open Gift Box"; }
+                if(claimTitle) claimTitle.innerText = `🎁 ${item.senderName} जी, अपना गिफ्ट क्लेम करें!`;
                 if(secretBox) secretBox.style.display = "none";
+                if(claimGiftImg) claimGiftImg.style.display = "none";
             }
 
             let mediaContainer = document.getElementById("modalMediaContainer");
             if(mediaContainer) {
-                mediaContainer.innerHTML = item.type === 'video' ? `<video src="${item.mediaSrc}" controls autoplay></video>` : `<img src="${item.mediaSrc}">`;
+                mediaContainer.innerHTML = item.type === 'video' ? `<video src="${item.mediaSrc}" controls autoplay></video>` : `<img src="${item.mediaSrc}" onclick="previewGiftPhoto(this.src)" style="cursor:pointer;" title="बड़ा देखने के लिए क्लिक करें">`;
             }
+        }
+
+        function previewGiftPhoto(imgSrc) {
+            let mediaContainer = document.getElementById("modalMediaContainer");
+            if(mediaContainer) {
+                mediaContainer.innerHTML = `<img src="${imgSrc}" style="border: 2px solid #fbc531;">`;
+            }
+            let caption = document.getElementById("modalCaption");
+            if(caption) caption.innerText = "🔍 Gift Preview";
         }
 
         function closeModal() {
@@ -918,33 +1100,17 @@
             if(modal) modal.style.display = "none";
             let mediaContainer = document.getElementById("modalMediaContainer");
             if(mediaContainer) mediaContainer.innerHTML = "";
+            if(upiPopupTimer) clearTimeout(upiPopupTimer);
         }
 
-        function verifyAndClaimGift() {
-            let friendUpiElem = document.getElementById("friendUpiInput");
-            if(!friendUpiElem) return;
-            
-            let friendUpiOrNo = friendUpiElem.value.trim();
+        function openGiftBoxAction() {
+            try { confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } }); } catch(e) {}
 
-            if(!friendUpiOrNo) {
-                return showCustomAlert("त्रुटि", "कृपया अपना UPI ID या PhonePe नंबर दर्ज करें!");
+            let claimBtn = document.getElementById("modalClaimBtn");
+            if(claimBtn) {
+                claimBtn.disabled = true;
+                claimBtn.innerText = "🎉 Gift Box Opened!";
             }
-
-            db.ref('mediaVault').orderByChild('id').equalTo(currentOpenMediaId).once('value', (snapshot) => {
-                snapshot.forEach((child) => {
-                    child.ref.update({ claimed: true });
-                });
-            });
-
-            db.ref('claimRequests').push({
-                name: activeItemData.senderName || loggedInFriendName,
-                upi: friendUpiOrNo,
-                time: new Date().toLocaleTimeString()
-            });
-
-            try {
-                confetti({ particleCount: 250, spread: 120, origin: { y: 0.6 } });
-            } catch(e) {}
 
             let modalGift = document.getElementById("modalGift");
             if(modalGift) modalGift.innerHTML = `🎁 <b>Return Gift:</b> ${activeItemData.giftText}`;
@@ -952,22 +1118,59 @@
             let secretBox = document.getElementById("secretGiftRevealBox");
             if(secretBox) secretBox.style.display = "block";
 
-            friendUpiElem.value = "Sent to Admin";
-            friendUpiElem.disabled = true;
-            
-            let claimBtn = document.getElementById("modalClaimBtn");
-            if(claimBtn) {
-                claimBtn.disabled = true;
-                claimBtn.innerText = "✓ Gift Claimed Successfully!";
-            }
-            
-            let claimTitle = document.getElementById("claimBoxTitle");
-            if(claimTitle) claimTitle.innerText = "🎉 बधाई हो! आपका गिफ्ट सुरक्षित रूप से अनलॉक हो गया है।";
+            let claimGiftImg = document.getElementById("modalClaimGiftImg");
+            if(claimGiftImg) claimGiftImg.style.display = "block";
 
-            showCustomAlert("बधाई हो!", `✨ धन्यवाद! आपका गिफ्ट सफलताપूर्वक क्लेम हो गया है।`);
+            let claimTitle = document.getElementById("claimBoxTitle");
+            if(claimTitle) claimTitle.innerText = "🎉 बधाई हो! गिफ्ट फोटो अनलॉक हो गई है!";
+
+            // 3 seconds baad PhonePe / UPI popup automatically aayega
+            if(upiPopupTimer) clearTimeout(upiPopupTimer);
+            upiPopupTimer = setTimeout(() => {
+                promptForUpiAndClaim();
+            }, 3000);
         }
 
-        function removeRequest(reqKey) {
+        function promptForUpiAndClaim() {
+            showCustomPrompt("💳 UPI / PhonePe दर्ज करें", "अपना PhonePe नंबर या UPI ID दर्ज करें:", "यहाँ UPI ID या नंबर दर्ज करें...", function(friendUpiOrNo) {
+                if(!friendUpiOrNo || friendUpiOrNo.trim() === "") {
+                    return showCustomAlert("त्रुटि", "कृपया सही UPI ID या नंबर दर्ज करें!");
+                }
+
+                db.ref('mediaVault').orderByChild('id').equalTo(currentOpenMediaId).once('value', (snapshot) => {
+                    snapshot.forEach((child) => { 
+                        child.ref.update({ status: 'pending', claimed: false }); 
+                    });
+                });
+
+                db.ref('claimRequests').push({
+                    mediaId: currentOpenMediaId,
+                    name: activeItemData.senderName || loggedInFriendName,
+                    upi: friendUpiOrNo.trim(),
+                    time: new Date().toLocaleTimeString()
+                });
+
+                let claimBtn = document.getElementById("modalClaimBtn");
+                if(claimBtn) {
+                    claimBtn.innerText = "⏳Please Wait ( Pending Approval  )";
+                    claimBtn.disabled = true;
+                }
+                
+                let claimTitle = document.getElementById("claimBoxTitle");
+                if(claimTitle) claimTitle.innerText = "⏳ Claim Successful! Please Wait...";
+
+                showCustomAlert("सफलता", "✨ आपकी रिक्वेस्ट एडमिन को भेज दी गई है!");
+            }, true); // true pass kiya taaki cancel/cross button show ho
+        }
+
+        function markAsClaimed(mediaId, reqKey) {
+            if(mediaId && mediaId !== 'undefined') {
+                db.ref('mediaVault').orderByChild('id').equalTo(mediaId).once('value', (snapshot) => {
+                    snapshot.forEach((child) => { 
+                        child.ref.update({ claimed: true, status: 'claimed' }); 
+                    });
+                });
+            }
             db.ref('claimRequests/' + reqKey).remove();
         }
     </script>
