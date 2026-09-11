@@ -1,1 +1,469 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Hospital Bill Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            background-color: #fff;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #0056b3;
+            margin: 0;
+            font-size: 24px;
+        }
+        .header div {
+            text-align: right;
+            font-size: 14px;
+            color: #555;
+        }
+        .patient-info {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+        .patient-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .patient-info td {
+            padding: 5px;
+        }
+        table.items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table.items th, table.items td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+        table.items th {
+            background-color: #0056b3;
+            color: white;
+        }
+        .total-section {
+            margin-top: 20px;
+            float: right;
+            width: 320px;
+            font-size: 14px;
+        }
+        .total-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .total-section td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .total-section .grand-total {
+            font-weight: bold;
+            font-size: 16px;
+            background-color: #f1f1f1;
+        }
+        
+        /* Seal and Signature Section */
+        .seal-signature-section {
+            clear: both;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 40px;
+            padding-top: 20px;
+        }
+        .seal-container {
+            text-align: center;
+            position: relative;
+        }
+        .hospital-seal {
+            width: 120px;
+            height: 120px;
+            border: 3px dashed #1b365d;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #1b365d;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            transform: rotate(-12deg);
+            opacity: 0.85;
+            padding: 5px;
+            box-sizing: border-box;
+            background-color: rgba(27, 54, 93, 0.03);
+        }
+        .seal-inner {
+            border: 1px solid #1b365d;
+            border-radius: 50%;
+            width: 106px;
+            height: 106px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            line-height: 1.2;
+        }
+        .seal-center {
+            font-size: 11px;
+            border-top: 1px solid #1b365d;
+            border-bottom: 1px solid #1b365d;
+            padding: 2px 0;
+            margin: 2px 0;
+            width: 80%;
+        }
+        
+        .signature-box {
+            text-align: right;
+            width: 220px;
+        }
+        .signature-line {
+            border-top: 1px solid #333;
+            margin-top: 50px;
+            padding-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        .signature-placeholder {
+            font-family: "Brush Script MT", cursive, sans-serif;
+            font-size: 24px;
+            color: #0b2545;
+            margin-bottom: -15px;
+            display: block;
+        }
+
+        .footer {
+            clear: both;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        /* Controls / Action Bar */
+        .action-bar {
+            text-align: center;
+            margin-top: 25px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 4px;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+        .btn-edit { background-color: #ffc107; color: #333; }
+        .btn-edit:hover { background-color: #e0a800; }
+        .btn-save { background-color: #28a745; display: none; }
+        .btn-save:hover { background-color: #218838; }
+        .btn-print { background-color: #0056b3; }
+        .btn-print:hover { background-color: #004085; }
+        .btn-add { background-color: #17a2b8; font-size: 13px; padding: 5px 10px; margin-top: 10px; }
+
+        /* Editable elements styling */
+        [contenteditable="true"] {
+            outline: 1px dashed #0056b3;
+            background-color: rgba(0, 86, 179, 0.03);
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+            .invoice-box {
+                box-shadow: none;
+                border: none;
+            }
+            .action-bar, .no-print, .btn-add {
+                display: none !important;
+            }
+            [contenteditable="true"] {
+                outline: none;
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="invoice-box" id="invoice">
+    <!-- Hospital Header -->
+    <div class="header">
+        <div>
+            <h1 contenteditable="false" data-editable>Lifeline Multispecialty Hospital</h1>
+            <p contenteditable="false" data-editable>123, Linking Road, Bandra West<br>Mumbai, Maharashtra - 400050<br>Phone: +91 22 9876 5432</p>
+        </div>
+        <div>
+            <strong>Invoice #:</strong> <span contenteditable="false" data-editable>MUM-HB-2026-0901</span><br>
+            <strong>Date:</strong> <span contenteditable="false" data-editable>September 11, 2026</span><br>
+            <strong>IPD / UHID No:</strong> <span contenteditable="false" data-editable>UHID-884920</span>
+        </div>
+    </div>
+
+    <!-- Patient Details -->
+    <div class="patient-info">
+        <table>
+            <tr>
+                <td><strong>Patient Name:</strong> <span contenteditable="false" data-editable>Rajesh Sharma</span></td>
+                <td><strong>Age/Gender:</strong> <span contenteditable="false" data-editable>42 / Male</span></td>
+            </tr>
+            <tr>
+                <td><strong>Doctor Name:</strong> <span contenteditable="false" data-editable>Dr. Amit Deshmukh (MS, Ortho)</span></td>
+                <td><strong>Admit Date:</strong> <span contenteditable="false" data-editable>September 07, 2026</span></td>
+            </tr>
+            <tr>
+                <td><strong>Ward/Room:</strong> <span contenteditable="false" data-editable>Deluxe Room (DLX-304)</span></td>
+                <td><strong>Discharge Date:</strong> <span contenteditable="false" data-editable>September 11, 2026</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Bill Items Table -->
+    <table class="items" id="items-table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Particulars / Services</th>
+                <th>Qty / Days</th>
+                <th>Rate (₹)</th>
+                <th>Amount (₹)</th>
+                <th class="no-print edit-col" style="display:none;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td contenteditable="false" data-editable>Room Rent (Deluxe Room Charges)</td>
+                <td contenteditable="false" data-editable>4 Days</td>
+                <td contenteditable="false" data-editable class="rate">5000</td>
+                <td class="amount">20000</td>
+                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td contenteditable="false" data-editable>Consultation & Doctor Visit Charges</td>
+                <td contenteditable="false" data-editable>4 Visits</td>
+                <td contenteditable="false" data-editable class="rate">1500</td>
+                <td class="amount">6000</td>
+                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td contenteditable="false" data-editable>Pathology & Laboratory Tests</td>
+                <td contenteditable="false" data-editable>1 Service</td>
+                <td contenteditable="false" data-editable class="rate">4500</td>
+                <td class="amount">4500</td>
+                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td contenteditable="false" data-editable>Pharmacy & Consumables</td>
+                <td contenteditable="false" data-editable>1 Service</td>
+                <td contenteditable="false" data-editable class="rate">8200</td>
+                <td class="amount">8200</td>
+                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td contenteditable="false" data-editable>Operation Theatre & Surgical Charges</td>
+                <td contenteditable="false" data-editable>1</td>
+                <td contenteditable="false" data-editable class="rate">25000</td>
+                <td class="amount">25000</td>
+                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-add no-print" id="add-btn" style="display:none;" onclick="addRow()">+ Add Item</button>
+
+    <!-- Totals Calculation -->
+    <div class="total-section">
+        <table>
+            <tr>
+                <td>Subtotal:</td>
+                <td>₹<span id="subtotal">63,700</span></td>
+            </tr>
+            <tr>
+                <td>GST / Taxes (5%):</td>
+                <td>₹<span id="tax">3,185</span></td>
+            </tr>
+            <tr>
+                <td>Discount / Concession:</td>
+                <td>- ₹<span contenteditable="false" data-editable id="discount">1,885</span></td>
+            </tr>
+            <tr class="grand-total">
+                <td>Total Payable:</td>
+                <td>₹<span id="grand-total">65,000</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Seal and Authorized Signature -->
+    <div class="seal-signature-section">
+        <div class="seal-container">
+            <div class="hospital-seal">
+                <div class="seal-inner">
+                    <span contenteditable="false" data-editable>Lifeline Hospital</span>
+                    <span class="seal-center">Verified & Paid</span>
+                    <span contenteditable="false" data-editable>Mumbai</span>
+                </div>
+            </div>
+        </div>
+        <div class="signature-box">
+            <span class="signature-placeholder" contenteditable="false" data-editable>A. Deshmukh</span>
+            <div class="signature-line" contenteditable="false" data-editable>Authorized Signatory</div>
+        </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="footer">
+        <p contenteditable="false" data-editable>This is a computer-generated invoice and carries an official digital stamp and signature.</p>
+        <p>Thank you for choosing Lifeline Multispecialty Hospital. Get Well Soon!</p>
+    </div>
+</div>
+
+<!-- Interactive Action Bar -->
+<div class="action-bar">
+    <button class="btn btn-edit" id="editBtn" onclick="toggleEditMode()">Enable Edit Mode</button>
+    <button class="btn btn-save" id="saveBtn" onclick="toggleEditMode()">Save Changes</button>
+    <button class="btn btn-print" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<script>
+    let isEditing = false;
+
+    function toggleEditMode() {
+        isEditing = !isEditing;
+        const editableElements = document.querySelectorAll('[data-editable]');
+        const editCols = document.querySelectorAll('.edit-col');
+        const addBtn = document.getElementById('add-btn');
+        const editBtn = document.getElementById('editBtn');
+        const saveBtn = document.getElementById('saveBtn');
+
+        editableElements.forEach(el => {
+            el.setAttribute('contenteditable', isEditing);
+        });
+
+        editCols.forEach(col => {
+            col.style.display = isEditing ? 'table-cell' : 'none';
+        });
+
+        if (isEditing) {
+            addBtn.style.display = 'inline-block';
+            editBtn.style.display = 'none';
+            saveBtn.style.display = 'inline-block';
+        } else {
+            addBtn.style.display = 'none';
+            editBtn.style.display = 'inline-block';
+            saveBtn.style.display = 'none';
+            calculateTotals(); // Recalculate totals upon saving
+        }
+    }
+
+    function addRow() {
+        const table = document.getElementById('items-table').getElementsByTagName('tbody')[0];
+        const rowCount = table.rows.length + 1;
+        const newRow = table.insertRow();
+
+        newRow.innerHTML = `
+            <td>${rowCount}</td>
+            <td contenteditable="true" data-editable>New Service / Item</td>
+            <td contenteditable="true" data-editable>1</td>
+            <td contenteditable="true" data-editable class="rate">0</td>
+            <td class="amount">0</td>
+            <td class="no-print edit-col"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+        `;
+        
+        // Attach auto-calculation event listener for new inputs
+        attachListeners();
+    }
+
+    function deleteRow(btn) {
+        const row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        updateRowNumbers();
+        calculateTotals();
+    }
+
+    function updateRowNumbers() {
+        const rows = document.querySelectorAll('#items-table tbody tr');
+        rows.forEach((row, index) => {
+            row.cells[0].innerText = index + 1;
+        });
+    }
+
+    function calculateTotals() {
+        const rows = document.querySelectorAll('#items-table tbody tr');
+        let subtotal = 0;
+
+        rows.forEach(row => {
+            const qtyText = row.cells[2].innerText.replace(/[^0-9.]/g, '') || '1';
+            const rateText = row.cells[3].innerText.replace(/[^0-9.]/g, '') || '0';
+            const amount = parseFloat(qtyText) * parseFloat(rateText);
+            
+            row.cells[4].innerText = amount.toFixed(0);
+            subtotal += amount;
+        });
+
+        const tax = subtotal * 0.05;
+        const discountText = document.getElementById('discount').innerText.replace(/[^0-9.]/g, '') || '0';
+        const discount = parseFloat(discountText);
+        const grandTotal = subtotal + tax - discount;
+
+        document.getElementById('subtotal').innerText = subtotal.toLocaleString('en-IN');
+        document.getElementById('tax').innerText = tax.toFixed(0).toLocaleString('en-IN');
+        document.getElementById('grand-total').innerText = grandTotal.toFixed(0).toLocaleString('en-IN');
+    }
+
+    function attachListeners() {
+        const rates = document.querySelectorAll('.rate');
+        rates.forEach(rateCell => {
+            rateCell.addEventListener('input', calculateTotals);
+        });
+    }
+
+    // Initialize listeners on load
+    attachListeners();
+</script>
+
+</body>
+</html>
