@@ -1,208 +1,318 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable Hospital Bill Invoice</title>
+    <title>Lilavati Hospital And Research Centre - Detailed Inpatient Bill & Rx Summary</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 15px;
+            background-color: #fff;
+            color: #000;
         }
-        .invoice-box {
-            max-width: 800px;
+        .bill-container {
+            max-width: 850px;
             margin: auto;
-            padding: 30px;
-            border: 1px solid #eee;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            padding: 25px 35px;
+            border: 1px solid #000;
             background-color: #fff;
             position: relative;
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 2px solid #0056b3;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            color: #0056b3;
-            margin: 0;
-            font-size: 24px;
-        }
-        .header div {
-            text-align: right;
-            font-size: 14px;
-            color: #555;
-        }
-        .patient-info {
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #333;
-        }
-        .patient-info table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .patient-info td {
-            padding: 5px;
-        }
-        table.items {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table.items th, table.items td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            font-size: 14px;
-        }
-        table.items th {
-            background-color: #0056b3;
-            color: white;
-        }
-        .total-section {
-            margin-top: 20px;
-            float: right;
-            width: 320px;
-            font-size: 14px;
-        }
-        .total-section table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .total-section td {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-        .total-section .grand-total {
-            font-weight: bold;
-            font-size: 16px;
-            background-color: #f1f1f1;
-        }
         
-        /* Seal and Signature Section */
-        .seal-signature-section {
+        /* Plain Header without Color */
+        .hospital-header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            background: none;
+        }
+        .hospital-header h1 {
+            color: #000;
+            margin: 0;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .hospital-header h2 {
+            margin: 3px 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #000;
+        }
+        .hospital-header p {
+            margin: 2px 0;
+            font-size: 11px;
+            color: #000;
+        }
+
+        .bill-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 8px 0 15px 0;
+            color: #000;
+            background-color: transparent;
+            border: 1px solid #000;
+            padding: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Patient Information Grid */
+        .patient-grid {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        .patient-grid td {
+            border: 1px solid #000;
+            padding: 6px 9px;
+            vertical-align: middle;
+        }
+        .patient-grid td.field-title {
+            font-weight: bold;
+            background-color: transparent;
+            color: #000;
+            width: 18%;
+        }
+
+        /* Additional Medical Info Section */
+        .medical-info-box {
+            border: 1px solid #000;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        .medical-info-box h3 {
+            margin: 0 0 6px 0;
+            font-size: 13px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding-bottom: 3px;
+        }
+        .medical-grid {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .medical-grid td {
+            padding: 4px 6px;
+            vertical-align: top;
+            border: none;
+        }
+        .medical-grid td.label {
+            font-weight: bold;
+            width: 20%;
+        }
+
+        /* Rx Tag Section */
+        .rx-section {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #000;
+            padding: 12px;
+            font-size: 12px;
+        }
+        .rx-header {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+        }
+        .rx-symbol {
+            font-size: 24px;
+            font-weight: bold;
+            font-style: italic;
+            margin-right: 15px;
+            font-family: serif;
+        }
+        .rx-title-text {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        .rx-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+        .rx-table th, .rx-table td {
+            border: 1px solid #000;
+            padding: 5px 8px;
+            font-size: 11px;
+            text-align: left;
+        }
+        .rx-table th {
+            background-color: transparent;
+            font-weight: bold;
+        }
+
+        /* Items / Particulars Table */
+        table.bill-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+        table.bill-table th, table.bill-table td {
+            border: 1px solid #000;
+            padding: 7px 9px;
+            font-size: 12px;
+            text-align: left;
+        }
+        table.bill-table th {
+            background-color: transparent;
+            color: #000;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: bold;
+            border-bottom: 2px solid #000;
+        }
+        table.bill-table td.num, table.bill-table th.num {
+            text-align: right;
+        }
+
+        /* Summary Calculations Block */
+        .summary-box {
+            margin-top: 15px;
+            float: right;
+            width: 350px;
+            font-size: 12px;
+        }
+        .summary-box table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .summary-box td {
+            border: 1px solid #000;
+            padding: 6px 9px;
+        }
+        .summary-box td.val {
+            text-align: right;
+        }
+        .summary-box .net-total {
+            font-weight: bold;
+            background-color: transparent;
+            color: #000;
+            font-size: 13px;
+            border-top: 2px solid #000;
+        }
+
+        /* Official Authentication (Stamp & Sign) */
+        .auth-section {
             clear: both;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             margin-top: 40px;
-            padding-top: 20px;
+            padding-top: 5px;
         }
-        .seal-container {
+        .stamp-box {
             text-align: center;
-            position: relative;
         }
-        .hospital-seal {
-            width: 120px;
-            height: 120px;
-            border: 3px dashed #1b365d;
+        .official-stamp {
+            width: 110px;
+            height: 110px;
+            border: 2px dashed #000;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #1b365d;
+            color: #000;
             font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
-            text-transform: uppercase;
-            transform: rotate(-12deg);
-            opacity: 0.85;
-            padding: 5px;
+            transform: rotate(-10deg);
+            padding: 3px;
             box-sizing: border-box;
-            background-color: rgba(27, 54, 93, 0.03);
+            background-color: transparent;
         }
-        .seal-inner {
-            border: 1px solid #1b365d;
+        .stamp-inner {
+            border: 1px solid #000;
             border-radius: 50%;
-            width: 106px;
-            height: 106px;
+            width: 96px;
+            height: 96px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: 10px;
-            line-height: 1.2;
+            font-size: 9px;
+            line-height: 1.1;
         }
-        .seal-center {
-            font-size: 11px;
-            border-top: 1px solid #1b365d;
-            border-bottom: 1px solid #1b365d;
+        .stamp-mid {
+            font-size: 10px;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
             padding: 2px 0;
             margin: 2px 0;
-            width: 80%;
+            width: 85%;
         }
-        
-        .signature-box {
+
+        .sign-box {
             text-align: right;
             width: 220px;
         }
-        .signature-line {
-            border-top: 1px solid #333;
-            margin-top: 50px;
-            padding-top: 5px;
-            font-size: 14px;
+        .sign-line {
+            border-top: 1px solid #000;
+            margin-top: 40px;
+            padding-top: 4px;
+            font-size: 12px;
             font-weight: bold;
-            color: #333;
+            color: #000;
         }
-        .signature-placeholder {
+        .sign-scribble {
             font-family: "Brush Script MT", cursive, sans-serif;
-            font-size: 24px;
-            color: #0b2545;
-            margin-bottom: -15px;
+            font-size: 22px;
+            color: #000;
+            margin-bottom: -12px;
             display: block;
         }
 
-        .footer {
+        .bill-footer {
             clear: both;
-            margin-top: 40px;
+            margin-top: 35px;
             text-align: center;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
+            font-size: 10px;
+            color: #000;
+            border-top: 1px solid #000;
+            padding-top: 8px;
         }
 
-        /* Controls / Action Bar */
-        .action-bar {
+        /* Action Toolbar */
+        .toolbar {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 20px;
             background: #fff;
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            max-width: 800px;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #000;
+            max-width: 850px;
             margin-left: auto;
             margin-right: auto;
         }
-        .btn {
-            padding: 10px 20px;
-            color: white;
-            border: none;
+        .action-btn {
+            padding: 8px 18px;
+            color: black;
+            border: 1px solid #000;
+            background-color: #fff;
             cursor: pointer;
-            font-size: 15px;
-            border-radius: 4px;
-            margin: 0 5px;
+            font-size: 13px;
+            border-radius: 3px;
+            margin: 0 4px;
             font-weight: bold;
         }
-        .btn-edit { background-color: #ffc107; color: #333; }
-        .btn-edit:hover { background-color: #e0a800; }
-        .btn-save { background-color: #28a745; display: none; }
-        .btn-save:hover { background-color: #218838; }
-        .btn-print { background-color: #0056b3; }
-        .btn-print:hover { background-color: #004085; }
-        .btn-add { background-color: #17a2b8; font-size: 13px; padding: 5px 10px; margin-top: 10px; }
+        .btn-mode:hover, .btn-save-mode:hover, .btn-print-mode:hover { background-color: #eee; }
+        .btn-save-mode { display: none; }
+        .btn-add-row { background-color: #fff; border: 1px solid #000; font-size: 11px; padding: 3px 8px; margin-top: 6px; color: #000; cursor: pointer; }
 
-        /* Editable elements styling */
         [contenteditable="true"] {
-            outline: 1px dashed #0056b3;
-            background-color: rgba(0, 86, 179, 0.03);
+            outline: 1px dotted #000;
+            background-color: #f9f9f9;
         }
 
         @media print {
@@ -210,11 +320,12 @@
                 background-color: #fff;
                 padding: 0;
             }
-            .invoice-box {
-                box-shadow: none;
+            .bill-container {
                 border: none;
+                box-shadow: none;
+                padding: 0;
             }
-            .action-bar, .no-print, .btn-add {
+            .toolbar, .no-print, .btn-add-row {
                 display: none !important;
             }
             [contenteditable="true"] {
@@ -226,243 +337,324 @@
 </head>
 <body>
 
-<div class="invoice-box" id="invoice">
-    <!-- Hospital Header -->
-    <div class="header">
-        <div>
-            <h1 contenteditable="false" data-editable>Lifeline Multispecialty Hospital</h1>
-            <p contenteditable="false" data-editable>123, Linking Road, Bandra West<br>Mumbai, Maharashtra - 400050<br>Phone: +91 22 9876 5432</p>
-        </div>
-        <div>
-            <strong>Invoice #:</strong> <span contenteditable="false" data-editable>MUM-HB-2026-0901</span><br>
-            <strong>Date:</strong> <span contenteditable="false" data-editable>September 11, 2026</span><br>
-            <strong>IPD / UHID No:</strong> <span contenteditable="false" data-editable>UHID-884920</span>
-        </div>
+<div class="bill-container" id="printable-bill">
+    <!-- Plain Header without Color -->
+    <div class="hospital-header">
+        <h1 contenteditable="false" data-editable>LILAVATI HOSPITAL AND RESEARCH CENTRE</h1>
+        <h2 contenteditable="false" data-editable>(A Unit of Lilavati Kirtilal Mehta Medical Trust)</h2>
+        <p contenteditable="false" data-editable>A-791, Bandra Reclamation, Bandra (West), Mumbai - 400 050. Tel.: 26751000 / 26568000</p>
     </div>
 
-    <!-- Patient Details -->
-    <div class="patient-info">
-        <table>
+    <div class="bill-title">COMPREHENSIVE INPATIENT STATEMENT & MEDICAL SUMMARY</div>
+
+    <!-- Patient Details Table -->
+    <table class="patient-grid">
+        <tr>
+            <td class="field-title">UHID No:</td>
+            <td><span contenteditable="false" data-editable>LIL-802914</span></td>
+            <td class="field-title">Bill No:</td>
+            <td><span contenteditable="false" data-editable>IP-2026-4409</span></td>
+        </tr>
+        <tr>
+            <td class="field-title">Patient Name:</td>
+            <td><span contenteditable="false" data-editable>Mrs. Sunita Rameshwar Gupta</span></td>
+            <td class="field-title">Bill Date:</td>
+            <td><span contenteditable="false" data-editable>11/09/2026</span></td>
+        </tr>
+        <tr>
+            <td class="field-title">Age / Gender:</td>
+            <td><span contenteditable="false" data-editable>48 Years / Female</span></td>
+            <td class="field-title">Admission Date:</td>
+            <td><span contenteditable="false" data-editable>05/09/2026 (09:30 AM)</span></td>
+        </tr>
+        <tr>
+            <td class="field-title">Consultant:</td>
+            <td><span contenteditable="false" data-editable>Dr. V. P. Shah (DM Cardiology)</span></td>
+            <td class="field-title">Discharge Date:</td>
+            <td><span contenteditable="false" data-editable>11/09/2026 (04:00 PM)</span></td>
+        </tr>
+        <tr>
+            <td class="field-title">Ward / Bed:</td>
+            <td><span contenteditable="false" data-editable>Semi-Private (SP-204)</span></td>
+            <td class="field-title">Billing Type:</td>
+            <td><span contenteditable="false" data-editable>Cash / Private Self-Pay</span></td>
+        </tr>
+    </table>
+
+    <!-- Additional Clinical Details Box -->
+    <div class="medical-info-box">
+        <h3 contenteditable="false" data-editable>Clinical Summary & Diagnosis Details</h3>
+        <table class="medical-grid">
             <tr>
-                <td><strong>Patient Name:</strong> <span contenteditable="false" data-editable>Rajesh Sharma</span></td>
-                <td><strong>Age/Gender:</strong> <span contenteditable="false" data-editable>42 / Male</span></td>
+                <td class="label">Primary Diagnosis:</td>
+                <td><span contenteditable="false" data-editable>Acute Coronary Syndrome (Unstable Angina) / Hypertensive Urgency</span></td>
             </tr>
             <tr>
-                <td><strong>Doctor Name:</strong> <span contenteditable="false" data-editable>Dr. Amit Deshmukh (MS, Ortho)</span></td>
-                <td><strong>Admit Date:</strong> <span contenteditable="false" data-editable>September 07, 2026</span></td>
+                <td class="label">Vitals at Discharge:</td>
+                <td><span contenteditable="false" data-editable>BP: 130/80 mmHg | Pulse: 78 bpm | SpO2: 98% on room air | Temp: Afebrile</span></td>
             </tr>
             <tr>
-                <td><strong>Ward/Room:</strong> <span contenteditable="false" data-editable>Deluxe Room (DLX-304)</span></td>
-                <td><strong>Discharge Date:</strong> <span contenteditable="false" data-editable>September 11, 2026</span></td>
+                <td class="label">Procedures Done:</td>
+                <td><span contenteditable="false" data-editable>Diagnostic Coronary Angiography (06/09/2026), 2D Echocardiography, Continuous ECG Telemetry</span></td>
+            </tr>
+            <tr>
+                <td class="label">Allergies / Notes:</td>
+                <td><span contenteditable="false" data-editable>No known drug allergies (NKDA). Advised strict salt restriction and follow-up in 7 days.</span></td>
             </tr>
         </table>
     </div>
 
-    <!-- Bill Items Table -->
-    <table class="items" id="items-table">
+    <!-- Rx Tag / Prescription Summary Section -->
+    <div class="rx-section">
+        <div class="rx-header">
+            <div class="rx-symbol">℞</div>
+            <div class="rx-title-text" contenteditable="false" data-editable>Discharge Prescription & Medication Summary</div>
+        </div>
+        <table class="rx-table">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">#</th>
+                    <th style="width: 40%;">Medicine Name & Formulation</th>
+                    <th style="width: 20%;">Dosage / Instructions</th>
+                    <th style="width: 15%;">Frequency</th>
+                    <th style="width: 20%;">Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td contenteditable="false" data-editable>Tab. Disprin (Aspirin) 75 mg</td>
+                    <td contenteditable="false" data-editable>After food</td>
+                    <td contenteditable="false" data-editable>Once daily</td>
+                    <td contenteditable="false" data-editable>Continue indefinitely</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td contenteditable="false" data-editable>Tab. Clopivas (Clopidogrel) 75 mg</td>
+                    <td contenteditable="false" data-editable>After food</td>
+                    <td contenteditable="false" data-editable>Once daily</td>
+                    <td contenteditable="false" data-editable>3 Months</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td contenteditable="false" data-editable>Tab. Atorva (Atorvastatin) 40 mg</td>
+                    <td contenteditable="false" data-editable>At bedtime</td>
+                    <td contenteditable="false" data-editable>Once daily</td>
+                    <td contenteditable="false" data-editable>Continue</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td contenteditable="false" data-editable>Tab. Metolar XR (Metoprolol) 25 mg</td>
+                    <td contenteditable="false" data-editable>After food</td>
+                    <td contenteditable="false" data-editable>Twice daily</td>
+                    <td contenteditable="false" data-editable>30 Days</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Services & Charges Table -->
+    <table class="bill-table" id="line-items">
         <thead>
             <tr>
-                <th>No.</th>
-                <th>Particulars / Services</th>
-                <th>Qty / Days</th>
-                <th>Rate (₹)</th>
-                <th>Amount (₹)</th>
-                <th class="no-print edit-col" style="display:none;">Action</th>
+                <th style="width: 5%;">Sr</th>
+                <th style="width: 48%;">Service / Particular Description</th>
+                <th style="width: 10%;">Days / Qty</th>
+                <th class="num" style="width: 15%;">Rate (Rs.)</th>
+                <th class="num" style="width: 17%;">Amount (Rs.)</th>
+                <th class="no-print col-action" style="display:none; width: 5%;">Del</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>1</td>
-                <td contenteditable="false" data-editable>Room Rent (Deluxe Room Charges)</td>
-                <td contenteditable="false" data-editable>4 Days</td>
-                <td contenteditable="false" data-editable class="rate">5000</td>
-                <td class="amount">20000</td>
-                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+                <td contenteditable="false" data-editable>Room Rent & Diet Charges (Semi-Private)</td>
+                <td contenteditable="false" data-editable>6 Days</td>
+                <td contenteditable="false" data-editable class="rate">4000</td>
+                <td class="amount num">24000</td>
+                <td class="no-print col-action" style="display:none;"><button onclick="removeRow(this)" style="background:#fff; color:#000; border:1px solid #000; padding:1px 5px; cursor:pointer;">X</button></td>
             </tr>
             <tr>
                 <td>2</td>
-                <td contenteditable="false" data-editable>Consultation & Doctor Visit Charges</td>
-                <td contenteditable="false" data-editable>4 Visits</td>
-                <td contenteditable="false" data-editable class="rate">1500</td>
-                <td class="amount">6000</td>
-                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+                <td contenteditable="false" data-editable>ICU & Cardiac Monitoring Charges</td>
+                <td contenteditable="false" data-editable>2 Days</td>
+                <td contenteditable="false" data-editable class="rate">8500</td>
+                <td class="amount num">17000</td>
+                <td class="no-print col-action" style="display:none;"><button onclick="removeRow(this)" style="background:#fff; color:#000; border:1px solid #000; padding:1px 5px; cursor:pointer;">X</button></td>
             </tr>
             <tr>
                 <td>3</td>
-                <td contenteditable="false" data-editable>Pathology & Laboratory Tests</td>
-                <td contenteditable="false" data-editable>1 Service</td>
-                <td contenteditable="false" data-editable class="rate">4500</td>
-                <td class="amount">4500</td>
-                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+                <td contenteditable="false" data-editable>Consultation & Professional Visit Fees</td>
+                <td contenteditable="false" data-editable>6 Visits</td>
+                <td contenteditable="false" data-editable class="rate">1800</td>
+                <td class="amount num">10800</td>
+                <td class="no-print col-action" style="display:none;"><button onclick="removeRow(this)" style="background:#fff; color:#000; border:1px solid #000; padding:1px 5px; cursor:pointer;">X</button></td>
             </tr>
             <tr>
                 <td>4</td>
-                <td contenteditable="false" data-editable>Pharmacy & Consumables</td>
-                <td contenteditable="false" data-editable>1 Service</td>
-                <td contenteditable="false" data-editable class="rate">8200</td>
-                <td class="amount">8200</td>
-                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+                <td contenteditable="false" data-editable>Pathology, Lab & Diagnostics Investigations</td>
+                <td contenteditable="false" data-editable>1 Set</td>
+                <td contenteditable="false" data-editable class="rate">9500</td>
+                <td class="amount num">9500</td>
+                <td class="no-print col-action" style="display:none;"><button onclick="removeRow(this)" style="background:#fff; color:#000; border:1px solid #000; padding:1px 5px; cursor:pointer;">X</button></td>
             </tr>
             <tr>
                 <td>5</td>
-                <td contenteditable="false" data-editable>Operation Theatre & Surgical Charges</td>
-                <td contenteditable="false" data-editable>1</td>
-                <td contenteditable="false" data-editable class="rate">25000</td>
-                <td class="amount">25000</td>
-                <td class="no-print edit-col" style="display:none;"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+                <td contenteditable="false" data-editable>Pharmacy, Medicines & Surgical Consumables</td>
+                <td contenteditable="false" data-editable>1 Lump</td>
+                <td contenteditable="false" data-editable class="rate">18700</td>
+                <td class="amount num">18700</td>
+                <td class="no-print col-action" style="display:none;"><button onclick="removeRow(this)" style="background:#fff; color:#000; border:1px solid #000; padding:1px 5px; cursor:pointer;">X</button></td>
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-add no-print" id="add-btn" style="display:none;" onclick="addRow()">+ Add Item</button>
+    <button class="action-btn btn-add-row no-print" id="add-row-btn" style="display:none;" onclick="insertRow()">+ Insert Item</button>
 
-    <!-- Totals Calculation -->
-    <div class="total-section">
+    <!-- Calculation Block -->
+    <div class="summary-box">
         <table>
             <tr>
-                <td>Subtotal:</td>
-                <td>₹<span id="subtotal">63,700</span></td>
+                <td>Gross Total Bill:</td>
+                <td class="val">₹ <span id="subtotal">79,000</span></td>
             </tr>
             <tr>
-                <td>GST / Taxes (5%):</td>
-                <td>₹<span id="tax">3,185</span></td>
+                <td>Healthcare Service Tax (GST 5%):</td>
+                <td class="val">₹ <span id="tax">3,950</span></td>
             </tr>
             <tr>
-                <td>Discount / Concession:</td>
-                <td>- ₹<span contenteditable="false" data-editable id="discount">1,885</span></td>
+                <td>Discount / Institutional Rebate:</td>
+                <td class="val">- ₹ <span contenteditable="false" data-editable id="discount">950</span></td>
             </tr>
-            <tr class="grand-total">
-                <td>Total Payable:</td>
-                <td>₹<span id="grand-total">65,000</span></td>
+            <tr class="net-total">
+                <td>Net Payable Amount:</td>
+                <td class="val">₹ <span id="grand-total">82,000</span></td>
             </tr>
         </table>
     </div>
 
-    <!-- Seal and Authorized Signature -->
-    <div class="seal-signature-section">
-        <div class="seal-container">
-            <div class="hospital-seal">
-                <div class="seal-inner">
-                    <span contenteditable="false" data-editable>Lifeline Hospital</span>
-                    <span class="seal-center">Verified & Paid</span>
-                    <span contenteditable="false" data-editable>Mumbai</span>
+    <!-- Official Rubber Stamp & Signature -->
+    <div class="auth-section">
+        <div class="stamp-box">
+            <div class="official-stamp">
+                <div class="stamp-inner">
+                    <span contenteditable="false" data-editable>Lilavati Hospital</span>
+                    <span class="stamp-mid">PAID / CLEARED</span>
+                    <span contenteditable="false" data-editable>Mumbai - 50</span>
                 </div>
             </div>
         </div>
-        <div class="signature-box">
-            <span class="signature-placeholder" contenteditable="false" data-editable>A. Deshmukh</span>
-            <div class="signature-line" contenteditable="false" data-editable>Authorized Signatory</div>
+        <div class="sign-box">
+            <span class="sign-scribble" contenteditable="false" data-editable>V. P. Shah</span>
+            <div class="sign-line" contenteditable="false" data-editable>Authorized Signatory & Consultant</div>
         </div>
     </div>
 
-    <!-- Footer Note -->
-    <div class="footer">
-        <p contenteditable="false" data-editable>This is a computer-generated invoice and carries an official digital stamp and signature.</p>
-        <p>Thank you for choosing Lifeline Multispecialty Hospital. Get Well Soon!</p>
+    <!-- Footer Notice -->
+    <div class="bill-footer">
+        <p contenteditable="false" data-editable>This is an official computer-printed comprehensive inpatient bill and prescription summary generated from Lilavati Hospital Information System.</p>
+        <p>Thank you for choosing Lilavati Hospital And Research Centre. Wishing you good health always.</p>
     </div>
 </div>
 
-<!-- Interactive Action Bar -->
-<div class="action-bar">
-    <button class="btn btn-edit" id="editBtn" onclick="toggleEditMode()">Enable Edit Mode</button>
-    <button class="btn btn-save" id="saveBtn" onclick="toggleEditMode()">Save Changes</button>
-    <button class="btn btn-print" onclick="window.print()">Print / Save as PDF</button>
+<!-- Interactive Panel -->
+<div class="toolbar">
+    <button class="action-btn btn-mode" id="toggle-btn" onclick="switchEditState()">Turn Edit Mode ON</button>
+    <button class="action-btn btn-save-mode" id="save-btn" onclick="switchEditState()">Save & Lock Bill</button>
+    <button class="action-btn btn-print-mode" onclick="window.print()">Print / Export PDF</button>
 </div>
 
 <script>
-    let isEditing = false;
+    let editModeActive = false;
 
-    function toggleEditMode() {
-        isEditing = !isEditing;
+    function switchEditState() {
+        editModeActive = !editModeActive;
         const editableElements = document.querySelectorAll('[data-editable]');
-        const editCols = document.querySelectorAll('.edit-col');
-        const addBtn = document.getElementById('add-btn');
-        const editBtn = document.getElementById('editBtn');
-        const saveBtn = document.getElementById('saveBtn');
+        const actionColumns = document.querySelectorAll('.col-action');
+        const addBtn = document.getElementById('add-row-btn');
+        const toggleBtn = document.getElementById('toggle-btn');
+        const saveBtn = document.getElementById('save-btn');
 
-        editableElements.forEach(el => {
-            el.setAttribute('contenteditable', isEditing);
+        editableElements.forEach(item => {
+            item.setAttribute('contenteditable', editModeActive);
         });
 
-        editCols.forEach(col => {
-            col.style.display = isEditing ? 'table-cell' : 'none';
+        actionColumns.forEach(col => {
+            col.style.display = editModeActive ? 'table-cell' : 'none';
         });
 
-        if (isEditing) {
+        if (editModeActive) {
             addBtn.style.display = 'inline-block';
-            editBtn.style.display = 'none';
+            toggleBtn.style.display = 'none';
             saveBtn.style.display = 'inline-block';
         } else {
             addBtn.style.display = 'none';
-            editBtn.style.display = 'inline-block';
+            toggleBtn.style.display = 'inline-block';
             saveBtn.style.display = 'none';
-            calculateTotals(); // Recalculate totals upon saving
+            computeBillTotals();
         }
     }
 
-    function addRow() {
-        const table = document.getElementById('items-table').getElementsByTagName('tbody')[0];
-        const rowCount = table.rows.length + 1;
-        const newRow = table.insertRow();
+    function insertRow() {
+        const tableBody = document.getElementById('line-items').getElementsByTagName('tbody')[0];
+        const rowNum = tableBody.rows.length + 1;
+        const newRow = tableBody.insertRow();
 
         newRow.innerHTML = `
-            <td>${rowCount}</td>
-            <td contenteditable="true" data-editable>New Service / Item</td>
+            <td>${rowNum}</td>
+            <td contenteditable="true" data-editable>Enter service particulars here</td>
             <td contenteditable="true" data-editable>1</td>
             <td contenteditable="true" data-editable class="rate">0</td>
-            <td class="amount">0</td>
-            <td class="no-print edit-col"><button onclick="deleteRow(this)" style="background:red; color:white; border:none; padding:3px 8px; cursor:pointer;">X</button></td>
+            <td class="amount num">0</td>
+            <td class="no-print col-action"><button onclick="removeRow(this)" style="background:#fff; color:#000; border:1px solid #000; padding:1px 5px; cursor:pointer;">X</button></td>
         `;
-        
-        // Attach auto-calculation event listener for new inputs
-        attachListeners();
+        bindRateInputs();
     }
 
-    function deleteRow(btn) {
-        const row = btn.parentNode.parentNode;
-        row.parentNode.removeChild(row);
-        updateRowNumbers();
-        calculateTotals();
+    function removeRow(btnElement) {
+        const targetRow = btnElement.parentNode.parentNode;
+        targetRow.parentNode.removeChild(targetRow);
+        reindexRows();
+        computeBillTotals();
     }
 
-    function updateRowNumbers() {
-        const rows = document.querySelectorAll('#items-table tbody tr');
-        rows.forEach((row, index) => {
-            row.cells[0].innerText = index + 1;
+    function reindexRows() {
+        const rows = document.querySelectorAll('#line-items tbody tr');
+        rows.forEach((row, idx) => {
+            row.cells[0].innerText = idx + 1;
         });
     }
 
-    function calculateTotals() {
-        const rows = document.querySelectorAll('#items-table tbody tr');
-        let subtotal = 0;
+    function computeBillTotals() {
+        const rows = document.querySelectorAll('#line-items tbody tr');
+        let subtotalAmt = 0;
 
         rows.forEach(row => {
-            const qtyText = row.cells[2].innerText.replace(/[^0-9.]/g, '') || '1';
-            const rateText = row.cells[3].innerText.replace(/[^0-9.]/g, '') || '0';
-            const amount = parseFloat(qtyText) * parseFloat(rateText);
+            const quantityVal = row.cells[2].innerText.replace(/[^0-9.]/g, '') || '1';
+            const rateVal = row.cells[3].innerText.replace(/[^0-9.]/g, '') || '0';
+            const totalAmt = parseFloat(quantityVal) * parseFloat(rateVal);
             
-            row.cells[4].innerText = amount.toFixed(0);
-            subtotal += amount;
+            row.cells[4].innerText = totalAmt.toFixed(0);
+            subtotalAmt += totalAmt;
         });
 
-        const tax = subtotal * 0.05;
-        const discountText = document.getElementById('discount').innerText.replace(/[^0-9.]/g, '') || '0';
-        const discount = parseFloat(discountText);
-        const grandTotal = subtotal + tax - discount;
+        const taxAmt = subtotalAmt * 0.05;
+        const discountValStr = document.getElementById('discount').innerText.replace(/[^0-9.]/g, '') || '0';
+        const discountAmt = parseFloat(discountValStr);
+        const finalPayable = subtotalAmt + taxAmt - discountAmt;
 
-        document.getElementById('subtotal').innerText = subtotal.toLocaleString('en-IN');
-        document.getElementById('tax').innerText = tax.toFixed(0).toLocaleString('en-IN');
-        document.getElementById('grand-total').innerText = grandTotal.toFixed(0).toLocaleString('en-IN');
+        document.getElementById('subtotal').innerText = subtotalAmt.toLocaleString('en-IN');
+        document.getElementById('tax').innerText = taxAmt.toFixed(0).toLocaleString('en-IN');
+        document.getElementById('grand-total').innerText = finalPayable.toFixed(0).toLocaleString('en-IN');
     }
 
-    function attachListeners() {
-        const rates = document.querySelectorAll('.rate');
-        rates.forEach(rateCell => {
-            rateCell.addEventListener('input', calculateTotals);
+    function bindRateInputs() {
+        const rateCells = document.querySelectorAll('.rate');
+        rateCells.forEach(cell => {
+            cell.addEventListener('input', computeBillTotals);
         });
     }
 
-    // Initialize listeners on load
-    attachListeners();
+    bindRateInputs();
 </script>
 
 </body>
