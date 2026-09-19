@@ -383,6 +383,52 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
 .person-chip{flex:1;min-width:110px;background:#FFFBEB;border:1.5px solid var(--border);border-radius:12px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .person-chip label{font-size:10.5px;font-weight:800;color:#57534E;white-space:nowrap}
 .person-chip select{border:none;background:transparent;font-weight:700;font-size:13px;outline:none;flex:1;min-width:0}
+.faq-item.open .faq-ans{display:block!important}
+.faq-item.open span{transform:rotate(45deg)}
+.review-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,23,42,0.08)!important}
+/* DESKTOP / LAPTOP / TABLET — systematic perfect adjust, no overflow */
+html,body{max-width:100%;overflow-x:hidden}
+.container{max-width:1280px}
+img,video{max-width:100%;height:auto}
+@media(min-width:1024px){
+  .container{padding:0 24px}
+  .hero{padding:86px 0 44px!important; min-height:76vh}
+  .hero-content{max-width:740px}
+  .hero h1{font-size:clamp(36px,3.8vw,52px)}
+  .section-head{max-width:760px;margin-bottom:36px}
+  .rooms-grid{grid-template-columns:repeat(3,1fr);gap:22px}
+  .gallery-wrap{padding:14px}
+  .gallery-grid{grid-template-columns:repeat(4,1fr);gap:12px}
+  .fac-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+  .contact-grid{grid-template-columns:1.05fr 1.2fr;gap:26px}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr}
+}
+@media(min-width:1400px){
+  .container{max-width:1320px}
+  .hero h1{font-size:52px}
+  .rooms-grid{gap:24px}
+  .fac-grid{gap:18px}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .container{padding:0 20px}
+  .rooms-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .gallery-grid{grid-template-columns:repeat(4,1fr)}
+  .fac-grid{grid-template-columns:repeat(3,1fr)}
+  .contact-grid{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:767px){
+  .container{padding:0 14px}
+  .rooms-grid{grid-template-columns:1fr;gap:16px}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .fac-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .contact-grid{grid-template-columns:1fr;gap:16px}
+  .footer-grid{grid-template-columns:1fr;gap:18px}
+  .hero{padding:64px 0 24px!important; min-height:auto}
+  .hero h1{font-size:28px; line-height:1.1}
+  .hero p{font-size:13px}
+  .hero-stats{gap:8px}
+  .stat-pill{min-width:100px; padding:8px 10px}
+}
 </style>
 </head>
 <body>
@@ -406,7 +452,10 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
           <a href="#home" onclick="toggleNavDots()" data-i18n="dots_home">🏠 Home</a>
           <a href="#rooms" onclick="toggleNavDots()" data-i18n="dots_rooms">🛏 Rooms</a>
           <a href="#gallery" onclick="toggleNavDots()" data-i18n="dots_gallery">📸 Gallery</a>
+          <a href="#reviews" onclick="toggleNavDots()" data-i18n="dots_reviews">⭐ Reviews</a>
+          <a href="#dining" onclick="toggleNavDots()" data-i18n="dots_dining">🍽 Dining</a>
           <a href="#calendar" onclick="document.getElementById('calendar').scrollIntoView({behavior:'smooth'}); toggleNavDots(); return false;" data-i18n="dots_calendar">📅 Calendar</a>
+          <a href="#location" onclick="toggleNavDots()" data-i18n="dots_location">📍 Location / FAQ</a>
           <a href="#contact" onclick="toggleNavDots()" data-i18n="dots_contact">📞 Contact / Booking</a>
           <a href="#" onclick="openPolicy(); toggleNavDots(); return false;" data-i18n="dots_policy">📜 Policy — नियम व शर्तें</a>
           <div class="dots-sep"></div>
@@ -512,6 +561,58 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
   </div>
 </section>
 
+<!-- REVIEWS — Hotel Related Interaction -->
+<section id="reviews" style="background:#FFFBEB">
+  <div class="container">
+    <div class="section-head"><span data-i18n="reviews_tag">⭐ GUEST REVIEWS — Real Stay</span><h2 data-i18n="reviews_title"><em>मेहमानों</em> ने क्या कहा</h2><p data-i18n="reviews_desc">4.8/5 — 1200+ Happy Guests • Google & Booking.com</p></div>
+    <div class="reviews-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div class="review-card" style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+        <div style="color:#F59E0B;font-size:14px">★★★★★ <span style="color:#334155;font-weight:700;font-size:12px">5.0</span></div>
+        <p style="font-size:13px;color:#334155;margin:8px 0">“Deluxe Room बहुत साफ, AC cooling perfect, staff polite. Bhopal में best stay!”</p>
+        <div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#C5A254,#FDE68A);display:grid;place-items:center;font-weight:800">R</div><div><b style="font-size:13px">Rahul Verma</b><div style="font-size:11px;color:#64748B">Deluxe • 2 Nights • Dec 2025</div></div></div>
+        <button onclick="showPopup({type:'info',title:'Review Helpful?',message:'धन्यवाद! आपका feedback Hotel 4G को बेहतर बनाता है।'})" style="margin-top:10px;padding:6px 12px;border-radius:20px;border:1.5px solid #E2E8F0;background:#F8FAFC;font-size:11px;font-weight:700;cursor:pointer">👍 Helpful</button>
+      </div>
+      <div class="review-card" style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+        <div style="color:#F59E0B;font-size:14px">★★★★★ <span style="color:#334155;font-weight:700;font-size:12px">4.9</span></div>
+        <p style="font-size:13px;color:#334155;margin:8px 0">“Family Suite spacious! Kids loved it. Pure veg food was delicious. Pickup service on time.”</p>
+        <div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;border-radius:50%;background:#0F172A;color:#fff;display:grid;place-items:center;font-weight:800">S</div><div><b style="font-size:13px">Sunita Patel</b><div style="font-size:11px;color:#64748B">Family Suite • Train pickup • Jan 2026</div></div></div>
+        <button onclick="showPopup({type:'info',title:'Thanks!',message:'Family Suite आपका इंतजार कर रहा है!'})" style="margin-top:10px;padding:6px 12px;border-radius:20px;border:1.5px solid #E2E8F0;background:#F8FAFC;font-size:11px;font-weight:700;cursor:pointer">👍 Helpful</button>
+      </div>
+      <div class="review-card" style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+        <div style="color:#F59E0B;font-size:14px">★★★★☆ <span style="color:#334155;font-weight:700;font-size:12px">4.7</span></div>
+        <p style="font-size:13px;color:#334155;margin:8px 0">“Super Deluxe value for money. Calendar से booking easy, UPI payment instant. Will visit again.”</p>
+        <div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;border-radius:50%;background:#06D6A0;color:#fff;display:grid;place-items:center;font-weight:800">A</div><div><b style="font-size:13px">Aman Singh</b><div style="font-size:11px;color:#64748B">Super Deluxe • Business trip</div></div></div>
+        <button onclick="showPopup({type:'info',title:'Thanks Aman!',message:'Business guests के लिए 24x7 service available!'})" style="margin-top:10px;padding:6px 12px;border-radius:20px;border:1.5px solid #E2E8F0;background:#F8FAFC;font-size:11px;font-weight:700;cursor:pointer">👍 Helpful</button>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})" class="btn-wh" style="border-color:#C5A254;color:#92400E" data-i18n="reviews_btn_all">सभी 1200+ Reviews देखें</button>
+      <button onclick="showPopup({type:'info',title:'Review लिखें ✍️',message:'Checkout के बाद आप भी review दे सकते हैं — WhatsApp पर link आएगा!'})" class="btn-gold" data-i18n="reviews_btn_write">✍️ Review लिखें</button>
+    </div>
+  </div>
+</section>
+
+<!-- DINING & SERVICES — Hotel Interaction -->
+<section id="dining" style="background:#F8FAFC">
+  <div class="container">
+    <div class="section-head"><span data-i18n="dining_tag">🍽️ PURE VEG DINING & SERVICES</span><h2 data-i18n="dining_title">खाना + <em>सर्विस</em> — एक Click में</h2><p data-i18n="dining_desc">Restaurant, Room Service, Laundry, Pickup — सब Request यहीं से</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Restaurant">
+        <div style="padding:14px"><h4 data-i18n="dining_rest_title">Pure Veg Restaurant</h4><p style="font-size:11px;color:#64748B" data-i18n="dining_rest_desc">Breakfast 7-10 AM, Lunch/Dinner A-la-carte</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button onclick="showPopup({type:'info',title:'🍽️ Menu',message:'Poha-Jalebi, Thali, Paneer, Dal-Chawal, Jain option — Room में भी serve!'})" class="icon-btn" data-i18n="dining_menu">Menu देखें</button><button onclick="showPopup({type:'info',title:'Table Book 🍽️',message:'Table reserve के लिए +91 98765 43210 पर Call करें — हम confirm करेंगे!'})" class="btn-gold" style="padding:6px 12px;font-size:11px" data-i18n="dining_book">Table बुक करें</button></div></div>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Room Service">
+        <div style="padding:14px"><h4 data-i18n="dining_room_title">24x7 Room Service</h4><p style="font-size:11px;color:#64748B" data-i18n="dining_room_desc">Tea, Water, Towel, Extra Bed — Instant</p><div style="display:flex;gap:6px;margin-top:8px"><button onclick="showPopup({type:'info',title:'🛎️ Request Sent',message:'Room Service team को notify किया — 5 min में आएंगे!'})" class="btn-gold" style="padding:6px 12px;font-size:11px;flex:1" data-i18n="dining_request">Request भेजें</button><button onclick="showPopup({type:'info',title:'Laundry',message:'Same-day laundry — 9 AM तक दें, 6 PM तक ready!'})" class="icon-btn" data-i18n="dining_laundry">Laundry</button></div></div>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Pickup">
+        <div style="padding:14px"><h4 data-i18n="dining_pickup_title">Station/Airport Pickup</h4><p style="font-size:11px;color:#64748B" data-i18n="dining_pickup_desc">Bhopal Jn, Habibganj, Airport — On Time</p><div style="display:flex;gap:6px;margin-top:8px"><button onclick="openTravel('Deluxe Room',1999)" class="btn-gold" style="padding:6px 12px;font-size:11px;flex:1" data-i18n="dining_pickup_btn">Pickup के साथ Reserve</button><button onclick="showPopup({type:'info',title:'Pickup Charges',message:'Auto ₹199, Sedan ₹399, Innova ₹699 — Reserve popup में Pickup Yes चुनें!'})" class="icon-btn">Charges</button></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT — systematic person/children -->
 <section id="contact" style="background:#FFF7ED">
   <div class="container">
@@ -521,7 +622,7 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23504c4c51504b5a424e554a504b54424842514e42101463444e424a4f0d404c4e">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="285b47475a5b405149455e415b405f4943495a45491b1f684f45494144064b4745">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">hotel4g@upi</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -549,6 +650,45 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
   </div>
 </section>
 
+<!-- LOCATION + FAQ — Hotel Interaction -->
+<section id="location" style="background:#F1F5F9">
+  <div class="container">
+    <div class="section-head"><span data-i18n="location_tag">📍 LOCATION & FAQ</span><h2 data-i18n="location_title"><em>कहाँ</em> हैं हम — सब सवालों के जवाब</h2></div>
+    <div style="display:grid;grid-template-columns:1fr;gap:16px">
+      <div style="display:grid;grid-template-columns:1fr;gap:16px">
+        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.2!2d77.4126!3d23.2599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDE1JzM1LjYiTiA3N8KwMjQnNDUuNCJF!5e0!3m2!1sen!2sin!4v1" width="100%" height="220" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div style="padding:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+            <div><b style="font-size:13px">Hotel 4G, MP Nagar Zone-1, Bhopal</b><div style="font-size:11px;color:#64748B">DB Mall से 200m • Station से 5 km • Airport से 12 km</div></div>
+            <a href="https://www.google.com/maps/search/Hotel+4G+Bhopal" target="_blank" class="btn-gold" style="padding:8px 14px;font-size:11px">📍 Direction लें</a>
+          </div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
+        <div style="padding:14px;border-bottom:1px solid #F1F5F9"><b data-i18n="faq_title">❓ Hotel FAQ — पूछे जाने वाले सवाल</b></div>
+        <div class="faq-list">
+          <div class="faq-item" onclick="this.classList.toggle('open')" style="border-bottom:1px solid #F1F5F9;padding:12px;cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b style="font-size:13px">Check-in के लिए क्या ID चाहिए?</b><span style="font-weight:800">+</span></div>
+            <div class="faq-ans" style="display:none;font-size:11px;color:#64748B;margin-top:6px">Aadhaar / Voter / Passport — Original, 18+ के लिए। C-form foreign guests के लिए।</div>
+          </div>
+          <div class="faq-item" onclick="this.classList.toggle('open')" style="border-bottom:1px solid #F1F5F9;padding:12px;cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b style="font-size:13px">Cancellation policy क्या है?</b><span style="font-weight:800">+</span></div>
+            <div class="faq-ans" style="display:none;font-size:11px;color:#64748B;margin-top:6px">24h पहले free, बाद में 1 night charge. Reserve popup से dates पक्की करें, calendar पर live check करें।</div>
+          </div>
+          <div class="faq-item" onclick="this.classList.toggle('open')" style="border-bottom:1px solid #F1F5F9;padding:12px;cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b style="font-size:13px">Pure Veg के अलावा Jain मिलेगा?</b><span style="font-weight:800">+</span></div>
+            <div class="faq-ans" style="display:none;font-size:11px;color:#64748B;margin-top:6px">हाँ — Jain, No onion-garlic available. Travel note में लिखें “Jain food” — kitchen ready रखेगा।</div>
+          </div>
+          <div class="faq-item" onclick="this.classList.toggle('open')" style="padding:12px;cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b style="font-size:13px">Payment कैसे करें? Coupon?</b><span style="font-weight:800">+</span></div>
+            <div class="faq-ans" style="display:none;font-size:11px;color:#64748B;margin-top:6px">Reserve → Travel info → Pay (UPI QR / Razorpay). Coupon <b>HOTEL200</b> से ₹200 off. UTR डालकर Paid mark होगा।</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -557,7 +697,7 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfbca0a0bdbca7b6aea2b9a6bca7b8aea4aebda2aefcf88fa8a2aea6a3e1aca0a2">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="10637f7f62637869717d6679637867717b71627d71232750777d71797c3e737f7d">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -664,7 +804,7 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95e6fafae7e6fdecf4f8e3fce6fde2f4fef4e7f8f4a6a2d5f2f8f4fcf9bbf6faf8">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="53203c3c21203b2a323e253a203b24323832213e32606413343e323a3f7d303c3e">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -698,10 +838,10 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
       <pre style="background:#0F172A;color:#E2E8F0;padding:12px;border-radius:12px;font-size:10.5px;overflow:auto;margin-top:12px;white-space:pre-wrap;word-break:break-word">rules_version='2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="96e5f9f9e4e5feeff7fbe0ffe5fee1f7fdf7e4fbf7a5a1d6f1fbf7fffab8f5f9fb">[email&#160;protected]</a>";}
-    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="20534f4f52534859414d5649534857414b41524d41131760474d41494c0e434f4d">[email&#160;protected]</a>";}
-    match /gallery/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e2918d8d90918a9b838f948b918a95838983908f83d1d5a2858f838b8ecc818d8f">[email&#160;protected]</a>";}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c8bba7a7babba0b1a9a5bea1bba0bfa9a3a9baa5a9fbff88afa5a9a1a4e6aba7a5">[email&#160;protected]</a>";}
+    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="51223e3e23223928303c2738223926303a30233c30626611363c30383d7f323e3c">[email&#160;protected]</a>";}
+    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec9f83839e9f84958d819a859f849b8d878d9e818ddfdbac8b818d8580c28f8381">[email&#160;protected]</a>";}
+    match /gallery/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f1c00001d1c07160e0219061c07180e040e1d020e5c582f08020e0603410c0002">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4c7dbdbc6c7dccdd5d9c2ddc7dcc3d5dfd5c6d9d58783f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a>";}
   }
 }</pre>
     </div>
@@ -740,7 +880,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3d4e52524f4e55445c504b544e554a5c565c4f505c0e0a7d5a505c5451135e5250">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deadb1b1acadb6a7bfb3a8b7adb6a9bfb5bfacb3bfede99eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -890,6 +1030,28 @@ const TRANSLATIONS={
     contact_tag:"संपर्क करें — Systematic",
     contact_title:"बुकिंग के लिए <em>बात करें</em>",
     contact_desc:"Adults / Children सही से चुनें — Room Auto Suggest होगा",
+    reviews_tag:"⭐ GUEST REVIEWS — Real Stay",
+    reviews_title:"<em>मेहमानों</em> ने क्या कहा",
+    reviews_desc:"4.8/5 — 1200+ Happy Guests • Google & Booking.com",
+    reviews_btn_all:"सभी 1200+ Reviews देखें",
+    reviews_btn_write:"✍️ Review लिखें",
+    dining_tag:"🍽️ PURE VEG DINING & SERVICES",
+    dining_title:"खाना + <em>सर्विस</em> — एक Click में",
+    dining_desc:"Restaurant, Room Service, Laundry, Pickup — सब Request यहीं से",
+    dining_rest_title:"Pure Veg Restaurant",
+    dining_rest_desc:"Breakfast 7-10 AM, Lunch/Dinner A-la-carte",
+    dining_menu:"Menu देखें",
+    dining_book:"Table बुक करें",
+    dining_room_title:"24x7 Room Service",
+    dining_room_desc:"Tea, Water, Towel, Extra Bed — Instant",
+    dining_request:"Request भेजें",
+    dining_laundry:"Laundry",
+    dining_pickup_title:"Station/Airport Pickup",
+    dining_pickup_desc:"Bhopal Jn, Habibganj, Airport — On Time",
+    dining_pickup_btn:"Pickup के साथ Reserve",
+    location_tag:"📍 LOCATION & FAQ",
+    location_title:"<em>कहाँ</em> हैं हम — सब सवालों के जवाब",
+    faq_title:"❓ Hotel FAQ — पूछे जाने वाले सवाल",
     dots_menu_title:"Navigate — सब यहीं",
     dots_home:"🏠 Home",
     dots_rooms:"🛏 Rooms",
@@ -897,6 +1059,9 @@ const TRANSLATIONS={
     dots_calendar:"📅 Calendar",
     dots_contact:"📞 Contact / Booking",
     dots_policy:"📜 Policy — नियम व शर्तें",
+    dots_reviews:"⭐ Reviews",
+    dots_dining:"🍽 Dining — खाना",
+    dots_location:"📍 Location / FAQ",
     dots_book:"✨ Book Now — बुक करें",
     dots_admin:"⚙️ Admin Login",
     dots_settings:"⚙️ Settings (Admin)",
@@ -946,6 +1111,28 @@ const TRANSLATIONS={
     contact_tag:"Contact Us — Systematic",
     contact_title:"Let's <em>Talk Booking</em>",
     contact_desc:"Choose Adults / Children correctly — Room will Auto Suggest",
+    reviews_tag:"⭐ GUEST REVIEWS — Real Stay",
+    reviews_title:"What <em>Guests</em> Say",
+    reviews_desc:"4.8/5 — 1200+ Happy Guests • Google & Booking.com",
+    reviews_btn_all:"View All 1200+ Reviews",
+    reviews_btn_write:"✍️ Write Review",
+    dining_tag:"🍽️ PURE VEG DINING & SERVICES",
+    dining_title:"Food + <em>Service</em> — One Click",
+    dining_desc:"Restaurant, Room Service, Laundry, Pickup — Request All Here",
+    dining_rest_title:"Pure Veg Restaurant",
+    dining_rest_desc:"Breakfast 7-10 AM, Lunch/Dinner A-la-carte",
+    dining_menu:"View Menu",
+    dining_book:"Book Table",
+    dining_room_title:"24x7 Room Service",
+    dining_room_desc:"Tea, Water, Towel, Extra Bed — Instant",
+    dining_request:"Send Request",
+    dining_laundry:"Laundry",
+    dining_pickup_title:"Station/Airport Pickup",
+    dining_pickup_desc:"Bhopal Jn, Habibganj, Airport — On Time",
+    dining_pickup_btn:"Reserve with Pickup",
+    location_tag:"📍 LOCATION & FAQ",
+    location_title:"<em>Where</em> We Are — All Answers",
+    faq_title:"❓ Hotel FAQ — Common Questions",
     dots_menu_title:"Navigate — All Here",
     dots_home:"🏠 Home",
     dots_rooms:"🛏 Rooms",
@@ -953,6 +1140,9 @@ const TRANSLATIONS={
     dots_calendar:"📅 Calendar",
     dots_contact:"📞 Contact / Booking",
     dots_policy:"📜 Policy — Terms",
+    dots_reviews:"⭐ Reviews",
+    dots_dining:"🍽 Dining",
+    dots_location:"📍 Location / FAQ",
     dots_book:"✨ Book Now",
     dots_admin:"⚙️ Admin Login",
     dots_settings:"⚙️ Settings (Admin)",
@@ -1724,5 +1914,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3db33f9da3246bc',t:'MTc4OTg0ODMwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
