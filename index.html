@@ -2,8 +2,8 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hotel 4G — Colourful Firebase System | Bhopal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Hotel 4G — Systematic Colourful Firebase | Bhopal</title>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -12,114 +12,139 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --gold:#FF6B35; --gold2:#FF9F1C; --dark:#0F172A; --pink:#FF3B82; --teal:#06D6A0; --purple:#7C3AED; --blue:#0EA5E9; --yellow:#FACC15;
-  --grad1: linear-gradient(135deg,#FF6B35 0%,#FF3B82 50%,#7C3AED 100%);
-  --grad2: linear-gradient(135deg,#06D6A0 0%,#0EA5E9 100%);
-  --grad3: linear-gradient(135deg,#FACC15 0%,#FB923C 100%);
-}
-body{font-family:'Outfit',system-ui,sans-serif;color:#1e293b;background:#FFF7ED;line-height:1.6;overflow-x:hidden}
-h1,h2,h3{font-family:'Playfair Display',serif}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+:root{--gold:#FF6B35;--gold2:#FF9F1C;--dark:#0F172A;--pink:#FF3B82;--teal:#06D6A0;--purple:#7C3AED;--blue:#0EA5E9;--yellow:#FACC15;
+--grad1:linear-gradient(135deg,#FF6B35 0%,#FF3B82 50%,#7C3AED 100%);--grad2:linear-gradient(135deg,#06D6A0 0%,#0EA5E9 100%);--grad3:linear-gradient(135deg,#FACC15 0%,#FB923C 100%);
+--radius:20px;--border:#FFE4B5}
+body{font-family:'Outfit',system-ui,sans-serif;color:#1e293b;background:#FFF7ED;line-height:1.6;overflow-x:hidden;min-width:320px}
+img{max-width:100%}
+h1,h2,h3{font-family:'Playfair Display',serif;overflow-wrap:break-word}
 a{text-decoration:none}
-.container{max-width:1220px;margin:0 auto;padding:0 20px}
-/* NAV — colourful gradient */
-.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid #FFE4B5;padding:10px 0;box-shadow:0 4px 24px rgba(255,107,53,0.08)}
-.navbar .container{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--dark)}
-.logo-icon{width:42px;height:42px;background:var(--grad1);border-radius:12px;display:grid;place-items:center;color:#fff;font-family:'Playfair Display',serif;font-size:18px;font-weight:800;box-shadow:0 6px 18px rgba(255,59,130,0.35)}
-.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-links{display:flex;gap:18px;list-style:none;align-items:center}
-.nav-links a{color:#475569;font-size:13px;font-weight:600;padding:8px 12px;border-radius:30px;transition:0.2s}
+.container{max-width:1220px;margin:0 auto;padding:0 16px;width:100%}
+@media(min-width:768px){.container{padding:0 20px}}
+/* NAV — systematic, no overlap */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);border-bottom:1.5px solid var(--border);padding:10px 0;box-shadow:0 4px 24px rgba(255,107,53,0.08)}
+.navbar .container{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:nowrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:clamp(16px,2.5vw,20px);color:var(--dark);flex-shrink:0;min-width:0}
+.logo-icon{width:38px;height:38px;min-width:38px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;color:#fff;font-family:'Playfair Display',serif;font-size:16px;font-weight:800}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.nav-links{display:flex;gap:6px;list-style:none;align-items:center;flex-wrap:wrap}
+.nav-links a{color:#475569;font-size:12.5px;font-weight:600;padding:7px 10px;border-radius:30px;transition:0.2s;white-space:nowrap}
 .nav-links a:hover{background:#FFF1E6;color:#E85D04}
-.nav-links a.admin-link{background:var(--dark);color:#fff!important;padding:8px 14px}
-.nav-links a.admin-link:hover{background:#1e293b;transform:translateY(-1px)}
-.nav-actions{display:flex;align-items:center;gap:8px}
-.lang-switch{display:flex;background:#fff;border-radius:30px;padding:3px;border:1.5px solid #FFE4B5;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
-.lang-switch button{padding:6px 13px;border-radius:30px;border:none;font-size:11px;font-weight:800;cursor:pointer;background:transparent;color:#9CA3AF;transition:0.2s}
-.lang-switch button.active{background:var(--grad1);color:#fff;box-shadow:0 4px 12px rgba(255,59,130,0.25)}
-.btn-gold{background:var(--grad1);color:#fff;padding:11px 22px;border-radius:30px;font-weight:800;font-size:13px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(255,59,130,0.25);transition:0.2s}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,59,130,0.32)}
-.btn-dark{background:var(--dark);color:#fff;padding:11px 22px;border-radius:30px;font-weight:800;font-size:13px;border:none;cursor:pointer}
-.btn-wh{background:#fff;color:var(--dark);border:1.5px solid #E2E8F0;padding:10px 18px;border-radius:30px;font-weight:700;font-size:13px}
-.mobile-toggle{display:none;background:var(--grad1);color:#fff;border:none;width:38px;height:38px;border-radius:10px;font-size:20px;cursor:pointer}
-/* BANNER */
-.firebase-banner{position:fixed;top:62px;left:0;width:100%;z-index:999;padding:9px 14px;text-align:center;font-size:12px;font-weight:600;display:none;backdrop-filter:blur(8px)}
+.nav-links a.admin-link{background:var(--dark);color:#fff!important;padding:7px 12px;font-size:12px}
+.nav-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.lang-switch{display:flex;background:#fff;border-radius:30px;padding:2px;border:1.5px solid var(--border)}
+.lang-switch button{padding:5px 10px;border-radius:30px;border:none;font-size:11px;font-weight:800;cursor:pointer;background:transparent;color:#9CA3AF}
+.lang-switch button.active{background:var(--grad1);color:#fff}
+.btn-gold{background:var(--grad1);color:#fff;padding:10px 18px;border-radius:30px;font-weight:800;font-size:13px;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(255,59,130,0.22);white-space:nowrap}
+.btn-dark{background:var(--dark);color:#fff;padding:10px 18px;border-radius:30px;font-weight:800;font-size:13px;border:none;cursor:pointer;white-space:nowrap}
+.btn-wh{background:#fff;color:var(--dark);border:1.5px solid #E2E8F0;padding:10px 16px;border-radius:30px;font-weight:700;font-size:13px;white-space:nowrap}
+.mobile-toggle{display:none;background:var(--grad1);color:#fff;border:none;width:38px;height:38px;min-width:38px;border-radius:10px;font-size:20px;cursor:pointer;flex-shrink:0}
+/* BANNER — systematic */
+.firebase-banner{position:fixed;top:60px;left:0;width:100%;z-index:999;padding:8px 12px;text-align:center;font-size:11px;font-weight:600;display:none;backdrop-filter:blur(8px);word-break:break-word}
 .firebase-banner.show{display:block}
 .firebase-banner.warn{background:linear-gradient(90deg,#FFF3CD,#FFE69C);color:#92400e;border-bottom:1px solid #FDE68A}
 .firebase-banner.ok{background:linear-gradient(90deg,#D1FAE5,#A7F3D0);color:#065F46;border-bottom:1px solid #6EE7B7}
-/* HERO — COLOURFUL */
-.hero{min-height:100vh;background:
-  radial-gradient(800px 400px at 10% 20%, rgba(255,107,53,0.18), transparent 60%),
-  radial-gradient(700px 400px at 90% 80%, rgba(124,58,237,0.14), transparent 60%),
-  radial-gradient(600px 300px at 50% 0%, rgba(6,214,160,0.12), transparent 60%),
-  linear-gradient(180deg, #FFF7ED 0%, #FFECD2 55%, #FCB69F 100%);
-  display:flex;align-items:center;padding:108px 0 46px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80') center/cover;opacity:0.07;mix-blend-mode:multiply}
+/* HERO — systematic, no overlap */
+.hero{min-height:100vh;background:radial-gradient(800px 400px at 10% 20%, rgba(255,107,53,0.14), transparent 60%),radial-gradient(700px 400px at 90% 80%, rgba(124,58,237,0.10), transparent 60%),linear-gradient(180deg, #FFF7ED 0%, #FFECD2 55%, #FCB69F 100%);display:flex;align-items:center;padding:96px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80') center/cover;opacity:0.06;mix-blend-mode:multiply;pointer-events:none}
 .hero .container{position:relative;z-index:1}
-.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #FFDAB9;color:#E85D04;padding:7px 14px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:0.5px;box-shadow:0 4px 16px rgba(255,107,53,0.12)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid #FFDAB9;color:#E85D04;padding:6px 12px;border-radius:30px;font-size:10.5px;font-weight:800;letter-spacing:0.3px;box-shadow:0 4px 16px rgba(255,107,53,0.12);max-width:100%;flex-wrap:wrap}
 .hero-content{max-width:680px}
-.hero h1{font-size:50px;line-height:1.05;color:var(--dark);margin:14px 0 12px}
+.hero h1{font-size:clamp(28px,6vw,48px);line-height:1.05;color:var(--dark);margin:12px 0 10px;overflow-wrap:break-word}
 .hero h1 span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:#57534E;font-size:15px;margin-bottom:20px;max-width:600px}
-.hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-.hero-stats{display:flex;gap:14px;flex-wrap:wrap}
-.stat-pill{background:#fff;border:1px solid #FFE4B5;border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05);min-width:140px}
-.stat-pill .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:16px;color:#fff}
+.hero p{color:#57534E;font-size:clamp(13px,2vw,15px);margin-bottom:18px;max-width:600px}
+.hero-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.hero-stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat-pill{background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 18px rgba(0,0,0,0.05);flex:1;min-width:120px;max-width:200px}
+.stat-pill .ic{width:34px;height:34px;min-width:34px;border-radius:10px;display:grid;place-items:center;font-size:15px;color:#fff}
 .stat-pill:nth-child(1) .ic{background:var(--grad1)}
 .stat-pill:nth-child(2) .ic{background:var(--grad2)}
 .stat-pill:nth-child(3) .ic{background:var(--grad3);color:#92400e}
-.stat-pill strong{display:block;font-size:16px;color:var(--dark);line-height:1}
-.stat-pill span{font-size:11px;color:#78716C;font-weight:600}
-/* BOOKING CARD — colourful */
-.booking-card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 20px 50px rgba(15,23,42,0.10);border:1.5px solid #FFE4B5;display:grid;grid-template-columns:1.1fr 1.1fr 1fr auto;gap:12px;align-items:end;margin-top:26px;max-width:1040px;position:relative}
+.stat-pill strong{display:block;font-size:15px;color:var(--dark);line-height:1}
+.stat-pill span{font-size:10.5px;color:#78716C;font-weight:600}
+/* BOOKING CARD — SYSTEMATIC, AUTO-SET, NO OVERLAP */
+.booking-card{background:#fff;border-radius:20px;padding:16px;box-shadow:0 16px 40px rgba(15,23,42,0.10);border:1.5px solid var(--border);display:grid;gap:12px;margin-top:22px;max-width:1100px;position:relative;width:100%;overflow:hidden}
 .booking-card::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:4px;background:var(--grad1);border-radius:20px 20px 0 0}
-.booking-card label{font-size:11px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#78716C;display:block;margin-bottom:6px}
-.booking-card input,.booking-card select{width:100%;padding:12px 12px;border:1.5px solid #FFE4B5;border-radius:12px;font-size:13px;background:#FFFBEB;outline:none;font-weight:600;transition:0.2s}
-.booking-card input:focus,.booking-card select:focus{border-color:#FB923C;background:#fff;box-shadow:0 0 0 4px #FFF1E6}
-.avail-msg{grid-column:span 4;font-size:12px;padding:11px 12px;border-radius:12px;display:none;font-weight:600}
+/* systematic grid: desktop 6 cols, tablet 3, mobile 1 — no overlap */
+.booking-fields{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;width:100%}
+.booking-card label{font-size:10.5px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#78716C;display:block;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.booking-card input,.booking-card select{width:100%;padding:11px 10px;border:1.5px solid var(--border);border-radius:11px;font-size:13px;background:#FFFBEB;outline:none;font-weight:600;transition:0.2s;min-width:0}
+.booking-card input:focus,.booking-card select:focus{border-color:#FB923C;background:#fff;box-shadow:0 0 0 3px #FFF1E6}
+.booking-actions{display:flex;gap:8px;align-items:end}
+.booking-actions .btn-gold{width:100%;padding:12px;justify-content:center;display:flex;align-items:center;gap:6px}
+.avail-msg{font-size:12px;padding:10px 12px;border-radius:12px;display:none;font-weight:600;word-break:break-word}
 .avail-msg.ok{background:#ECFDF5;color:#065F46;border:1px solid #6EE7B7;display:block}
 .avail-msg.bad{background:#FEF2F2;color:#7F1D1D;border:1px solid #FECACA;display:block}
-/* SECTIONS */
-section{padding:72px 0;position:relative}
-.section-head{text-align:center;max-width:680px;margin:0 auto 38px}
-.section-head span{display:inline-block;background:#fff;border:1px solid #FFE4B5;color:#E85D04;font-weight:800;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:30px;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
-.section-head h2{font-size:34px;color:var(--dark);margin:10px 0 8px;line-height:1.15}
+/* SECTIONS — systematic */
+section{padding:56px 0;position:relative;overflow:hidden}
+@media(min-width:768px){section{padding:72px 0}}
+.section-head{text-align:center;max-width:680px;margin:0 auto 32px;padding:0 8px}
+.section-head span{display:inline-block;background:#fff;border:1px solid var(--border);color:#E85D04;font-weight:800;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;padding:5px 10px;border-radius:30px;max-width:100%}
+.section-head h2{font-size:clamp(22px,4vw,34px);color:var(--dark);margin:10px 0 8px;line-height:1.15;overflow-wrap:break-word}
 .section-head h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.section-head p{color:#78716C;font-size:13.5px}
-.bg-cream{background:#FFF7ED}
-.bg-light{background:#FFF7ED}
-.bg-mint{background:linear-gradient(180deg,#F0FDF9 0%,#ECFDF5 100%)}
-.bg-lav{background:linear-gradient(180deg,#F5F3FF 0%,#EDE9FE 100%)}
-/* ROOMS — colourful cards */
-.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.room-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,0.07);border:1.5px solid #FFE4B5;transition:0.3s;position:relative}
-.room-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(15,23,42,0.14);border-color:#FDBA74}
+.section-head p{color:#78716C;font-size:13px}
+/* ROOMS — systematic auto-fit, no overlap */
+.rooms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;align-items:start}
+@media(min-width:640px){.rooms-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}}
+@media(min-width:1100px){.rooms-grid{grid-template-columns:repeat(3,1fr)}}
+.room-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,0.07);border:1.5px solid var(--border);transition:0.3s;position:relative;display:flex;flex-direction:column;min-width:0}
+.room-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(15,23,42,0.12);border-color:#FDBA74}
 .room-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:2}
 .room-card:nth-child(1)::before{background:linear-gradient(90deg,#FB923C,#FACC15)}
 .room-card:nth-child(2)::before{background:var(--grad1)}
 .room-card:nth-child(3)::before{background:var(--grad2)}
-.room-img{height:220px;position:relative;overflow:hidden;background:#FFF1E6}
-.room-img img{width:100%;height:100%;object-fit:cover;transition:0.6s}
-.room-card:hover .room-img img{transform:scale(1.07)}
-.price-tag{position:absolute;top:12px;right:12px;background:#fff;padding:7px 12px;border-radius:30px;font-weight:800;font-size:14px;color:var(--dark);box-shadow:0 6px 18px rgba(0,0,0,0.12);border:1px solid #FFE4B5}
-.price-tag small{font-weight:600;color:#78716C}
-.cal-badge{position:absolute;bottom:12px;left:12px;background:rgba(15,23,42,0.88);color:#fff;padding:7px 12px;border-radius:30px;font-size:11px;font-weight:700;cursor:pointer;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.15)}
-.room-body{padding:18px}
-.room-body h3{font-size:18px;color:var(--dark);margin-bottom:4px}
-.room-body p{font-size:12.5px;color:#78716C;margin-bottom:12px;min-height:36px}
-.room-features{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.room-features span{font-size:11px;background:#FFFBEB;padding:6px 9px;border-radius:20px;color:#92400e;border:1px solid #FDE68A;font-weight:600}
-.room-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.room-actions .pay-btn{grid-column:span 2;background:var(--grad1);color:#fff;padding:11px;border-radius:30px;font-weight:800;font-size:12.5px;border:none;cursor:pointer;box-shadow:0 8px 18px rgba(255,59,130,0.22)}
-.room-actions .sec-btn{padding:9px;border-radius:30px;border:1.5px solid #FFE4B5;background:#fff;font-weight:700;font-size:12px;cursor:pointer;color:var(--dark);transition:0.2s}
-.room-actions .sec-btn:hover{border-color:#FB923C;background:#FFF7ED}
-/* Upload progress */
-.upload-bar{height:6px;background:#FFE4B5;border-radius:30px;overflow:hidden;margin-top:8px;display:none}
-.upload-bar span{display:block;height:100%;width:0;background:var(--grad1);transition:width 0.3s}
-/* FACILITIES — each colourful */
-.fac-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.fac-card{border-radius:20px;padding:22px 16px;text-align:center;border:1.5px solid transparent;transition:0.25s;position:relative;overflow:hidden}
-.fac-card::before{content:'';position:absolute;inset:0;opacity:0.06;pointer-events:none}
+/* CAROUSEL — side scroll multi photo */
+.carousel{position:relative;height:220px;overflow:hidden;background:#FFF1E6;flex-shrink:0}
+.carousel-track{display:flex;transition:transform 0.4s cubic-bezier(0.33,1,0.68,1);height:100%;will-change:transform}
+.carousel-slide{min-width:100%;height:100%;flex-shrink:0;position:relative}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);border:1px solid rgba(0,0,0,0.06);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.12);z-index:3;transition:0.2s;color:var(--dark);font-weight:700}
+.carousel-btn:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
+.carousel-btn.prev{left:8px}
+.carousel-btn.next{right:8px}
+.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3;background:rgba(15,23,42,0.55);backdrop-filter:blur(6px);padding:6px 10px;border-radius:30px;border:1px solid rgba(255,255,255,0.15)}
+.carousel-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.6);cursor:pointer;transition:0.25s;border:none;flex-shrink:0}
+.carousel-dot.active{background:#fff;width:18px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.carousel-counter{position:absolute;top:10px;left:10px;background:rgba(15,23,42,0.82);color:#fff;padding:4px 8px;border-radius:20px;font-size:10.5px;font-weight:700;z-index:3;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.12)}
+.price-tag{position:absolute;top:10px;right:10px;background:#fff;padding:6px 10px;border-radius:30px;font-weight:800;font-size:13px;color:var(--dark);box-shadow:0 4px 12px rgba(0,0,0,0.12);border:1px solid var(--border);z-index:3;white-space:nowrap}
+.cal-badge{position:absolute;bottom:10px;right:10px;background:rgba(15,23,42,0.82);color:#fff;padding:5px 9px;border-radius:30px;font-size:10.5px;font-weight:700;cursor:pointer;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.12);z-index:3;white-space:nowrap}
+.room-body{padding:16px;display:flex;flex-direction:column;flex:1;min-width:0}
+.room-body h3{font-size:17px;color:var(--dark);margin-bottom:4px;overflow-wrap:break-word}
+.room-body p{font-size:12.5px;color:#78716C;margin-bottom:10px;flex:1;min-height:34px}
+.room-features{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.room-features span{font-size:11px;background:#FFFBEB;padding:5px 8px;border-radius:20px;color:#92400e;border:1px solid #FDE68A;font-weight:600;white-space:nowrap}
+.room-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;padding:8px 10px;background:#FFFBEB;border:1px solid var(--border);border-radius:12px;font-size:11px;font-weight:600;color:#57534E}
+.room-meta span{display:flex;align-items:center;gap:4px;white-space:nowrap}
+.room-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.room-actions .pay-btn{grid-column:span 2;background:var(--grad1);color:#fff;padding:11px;border-radius:30px;font-weight:800;font-size:12.5px;border:none;cursor:pointer;box-shadow:0 6px 16px rgba(255,59,130,0.18);white-space:nowrap}
+.room-actions .sec-btn{padding:9px;border-radius:30px;border:1.5px solid var(--border);background:#fff;font-weight:700;font-size:12px;cursor:pointer;color:var(--dark);white-space:nowrap}
+/* GALLERY — systematic */
+.gallery-wrap{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,0.06);overflow:hidden}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:640px){.gallery-grid{grid-template-columns:repeat(4,1fr);gap:10px}}
+.gallery-grid img{width:100%;height:150px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer;border:1.5px solid var(--border);display:block}
+@media(min-width:640px){.gallery-grid img{height:170px}}
+.gallery-grid img:nth-child(1){grid-column:span 2;grid-row:span 2;height:310px}
+@media(max-width:639px){.gallery-grid img:nth-child(1){height:220px}}
+.gallery-item{position:relative;overflow:hidden;border-radius:12px;min-width:0}
+/* CALENDAR — systematic */
+.cal-wrap{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,0.06);overflow:hidden;max-width:100%}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.cal-head b{font-size:14px;overflow-wrap:break-word}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:100%}
+@media(min-width:480px){.cal-grid{gap:6px}}
+.cal-grid div{aspect-ratio:1;display:grid;place-items:center;border-radius:10px;font-size:11px;font-weight:700;border:1.5px solid transparent;transition:0.15s;min-width:0;overflow:hidden}
+@media(min-width:480px){.cal-grid div{font-size:12px;border-radius:12px}}
+.cal-day-head{color:#78716C;font-size:10px;background:#FFFBEB;border-color:var(--border)!important}
+.cal-available{background:#F0FDF4;border-color:#86EFAC;color:#065F46;cursor:pointer}
+.cal-booked{background:#FEF2F2;border-color:#FECACA;color:#991B1B;cursor:not-allowed;opacity:0.85}
+.cal-selected{background:var(--dark)!important;color:#fff!important;border-color:var(--dark)!important;box-shadow:0 4px 12px rgba(15,23,42,0.14)}
+.cal-today{outline:2px solid #FB923C;outline-offset:-2px}
+/* FACILITIES — systematic auto-fit */
+.fac-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+@media(min-width:768px){.fac-grid{grid-template-columns:repeat(4,1fr);gap:14px}}
+.fac-card{border-radius:18px;padding:18px 14px;text-align:center;border:1.5px solid transparent;transition:0.25s;min-width:0;overflow:hidden}
 .fac-card:nth-child(1){background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border-color:#FDBA74}
 .fac-card:nth-child(2){background:linear-gradient(135deg,#F0FDF9,#CCFBF1);border-color:#6EE7B7}
 .fac-card:nth-child(3){background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-color:#93C5FD}
@@ -128,117 +153,104 @@ section{padding:72px 0;position:relative}
 .fac-card:nth-child(6){background:linear-gradient(135deg,#FFF1F2,#FFE4E6);border-color:#FDA4AF}
 .fac-card:nth-child(7){background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border-color:#86EFAC}
 .fac-card:nth-child(8){background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border-color:#FCD34D}
-.fac-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.08)}
-.fac-icon{width:54px;height:54px;margin:0 auto 12px;border-radius:14px;display:grid;place-items:center;font-size:22px;color:#fff;box-shadow:0 8px 18px rgba(0,0,0,0.10)}
+.fac-icon{width:48px;height:48px;margin:0 auto 10px;border-radius:12px;display:grid;place-items:center;font-size:20px;color:#fff}
 .fac-card:nth-child(1) .fac-icon{background:linear-gradient(135deg,#FB923C,#FACC15)}
 .fac-card:nth-child(2) .fac-icon{background:linear-gradient(135deg,#10B981,#06B6D4)}
 .fac-card:nth-child(3) .fac-icon{background:linear-gradient(135deg,#3B82F6,#06B6D4)}
 .fac-card:nth-child(4) .fac-icon{background:linear-gradient(135deg,#8B5CF6,#EC4899)}
-.fac-card:nth-child(5) .fac-icon{background:linear-gradient(135deg,#EAB308,#F97316);color:#fff}
+.fac-card:nth-child(5) .fac-icon{background:linear-gradient(135deg,#EAB308,#F97316)}
 .fac-card:nth-child(6) .fac-icon{background:linear-gradient(135deg,#F43F5E,#FB7185)}
 .fac-card:nth-child(7) .fac-icon{background:linear-gradient(135deg,#10B981,#34D399)}
 .fac-card:nth-child(8) .fac-icon{background:linear-gradient(135deg,#F59E0B,#FACC15);color:#7C2D12}
-.fac-card h4{font-size:14px;color:var(--dark);margin-bottom:4px}
-.fac-card p{font-size:11px;color:#78716C;font-weight:500}
-/* GALLERY */
-.gallery-wrap{background:#fff;border:1.5px solid #FFE4B5;border-radius:20px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.gallery-grid img{width:100%;height:170px;object-fit:cover;border-radius:14px;transition:0.3s;cursor:pointer;border:1.5px solid #FFE4B5}
-.gallery-grid img:nth-child(1){grid-column:span 2;grid-row:span 2;height:350px}
-.gallery-grid img:nth-child(2){grid-column:span 2;height:170px}
-.gallery-grid img:hover{transform:scale(1.02);box-shadow:0 12px 28px rgba(0,0,0,0.14)}
-.gallery-actions{position:absolute;top:8px;right:8px;display:flex;gap:6px;opacity:0;transition:0.2s}
-.gallery-item{position:relative;overflow:hidden;border-radius:14px}
-.gallery-item:hover .gallery-actions{opacity:1}
-.gal-btn{width:30px;height:30px;border-radius:50%;border:none;background:rgba(15,23,42,0.85);color:#fff;display:grid;place-items:center;cursor:pointer;font-size:13px}
-/* CALENDAR */
-.cal-wrap{background:#fff;border:1.5px solid #FFE4B5;border-radius:20px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
-.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-.cal-grid div{aspect-ratio:1;display:grid;place-items:center;border-radius:12px;font-size:12px;font-weight:700;border:1.5px solid transparent;transition:0.15s}
-.cal-day-head{color:#78716C;font-size:11px;background:#FFFBEB;border-color:#FFE4B5!important}
-.cal-available{background:#F0FDF4;border-color:#86EFAC;color:#065F46;cursor:pointer}
-.cal-available:hover{background:#DCFCE7;transform:scale(1.05)}
-.cal-booked{background:#FEF2F2;border-color:#FECACA;color:#991B1B;cursor:not-allowed;opacity:0.8}
-.cal-selected{background:var(--dark)!important;color:#fff!important;border-color:var(--dark)!important;transform:scale(1.05);box-shadow:0 6px 16px rgba(15,23,42,0.18)}
-.cal-today{outline:2.5px solid #FB923C;outline-offset:-2px}
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:22px}
-.contact-info{background:var(--dark);color:#fff;border-radius:20px;padding:26px;position:relative;overflow:hidden}
-.contact-info::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:var(--grad1);opacity:0.15;border-radius:50%}
-.contact-form{background:#fff;border:1.5px solid #FFE4B5;border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,0.06);position:relative}
+.fac-card h4{font-size:13px;color:var(--dark);margin-bottom:3px;overflow-wrap:break-word}
+.fac-card p{font-size:11px;color:#78716C}
+/* CONTACT — systematic, no overlap */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+@media(min-width:900px){.contact-grid{grid-template-columns:1fr 1.15fr;gap:22px}}
+.contact-info{background:var(--dark);color:#fff;border-radius:20px;padding:20px;position:relative;overflow:hidden;min-width:0}
+@media(min-width:768px){.contact-info{padding:26px}}
+.contact-info::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:var(--grad1);opacity:0.12;border-radius:50%;pointer-events:none}
+.contact-form{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,0.06);position:relative;min-width:0;overflow:hidden}
+@media(min-width:768px){.contact-form{padding:22px}}
 .contact-form::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:4px;background:var(--grad1);border-radius:20px 20px 0 0}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.form-group{margin-bottom:10px}
-.form-group.full{grid-column:span 2}
-.form-group label{font-size:11px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#57534E;display:block;margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 12px;border:1.5px solid #FFE4B5;border-radius:12px;font-size:13px;background:#FFFBEB;outline:none;font-weight:500}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#FB923C;background:#fff;box-shadow:0 0 0 4px #FFF1E6}
-.c-item{display:flex;gap:10px;margin-bottom:14px}
-.c-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:16px;flex-shrink:0;color:#fff;box-shadow:0 6px 16px rgba(0,0,0,0.12)}
+.form-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:600px){.form-grid{grid-template-columns:1fr 1fr;gap:10px}}
+.form-group{margin-bottom:10px;min-width:0}
+.form-group.full{grid-column:span 1}
+@media(min-width:600px){.form-group.full{grid-column:span 2}}
+.form-group label{font-size:10.5px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#57534E;display:block;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 10px;border:1.5px solid var(--border);border-radius:11px;font-size:13px;background:#FFFBEB;outline:none;font-weight:500;min-width:0}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#FB923C;background:#fff;box-shadow:0 0 0 3px #FFF1E6}
+.c-item{display:flex;gap:10px;margin-bottom:12px;min-width:0}
+.c-item div{word-break:break-word;min-width:0}
+.c-icon{width:38px;height:38px;min-width:38px;border-radius:10px;display:grid;place-items:center;font-size:15px;color:#fff}
 .c-item:nth-child(1) .c-icon{background:var(--grad1)}
 .c-item:nth-child(2) .c-icon{background:var(--grad2)}
 .c-item:nth-child(3) .c-icon{background:linear-gradient(135deg,#7C3AED,#EC4899)}
 .c-item:nth-child(4) .c-icon{background:var(--grad3);color:#7C2D12}
-footer{background:#0F0F14;color:#A1A1AA;padding:44px 0 18px;position:relative;overflow:hidden}
+footer{background:#0F0F14;color:#A1A1AA;padding:36px 0 16px;position:relative;overflow:hidden}
 footer::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad1)}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:24px;margin-bottom:24px}
-footer h4{color:#fff;font-size:13px;margin-bottom:10px}
-footer a{color:#A1A1AA;font-size:12.5px;display:block;margin-bottom:6px}
-footer a:hover{color:#fff}
-.copy{border-top:1px solid #23232A;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px}
-/* MODALS — beautiful */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,0.55);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:16px}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:20px}
+@media(min-width:640px){.footer-grid{grid-template-columns:1fr 1fr;gap:20px}}
+@media(min-width:900px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:24px}}
+footer h4{color:#fff;font-size:13px;margin-bottom:8px}
+footer a{color:#A1A1AA;font-size:12.5px;display:block;margin-bottom:5px;word-break:break-word}
+.copy{border-top:1px solid #23232A;padding-top:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;word-break:break-word}
+/* MODALS — systematic, no overlap */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,0.55);backdrop-filter:blur(10px);align-items:flex-start;justify-content:center;padding:12px;overflow-y:auto}
+@media(min-width:640px){.modal-overlay{padding:16px;align-items:center}}
 .modal-overlay.open{display:flex;animation:fadeIn 0.2s}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{width:100%;max-width:540px;background:#fff;border-radius:24px;overflow:hidden;max-height:92vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,0.25);border:1.5px solid #FFE4B5;animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1)}
-@keyframes popIn{from{transform:scale(0.92) translateY(10px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
-.modal-head{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #FFF1E6;position:sticky;top:0;background:linear-gradient(180deg,#fff 60%,#FFFBEB 100%);z-index:1}
-.modal-head b{color:var(--dark)}
-.modal-body{padding:20px}
-.pay-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
-.pay-opt{border:1.5px solid #FFE4B5;border-radius:16px;padding:16px;text-align:center;cursor:pointer;transition:0.2s;background:#FFFBEB}
-.pay-opt.active{border-color:#FB923C;background:#fff;box-shadow:0 8px 24px rgba(251,146,60,0.15);transform:translateY(-2px)}
-.pay-opt .icon{width:48px;height:48px;margin:0 auto 8px;border-radius:12px;display:grid;place-items:center;font-size:22px;color:#fff;box-shadow:0 6px 16px rgba(0,0,0,0.12)}
+.modal{width:100%;max-width:560px;background:#fff;border-radius:20px;overflow:hidden;max-height:96vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.22);border:1.5px solid var(--border);animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);margin:auto;min-width:0}
+@media(min-width:640px){.modal{border-radius:24px;max-height:92vh}}
+@keyframes popIn{from{transform:scale(0.96) translateY(8px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.modal-head{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #FFF1E6;position:sticky;top:0;background:linear-gradient(180deg,#fff 60%,#FFFBEB 100%);z-index:1;flex-wrap:wrap}
+.modal-body{padding:16px}
+@media(min-width:640px){.modal-body{padding:20px}}
+.pay-options{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+@media(min-width:480px){.pay-options{grid-template-columns:1fr 1fr}}
+.pay-opt{border:1.5px solid var(--border);border-radius:14px;padding:14px;text-align:center;cursor:pointer;background:#FFFBEB}
+.pay-opt.active{border-color:#FB923C;background:#fff;box-shadow:0 6px 20px rgba(251,146,60,0.12)}
+.pay-opt .icon{width:44px;height:44px;margin:0 auto 6px;border-radius:12px;display:grid;place-items:center;font-size:20px;color:#fff}
 #opt-upi .icon{background:linear-gradient(135deg,#0EA5E9,#06B6D4)}
 #opt-razor .icon{background:linear-gradient(135deg,#7C3AED,#EC4899)}
-.qr-box{background:linear-gradient(180deg,#FFFBEB 0%,#FFF7ED 100%);border:1.5px dashed #FDBA74;border-radius:16px;padding:16px;text-align:center;margin-top:12px}
-.qr-box img{background:#fff;padding:10px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,0.08);border:1px solid #FFE4B5}
-.field{margin-bottom:10px}
-.field label{font-size:11px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#57534E;display:block;margin-bottom:6px}
-.field input,.field select{width:100%;padding:11px 12px;border:1.5px solid #FFE4B5;border-radius:12px;font-size:13px;background:#FFFBEB;outline:none;font-weight:500}
-.field input:focus,.field select:focus{border-color:#FB923C;background:#fff;box-shadow:0 0 0 4px #FFF1E6}
-/* BEAUTIFUL POPUP — replaces alert/confirm */
-.popup-overlay{position:fixed;inset:0;z-index:4000;background:rgba(15,23,42,0.55);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px}
-.popup-overlay.open{display:flex;animation:fadeIn 0.2s}
-.popup-box{width:100%;max-width:420px;background:#fff;border-radius:24px;padding:28px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.25);border:1.5px solid #FFE4B5;animation:popIn 0.3s}
-.popup-icon{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;font-size:28px;margin:0 auto 14px;box-shadow:0 10px 24px rgba(0,0,0,0.12)}
+.qr-box{background:linear-gradient(180deg,#FFFBEB 0%,#FFF7ED 100%);border:1.5px dashed #FDBA74;border-radius:14px;padding:14px;text-align:center;margin-top:12px;overflow:hidden}
+.qr-box img{background:#fff;padding:8px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.06);border:1px solid var(--border);max-width:100%;height:auto}
+.field{margin-bottom:10px;min-width:0}
+.field label{font-size:10.5px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#57534E;display:block;margin-bottom:5px}
+.field input,.field select{width:100%;padding:11px 10px;border:1.5px solid var(--border);border-radius:11px;font-size:13px;background:#FFFBEB;outline:none;min-width:0}
+.popup-overlay{position:fixed;inset:0;z-index:4000;background:rgba(15,23,42,0.55);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.popup-overlay.open{display:flex}
+.popup-box{width:100%;max-width:400px;background:#fff;border-radius:20px;padding:22px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.22);border:1.5px solid var(--border);animation:popIn 0.3s;min-width:0}
+.popup-icon{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:26px;margin:0 auto 12px}
 .popup-icon.success{background:linear-gradient(135deg,#DCFCE7,#BBF7D0);color:#065F46;border:2px solid #86EFAC}
 .popup-icon.error{background:linear-gradient(135deg,#FEE2E2,#FECACA);color:#991B1B;border:2px solid #FCA5A5}
 .popup-icon.warning{background:linear-gradient(135deg,#FEF3C7,#FDE68A);color:#92400E;border:2px solid #FCD34D}
 .popup-icon.info{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);color:#1E40AF;border:2px solid #93C5FD}
-.popup-icon.confirm{background:var(--grad1);color:#fff;box-shadow:0 10px 24px rgba(255,59,130,0.25)}
-.popup-box h3{font-size:18px;color:var(--dark);margin-bottom:6px}
-.popup-box p{font-size:13px;color:#57534E;line-height:1.6}
-.popup-actions{display:flex;gap:10px;justify-content:center;margin-top:18px}
-.popup-btn{flex:1;padding:12px 18px;border-radius:30px;font-weight:800;font-size:13px;border:none;cursor:pointer;transition:0.2s}
-.popup-btn.primary{background:var(--grad1);color:#fff;box-shadow:0 8px 18px rgba(255,59,130,0.22)}
-.popup-btn.primary:hover{transform:translateY(-1px)}
+.popup-icon.confirm{background:var(--grad1);color:#fff}
+.popup-box h3{font-size:17px;color:var(--dark);margin-bottom:4px;overflow-wrap:break-word}
+.popup-box p{font-size:13px;color:#57534E;line-height:1.6;word-break:break-word}
+.popup-actions{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.popup-btn{flex:1;min-width:120px;padding:11px 16px;border-radius:30px;font-weight:800;font-size:13px;border:none;cursor:pointer}
+.popup-btn.primary{background:var(--grad1);color:#fff}
 .popup-btn.ghost{background:#fff;color:var(--dark);border:1.5px solid #E7E5E4}
-.popup-btn.danger{background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff;box-shadow:0 8px 18px rgba(239,68,68,0.22)}
-/* ADMIN — colourful */
+.popup-btn.danger{background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff}
 #adminDashboard{display:none;position:fixed;inset:0;z-index:1500;background:#FFF7ED;overflow:auto}
 #adminDashboard.open{display:block}
-.admin-topbar{position:sticky;top:0;background:#fff;border-bottom:1.5px solid #FFE4B5;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,0.05)}
-.admin-layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 60px)}
-.admin-sidebar{background:#fff;border-right:1.5px solid #FFE4B5;padding:16px}
-.admin-sidebar button{width:100%;text-align:left;padding:11px 12px;border-radius:12px;border:1.5px solid transparent;background:transparent;font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:8px;color:#57534E;margin-bottom:6px;transition:0.2s}
-.admin-sidebar button.active{background:var(--dark);color:#fff;box-shadow:0 8px 18px rgba(15,23,42,0.15)}
-.admin-sidebar button:hover:not(.active){background:#FFF7ED;border-color:#FFE4B5}
-.admin-main{padding:20px}
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
-.stat-card{border-radius:18px;padding:16px;border:1.5px solid transparent;position:relative;overflow:hidden}
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.admin-topbar{position:sticky;top:0;background:#fff;border-bottom:1.5px solid var(--border);padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;z-index:10;flex-wrap:wrap}
+.admin-layout{display:grid;grid-template-columns:1fr;min-height:calc(100vh - 56px)}
+@media(min-width:900px){.admin-layout{grid-template-columns:260px 1fr}}
+.admin-sidebar{background:#fff;border-right:1.5px solid var(--border);padding:12px;display:flex;gap:6px;overflow:auto;flex-wrap:nowrap;align-items:flex-start}
+@media(min-width:900px){.admin-sidebar{display:block;overflow:visible}}
+.admin-sidebar button{width:auto;white-space:nowrap;text-align:left;padding:10px 12px;border-radius:11px;border:1.5px solid transparent;background:transparent;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;color:#57534E;flex-shrink:0}
+@media(min-width:900px){.admin-sidebar button{width:100%;white-space:normal}}
+.admin-sidebar button.active{background:var(--dark);color:#fff}
+.admin-main{padding:14px;min-width:0;overflow:hidden}
+@media(min-width:640px){.admin-main{padding:20px}}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+@media(min-width:640px){.stat-grid{grid-template-columns:repeat(4,1fr);gap:12px}}
+.stat-card{border-radius:16px;padding:12px;border:1.5px solid transparent;position:relative;overflow:hidden;min-width:0}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .stat-card:nth-child(1){background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border-color:#FDBA74}
 .stat-card:nth-child(1)::before{background:linear-gradient(90deg,#FB923C,#FACC15)}
 .stat-card:nth-child(2){background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border-color:#FCA5A5}
@@ -247,64 +259,53 @@ footer a:hover{color:#fff}
 .stat-card:nth-child(3)::before{background:linear-gradient(90deg,#10B981,#06B6D4)}
 .stat-card:nth-child(4){background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-color:#93C5FD}
 .stat-card:nth-child(4)::before{background:linear-gradient(90deg,#3B82F6,#8B5CF6)}
-.stat-card small{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:800;color:#78716C}
-.stat-card strong{font-size:22px;display:block;margin-top:2px;color:var(--dark)}
-.admin-card{background:#fff;border-radius:18px;border:1.5px solid #FFE4B5;overflow:hidden;margin-bottom:14px;box-shadow:0 6px 20px rgba(0,0,0,0.04)}
-.admin-card-head{padding:14px 16px;border-bottom:1px solid #FFF1E6;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;background:linear-gradient(180deg,#fff,#FFFBEB)}
-.table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse;font-size:12.5px}
-th{text-align:left;padding:11px 12px;background:#FFFBEB;color:#57534E;font-size:10.5px;letter-spacing:0.8px;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid #FFE4B5}
-td{padding:11px 12px;border-top:1px solid #FFF1E6;white-space:nowrap}
-.badge-status{padding:5px 10px;border-radius:20px;font-size:11px;font-weight:800;border:1px solid transparent}
+.stat-card small{font-size:9.5px;letter-spacing:0.8px;text-transform:uppercase;font-weight:800;color:#78716C;white-space:nowrap}
+.stat-card strong{font-size:clamp(16px,3vw,20px);display:block;margin-top:2px;color:var(--dark);word-break:break-word}
+.admin-card{background:#fff;border-radius:16px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:12px;box-shadow:0 6px 20px rgba(0,0,0,0.04);min-width:0}
+.admin-card-head{padding:12px 14px;border-bottom:1px solid #FFF1E6;display:flex;justify-content:space-between;align-items:center;gap:8px;background:linear-gradient(180deg,#fff,#FFFBEB);flex-wrap:wrap}
+.table-wrap{overflow:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:720px}
+th{text-align:left;padding:10px 10px;background:#FFFBEB;color:#57534E;font-size:10px;letter-spacing:0.6px;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid var(--border)}
+td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
+.badge-status{padding:4px 8px;border-radius:20px;font-size:10.5px;font-weight:800;border:1px solid transparent;white-space:nowrap}
 .status-new{background:#FEF3C7;color:#92400E;border-color:#FDE68A}
 .status-confirmed{background:#DCFCE7;color:#065F46;border-color:#86EFAC}
 .status-cancelled{background:#FEE2E2;color:#991B1B;border-color:#FECACA}
 .status-paid{background:#DBEAFE;color:#1E40AF;border-color:#93C5FD}
-.icon-btn{padding:7px 10px;border-radius:10px;border:1.5px solid #FFE4B5;background:#fff;cursor:pointer;font-size:11px;font-weight:800;transition:0.15s}
-.icon-btn:hover{background:#FFF7ED;border-color:#FDBA74;transform:translateY(-1px)}
-.edit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px}
-.edit-card{border:1.5px solid #FFE4B5;border-radius:16px;padding:14px;background:linear-gradient(180deg,#fff,#FFFBEB)}
-.upload-zone{border:2px dashed #FDBA74;background:#FFFBEB;border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:0.2s;position:relative;overflow:hidden}
-.upload-zone:hover{border-color:#FB923C;background:#FFF7ED}
-.upload-zone.dragover{border-color:#7C3AED;background:#F5F3FF;transform:scale(1.01)}
+.icon-btn{padding:6px 9px;border-radius:8px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:11px;font-weight:800}
+.edit-grid{display:grid;grid-template-columns:1fr;gap:12px;padding:14px}
+@media(min-width:700px){.edit-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.edit-grid{grid-template-columns:repeat(3,1fr)}}
+.edit-card{border:1.5px solid var(--border);border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,#FFFBEB);min-width:0;overflow:hidden}
+.mini-carousel{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.mini-carousel::-webkit-scrollbar{height:6px}
+.mini-carousel img{width:72px;height:72px;flex-shrink:0;border-radius:10px;object-fit:cover;border:1.5px solid var(--border);scroll-snap-align:start}
+.upload-zone{border:2px dashed #FDBA74;background:#FFFBEB;border-radius:12px;padding:14px;text-align:center;cursor:pointer;position:relative;overflow:hidden}
+.upload-zone.dragover{border-color:#7C3AED;background:#F5F3FF}
 .upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer}
-.gallery-admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.gallery-admin-item{position:relative;border-radius:12px;overflow:hidden;border:1.5px solid #FFE4B5;aspect-ratio:4/3}
-.gallery-admin-item img{width:100%;height:100%;object-fit:cover}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:12px 18px;border-radius:30px;font-size:12px;font-weight:600;z-index:3000;display:none;box-shadow:0 12px 30px rgba(0,0,0,0.18);border:1px solid #334155}
-.wa-float{position:fixed;bottom:18px;right:18px;width:54px;height:54px;background:linear-gradient(135deg,#25D366,#128C7E);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:24px;box-shadow:0 12px 30px rgba(37,211,102,0.35);z-index:999;text-decoration:none;border:2px solid #fff}
-@media(max-width:1000px){
-  .rooms-grid{grid-template-columns:1fr 1fr}
-  .fac-grid{grid-template-columns:repeat(3,1fr)}
-  .contact-grid,.footer-grid,.admin-layout{grid-template-columns:1fr}
-  .stat-grid{grid-template-columns:1fr 1fr}
-  .edit-grid{grid-template-columns:1fr}
-  .gallery-admin-grid{grid-template-columns:1fr 1fr}
-  .booking-card{grid-template-columns:1fr 1fr}
-  .admin-sidebar{display:flex;gap:6px;overflow:auto}
-  .admin-sidebar button{white-space:nowrap;width:auto}
-}
+.upload-bar{height:6px;background:var(--border);border-radius:30px;overflow:hidden;margin-top:8px;display:none}
+.upload-bar span{display:block;height:100%;width:0;background:var(--grad1);transition:width 0.3s}
+.gallery-admin-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:640px){.gallery-admin-grid{grid-template-columns:repeat(3,1fr);gap:10px}}
+.gallery-admin-item{position:relative;border-radius:12px;overflow:hidden;border:1.5px solid var(--border);aspect-ratio:4/3}
+.gallery-admin-item img{width:100%;height:100%;object-fit:cover;display:block}
+.toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:600;z-index:3000;display:none;box-shadow:0 12px 30px rgba(0,0,0,0.18);max-width:90%;text-align:center;word-break:break-word}
+.wa-float{position:fixed;bottom:14px;right:14px;width:52px;height:52px;background:linear-gradient(135deg,#25D366,#128C7E);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 12px 30px rgba(37,211,102,0.32);z-index:999;text-decoration:none;border:2px solid #fff}
 @media(max-width:640px){
-  .nav-links{display:none;position:absolute;top:100%;left:0;width:100%;background:#fff;flex-direction:column;padding:14px 18px;box-shadow:0 12px 30px rgba(0,0,0,0.10);border-top:1px solid #FFE4B5}
-  .nav-links.open{display:flex}
-  .nav-links a{color:var(--dark)}
-  .mobile-toggle{display:grid;place-items:center}
-  .hero h1{font-size:34px}
-  .rooms-grid{grid-template-columns:1fr}
-  .fac-grid{grid-template-columns:1fr 1fr}
-  .form-grid{grid-template-columns:1fr}
-  .form-group.full{grid-column:span 1}
-  .booking-card{grid-template-columns:1fr}
-  .pay-options{grid-template-columns:1fr}
-  .gallery-grid{grid-template-columns:1fr 1fr}
-  .gallery-grid img:nth-child(1){grid-column:span 2;height:220px;grid-row:span 1}
-  .gallery-grid img:nth-child(2){grid-column:span 2;height:150px}
-  section{padding:56px 0}
+  .hero{padding:88px 0 24px}
+  .booking-fields{grid-template-columns:1fr}
+  .booking-actions{grid-column:span 1}
+  .navbar .container{gap:6px}
+  .nav-links{gap:4px}
 }
+/* systematic person selector */
+.person-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.person-chip{flex:1;min-width:110px;background:#FFFBEB;border:1.5px solid var(--border);border-radius:12px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.person-chip label{font-size:10.5px;font-weight:800;color:#57534E;white-space:nowrap}
+.person-chip select{border:none;background:transparent;font-weight:700;font-size:13px;outline:none;flex:1;min-width:0}
 </style>
 </head>
 <body>
-
 <nav class="navbar">
   <div class="container">
     <a href="#" class="logo"><div class="logo-icon">4G</div>HOTEL <span>4G</span></a>
@@ -317,65 +318,74 @@ td{padding:11px 12px;border-top:1px solid #FFF1E6;white-space:nowrap}
     </ul>
     <div class="nav-actions">
       <div class="lang-switch"><button id="btn-hi" class="active" onclick="setLang('hi')">हि</button><button id="btn-en" onclick="setLang('en')">EN</button></div>
-      <a href="#booking" class="btn-gold">बुक करें</a>
+      <a href="#booking" class="btn-gold" style="padding:8px 14px;font-size:12px">बुक करें</a>
       <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
     </div>
   </div>
 </nav>
-<div id="firebaseBanner" class="firebase-banner warn"><span id="firebaseBannerText">⚠️ Firebase कनेक्ट करें — Help देखें, फिर सब Original होगा</span></div>
+<div id="firebaseBanner" class="firebase-banner warn"><span id="firebaseBannerText">⚠️ Firebase कनेक्ट करें — Help देखें</span></div>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="container">
     <div class="hero-content">
-      <div class="badge">✨ Bhopal का सबसे Colourful Hotel — Now Firebase 🔥</div>
+      <div class="badge">✨ Bhopal का सबसे Systematic Hotel — Firebase 🔥</div>
       <h1>रंगों भरा आराम, <br><span>दिल से मेहमाननवाजी</span></h1>
-      <p>Hotel 4G — जहाँ हर कोना रंगीन, हर सेवा दिल से। MP Nagar में, अब Firebase Real-time, सुंदर Popup और Gallery Upload के साथ।</p>
+      <p>Hotel 4G — 100% Responsive, कोई Overlap नहीं, हर Device में Auto-Set। Room में Side-Scroll Multi Photos + Person/Children Selector।</p>
       <div class="hero-btns">
         <a href="#rooms" class="btn-gold">🌈 रूम देखें →</a>
         <a href="#gallery" class="btn-wh">📸 गैलरी देखें</a>
       </div>
       <div class="hero-stats">
         <div class="stat-pill"><div class="ic">🏨</div><div><strong id="heroTotal">--</strong><span>Bookings Live</span></div></div>
-        <div class="stat-pill"><div class="ic">🎨</div><div><strong>100%</strong><span>Colourful UI</span></div></div>
-        <div class="stat-pill"><div class="ic">📸</div><div><strong>Gallery</strong><span>Admin Upload</span></div></div>
+        <div class="stat-pill"><div class="ic">📱</div><div><strong>100%</strong><span>Responsive</span></div></div>
+        <div class="stat-pill"><div class="ic">📸</div><div><strong>Multi-Photo</strong><span>Side Scroll</span></div></div>
       </div>
     </div>
+    <!-- SYSTEMATIC BOOKING CARD — 6 fields, auto responsive, no overlap -->
     <form class="booking-card" id="booking" onsubmit="handleBooking(event)">
-      <div><label>चेक-इन</label><input type="date" id="checkin" required></div>
-      <div><label>चेक-आउट</label><input type="date" id="checkout" required></div>
-      <div><label>रूम चुनें</label><select id="roomSelect"><option value="Deluxe Room">Deluxe Room - ₹1999</option><option value="Super Deluxe">Super Deluxe - ₹2799</option><option value="Family Suite">Family Suite - ₹4499</option></select></div>
-      <div><button type="submit" class="btn-gold" style="width:100%;padding:12px 18px">चेक करें ✨</button></div>
-      <div id="availMsg" class="avail-msg"></div>
+      <div class="booking-fields">
+        <div><label>चेक-इन</label><input type="date" id="checkin" required></div>
+        <div><label>चेक-आउट</label><input type="date" id="checkout" required></div>
+        <div><label>👤 Adults</label>
+          <select id="adults"><option value="1">1 Adult</option><option value="2" selected>2 Adults</option><option value="3">3 Adults</option><option value="4">4 Adults</option><option value="5">5 Adults</option><option value="6">6 Adults</option></select>
+        </div>
+        <div><label>🧒 Children</label>
+          <select id="children"><option value="0" selected>0 Child</option><option value="1">1 Child</option><option value="2">2 Children</option><option value="3">3 Children</option><option value="4">4 Children</option></select>
+        </div>
+        <div><label>🛏 Room</label><select id="roomSelect"><option value="Deluxe Room">Deluxe — ₹1999</option><option value="Super Deluxe">Super Deluxe — ₹2799</option><option value="Family Suite">Family Suite — ₹4499</option></select></div>
+        <div class="booking-actions"><button type="submit" class="btn-gold">✨ चेक करें</button></div>
+      </div>
+      <div id="availMsg" class="avail-msg" style="grid-column:1/-1"></div>
     </form>
   </div>
 </section>
 
-<!-- ROOMS -->
-<section id="rooms" class="bg-cream">
+<!-- ROOMS — MULTI PHOTO SIDE SCROLL -->
+<section id="rooms" style="background:#FFF7ED">
   <div class="container">
-    <div class="section-head"><span>हमारे रंगीन रूम्स</span><h2>हर बजट में <em>लग्ज़री</em> — अब Photo Upload के साथ</h2><p>Admin सीधा Gallery से Room की Photo Upload कर सकता है — Firebase Storage पर, तुरंत Website पर दिखेगी।</p></div>
+    <div class="section-head"><span>हमारे रंगीन रूम्स — Multi Photo</span><h2>हर रूम में <em>Side Scroll</em> Photos — Swipe करें →</h2><p>हर Room में 3-4 Photos — Side Scroll / Swipe / Dots से देखें। Admin Gallery से Multiple Upload कर सकता है।</p></div>
     <div class="rooms-grid" id="roomsGrid"></div>
-    <p style="text-align:center;margin-top:14px;font-size:11px;color:#A8A29E">* Live Firebase — Admin बदलते ही सब जगह अपडेट • Coupon HOTEL200 पर ₹200 OFF</p>
+    <p style="text-align:center;margin-top:14px;font-size:11px;color:#A8A29E">* Live Firebase — Person/Children के हिसाब से सही Room Suggest • Coupon HOTEL200</p>
   </div>
 </section>
 
-<!-- GALLERY — REAL FIREBASE -->
-<section id="gallery" class="bg-light">
+<!-- GALLERY -->
+<section id="gallery" style="background:#FFFBEB">
   <div class="container">
-    <div class="section-head"><span style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-color:#C4B5FD;color:#6D28D9">📸 GALLERY — FIREBASE LIVE</span><h2>Hotel 4G की <em>रंगीन झलक</em></h2><p>Admin Gallery से Photo Upload/Delete कर सकता है — यहाँ Real-time दिखेगी।</p></div>
+    <div class="section-head"><span style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-color:#C4B5FD;color:#6D28D9">📸 GALLERY — FIREBASE LIVE</span><h2>Hotel 4G की <em>रंगीन झलक</em></h2><p>Admin से Upload — यहाँ Real-time</p></div>
     <div class="gallery-wrap"><div class="gallery-grid" id="galleryGrid"></div></div>
-    <div style="text-align:center;margin-top:14px"><button onclick="openAdminGallery()" class="btn-wh" style="border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF">⚙ Admin Gallery खोलें</button></div>
+    <div style="text-align:center;margin-top:12px"><button onclick="openAdminGallery()" class="btn-wh" style="border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF">⚙ Admin Gallery खोलें</button></div>
   </div>
 </section>
 
 <!-- CALENDAR -->
-<section id="calendar" class="bg-mint">
+<section id="calendar" style="background:linear-gradient(180deg,#F0FDF9 0%,#ECFDF5 100%)">
   <div class="container">
-    <div class="section-head"><span style="background:#ECFDF5;border-color:#6EE7B7;color:#065F46">📅 AVAILABILITY — LIVE</span><h2>रूम <em>उपलब्धता</em> कैलेंडर</h2><p>हरा = खाली, लाल = बुक्ड। Firebase से Real-time।</p></div>
+    <div class="section-head"><span style="background:#ECFDF5;border-color:#6EE7B7;color:#065F46">📅 AVAILABILITY — LIVE</span><h2>रूम <em>उपलब्धता</em> कैलेंडर</h2><p>हरा = खाली, लाल = बुक्ड। Firebase Live</p></div>
     <div style="max-width:900px;margin:0 auto">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:14px">
-        <select id="calRoomSelect" onchange="renderCalendar()" style="padding:10px 14px;border-radius:30px;border:1.5px solid #6EE7B7;font-weight:700;background:#fff"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px">
+        <select id="calRoomSelect" onchange="renderCalendar()" style="padding:9px 12px;border-radius:30px;border:1.5px solid #6EE7B7;font-weight:700;background:#fff"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select>
         <button class="btn-dark" onclick="openCalendarModal()">📅 Full Calendar खोलें</button>
       </div>
       <div class="cal-wrap" id="inlineCalendar"></div>
@@ -383,51 +393,54 @@ td{padding:11px 12px;border-top:1px solid #FFF1E6;white-space:nowrap}
   </div>
 </section>
 
-<!-- FACILITIES COLOURFUL -->
-<section class="bg-lav">
+<!-- FACILITIES -->
+<section style="background:linear-gradient(180deg,#F5F3FF 0%,#EDE9FE 100%)">
   <div class="container">
-    <div class="section-head"><span style="background:#F5F3FF;border-color:#C4B5FD;color:#7C3AED">✨ सुविधाएं</span><h2>रंग-बिरंगी <em>सुविधाएं</em></h2></div>
+    <div class="section-head"><span style="background:#F5F3FF;border-color:#C4B5FD;color:#7C3AED">✨ सुविधाएं — Systematic</span><h2>रंग-बिरंगी <em>सुविधाएं</em> — Auto Responsive</h2></div>
     <div class="fac-grid">
-      <div class="fac-card"><div class="fac-icon">💳</div><h4>UPI + Razorpay</h4><p>Instant Payment</p></div>
-      <div class="fac-card"><div class="fac-icon">📸</div><h4>Gallery Upload</h4><p>Admin Direct</p></div>
+      <div class="fac-card"><div class="fac-icon">💳</div><h4>UPI + Razorpay</h4><p>Instant</p></div>
+      <div class="fac-card"><div class="fac-icon">📸</div><h4>Gallery Upload</h4><p>Multi Photo</p></div>
       <div class="fac-card"><div class="fac-icon">📅</div><h4>Live Calendar</h4><p>Real-time</p></div>
-      <div class="fac-card"><div class="fac-icon">🎨</div><h4>Colourful UI</h4><p>Beautiful Popup</p></div>
+      <div class="fac-card"><div class="fac-icon">👨‍👩‍👧‍👦</div><h4>Person Select</h4><p>Adult/Child</p></div>
       <div class="fac-card"><div class="fac-icon">🍽️</div><h4>Pure Veg</h4><p>Restaurant</p></div>
-      <div class="fac-card"><div class="fac-icon">🅿️</div><h4>Free Parking</h4><p>CCTV Safe</p></div>
+      <div class="fac-card"><div class="fac-icon">🅿️</div><h4>Free Parking</h4><p>CCTV</p></div>
       <div class="fac-card"><div class="fac-icon">⚡</div><h4>Power Backup</h4><p>24x7</p></div>
-      <div class="fac-card"><div class="fac-icon">🛎️</div><h4>24x7 Service</h4><p>Room Service</p></div>
+      <div class="fac-card"><div class="fac-icon">🛎️</div><h4>24x7 Service</h4><p>No Overlap</p></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="bg-cream">
+<!-- CONTACT — systematic person/children -->
+<section id="contact" style="background:#FFF7ED">
   <div class="container">
-    <div class="section-head"><span>संपर्क करें</span><h2>बुकिंग के लिए <em>बात करें</em></h2><p>फॉर्म Firebase पर — Admin में तुरंत। सुंदर Popup में Confirmation।</p></div>
+    <div class="section-head"><span>संपर्क करें — Systematic</span><h2>बुकिंग के लिए <em>बात करें</em></h2><p>Adults / Children सही से चुनें — Room Auto Suggest होगा</p></div>
     <div class="contact-grid">
       <div class="contact-info">
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
-        <p style="color:#FDBA74;font-size:12px;margin:4px 0 18px">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
+        <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f98a96968b8a918098948f908a918e9892988b9498caceb99e94989095d79a9694">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7">soorshyamvishwakarma37@gmail.com</span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">hotel4g@upi</span></div></div>
-        <div class="c-item"><div class="c-icon">✨</div><div><strong>UI</strong><span style="color:#FDE68A">100% Colourful + Beautiful Popups</span></div></div>
+        <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
-          <a href="tel:+919876543210" class="btn-gold" style="flex:1;text-align:center;background:#fff;color:var(--dark);box-shadow:none">📞 Call</a>
-          <a href="https://wa.me/919876543210" target="_blank" style="flex:1;text-align:center;background:#25D366;color:#fff;padding:11px;border-radius:30px;font-weight:800;font-size:13px">💬 WhatsApp</a>
+          <a href="tel:+919876543210" class="btn-gold" style="flex:1;text-align:center;background:#fff;color:var(--dark);min-width:120px">📞 Call</a>
+          <a href="https://wa.me/919876543210" target="_blank" style="flex:1;text-align:center;background:#25D366;color:#fff;padding:10px;border-radius:30px;font-weight:800;font-size:13px;min-width:120px">💬 WhatsApp</a>
         </div>
       </div>
       <form class="contact-form" onsubmit="handleContact(event)">
-        <h3 style="margin-bottom:12px;color:var(--dark)">तुरंत बुकिंग रिक्वेस्ट</h3>
+        <h3 style="margin-bottom:12px;color:var(--dark)">तुरंत बुकिंग रिक्वेस्ट — Systematic</h3>
         <div class="form-grid">
           <div class="form-group"><label>आपका नाम *</label><input id="fName" type="text" placeholder="राहुल वर्मा" required></div>
           <div class="form-group"><label>मोबाइल *</label><input id="fPhone" type="tel" placeholder="+91 9XXXX XXXXX" required></div>
           <div class="form-group"><label>चेक-इन</label><input id="fCin" type="date" required></div>
           <div class="form-group"><label>चेक-आउट</label><input id="fCout" type="date" required></div>
-          <div class="form-group full"><label>रूम</label><select id="fRoom"><option>Deluxe Room - ₹1999</option><option>Super Deluxe - ₹2799</option><option>Family Suite - ₹4499</option></select></div>
-          <div class="form-group full"><label>संदेश</label><textarea id="fMsg" rows="2" placeholder="कितने लोग?"></textarea></div>
+          <div class="form-group"><label>👤 Adults</label><select id="fAdults"><option value="1">1 Adult</option><option value="2" selected>2 Adults</option><option value="3">3 Adults</option><option value="4">4 Adults</option><option value="5">5 Adults</option><option value="6">6 Adults</option></select></div>
+          <div class="form-group"><label>🧒 Children</label><select id="fChildren"><option value="0" selected>0 Child</option><option value="1">1 Child</option><option value="2">2 Children</option><option value="3">3 Children</option><option value="4">4 Children</option></select></div>
+          <div class="form-group full"><label>🛏 Room (Auto Suggest by Persons)</label><select id="fRoom"><option>Deluxe Room - ₹1999 (2 Adults)</option><option>Super Deluxe - ₹2799 (3 Adults)</option><option>Family Suite - ₹4499 (6 Persons)</option></select></div>
+          <div class="form-group full"><label>संदेश</label><textarea id="fMsg" rows="2" placeholder="बच्चों की उम्र, कोई जरूरत?"></textarea></div>
         </div>
-        <button type="submit" class="btn-gold" style="width:100%;padding:13px">✨ रिक्वेस्ट भेजें — सुंदर Popup में Confirm</button>
+        <div id="personHint" style="background:#FFFBEB;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11px;font-weight:600;color:#92400e;margin-bottom:10px;display:none"></div>
+        <button type="submit" class="btn-gold" style="width:100%;padding:13px">✨ रिक्वेस्ट भेजें — सुंदर Popup</button>
         <button type="button" onclick="openPayModalFromForm()" style="width:100%;margin-top:8px;padding:11px;border-radius:30px;border:1.5px solid var(--dark);background:#fff;font-weight:800;cursor:pointer">💳 सीधा Pay करके Confirm करें</button>
       </form>
     </div>
@@ -437,40 +450,48 @@ td{padding:11px 12px;border-top:1px solid #FFF1E6;white-space:nowrap}
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div><div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;color:#fff;font-weight:800"><div class="logo-icon" style="width:32px;height:32px;font-size:14px">4G</div>HOTEL 4G</div><p style="font-size:12px;line-height:1.6;color:#A1A1AA">रंगों भरा, Firebase वाला, सुंदर Popup वाला Original System।</p><p style="margin-top:10px"><a href="#" onclick="openAdmin();return false" style="display:inline-block;background:var(--grad1);color:#fff;padding:8px 14px;border-radius:30px;font-weight:700">⚙ Admin — Your Email Only</a></p></div>
+      <div><div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;color:#fff;font-weight:800"><div class="logo-icon" style="width:32px;height:32px;font-size:14px">4G</div>HOTEL 4G</div><p style="font-size:12px;line-height:1.6;color:#A1A1AA">Systematic, Responsive, Multi-Photo, Person Select — कोई Overlap नहीं, हर Device में Perfect!</p><p style="margin-top:10px"><a href="#" onclick="openAdmin();return false" style="display:inline-block;background:var(--grad1);color:#fff;padding:8px 14px;border-radius:30px;font-weight:700">⚙ Admin — Your Email Only</a></p></div>
       <div><h4>Quick Links</h4><a href="#home">Home</a><a href="#rooms">Rooms</a><a href="#gallery">Gallery</a></div>
-      <div><h4>System</h4><a href="#">Firebase</a><a href="#">Storage Upload</a><a href="#">Beautiful Popup</a></div>
-      <div><h4>We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🎨 Colourful</span></div></div>
+      <div><h4>System</h4><a href="#">Responsive</a><a href="#">Multi-Photo</a><a href="#">Adult/Child</a></div>
+      <div><h4>We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="087b67677a7b607169657e617b607f6963697a65693b3f486f65696164266b6765">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15">soorshyamvishwakarma37@gmail.com</b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
 
-<!-- PAY MODAL — beautiful -->
+<!-- PAY MODAL — systematic with person/children -->
 <div id="payOverlay" class="modal-overlay">
   <div class="modal">
-    <div class="modal-head"><div><b id="payRoomName">Deluxe Room</b><div style="font-size:11px;color:#78716C" id="payRoomPrice">₹1999 / night</div></div><button onclick="closePay()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid #FFE4B5;background:#fff;cursor:pointer;font-weight:800">✕</button></div>
+    <div class="modal-head"><div><b id="payRoomName">Deluxe Room</b><div style="font-size:11px;color:#78716C" id="payRoomPrice">₹1999 / night</div></div><button onclick="closePay()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div>
     <div class="modal-body">
-      <div class="field"><label>Check-in → Check-out *</label><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><input type="date" id="payCin"><input type="date" id="payCout"></div></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div class="field"><label>Guests</label><select id="payGuests"><option>1 Room, 2 Guests</option><option>1 Room, 3 Guests</option></select></div><div class="field"><label>Coupon</label><input id="payCoupon" placeholder="HOTEL200" oninput="updatePaySummary()"></div></div>
-      <div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FFE4B5;border-radius:16px;padding:14px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center"><div><div style="font-size:11px;color:#78716C;font-weight:700">Total Payable</div><strong id="payTotal" style="font-size:22px;color:var(--dark)">₹1999</strong><div id="payBreakup" style="font-size:11px;color:#78716C">1 night</div></div><div style="text-align:right"><span id="payNights" style="background:var(--dark);color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800">1 night</span></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="field"><label>Check-in *</label><input type="date" id="payCin"></div>
+        <div class="field"><label>Check-out *</label><input type="date" id="payCout"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="field"><label>👤 Adults</label><select id="payAdults"><option value="1">1 Adult</option><option value="2" selected>2 Adults</option><option value="3">3 Adults</option><option value="4">4 Adults</option><option value="5">5 Adults</option><option value="6">6 Adults</option></select></div>
+        <div class="field"><label>🧒 Children</label><select id="payChildren"><option value="0" selected>0 Child</option><option value="1">1 Child</option><option value="2">2 Children</option><option value="3">3 Children</option><option value="4">4 Children</option></select></div>
+      </div>
+      <div class="field"><label>Coupon</label><input id="payCoupon" placeholder="HOTEL200" oninput="updatePaySummary()"></div>
+      <div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid var(--border);border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center"><div><div style="font-size:11px;color:#78716C;font-weight:700">Total Payable</div><strong id="payTotal" style="font-size:20px;color:var(--dark)">₹1999</strong><div id="payBreakup" style="font-size:11px;color:#78716C">1 night • 2 Adults</div></div><div style="text-align:right"><span id="payNights" style="background:var(--dark);color:#fff;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800">1 night</span></div></div>
+      <div style="background:#FFFBEB;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11px;font-weight:600;color:#92400e;margin-top:8px" id="payPersonHint"></div>
       <div class="pay-options">
         <div id="opt-upi" class="pay-opt active" onclick="selectPay('upi')"><div class="icon">📱</div><b style="font-size:13px;color:var(--dark)">UPI QR</b><div style="font-size:11px;color:#78716C">GPay / PhonePe</div></div>
         <div id="opt-razor" class="pay-opt" onclick="selectPay('razor')"><div class="icon">💳</div><b style="font-size:13px;color:var(--dark)">Razorpay</b><div style="font-size:11px;color:#78716C">Card / Netbanking</div></div>
       </div>
       <div id="upiBox" class="qr-box">
-        <div style="font-size:13px;font-weight:800;color:var(--dark)">📱 Scan & Pay via any UPI App</div>
-        <img id="qrImg" src="" alt="QR" style="width:176px;height:176px;margin:10px auto;display:block">
-        <div style="font-size:12px">UPI: <b id="qrUpi">hotel4g@upi</b> <button onclick="copyUpi()" style="margin-left:6px;padding:5px 10px;border-radius:20px;border:1.5px solid #FFE4B5;background:#fff;font-size:11px;font-weight:700;cursor:pointer">Copy</button></div>
-        <div style="font-size:11px;color:#78716C;margin-top:6px">Amount: <b id="qrAmount">₹1999</b></div>
+        <div style="font-size:13px;font-weight:800;color:var(--dark)">📱 Scan & Pay</div>
+        <img id="qrImg" src="" alt="QR" style="width:160px;height:160px;margin:10px auto;display:block;max-width:100%">
+        <div style="font-size:12px;word-break:break-all">UPI: <b id="qrUpi">hotel4g@upi</b> <button onclick="copyUpi()" style="margin-left:6px;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:11px;font-weight:700;cursor:pointer">Copy</button></div>
+        <div style="font-size:11px;color:#78716C;margin-top:4px">Amount: <b id="qrAmount">₹1999</b></div>
         <div class="field" style="text-align:left;margin-top:12px"><label>UTR / Transaction ID *</label><input id="upiTxn" placeholder="12 digit UTR"></div>
-        <button onclick="confirmUpiPayment()" class="btn-gold" style="width:100%;margin-top:8px">✅ I Have Paid — Firebase पर Save करें</button>
+        <button onclick="confirmUpiPayment()" class="btn-gold" style="width:100%;margin-top:8px">✅ I Have Paid — Firebase Save</button>
       </div>
       <div id="razorBox" class="qr-box" style="display:none">
-        <div style="font-size:14px;font-weight:800;color:var(--dark)">💳 Pay Securely via Razorpay</div>
+        <div style="font-size:14px;font-weight:800;color:var(--dark)">💳 Pay via Razorpay</div>
         <p style="font-size:11px;color:#78716C;margin:8px 0">Secure — Test Mode</p>
-        <button onclick="payWithRazorpay()" class="btn-dark" style="width:100%;padding:13px;font-size:14px;background:var(--grad1);border:none">💳 Pay <span id="razorAmount">₹1999</span> with Razorpay</button>
+        <button onclick="payWithRazorpay()" class="btn-dark" style="width:100%;padding:12px;font-size:14px;background:var(--grad1);border:none">💳 Pay <span id="razorAmount">₹1999</span> with Razorpay</button>
       </div>
     </div>
   </div>
@@ -478,86 +499,78 @@ td{padding:11px 12px;border-top:1px solid #FFF1E6;white-space:nowrap}
 
 <!-- CALENDAR MODAL -->
 <div id="calOverlay" class="modal-overlay">
-  <div class="modal" style="max-width:640px"><div class="modal-head"><div><b>📅 Availability Calendar — Firebase Live</b><div style="font-size:11px;color:#78716C">तारीख चुनें और बुक करें</div></div><button onclick="closeCalendar()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid #FFE4B5;background:#fff;cursor:pointer;font-weight:800">✕</button></div>
+  <div class="modal" style="max-width:640px"><div class="modal-head"><div><b>📅 Availability — Firebase Live</b><div style="font-size:11px;color:#78716C">तारीख चुनें और बुक करें</div></div><button onclick="closeCalendar()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div>
     <div class="modal-body">
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
-        <select id="calRoomModal" onchange="renderCalendarModal()" style="flex:1;min-width:160px;padding:10px 12px;border-radius:12px;border:1.5px solid #FFE4B5;font-weight:700;background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select>
+        <select id="calRoomModal" onchange="renderCalendarModal()" style="flex:1;min-width:140px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--border);font-weight:700;background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select>
         <button onclick="shiftCalMonth(-1)" class="icon-btn">‹ Prev</button><button onclick="shiftCalMonth(1)" class="icon-btn">Next ›</button>
       </div>
       <div id="calendarModalBody"></div>
-      <div style="display:flex;gap:8px;margin-top:14px"><button onclick="bookSelectedDates()" class="btn-gold" style="flex:1">Book Selected Dates →</button><button onclick="closeCalendar()" class="btn-wh" style="flex:1">Close</button></div>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><button onclick="bookSelectedDates()" class="btn-gold" style="flex:1;min-width:140px">Book Selected Dates →</button><button onclick="closeCalendar()" class="btn-wh" style="flex:1;min-width:100px">Close</button></div>
     </div>
   </div>
 </div>
 
-<!-- ADMIN LOGIN — ONLY YOUR EMAIL -->
+<!-- ADMIN LOGIN -->
 <div id="adminOverlay" class="modal-overlay">
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
-      <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px;box-shadow:0 10px 24px rgba(255,59,130,0.25)">🔒</div>
+      <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="45362a2a37362d3c2428332c362d32242e243728247672052228242c296b262a28">[email&#160;protected]</a></b> से Login होगा</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)">soorshyamvishwakarma37@gmail.com</b> से</p>
       <div id="loginLoggedOut">
-        <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid #FFE4B5;background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+        <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
         </button>
-        <p style="font-size:11px;color:#A8A29E;margin-top:10px">उसी Gmail से login करें — किसी और से Access Denied</p>
-        <div style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border:1.5px solid #FDBA74;border-radius:12px;padding:10px;font-size:11px;text-align:left;margin-top:10px;color:#9A3412">🔐 <b>Security:</b> Firestore Rules में सिर्फ यही Email `read/write` कर सकता है।</div>
+        <p style="font-size:11px;color:#A8A29E;margin-top:10px">उसी Gmail से — किसी और से Access Denied</p>
+        <div style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border:1.5px solid #FDBA74;border-radius:12px;padding:10px;font-size:11px;text-align:left;margin-top:10px;color:#9A3412">🔐 Firestore Rules — सिर्फ यही Email `read/write`</div>
       </div>
       <div id="loginLoggedIn" style="display:none">
         <div style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1.5px solid #86EFAC;border-radius:14px;padding:14px;margin-top:14px">
-          <div style="font-size:12px;color:#065F46;font-weight:700">✅ Logged in as</div><b id="loggedEmail" style="color:var(--dark)"></b><div id="loginStatus" style="font-size:11px;margin-top:4px"></div>
+          <div style="font-size:12px;color:#065F46;font-weight:700">✅ Logged in as</div><b id="loggedEmail" style="color:var(--dark);word-break:break-all"></b><div id="loginStatus" style="font-size:11px;margin-top:4px"></div>
         </div>
         <button onclick="openDashboardFromLogin()" class="btn-gold" style="width:100%;margin-top:12px">📊 Dashboard खोलें</button>
         <button onclick="signOut()" class="btn-wh" style="width:100%;margin-top:8px">Logout</button>
       </div>
       <button onclick="closeAdminLogin()" style="width:100%;margin-top:8px;padding:10px;border:none;background:transparent;color:#A8A29E;font-weight:700;cursor:pointer">Cancel</button>
-      <p id="loginError" style="color:#DC2626;font-size:12px;margin-top:10px;display:none"></p>
+      <p id="loginError" style="color:#DC2626;font-size:12px;margin-top:10px;display:none;word-break:break-word"></p>
     </div>
   </div>
 </div>
 
 <!-- HELP -->
 <div id="helpOverlay" class="modal-overlay">
-  <div class="modal" style="max-width:640px"><div class="modal-head"><b>🔥 Firebase Setup — 5 Steps</b><button onclick="document.getElementById('helpOverlay').classList.remove('open')" style="width:34px;height:34px;border-radius:50%;border:1.5px solid #FFE4B5;background:#fff;cursor:pointer;font-weight:800">✕</button></div>
+  <div class="modal" style="max-width:640px"><div class="modal-head"><b>🔥 Firebase Setup — 5 Steps</b><button onclick="document.getElementById('helpOverlay').classList.remove('open')" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div>
     <div class="modal-body" style="font-size:13px;line-height:1.7">
       <ol style="padding-left:18px;display:grid;gap:12px">
-        <li><b>Project:</b> <a href="https://console.firebase.google.com" target="_blank" style="color:#E85D04;font-weight:800">console.firebase.google.com</a> → Add Project `hotel-4g`</li>
-        <li><b>Web App:</b> `&lt;/&gt;` → Nickname `hotel4g` → Copy `firebaseConfig`</li>
-        <li><b>Paste:</b> इस File में नीचे `firebaseConfig` में `YOUR_API_KEY` बदलें</li>
-        <li><b>Auth:</b> Authentication → Google → Enable → Support Email `<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="99eaf6f6ebeaf1e0f8f4b7b7b7d9fef4f8f0f5b7faf6f4">[email&#160;protected]</a>`</li>
-        <li><b>Firestore + Storage:</b> Firestore → Create (Test mode, asia-south1) + Storage → Create (Test mode). फिर Rules नीचे Paste करें.</li>
+        <li><b>Project:</b> console.firebase.google.com → Add Project `sewaastra`</li>
+        <li><b>Web App:</b> `&lt;/&gt;` → Copy `firebaseConfig` → इस File में Paste (पहले से लगा है)</li>
+        <li><b>Auth:</b> Authentication → Google → Enable</li>
+        <li><b>Firestore + Storage:</b> Create (Test mode, asia-south1)</li>
       </ol>
-      <pre style="background:#0F172A;color:#E2E8F0;padding:12px;border-radius:12px;font-size:11px;overflow:auto;margin-top:12px;white-space:pre-wrap">rules_version='2';
+      <pre style="background:#0F172A;color:#E2E8F0;padding:12px;border-radius:12px;font-size:10.5px;overflow:auto;margin-top:12px;white-space:pre-wrap;word-break:break-word">rules_version='2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b584444595843524a465d4258435c4a404a59464a181c6b4c464a424705484446">[email&#160;protected]</a>";}
-    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c6dadac7c6ddccd4d8c3dcc6ddc2d4ded4c7d8d48682f5d2d8d4dcd99bd6dad8">[email&#160;protected]</a>";}
-    match /gallery/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bac9d5d5c8c9d2c3dbd7ccd3c9d2cddbd1dbc8d7db898dfaddd7dbd3d694d9d5d7">[email&#160;protected]</a>";}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3b0acacb1b0abbaa2aeb5aab0abb4a2a8a2b1aea2f0f483a4aea2aaafeda0acae">[email&#160;protected]</a>";}
-  }
-}
-// Storage Rules:
-rules_version='2'; service firebase.storage {
-  match /b/{bucket}/o {
-    match /rooms/{allPaths=**}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daa9b5b5a8a9b2a3bbb7acb3a9b2adbbb1bba8b7bbe9ed9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a>";}
-    match /gallery/{allPaths=**}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e5968a8a97968d9c8488938c968d92848e84978884d6d2a58288848c89cb868a88">[email&#160;protected]</a>";}
+    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="soorshyamvishwakarma37@gmail.com";}
+    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="soorshyamvishwakarma37@gmail.com";}
+    match /gallery/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="soorshyamvishwakarma37@gmail.com";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="soorshyamvishwakarma37@gmail.com";}
   }
 }</pre>
     </div>
   </div>
 </div>
 
-<!-- ADMIN DASHBOARD — systematic + colourful + upload -->
+<!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;background:var(--grad1);border-radius:12px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div><b>Hotel 4G — Firebase Admin</b><div style="font-size:11px;color:#78716C" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="01726e6e73726978606c7768726976606a60736c60323641666c60686d2f626e6c">[email&#160;protected]</a></div></div></div>
-    <div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:6px 10px;border-radius:20px;border:1.5px solid #86EFAC;color:#065F46;font-weight:700">🔒 Your Email Only</span><button onclick="signOut()" class="btn-wh" style="padding:8px 14px">Logout</button><button onclick="closeDashboard()" class="btn-dark" style="padding:8px 14px">✕ Website</button></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop">soorshyamvishwakarma37@gmail.com</div></div></div>
+    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span><button onclick="signOut()" class="btn-wh" style="padding:7px 12px;font-size:12px">Logout</button><button onclick="closeDashboard()" class="btn-dark" style="padding:7px 12px;font-size:12px">✕</button></div>
   </div>
   <div class="admin-layout">
     <div class="admin-sidebar">
-      <button id="tab-btn-bookings" class="active" onclick="switchTab('bookings')">📋 बुकिंग्स <span id="badgeCount" style="margin-left:auto;background:var(--grad1);color:#fff;padding:2px 8px;border-radius:20px;font-size:11px">0</span></button>
-      <button id="tab-btn-rooms" onclick="switchTab('rooms')">🛏 रूम & Photo Upload</button>
-      <button id="tab-btn-gallery" onclick="switchTab('gallery')">📸 Gallery Upload</button>
+      <button id="tab-btn-bookings" class="active" onclick="switchTab('bookings')">📋 बुकिंग्स <span id="badgeCount" style="margin-left:auto;background:var(--grad1);color:#fff;padding:2px 7px;border-radius:20px;font-size:11px">0</span></button>
+      <button id="tab-btn-rooms" onclick="switchTab('rooms')">🛏 रूम & Multi Photo</button>
+      <button id="tab-btn-gallery" onclick="switchTab('gallery')">📸 Gallery</button>
       <button id="tab-btn-calendar" onclick="switchTab('calendar')">📅 Calendar</button>
       <button id="tab-btn-settings" onclick="switchTab('settings')">⚙️ Settings</button>
       <button id="tab-btn-stats" onclick="switchTab('stats')">📊 रिपोर्ट</button>
@@ -566,47 +579,41 @@ rules_version='2'; service firebase.storage {
     </div>
     <div class="admin-main">
       <div class="stat-grid" id="statGrid">
-        <div class="stat-card"><small>Total Bookings</small><strong id="sTotal">0</strong><span style="font-size:11px;color:#065F46">🔥 Firebase Live</span></div>
+        <div class="stat-card"><small>Total Bookings</small><strong id="sTotal">0</strong><span style="font-size:11px;color:#065F46">🔥 Live</span></div>
         <div class="stat-card"><small>Pending</small><strong id="sPending" style="color:#DC2626">0</strong><span>need action</span></div>
         <div class="stat-card"><small>Paid / Confirmed</small><strong id="sConfirmed" style="color:#059669">0</strong><span>revenue</span></div>
         <div class="stat-card"><small>Revenue (Paid)</small><strong id="sRevenue">₹0</strong><span>Firebase</span></div>
       </div>
-
       <div class="admin-card" id="panel-bookings">
-        <div class="admin-card-head"><h4>📋 Bookings — Beautiful Popup Actions</h4><div style="display:flex;gap:6px;flex-wrap:wrap"><select id="filterStatus" onchange="renderBookings()" style="padding:8px 10px;border-radius:30px;border:1.5px solid #FFE4B5;font-size:12px;background:#FFFBEB"><option value="">All</option><option value="new">New</option><option value="paid">Paid</option><option value="confirmed">Confirmed</option><option value="cancelled">Cancelled</option></select><input id="searchBooking" placeholder="Search..." oninput="renderBookings()" style="padding:8px 12px;border:1.5px solid #FFE4B5;border-radius:30px;font-size:12px;width:140px;background:#FFFBEB"><button onclick="renderBookings()" class="icon-btn">↻</button></div></div>
-        <div class="table-wrap"><table><thead><tr><th>#</th><th>Date</th><th>Guest</th><th>Phone</th><th>Room & Dates</th><th>Amount</th><th>Payment</th><th>Status</th><th>Action</th></tr></thead><tbody id="bookingTbody"><tr><td colspan="9" style="text-align:center;padding:28px;color:#A8A29E">Firebase connecting...</td></tr></tbody></table></div>
+        <div class="admin-card-head"><h4>📋 Bookings — Person/Children सहित</h4><div style="display:flex;gap:6px;flex-wrap:wrap"><select id="filterStatus" onchange="renderBookings()" style="padding:7px 10px;border-radius:30px;border:1.5px solid var(--border);font-size:12px;background:#FFFBEB"><option value="">All</option><option value="new">New</option><option value="paid">Paid</option><option value="confirmed">Confirmed</option><option value="cancelled">Cancelled</option></select><input id="searchBooking" placeholder="Search..." oninput="renderBookings()" style="padding:7px 10px;border:1.5px solid var(--border);border-radius:30px;font-size:12px;width:130px;background:#FFFBEB"><button onclick="renderBookings()" class="icon-btn">↻</button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Date</th><th>Guest</th><th>Phone</th><th>Room & Dates</th><th>Persons</th><th>Amount</th><th>Payment</th><th>Status</th><th>Action</th></tr></thead><tbody id="bookingTbody"><tr><td colspan="10" style="text-align:center;padding:28px;color:#A8A29E">Firebase connecting...</td></tr></tbody></table></div>
       </div>
-
       <div class="admin-card" id="panel-rooms" style="display:none">
-        <div class="admin-card-head"><h4>🛏 रूम Photo Upload — High Secure 🔒 (सिर्फ आप)</h4><button onclick="resetRooms()" class="icon-btn">Reset Default</button></div>
-        <div style="background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border:1px solid #FECACA;color:#991B1B;padding:8px 12px;margin:12px 16px 0;border-radius:12px;font-size:11px;font-weight:700;text-align:center">🔒 High Secure ON — Price/Photo/Payment सिर्फ <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5d6cacad7d6cddcc4c8d3ccd6cdd2c4cec4d7c8c49692e5c2c8c4ccc98bc6cac8">[email&#160;protected]</a></b> + Re-Auth (10 min) से बदलेगा</div>
+        <div class="admin-card-head"><h4>🛏 रूम Multi Photo — Side Scroll (High Secure 🔒)</h4><button onclick="resetRooms()" class="icon-btn">Reset Default</button></div>
+        <div style="background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border:1px solid #FECACA;color:#991B1B;padding:8px 12px;margin:12px 16px 0;border-radius:12px;font-size:11px;font-weight:700;text-align:center;word-break:break-word">🔒 High Secure — Price/Photo सिर्फ आपका Email + Re-Auth (10 min)</div>
         <div class="edit-grid" id="roomEditGrid"></div>
-        <div style="padding:0 16px 16px"><button data-secure="true" onclick="saveRooms()" class="btn-gold" style="width:100%;padding:13px">🔒 High Secure Save to Firebase — तुरंत Website पर दिखेगा</button><p style="font-size:11px;color:#78716C;text-align:center;margin-top:8px">💡 Photo Upload करने के बाद Save दबाएं — Storage URL Firebase में सेव होगा</p></div>
+        <div style="padding:0 16px 16px"><button data-secure="true" onclick="saveRooms()" class="btn-gold" style="width:100%;padding:13px">🔒 High Secure Save to Firebase</button><p style="font-size:11px;color:#78716C;text-align:center;margin-top:8px;word-break:break-word">💡 हर Room में 1-6 Photos — Side Scroll से देखें, Firebase Storage पर</p></div>
       </div>
-
       <div class="admin-card" id="panel-gallery" style="display:none">
-        <div class="admin-card-head"><h4>📸 Gallery — High Secure Upload 🔒</h4><span style="font-size:11px;background:linear-gradient(135deg,#FEE2E2,#FECACA);color:#991B1B;padding:6px 10px;border-radius:20px;border:1px solid #FCA5A5">🔒 High Secure: Re-Auth Required</span></div>
-        <div style="padding:16px;">
+        <div class="admin-card-head"><h4>📸 Gallery — High Secure Upload 🔒</h4><span style="font-size:11px;background:linear-gradient(135deg,#FEE2E2,#FECACA);color:#991B1B;padding:5px 9px;border-radius:20px;border:1px solid #FCA5A5;white-space:nowrap">Re-Auth Required</span></div>
+        <div style="padding:14px;">
           <div class="upload-zone" id="galleryDrop">
             <input type="file" id="galleryFile" accept="image/*" multiple onchange="handleGalleryUpload(this.files)">
-            <div style="font-size:28px">📸</div>
-            <b style="color:var(--dark)">Gallery में Photo Upload करें</b><div style="font-size:11px;color:#78716C">Drag & Drop या Click करके चुनें — Multiple Photos एक साथ</div>
+            <div style="font-size:26px">📸</div>
+            <b style="color:var(--dark)">Gallery में Photo Upload करें</b><div style="font-size:11px;color:#78716C">Drag & Drop या Click — Multiple Photos</div>
             <div class="upload-bar" id="galleryProgress"><span id="galleryProgressBar"></span></div>
             <div id="galleryProgressText" style="font-size:11px;color:#7C3AED;font-weight:700;margin-top:6px;display:none">Uploading...</div>
           </div>
           <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap">
-            <input id="galleryUrlInput" placeholder="या Image URL Paste करें (https://...)" style="flex:1;min-width:200px;padding:10px 12px;border:1.5px solid #FFE4B5;border-radius:12px;background:#FFFBEB">
+            <input id="galleryUrlInput" placeholder="या Image URL Paste करें (https://...)" style="flex:1;min-width:180px;padding:9px 10px;border:1.5px solid var(--border);border-radius:11px;background:#FFFBEB;min-width:0">
             <button onclick="addGalleryByUrl()" class="btn-dark">Add URL</button>
           </div>
           <div class="gallery-admin-grid" id="galleryAdminGrid"></div>
         </div>
       </div>
-
-      <div class="admin-card" id="panel-calendar" style="display:none"><div class="admin-card-head"><h4>📅 Calendar — Firebase Live</h4><select id="adminCalRoom" onchange="renderAdminCalendar()" style="padding:8px 10px;border-radius:30px;border:1.5px solid #FFE4B5;background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select></div><div style="padding:16px"><div id="adminCalendarWrap"></div></div></div>
-
-      <div class="admin-card" id="panel-settings" style="display:none"><div class="admin-card-head"><h4>⚙️ Payment Settings — Firebase</h4></div><div style="padding:16px;display:grid;gap:12px;max-width:520px"><div style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:700">🔒 Payment Settings — High Secure: सिर्फ आपका Email + Re-Auth से बदलेगा</div><div class="field"><label>UPI ID</label><input id="setUpi" value="hotel4g@upi"></div><div class="field"><label>Razorpay Key ID</label><input id="setRazorKey" value="rzp_test_xxxxxxxx"></div><div class="field"><label>Coupon</label><input id="setCoupon" value="HOTEL200"></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase</button></div></div>
-
-      <div class="admin-card" id="panel-stats" style="display:none"><div class="admin-card-head"><h4>📊 Report — Colourful</h4></div><div style="padding:16px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5);padding:14px;border-radius:14px;border:1.5px solid #FDBA74"><h5 style="font-size:12px;color:var(--dark)">Popular Room</h5><div id="popularRoom" style="font-size:12px;color:#57534E;margin-top:6px">-</div></div><div style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:14px;border-radius:14px;border:1.5px solid #86EFAC"><h5 style="font-size:12px;color:var(--dark)">Today</h5><div id="todayActivity" style="font-size:12px;color:#57534E;margin-top:6px">-</div></div></div></div></div>
+      <div class="admin-card" id="panel-calendar" style="display:none"><div class="admin-card-head"><h4>📅 Calendar — Firebase Live</h4><select id="adminCalRoom" onchange="renderAdminCalendar()" style="padding:7px 10px;border-radius:30px;border:1.5px solid var(--border);background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select></div><div style="padding:14px"><div id="adminCalendarWrap"></div></div></div>
+      <div class="admin-card" id="panel-settings" style="display:none"><div class="admin-card-head"><h4>⚙️ Payment Settings — High Secure</h4></div><div style="padding:14px;display:grid;gap:12px;max-width:520px"><div style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:700;word-break:break-word">🔒 Payment Settings — सिर्फ आपका Email + Re-Auth</div><div class="field"><label>UPI ID</label><input id="setUpi" value="hotel4g@upi"></div><div class="field"><label>Razorpay Key ID</label><input id="setRazorKey" value="rzp_test_xxxxxxxx"></div><div class="field"><label>Coupon</label><input id="setCoupon" value="HOTEL200"></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase</button></div></div>
+      <div class="admin-card" id="panel-stats" style="display:none"><div class="admin-card-head"><h4>📊 Report — Systematic</h4></div><div style="padding:14px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5);padding:12px;border-radius:14px;border:1.5px solid #FDBA74"><h5 style="font-size:12px;color:var(--dark)">Popular Room</h5><div id="popularRoom" style="font-size:12px;color:#57534E;margin-top:6px;word-break:break-word">-</div></div><div style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:12px;border-radius:14px;border:1.5px solid #86EFAC"><h5 style="font-size:12px;color:var(--dark)">Today</h5><div id="todayActivity" style="font-size:12px;color:#57534E;margin-top:6px;word-break:break-word">-</div></div></div></div></div>
     </div>
   </div>
 </div>
@@ -620,13 +627,9 @@ rules_version='2'; service firebase.storage {
     <div id="popupActions" class="popup-actions"></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ===================================================================
-// 🔥 FIREBASE CONFIG — अपना Config Paste करें
-// ===================================================================
+<script>
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAL9dsBvNrp-ijxAk7ZYZcbN0BPaZ5gYtw",
@@ -639,7 +642,6 @@ const firebaseConfig = {
   measurementId: "G-GTB39FLVJ2"
 };
 const ADMIN_EMAIL = "soorshyamvishwakarma37@gmail.com";
-// ===================================================================
 let useFirebase=false, db=null, auth=null, storage=null;
 let bookingsCache=[], roomsCache=null, settingsCache=null, galleryCache=[], authUser=null;
 try{
@@ -648,75 +650,42 @@ try{
     db=firebase.firestore(); auth=firebase.auth(); storage=firebase.storage();
     useFirebase=true;
     document.getElementById('firebaseBanner').className='firebase-banner show ok';
-    document.getElementById('firebaseBanner').innerHTML='✅ Firebase Connected — Original • Colourful • Upload Ready';
+    document.getElementById('firebaseBanner').innerHTML='✅ Firebase Connected — Systematic • Responsive • Multi-Photo • Person Select';
     setTimeout(()=>document.getElementById('firebaseBanner').style.display='none',4000);
   } else {
     document.getElementById('firebaseBanner').className='firebase-banner show warn';
   }
-}catch(e){ console.error(e); document.getElementById('firebaseBanner').className='firebase-banner show warn'; document.getElementById('firebaseBanner').innerHTML='❌ Config Error — Help देखें'; useFirebase=false; }
-
+}catch(e){ console.error(e); document.getElementById('firebaseBanner').className='firebase-banner show warn'; document.getElementById('firebaseBanner').innerHTML='❌ Config Error'; useFirebase=false; }
 function lsGet(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function lsSet(k,v){localStorage.setItem(k,JSON.stringify(v))}
-
-// ——— BEAUTIFUL POPUP SYSTEM — replaces all alert/confirm ———
 function showPopup({type='success', title='', message='', confirmText='ठीक है', cancelText='रद्द करें', showCancel=false, onConfirm=null, onCancel=null, danger=false}){
-  const overlay=document.getElementById('customPopup');
-  const icon=document.getElementById('popupIcon');
-  const t=document.getElementById('popupTitle');
-  const m=document.getElementById('popupMsg');
-  const actions=document.getElementById('popupActions');
+  const overlay=document.getElementById('customPopup'); const icon=document.getElementById('popupIcon'); const t=document.getElementById('popupTitle'); const m=document.getElementById('popupMsg'); const actions=document.getElementById('popupActions');
   const icons={success:'✓', error:'✕', warning:'⚠', info:'ℹ', confirm:'?'};
   const titles={success:'सफल!', error:'त्रुटि!', warning:'ध्यान दें', info:'जानकारी', confirm:'पुष्टि करें'};
-  icon.className='popup-icon '+type;
-  icon.textContent=icons[type]||'✓';
-  t.textContent=title || titles[type] || 'Message';
-  m.textContent=message;
-  actions.innerHTML='';
-  if(showCancel){
-    const cancel=document.createElement('button');
-    cancel.className='popup-btn ghost'; cancel.textContent=cancelText;
-    cancel.onclick=()=>{ overlay.classList.remove('open'); if(onCancel) onCancel(); };
-    actions.appendChild(cancel);
-  }
-  const ok=document.createElement('button');
-  ok.className='popup-btn '+(danger?'danger':'primary');
-  ok.textContent=confirmText;
-  ok.onclick=()=>{ overlay.classList.remove('open'); if(onConfirm) onConfirm(); };
-  actions.appendChild(ok);
-  overlay.classList.add('open');
-  overlay.onclick=(e)=>{ if(e.target===overlay){ overlay.classList.remove('open'); if(onCancel) onCancel(); }};
+  icon.className='popup-icon '+type; icon.textContent=icons[type]||'✓'; t.textContent=title || titles[type] || 'Message'; m.textContent=message; actions.innerHTML='';
+  if(showCancel){ const cancel=document.createElement('button'); cancel.className='popup-btn ghost'; cancel.textContent=cancelText; cancel.onclick=()=>{ overlay.classList.remove('open'); if(onCancel) onCancel(); }; actions.appendChild(cancel); }
+  const ok=document.createElement('button'); ok.className='popup-btn '+(danger?'danger':'primary'); ok.textContent=confirmText; ok.onclick=()=>{ overlay.classList.remove('open'); if(onConfirm) onConfirm(); }; actions.appendChild(ok);
+  overlay.classList.add('open'); overlay.onclick=(e)=>{ if(e.target===overlay){ overlay.classList.remove('open'); if(onCancel) onCancel(); }};
 }
 function showSuccess(msg,title){ showPopup({type:'success', title:title||'सफल! ✨', message:msg, confirmText:'बहुत बढ़िया!'}); }
 function showError(msg){ showPopup({type:'error', title:'त्रुटि!', message:msg, confirmText:'ठीक है'}); }
-function showConfirm(msg, onOk, title){ showPopup({type:'confirm', title:title||'पुष्टि करें?', message:msg, confirmText:'हाँ, करें', cancelText:'रद्द करें', showCancel:true, onConfirm:onOk, danger:true}); }
 
-// ——— ROOMS & SETTINGS DEFAULT ———
+// ——— ROOMS — MULTI PHOTO SYSTEMATIC ———
 const defaultRooms=[
-  {id:"deluxe", name_hi:"Deluxe Room", name_en:"Deluxe Room", price:1999, desc_hi:"कपल और बिज़नेस के लिए — King Bed, Work Desk।", desc_en:"For couples & business — King bed, work desk.", img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80", features:["🛏 King Bed","👥 2 Guests","📶 WiFi","❄️ AC"], tag:""},
-  {id:"superdeluxe", name_hi:"Super Deluxe", name_en:"Super Deluxe", price:2799, desc_hi:"ज्यादा स्पेस, सोफा, सिटी व्यू — फैमिली फेवरेट।", desc_en:"More space, sofa, city view — family favourite.", img:"https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80", features:["🛏 King+Sofa","👥 3 Guests","🍳 Breakfast","📶 WiFi"], tag:"★ MOST POPULAR"},
-  {id:"family", name_hi:"Family Suite", name_en:"Family Suite", price:4499, desc_hi:"2 Bedroom + Hall — 5-6 लोग।", desc_en:"2 Bedroom + Hall — 5-6 guests.", img:"https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80", features:["🛏 2 Bedroom","👥 5-6 Guests","🎉 Banquet 50"], tag:""}
+  {id:"deluxe", name_hi:"Deluxe Room", name_en:"Deluxe Room", price:1999, desc_hi:"कपल और बिज़नेस के लिए — King Bed, Work Desk।", desc_en:"For couples & business — King bed, work desk.", images:["https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80","https://images.unsplash.com/photo-1566195992011-5f6b21e539aa?w=600&q=80","https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80"], features:["🛏 King Bed","👥 2 Guests","📶 WiFi","❄️ AC"], tag:"", maxAdults:2, maxChildren:1},
+  {id:"superdeluxe", name_hi:"Super Deluxe", name_en:"Super Deluxe", price:2799, desc_hi:"ज्यादा स्पेस, सोफा, सिटी व्यू — फैमिली फेवरेट।", desc_en:"More space, sofa, city view — family favourite.", images:["https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80","https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80","https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80"], features:["🛏 King+Sofa","👥 3 Guests","🍳 Breakfast","📶 WiFi"], tag:"★ MOST POPULAR", maxAdults:3, maxChildren:2},
+  {id:"family", name_hi:"Family Suite", name_en:"Family Suite", price:4499, desc_hi:"2 Bedroom + Hall — 5-6 लोग, परिवार के लिए बेस्ट।", desc_en:"2 Bedroom + Hall — 5-6 guests, best for family.", images:["https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80","https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80","https://images.unsplash.com/photo-1551882547-b79c4176354d?w=600&q=80"], features:["🛏 2 Bedroom","👥 5-6 Guests","🎉 Banquet 50"], tag:"", maxAdults:4, maxChildren:2}
 ];
 const defaultSettings={upi:"hotel4g@upi", razorKey:"rzp_test_xxxxxxxx", coupon:"HOTEL200", couponOff:200};
-const defaultGallery=[
-  "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
-  "https://images.unsplash.com/photo-1551016548-573fe324a244?w=600&q=80",
-  "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",
-  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80",
-  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80",
-  "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80"
-];
+const defaultGallery=["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80","https://images.unsplash.com/photo-1551016548-573fe324a244?w=600&q=80","https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80","https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80","https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80"];
 let currentLang=localStorage.getItem('hotel4g_lang')||'hi';
-function setLang(lang){
-  currentLang=lang; localStorage.setItem('hotel4g_lang',lang);
-  document.getElementById('btn-hi').classList.toggle('active',lang==='hi');
-  document.getElementById('btn-en').classList.toggle('active',lang==='en');
-  renderRooms(); renderCalendar(); renderCalendarModal(); renderAdminCalendar();
-}
+function setLang(lang){ currentLang=lang; localStorage.setItem('hotel4g_lang',lang); document.getElementById('btn-hi').classList.toggle('active',lang==='hi'); document.getElementById('btn-en').classList.toggle('active',lang==='en'); renderRooms(); renderCalendar(); renderCalendarModal(); renderAdminCalendar();}
 
-// ——— FIRESTORE LISTENERS — SYSTEMATIC ———
+// ——— FIRESTORE LISTENERS ———
 function startListeners(){
   if(!useFirebase){
-    roomsCache=lsGet('hotel4g_rooms',defaultRooms);
+    roomsCache=lsGet('hotel4g_rooms',defaultRooms); // migrate old single img to images array
+    roomsCache=roomsCache.map(r=>{ if(r.img && !r.images) r.images=[r.img]; if(!r.maxAdults) r.maxAdults=2; return r; });
     settingsCache={...defaultSettings, ...lsGet('hotel4g_settings',{})};
     bookingsCache=lsGet('hotel4g_bookings',[]);
     galleryCache=lsGet('hotel4g_gallery', defaultGallery.map((url,i)=>({id:'g'+i, url})));
@@ -724,28 +693,22 @@ function startListeners(){
   }
   db.collection('rooms').onSnapshot(snap=>{
     if(snap.empty){ defaultRooms.forEach(r=> db.collection('rooms').doc(r.id).set(r)); }
-    else { roomsCache=snap.docs.map(d=>d.data()); renderRooms(); renderRoomEditor(); }
+    else { roomsCache=snap.docs.map(d=>{ const v=d.data(); if(v.img && !v.images) v.images=[v.img]; return v; }); renderRooms(); renderRoomEditor(); }
   });
   db.collection('settings').doc('main').onSnapshot(doc=>{
     if(!doc.exists){ db.collection('settings').doc('main').set(defaultSettings); settingsCache={...defaultSettings};}
     else { settingsCache={...defaultSettings,...doc.data()}; document.getElementById('upiDisplay').textContent=settingsCache.upi; document.getElementById('qrUpi').textContent=settingsCache.upi; document.getElementById('setUpi').value=settingsCache.upi; document.getElementById('setRazorKey').value=settingsCache.razorKey; document.getElementById('setCoupon').value=settingsCache.coupon; updatePaySummary(); }
   });
   db.collection('gallery').orderBy('createdAt','desc').onSnapshot(snap=>{
-    if(snap.empty && galleryCache.length===0){
-      // seed
-      defaultGallery.forEach(url=> db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp()}));
-    } else {
-      galleryCache=snap.docs.map(d=>({id:d.id, ...d.data()}));
-      renderGallery(); renderGalleryAdmin();
-    }
+    if(snap.empty && galleryCache.length===0){ defaultGallery.forEach(url=> db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp()})); }
+    else { galleryCache=snap.docs.map(d=>({id:d.id, ...d.data()})); renderGallery(); renderGalleryAdmin(); }
   });
   db.collection('bookings').orderBy('createdAt','desc').onSnapshot(snap=>{
-    bookingsCache=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms();
+    bookingsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms();
   });
 }
 startListeners();
-roomsCache=roomsCache||lsGet('hotel4g_rooms',defaultRooms);
+roomsCache=roomsCache||lsGet('hotel4g_rooms',defaultRooms).map(r=> r.img&&!r.images?{...r,images:[r.img]}:r);
 settingsCache=settingsCache||{...defaultSettings,...lsGet('hotel4g_settings',{})};
 galleryCache=galleryCache.length?galleryCache: lsGet('hotel4g_gallery', defaultGallery.map((url,i)=>({id:'g'+i,url})));
 function getRooms(){return roomsCache||defaultRooms}
@@ -753,139 +716,165 @@ function getSettings(){return settingsCache||defaultSettings}
 function getBookings(){return bookingsCache||[]}
 function getGallery(){return galleryCache||[]}
 
-// ——— HIGH SECURE MODE — Price/Photo/Payment सिर्फ Admin Email, Re-Auth Required ———
-const HIGH_SECURE_MINUTES = 10; // कितनी देर तक login valid रहेगा
+// ——— HIGH SECURE ———
+const HIGH_SECURE_MINUTES = 10;
 function isHighSecureAuthorized(){
   if(!authUser) return false;
   if(authUser.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) return false;
-  // Google login verified होता है, फिर भी check
-  // last sign-in 10 min के अंदर होना चाहिए — नहीं तो re-auth मांगेंगे
-  try{
-    const last = new Date(authUser.metadata.lastSignInTime).getTime();
-    const diffMin = (Date.now() - last) / 60000;
-    return diffMin < HIGH_SECURE_MINUTES;
-  }catch(e){ return true; }
+  try{ const last=new Date(authUser.metadata.lastSignInTime).getTime(); return (Date.now()-last)/60000 < HIGH_SECURE_MINUTES;}catch(e){return true}
 }
 async function requireHighSecure(actionName, onSuccess){
-  if(!authUser || authUser.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
-    showError('⛔ High Secure: सिर्फ '+ADMIN_EMAIL+' ये कर सकता है — '+actionName);
-    return false;
-  }
+  if(!authUser || authUser.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){ showError('⛔ सिर्फ '+ADMIN_EMAIL+' — '+actionName); return false; }
   if(!isHighSecureAuthorized()){
-    showPopup({
-      type:'warning',
-      title:'🔐 Re-Authentication जरूरी',
-      message: actionName+' — High Secure के लिए दोबारा Google Login करें (10 min का Secure Window खत्म)।',
-      confirmText:'🔐 Re-Login करें',
-      cancelText:'रद्द करें',
-      showCancel:true,
-      onConfirm: async()=>{
-        try{
-          const provider = new firebase.auth.GoogleAuthProvider();
-          // force re-auth
-          if(auth.currentUser){
-            await auth.currentUser.reauthenticateWithPopup(provider);
-          } else {
-            await auth.signInWithPopup(provider);
-          }
-          showSuccess('Re-Auth सफल! अब '+actionName+' कर सकते हैं।','Secure ✓');
-          if(onSuccess) onSuccess();
-        }catch(e){
-          showError('Re-Auth Failed: '+e.message);
-        }
-      }
-    });
+    showPopup({type:'warning', title:'🔐 Re-Auth जरूरी', message: actionName+' — दोबारा Google Login करें (10 min Secure)', confirmText:'🔐 Re-Login', cancelText:'रद्द करें', showCancel:true, onConfirm: async()=>{
+      try{ const provider=new firebase.auth.GoogleAuthProvider();
+        if(auth.currentUser) await auth.currentUser.reauthenticateWithPopup(provider); else await auth.signInWithPopup(provider);
+        showSuccess('Re-Auth सफल!','Secure ✓'); if(onSuccess) onSuccess();
+      }catch(e){ showError('Re-Auth Failed: '+e.message); }
+    }});
     return false;
   }
-  if(onSuccess) await onSuccess();
-  return true;
+  if(onSuccess) await onSuccess(); return true;
 }
-function secureLockUI(){
-  const locked = !isHighSecureAuthorized();
-  // room save & settings buttons को visually lock
-  document.querySelectorAll('[data-secure="true"]').forEach(el=>{
-    el.style.opacity = locked ? '0.6' : '1';
-    el.title = locked ? '🔒 High Secure: Re-Login Required' : '';
-  });
-}
-setInterval(secureLockUI, 2000);
+setInterval(()=>{ document.querySelectorAll('[data-secure="true"]').forEach(el=>{ const locked=!isHighSecureAuthorized(); el.style.opacity=locked?'0.6':'1'; el.title=locked?'🔒 Re-Login Required':''; }); },2000);
 
-// ——— AUTH — ONLY YOUR EMAIL ———
+// ——— AUTH ———
 function openAdmin(){ document.getElementById('adminOverlay').classList.add('open'); updateLoginUI(); }
 function closeAdminLogin(){ document.getElementById('adminOverlay').classList.remove('open')}
 function updateLoginUI(){
-  const out=document.getElementById('loginLoggedOut'), inn=document.getElementById('loginLoggedIn'), err=document.getElementById('loginError');
-  err.style.display='none';
+  const out=document.getElementById('loginLoggedOut'), inn=document.getElementById('loginLoggedIn'), err=document.getElementById('loginError'); err.style.display='none';
   if(!useFirebase){
-    out.innerHTML=`<div style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border:1.5px solid #FDBA74;border-radius:14px;padding:14px;margin-top:12px;font-size:12px;color:#9A3412;text-align:left">⚠️ <b>Firebase कनेक्ट नहीं है</b><br>Preview के लिए Local Login:<div style="display:flex;gap:8px;margin-top:8px"><input id="localUser" placeholder="manager" style="flex:1;padding:9px;border-radius:10px;border:1.5px solid #FFE4B5;background:#fff"><input id="localPass" placeholder="manager123" type="password" style="flex:1;padding:9px;border-radius:10px;border:1.5px solid #FFE4B5;background:#fff"></div><button onclick="localLogin()" class="btn-gold" style="width:100%;margin-top:8px">Local Login (Preview)</button></div>`;
+    out.innerHTML=`<div style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border:1.5px solid #FDBA74;border-radius:14px;padding:14px;margin-top:12px;font-size:12px;color:#9A3412;text-align:left">⚠️ Preview<br><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><input id="localUser" placeholder="manager" style="flex:1;min-width:100px;padding:9px;border-radius:10px;border:1.5px solid var(--border);background:#fff"><input id="localPass" placeholder="manager123" type="password" style="flex:1;min-width:100px;padding:9px;border-radius:10px;border:1.5px solid var(--border);background:#fff"></div><button onclick="localLogin()" class="btn-gold" style="width:100%;margin-top:8px">Local Login</button></div>`;
     out.style.display='block'; inn.style.display='none';
   } else if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()){
-    out.style.display='none'; inn.style.display='block';
-    document.getElementById('loggedEmail').textContent=authUser.email;
-    document.getElementById('loginStatus').innerHTML='<span style="color:#059669;font-weight:700">✅ Authorized — Beautiful Access ✨</span>';
-    document.getElementById('adminEmailTop').textContent=authUser.email;
-  } else if(authUser){
-    out.style.display='block'; inn.style.display='none';
-    err.style.display='block'; err.textContent=`❌ Access Denied! आप ${authUser.email} से हैं, सिर्फ ${ADMIN_EMAIL} को मिलेगा।`;
-  } else { out.style.display='block'; inn.style.display='none'; }
+    out.style.display='none'; inn.style.display='block'; document.getElementById('loggedEmail').textContent=authUser.email; document.getElementById('loginStatus').innerHTML='<span style="color:#059669;font-weight:700">✅ Authorized ✨</span>'; document.getElementById('adminEmailTop').textContent=authUser.email;
+  } else if(authUser){ out.style.display='block'; inn.style.display='none'; err.style.display='block'; err.textContent=`❌ Access Denied! ${authUser.email} — सिर्फ ${ADMIN_EMAIL}`; }
+  else { out.style.display='block'; inn.style.display='none'; }
 }
-function localLogin(){
-  const u=document.getElementById('localUser').value.trim().toLowerCase(), p=document.getElementById('localPass').value.trim();
-  if((u==='manager'&&p==='manager123')||(u==='admin'&&p==='admin123')){
-    authUser={email:ADMIN_EMAIL, displayName:"Local Manager"};
-    closeAdminLogin(); document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden';
-    showSuccess('Local Preview Login — Firebase जोड़ने के बाद Google Login करें!', 'Welcome! 🎨');
-    renderBookings(); updateStats();
-  } else showError('Local: manager / manager123');
-}
+function localLogin(){ const u=document.getElementById('localUser').value.trim().toLowerCase(), p=document.getElementById('localPass').value.trim(); if((u==='manager'&&p==='manager123')||(u==='admin'&&p==='admin123')){ authUser={email:ADMIN_EMAIL, displayName:"Local"}; closeAdminLogin(); document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden'; showSuccess('Local Preview — Google Login करें!','Welcome!'); renderBookings(); updateStats(); } else showError('manager / manager123');}
 function signInWithGoogle(){
-  if(!useFirebase) return showError('पहले Firebase Config जोड़ें — Help देखें');
+  if(!useFirebase) return showError('Firebase Config जोड़ें');
   const provider=new firebase.auth.GoogleAuthProvider();
   auth.signInWithPopup(provider).then(res=>{
-    if(res.user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){
-      document.getElementById('loginError').style.display='block';
-      document.getElementById('loginError').textContent=`❌ Access Denied! आप ${res.user.email} से हैं, सिर्फ ${ADMIN_EMAIL}`;
-      auth.signOut(); authUser=null; updateLoginUI();
-      showError(`Access Denied! सिर्फ ${ADMIN_EMAIL} को Admin मिलेगा। आप ${res.user.email} से login हैं।`);
-    } else { authUser=res.user; updateLoginUI(); showSuccess(`Welcome ${res.user.email} ✨`, 'Login सफल!'); }
+    if(res.user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){ document.getElementById('loginError').style.display='block'; document.getElementById('loginError').textContent=`❌ सिर्फ ${ADMIN_EMAIL}`; auth.signOut(); authUser=null; updateLoginUI(); showError(`सिर्फ ${ADMIN_EMAIL} को Admin`); }
+    else { authUser=res.user; updateLoginUI(); showSuccess(`Welcome ${res.user.email} ✨`,'Login सफल!'); }
   }).catch(e=>{ document.getElementById('loginError').style.display='block'; document.getElementById('loginError').textContent='Error: '+e.message; showError(e.message); });
 }
-function signOut(){ if(useFirebase&&auth) auth.signOut(); authUser=null; closeDashboard(); closeAdminLogin(); showSuccess('Logout हो गया','Bye! 👋')}
-function openDashboardFromLogin(){
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL+' को Access');
-  closeAdminLogin(); document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden';
-  renderBookings(); updateStats(); renderRoomEditor(); renderGalleryAdmin(); renderAdminCalendar();
-}
+function signOut(){ if(useFirebase&&auth) auth.signOut(); authUser=null; closeDashboard(); closeAdminLogin(); showSuccess('Logout','Bye! 👋')}
+function openDashboardFromLogin(){ if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL); closeAdminLogin(); document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden'; renderBookings(); updateStats(); renderRoomEditor(); renderGalleryAdmin(); renderAdminCalendar();}
 if(auth){ auth.onAuthStateChanged(u=>{ authUser=u; updateLoginUI(); if(u) document.getElementById('adminEmailTop').textContent=u.email; });}
 function closeDashboard(){ document.getElementById('adminDashboard').classList.remove('open'); document.body.style.overflow='';}
 function openAdminGallery(){ openAdmin(); setTimeout(()=>{ if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()){ document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden'; switchTab('gallery'); } },400);}
 
-// ——— RENDER ROOMS — COLOURFUL ———
+// ——— CAROUSEL STATE ———
+const carouselIndex = {}; // roomId -> index
+function moveCarousel(roomId, dir){
+  const rooms=getRooms(); const r=rooms.find(x=>x.id===roomId); if(!r) return;
+  const total=(r.images||[r.img]).length;
+  carouselIndex[roomId] = (carouselIndex[roomId]||0) + dir;
+  if(carouselIndex[roomId] < 0) carouselIndex[roomId]=total-1;
+  if(carouselIndex[roomId] >= total) carouselIndex[roomId]=0;
+  const track=document.getElementById('track_'+roomId);
+  if(track) track.style.transform=`translateX(-${carouselIndex[roomId]*100}%)`;
+  // dots
+  document.querySelectorAll(`#dots_${roomId} .carousel-dot`).forEach((d,i)=> d.classList.toggle('active', i===carouselIndex[roomId]));
+  const cnt=document.getElementById('cnt_'+roomId); if(cnt) cnt.textContent=`${carouselIndex[roomId]+1} / ${total}`;
+}
+function goCarousel(roomId, idx){
+  carouselIndex[roomId]=idx;
+  const total=(getRooms().find(x=>x.id===roomId)?.images||[]).length;
+  document.getElementById('track_'+roomId).style.transform=`translateX(-${idx*100}%)`;
+  document.querySelectorAll(`#dots_${roomId} .carousel-dot`).forEach((d,i)=> d.classList.toggle('active', i===idx));
+  document.getElementById('cnt_'+roomId).textContent=`${idx+1} / ${total}`;
+}
+// swipe support
+let touchStartX=0, touchRoom=null;
+function touchStart(e, roomId){ touchStartX=e.touches[0].clientX; touchRoom=roomId; }
+function touchEnd(e){
+  if(touchRoom===null) return;
+  const diff=e.changedTouches[0].clientX - touchStartX;
+  if(Math.abs(diff)>40){
+    if(diff<0) moveCarousel(touchRoom,1); else moveCarousel(touchRoom,-1);
+  }
+  touchRoom=null;
+}
+
+// ——— RENDER ROOMS — MULTI PHOTO SIDE SCROLL ———
 function renderRooms(){
   const rooms=getRooms();
   document.getElementById('roomsGrid').innerHTML=rooms.map(r=>{
+    const imgs = r.images && r.images.length ? r.images : [r.img||defaultRooms[0].images[0]];
+    if(carouselIndex[r.id]===undefined) carouselIndex[r.id]=0;
     const avail=isRoomAvailable(r.name_hi, document.getElementById('checkin')?.value, document.getElementById('checkout')?.value);
-    const dot=avail?'<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 6px rgba(34,197,94,0.18);margin-right:5px"></span>Available':'<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 6px rgba(239,68,68,0.18);margin-right:5px"></span>Booked';
+    const dot=avail?'<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 5px rgba(34,197,94,0.18);margin-right:5px"></span>Available':'<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 5px rgba(239,68,68,0.18);margin-right:5px"></span>Booked';
+    const personInfo = `${r.maxAdults} Adults${r.maxChildren?` + ${r.maxChildren} Children`:''}`;
     return `<div class="room-card">
-      ${r.tag?`<div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);background:var(--grad1);color:#fff;font-size:10px;font-weight:800;letter-spacing:0.8px;padding:4px 10px;border-radius:20px;z-index:2;box-shadow:0 4px 12px rgba(255,59,130,0.25)">${r.tag}</div>`:''}
-      <div class="room-img"><img src="${r.img}" alt=""><div class="price-tag">₹${Number(r.price).toLocaleString('en-IN')} <small>/ night</small></div><div class="cal-badge" onclick="openCalendarFor('${r.name_hi}')">📅 ${dot}</div></div>
-      <div class="room-body"><h3>${currentLang==='hi'?r.name_hi:r.name_en}</h3><p>${currentLang==='hi'?r.desc_hi:r.desc_en}</p><div class="room-features">${r.features.map(f=>`<span>${f}</span>`).join('')}</div>
-      <div class="room-actions"><a href="#contact" class="sec-btn" style="text-align:center;display:grid;place-items:center;text-decoration:none">Enquiry</a><button onclick="openCalendarFor('${r.name_hi}')" class="sec-btn">📅 Calendar</button><button class="pay-btn" onclick="openPayModal('${r.name_hi}',${r.price})">💳 Pay & Book — ₹${r.price}</button></div></div>
+      ${r.tag?`<div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);background:var(--grad1);color:#fff;font-size:10px;font-weight:800;letter-spacing:0.7px;padding:4px 10px;border-radius:20px;z-index:4;white-space:nowrap">${r.tag}</div>`:''}
+      <div class="carousel" ontouchstart="touchStart(event,'${r.id}')" ontouchend="touchEnd(event)">
+        <div class="carousel-track" id="track_${r.id}" style="transform:translateX(-${carouselIndex[r.id]*100}%)">
+          ${imgs.map(url=>`<div class="carousel-slide"><img src="${url}" alt="${r.name_hi}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'"></div>`).join('')}
+        </div>
+        <button class="carousel-btn prev" onclick="moveCarousel('${r.id}',-1)" aria-label="Prev">‹</button>
+        <button class="carousel-btn next" onclick="moveCarousel('${r.id}',1)" aria-label="Next">›</button>
+        <div class="carousel-counter" id="cnt_${r.id}">1 / ${imgs.length}</div>
+        <div class="price-tag">₹${Number(r.price).toLocaleString('en-IN')} <small>/ night</small></div>
+        <div class="cal-badge" onclick="openCalendarFor('${r.name_hi}')" style="right:10px;left:auto;bottom:10px">📅 ${dot}</div>
+        <div class="carousel-dots" id="dots_${r.id}">${imgs.map((_,i)=>`<button class="carousel-dot ${i===carouselIndex[r.id]?'active':''}" onclick="goCarousel('${r.id}',${i})" aria-label="Go ${i+1}"></button>`).join('')}</div>
+      </div>
+      <div class="room-body">
+        <h3>${currentLang==='hi'?r.name_hi:r.name_en}</h3>
+        <p>${currentLang==='hi'?r.desc_hi:r.desc_en}</p>
+        <div class="room-meta"><span>👤 ${r.maxAdults} Adults</span><span>🧒 ${r.maxChildren} Children</span><span>📸 ${imgs.length} Photos — Swipe →</span></div>
+        <div class="room-features">${r.features.map(f=>`<span>${f}</span>`).join('')}</div>
+        <div class="room-actions"><a href="#contact" class="sec-btn" style="text-align:center;display:grid;place-items:center">Enquiry</a><button onclick="openCalendarFor('${r.name_hi}')" class="sec-btn">📅 Calendar</button><button class="pay-btn" onclick="openPayModal('${r.name_hi}',${r.price})">💳 Pay & Book — ₹${r.price}</button></div>
+      </div>
     </div>`;
   }).join('');
+  // auto reset dots after render
+  setTimeout(()=>{ rooms.forEach(r=>{ const idx=carouselIndex[r.id]||0; const track=document.getElementById('track_'+r.id); if(track) track.style.transform=`translateX(-${idx*100}%)`; }); },50);
 }
 function renderGallery(){
   const gal=getGallery();
   const grid=document.getElementById('galleryGrid');
-  if(!gal.length){ grid.innerHTML='<div style="grid-column:span 4;text-align:center;padding:30px;color:#A8A29E">कोई Photo नहीं — Admin से Upload करें</div>'; return;}
-  grid.innerHTML=gal.map(g=>`<div class="gallery-item"><img src="${g.url}" alt="Hotel" onclick="showPopup({type:'info',title:'Hotel 4G',message:'Beautiful Hotel 4G Gallery ✨'})" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'"></div>`).join('');
+  if(!gal.length){ grid.innerHTML='<div style="grid-column:span 4;text-align:center;padding:30px;color:#A8A29E">कोई Photo नहीं</div>'; return;}
+  grid.innerHTML=gal.map(g=>`<div class="gallery-item"><img src="${g.url}" alt="Hotel" loading="lazy" onclick="showPopup({type:'info',title:'Hotel 4G',message:'Beautiful Gallery ✨'})" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'"></div>`).join('');
 }
 function renderGalleryAdmin(){
   const gal=getGallery();
   const grid=document.getElementById('galleryAdminGrid');
-  if(!gal.length){ grid.innerHTML='<div style="grid-column:span 3;text-align:center;padding:20px;color:#A8A29E">कोई Photo नहीं — ऊपर से Upload करें</div>'; return;}
-  grid.innerHTML=gal.map(g=>`<div class="gallery-admin-item"><img src="${g.url}" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(15,23,42,0.75) 100%);opacity:0;transition:0.2s" class="hover"></div><div style="position:absolute;top:6px;right:6px;display:flex;gap:6px"><button onclick="deleteGallery('${g.id}')" style="width:32px;height:32px;border-radius:50%;background:rgba(239,68,68,0.95);color:#fff;border:2px solid #fff;display:grid;place-items:center;cursor:pointer;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.15)">🗑</button></div><div style="position:absolute;bottom:6px;left:6px;right:6px"><div style="background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);padding:4px 8px;border-radius:8px;font-size:10px;font-weight:700;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${g.url.slice(0,36)}...</div></div></div>`).join('');
+  if(!gal.length){ grid.innerHTML='<div style="grid-column:span 3;text-align:center;padding:20px;color:#A8A29E">कोई Photo नहीं</div>'; return;}
+  grid.innerHTML=gal.map(g=>`<div class="gallery-admin-item"><img src="${g.url}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'"><div style="position:absolute;top:6px;right:6px"><button onclick="deleteGallery('${g.id}')" style="width:32px;height:32px;border-radius:50%;background:rgba(239,68,68,0.95);color:#fff;border:2px solid #fff;display:grid;place-items:center;cursor:pointer;font-size:14px">🗑</button></div></div>`).join('');
 }
+
+// ——— PERSON LOGIC ———
+function getPersonHint(adults, children){
+  const total = adults + Math.ceil(children*0.5); // rough
+  if(adults<=2 && children<=1) return {room:"Deluxe Room", msg:"✅ Deluxe Room आपके लिए सही है — 2 Adults + 1 Child तक"};
+  if(adults<=3 && children<=2) return {room:"Super Deluxe", msg:"✅ Super Deluxe सही रहेगा — 3 Adults + 2 Children तक, ज्यादा स्पेस"};
+  return {room:"Family Suite", msg:"✅ Family Suite लें — 4-6 Persons + Children के लिए बेस्ट, 2 Bedroom"};
+}
+function updatePersonHints(){
+  const a=parseInt(document.getElementById('fAdults')?.value||2), c=parseInt(document.getElementById('fChildren')?.value||0);
+  const hint=getPersonHint(a,c);
+  const el=document.getElementById('personHint');
+  if(el){ el.style.display='block'; el.textContent=hint.msg + ` • Suggested: ${hint.room}`; document.getElementById('fRoom').value = getRooms().find(r=>r.name_hi===hint.room) ? hint.room+' - ₹'+getRooms().find(r=>r.name_hi===hint.room).price : document.getElementById('fRoom').value; }
+  // pay hint
+  const pa=parseInt(document.getElementById('payAdults')?.value||2), pc=parseInt(document.getElementById('payChildren')?.value||0);
+  const ph=getPersonHint(pa,pc);
+  const pel=document.getElementById('payPersonHint');
+  if(pel) pel.textContent = ph.msg;
+}
+['fAdults','fChildren','payAdults','payChildren','adults','children'].forEach(id=>{
+  document.getElementById(id)?.addEventListener('change', ()=>{
+    updatePersonHints();
+    // auto switch hero room select based on persons
+    if(id==='adults' || id==='children'){
+      const a=parseInt(document.getElementById('adults').value||2), c=parseInt(document.getElementById('children').value||0);
+      const h=getPersonHint(a,c);
+      document.getElementById('roomSelect').value=h.room;
+    }
+  });
+});
 
 // ——— DATES ———
 const today=new Date().toISOString().slice(0,10), tmr=new Date(Date.now()+86400000).toISOString().slice(0,10);
@@ -906,46 +895,48 @@ function getBookedDates(roomName){
   return set;
 }
 
-// ——— PAYMENT ———
-let currentPay={room:"Deluxe Room", price:1999, nights:1, total:1999, payMethod:'upi'};
+// ——— PAYMENT — systematic with person ———
+let currentPay={room:"Deluxe Room", price:1999, nights:1, adults:2, children:0, total:1999, payMethod:'upi'};
 function openPayModal(roomName,price){
   currentPay.room=roomName; currentPay.price=price;
   document.getElementById('payRoomName').textContent=roomName;
   document.getElementById('payCin').value=document.getElementById('checkin').value||today;
   document.getElementById('payCout').value=document.getElementById('checkout').value||tmr;
-  document.getElementById('payOverlay').classList.add('open'); selectPay('upi'); updatePaySummary();
+  document.getElementById('payAdults').value=document.getElementById('adults').value||"2";
+  document.getElementById('payChildren').value=document.getElementById('children').value||"0";
+  document.getElementById('payOverlay').classList.add('open'); selectPay('upi'); updatePaySummary(); updatePersonHints();
 }
 function openPayModalFromForm(){
   const val=document.getElementById('fRoom').value, room=val.split(' - ')[0], m=val.match(/₹(\d+)/), price=m?parseInt(m[1]):1999;
   document.getElementById('payCin').value=document.getElementById('fCin').value; document.getElementById('payCout').value=document.getElementById('fCout').value;
+  document.getElementById('payAdults').value=document.getElementById('fAdults').value; document.getElementById('payChildren').value=document.getElementById('fChildren').value;
   openPayModal(room,price);
 }
 function closePay(){document.getElementById('payOverlay').classList.remove('open')}
-function selectPay(m){
-  currentPay.payMethod=m;
-  document.getElementById('opt-upi').classList.toggle('active',m==='upi');
-  document.getElementById('opt-razor').classList.toggle('active',m==='razor');
-  document.getElementById('upiBox').style.display=m==='upi'?'block':'none';
-  document.getElementById('razorBox').style.display=m==='razor'?'block':'none';
-}
+function selectPay(m){ currentPay.payMethod=m; document.getElementById('opt-upi').classList.toggle('active',m==='upi'); document.getElementById('opt-razor').classList.toggle('active',m==='razor'); document.getElementById('upiBox').style.display=m==='upi'?'block':'none'; document.getElementById('razorBox').style.display=m==='razor'?'block':'none';}
 function updatePaySummary(){
   const cin=document.getElementById('payCin').value, cout=document.getElementById('payCout').value;
   let nights=1; if(cin&&cout){ const diff=(parseDate(cout)-parseDate(cin))/86400000; nights=Math.max(1,Math.round(diff)||1)}
-  currentPay.nights=nights; let total=currentPay.price*nights;
+  currentPay.nights=nights;
+  currentPay.adults=parseInt(document.getElementById('payAdults').value||2);
+  currentPay.children=parseInt(document.getElementById('payChildren').value||0);
+  let total=currentPay.price*nights;
   const coupon=document.getElementById('payCoupon').value.trim().toUpperCase(), s=getSettings();
   let disc=0; if(coupon && coupon===s.coupon.toUpperCase()){disc=s.couponOff; total=Math.max(0,total-disc)}
   currentPay.total=total;
   document.getElementById('payTotal').textContent='₹'+total.toLocaleString('en-IN');
-  document.getElementById('payBreakup').textContent=nights+' night × ₹'+currentPay.price + (disc?` - ₹${disc} coupon`:'');
+  document.getElementById('payBreakup').textContent=nights+' night × ₹'+currentPay.price + ` • ${currentPay.adults} Adults, ${currentPay.children} Children` + (disc?` - ₹${disc} coupon`:'');
   document.getElementById('payNights').textContent=nights+' night'+(nights>1?'s':'');
   document.getElementById('payRoomPrice').textContent='₹'+currentPay.price+' / night • Total: ₹'+total;
   document.getElementById('qrAmount').textContent='₹'+total; document.getElementById('razorAmount').textContent='₹'+total;
-  const upi=getSettings().upi, upiUrl=`upi://pay?pa=${encodeURIComponent(upi)}&pn=${encodeURIComponent('Hotel 4G Bhopal')}&am=${total}&cu=INR&tn=${encodeURIComponent('Booking '+currentPay.room+' '+nights+'N')}`;
+  const upi=getSettings().upi, upiUrl=`upi://pay?pa=${encodeURIComponent(upi)}&pn=${encodeURIComponent('Hotel 4G Bhopal')}&am=${total}&cu=INR&tn=${encodeURIComponent('Booking '+currentPay.room+' '+nights+'N '+currentPay.adults+'A')}`;
   document.getElementById('qrImg').src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}`;
   document.getElementById('qrUpi').textContent=upi; document.getElementById('upiDisplay').textContent=upi;
 }
 document.getElementById('payCin').addEventListener('change',updatePaySummary);
 document.getElementById('payCout').addEventListener('change',updatePaySummary);
+document.getElementById('payAdults').addEventListener('change',()=>{updatePaySummary(); updatePersonHints();});
+document.getElementById('payChildren').addEventListener('change',()=>{updatePaySummary(); updatePersonHints();});
 async function addBooking(data){
   if(useFirebase){ await db.collection('bookings').add({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp(), createdAtStr:new Date().toLocaleString('en-IN')});}
   else { const arr=lsGet('hotel4g_bookings',[]); arr.unshift({id:Date.now(), date:new Date().toLocaleString('en-IN'), ...data}); lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms();}
@@ -954,51 +945,60 @@ async function confirmUpiPayment(){
   const cin=document.getElementById('payCin').value, cout=document.getElementById('payCout').value, txn=document.getElementById('upiTxn').value.trim();
   if(!cin||!cout) return showError('तारीख चुनें');
   if(parseDate(cin)>=parseDate(cout)) return showError('Check-out, Check-in के बाद होना चाहिए');
-  if(!isRoomAvailable(currentPay.room,cin,cout)) return showError('❌ ये Room इन तारीखों में Booked है — दूसरी तारीख चुनें');
+  if(!isRoomAvailable(currentPay.room,cin,cout)) return showError('❌ ये Room इन तारीखों में Booked है');
   if(txn.length<6) return showError('UTR / Transaction ID (6+ digit) डालें');
-  await addBooking({name:document.getElementById('fName').value||'UPI Guest', phone:document.getElementById('fPhone').value||'—', cin,cout, room:currentPay.room, nights:currentPay.nights, amount:currentPay.total, payment:'UPI', txn, status:'paid'});
-  closePay(); showSuccess(`₹${currentPay.total} का Payment Confirm! Booking Firebase पर PAID सेव हो गई। Admin में तुरंत दिखेगी।`, 'Payment सफल! 🎉');
+  await addBooking({name:document.getElementById('fName').value||'UPI Guest', phone:document.getElementById('fPhone').value||'—', cin,cout, room:currentPay.room, nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, payment:'UPI', txn, status:'paid'});
+  closePay(); showSuccess(`₹${currentPay.total} • ${currentPay.adults} Adults, ${currentPay.children} Children • Booking PAID!`,'Payment सफल! 🎉');
 }
 function payWithRazorpay(){
   const cin=document.getElementById('payCin').value, cout=document.getElementById('payCout').value;
   if(!cin||!cout) return showError('तारीख चुनें');
   if(parseDate(cin)>=parseDate(cout)) return showError('Invalid dates');
-  if(!isRoomAvailable(currentPay.room,cin,cout)) return showError('❌ Room booked — दूसरी तारीख चुनें');
+  if(!isRoomAvailable(currentPay.room,cin,cout)) return showError('❌ Room booked');
   const s=getSettings(), key=s.razorKey;
   if(!window.Razorpay || key.includes('xxxxxxxx')){
-    showPopup({type:'confirm', title:'Demo Payment? ₹'+currentPay.total, message:'Razorpay Key अभी Test Mode में है। Demo Payment से PAID Booking बनाएं?', confirmText:'हाँ, Demo Pay करें', cancelText:'रद्द करें', showCancel:true, onConfirm:()=>{
-      addBooking({name:document.getElementById('fName').value||'Razorpay Guest', phone:document.getElementById('fPhone').value||'—', cin,cout, room:currentPay.room, nights:currentPay.nights, amount:currentPay.total, payment:'Razorpay Demo', txn:'pay_demo_'+Date.now(), status:'paid'}).then(()=>{closePay(); showSuccess('Demo Payment से PAID Booking बन गई! Firebase Live ✨','सफल! 🎉')});
-    }});
-    return;
+    showPopup({type:'confirm', title:'Demo Payment? ₹'+currentPay.total, message:`Razorpay Test Mode — ${currentPay.adults} Adults, ${currentPay.children} Children — Demo PAID बनाएं?`, confirmText:'हाँ, Demo Pay', cancelText:'रद्द करें', showCancel:true, onConfirm:()=>{
+      addBooking({name:document.getElementById('fName').value||'Razorpay Guest', phone:document.getElementById('fPhone').value||'—', cin,cout, room:currentPay.room, nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, payment:'Razorpay Demo', txn:'pay_demo_'+Date.now(), status:'paid'}).then(()=>{closePay(); showSuccess('Demo PAID — Firebase Live ✨','सफल! 🎉')});
+    }}); return;
   }
-  const opts={key:key, amount:currentPay.total*100, currency:"INR", name:"Hotel 4G Bhopal", description:currentPay.room+" - "+currentPay.nights+" night(s)", handler: function(r){ addBooking({name:document.getElementById('fName').value||'Razorpay Guest', phone:document.getElementById('fPhone').value||'—', cin,cout, room:currentPay.room, nights:currentPay.nights, amount:currentPay.total, payment:'Razorpay', txn:r.razorpay_payment_id, status:'paid'}).then(()=>{closePay(); showSuccess('Razorpay Payment सफल! ID: '+r.razorpay_payment_id,'Payment सफल! 🎉')})}, prefill:{name:document.getElementById('fName').value, contact:document.getElementById('fPhone').value}, theme:{color:"#FF6B35"}};
-  const rzp=new Razorpay(opts); rzp.on('payment.failed',()=>showError('Payment Failed — दोबारा कोशिश करें')); rzp.open();
+  const opts={key:key, amount:currentPay.total*100, currency:"INR", name:"Hotel 4G Bhopal", description:currentPay.room+` - ${currentPay.nights}N, ${currentPay.adults}A ${currentPay.children}C`, handler: function(r){ addBooking({name:document.getElementById('fName').value||'Razorpay Guest', phone:document.getElementById('fPhone').value||'—', cin,cout, room:currentPay.room, nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, payment:'Razorpay', txn:r.razorpay_payment_id, status:'paid'}).then(()=>{closePay(); showSuccess('Razorpay सफल! ID: '+r.razorpay_payment_id,'🎉')})}, prefill:{name:document.getElementById('fName').value, contact:document.getElementById('fPhone').value}, theme:{color:"#FF6B35"}};
+  const rzp=new Razorpay(opts); rzp.on('payment.failed',()=>showError('Payment Failed')); rzp.open();
 }
 
-// ——— BOOKING ———
+// ——— BOOKING — systematic ———
 function handleBooking(e){
   e.preventDefault();
-  const cin=document.getElementById('checkin').value, cout=document.getElementById('checkout').value, room=document.getElementById('roomSelect').value, msg=document.getElementById('availMsg');
+  const cin=document.getElementById('checkin').value, cout=document.getElementById('checkout').value, room=document.getElementById('roomSelect').value, adults=document.getElementById('adults').value, children=document.getElementById('children').value, msg=document.getElementById('availMsg');
   if(parseDate(cin)>=parseDate(cout)){ msg.className='avail-msg bad'; msg.style.display='block'; msg.textContent='❌ Check-out, Check-in के बाद होना चाहिए'; return}
+  const persons = parseInt(adults)+parseInt(children);
+  const rData=getRooms().find(r=>r.name_hi===room);
+  if(rData && (parseInt(adults)>rData.maxAdults || persons > rData.maxAdults + rData.maxChildren)){
+    msg.className='avail-msg bad'; msg.style.display='block'; msg.textContent=`⚠️ ${room} में ${rData.maxAdults} Adults + ${rData.maxChildren} Children तक — आप ${adults}A + ${children}C चुन रहे हैं। Family Suite देखें।`;
+    showError(`Capacity: ${room} में ${rData.maxAdults} Adults तक — Family Suite बेहतर रहेगा।`);
+    return;
+  }
   if(isRoomAvailable(room,cin,cout)){
     msg.className='avail-msg ok'; msg.style.display='block';
-    msg.innerHTML=`✅ <b>${room}</b> ${cin} से ${cout} तक खाली है! <a href="#" onclick="openPayModal('${room}',${getRooms().find(r=>r.name_hi===room)?.price||1999});return false" style="color:#065F46;text-decoration:underline;font-weight:800">Pay करके Confirm करें →</a>`;
-    showSuccess(`${room} ${cin} से ${cout} तक Available है! अब Pay करके Confirm करें।`, 'Available! ✅');
+    msg.innerHTML=`✅ <b>${room}</b> ${cin} से ${cout} • ${adults} Adults, ${children} Children — खाली है! <a href="#" onclick="openPayModal('${room}',${rData.price});return false" style="color:#065F46;text-decoration:underline;font-weight:800">Pay करके Confirm करें →</a>`;
+    showSuccess(`${room} • ${adults}A + ${children}C • ${cin} से ${cout} Available!`, 'Available! ✅');
   } else {
     msg.className='avail-msg bad'; msg.style.display='block'; msg.textContent=`❌ ${room} इन तारीखों में Booked है`;
-    showError(`${room} इन तारीखों में पहले से Booked है — कैलेंडर में हरी तारीख चुनें।`);
+    showError(`${room} Booked — दूसरी तारीख चुनें।`);
   }
   renderRooms();
 }
 async function handleContact(e){
   e.preventDefault();
   const name=document.getElementById('fName').value.trim(), phone=document.getElementById('fPhone').value.trim(), cin=document.getElementById('fCin').value, cout=document.getElementById('fCout').value, roomVal=document.getElementById('fRoom').value, msg=document.getElementById('fMsg').value.trim();
+  const adults=document.getElementById('fAdults').value, children=document.getElementById('fChildren').value;
   const roomName=roomVal.split(' - ')[0];
   if(parseDate(cin)>=parseDate(cout)) return showError('Invalid dates');
-  if(!isRoomAvailable(roomName,cin,cout)) return showError('❌ ये Room इन तारीखों में Booked है');
-  await addBooking({name,phone,cin,cout,room:roomName,msg,amount:getRooms().find(r=>r.name_hi===roomName)?.price||0, payment:'Enquiry', txn:'', status:'new'});
-  showSuccess('आपकी Request Firebase पर सेव हो गई! Team 10 मिनट में Call करेगी। तुरंत Confirm के लिए Pay करें।','भेज दिया! ✨');
-  e.target.reset(); document.getElementById('fCin').value=today; document.getElementById('fCout').value=tmr;
+  if(!isRoomAvailable(roomName,cin,cout)) return showError('❌ Booked है');
+  const rData=getRooms().find(r=>r.name_hi===roomName);
+  if(rData && parseInt(adults)>rData.maxAdults) return showError(`⚠️ ${roomName} में ${rData.maxAdults} Adults max — Family Suite चुनें`);
+  await addBooking({name,phone,cin,cout,room:roomName, adults:parseInt(adults), children:parseInt(children), msg,amount:rData.price, payment:'Enquiry', txn:'', status:'new'});
+  showSuccess(`Request भेजी! ${adults} Adults, ${children} Children — Team 10 min में Call करेगी।`,'भेज दिया! ✨');
+  e.target.reset(); document.getElementById('fCin').value=today; document.getElementById('fCout').value=tmr; document.getElementById('fAdults').value="2"; document.getElementById('fChildren').value="0"; updatePersonHints();
 }
 
 // ——— CALENDAR ———
@@ -1007,7 +1007,7 @@ function buildCal(room,off,sel){
   const base=new Date(); base.setDate(1); base.setMonth(base.getMonth()+off);
   const y=base.getFullYear(), m=base.getMonth(), first=new Date(y,m,1).getDay(), days=new Date(y,m+1,0).getDate();
   const booked=getBookedDates(room), monthName=base.toLocaleString('en-IN',{month:'long',year:'numeric'});
-  let h=`<div class="cal-head"><b>${monthName}</b><span style="font-size:11px;background:#FFF7ED;padding:4px 8px;border-radius:20px;border:1px solid #FFE4B5;color:#92400e;font-weight:700">${room}</span></div><div class="cal-grid"><div class="cal-day-head">Su</div><div class="cal-day-head">Mo</div><div class="cal-day-head">Tu</div><div class="cal-day-head">We</div><div class="cal-day-head">Th</div><div class="cal-day-head">Fr</div><div class="cal-day-head">Sa</div>`;
+  let h=`<div class="cal-head"><b>${monthName}</b><span style="font-size:11px;background:#FFFBEB;padding:4px 8px;border-radius:20px;border:1px solid var(--border);color:#92400e;font-weight:700;word-break:break-word">${room}</span></div><div class="cal-grid"><div class="cal-day-head">Su</div><div class="cal-day-head">Mo</div><div class="cal-day-head">Tu</div><div class="cal-day-head">We</div><div class="cal-day-head">Th</div><div class="cal-day-head">Fr</div><div class="cal-day-head">Sa</div>`;
   for(let i=0;i<first;i++) h+=`<div style="border:none"></div>`;
   const todayStr=new Date().toISOString().slice(0,10);
   for(let d=1;d<=days;d++){
@@ -1019,7 +1019,7 @@ function buildCal(room,off,sel){
     h+=`<div class="${cls}" ${click}>${d}</div>`;
   }
   h+=`</div>`;
-  if(sel && selRange.start) h+=`<div style="margin-top:10px;font-size:12px;background:#FFFBEB;padding:9px 12px;border-radius:12px;border:1.5px solid #FFE4B5;font-weight:600">Selected: <b>${selRange.start}</b> ${selRange.end?' → <b>'+selRange.end+'</b>':'(checkout चुनें)'} ${selRange.end?`<span style="float:right;background:var(--dark);color:#fff;padding:3px 8px;border-radius:20px;font-size:11px">${Math.round((parseDate(selRange.end)-parseDate(selRange.start))/86400000)} night(s)</span>`:''}</div>`;
+  if(sel && selRange.start) h+=`<div style="margin-top:10px;font-size:12px;background:#FFFBEB;padding:9px 12px;border-radius:12px;border:1.5px solid var(--border);font-weight:600;word-break:break-word">Selected: <b>${selRange.start}</b> ${selRange.end?' → <b>'+selRange.end+'</b>':'(checkout चुनें)'} ${selRange.end?`<span style="float:right;background:var(--dark);color:#fff;padding:3px 8px;border-radius:20px;font-size:11px">${Math.round((parseDate(selRange.end)-parseDate(selRange.start))/86400000)} night(s)</span>`:''}</div>`;
   return h;
 }
 function renderCalendar(){ document.getElementById('inlineCalendar').innerHTML=buildCal(document.getElementById('calRoomSelect').value,0,false)}
@@ -1029,7 +1029,7 @@ function selectCalDate(ds){
   if(!selRange.start || (selRange.start&&selRange.end)) selRange={start:ds,end:null};
   else if(selRange.start && !selRange.end){
     if(ds <= selRange.start) selRange.start=ds;
-    else { const room=document.getElementById('calRoomModal').value, booked=getBookedDates(room); let d=parseDate(selRange.start), end=parseDate(ds), has=false; while(d<end){ if(booked.has(d.toISOString().slice(0,10))) has=true; d=new Date(d.getTime()+86400000)} if(has) return showError('बीच में Booked dates हैं — दूसरी range चुनें'); selRange.end=ds;}
+    else { const room=document.getElementById('calRoomModal').value, booked=getBookedDates(room); let d=parseDate(selRange.start), end=parseDate(ds), has=false; while(d<end){ if(booked.has(d.toISOString().slice(0,10))) has=true; d=new Date(d.getTime()+86400000)} if(has) return showError('बीच में Booked dates हैं'); selRange.end=ds;}
   }
   renderCalendarModal();
 }
@@ -1039,7 +1039,7 @@ function openCalendarFor(r){ document.getElementById('calRoomSelect').value=r; d
 function closeCalendar(){ document.getElementById('calOverlay').classList.remove('open')}
 function bookSelectedDates(){ if(!selRange.start||!selRange.end) return showError('Check-in और Check-out दोनों चुनें'); const room=document.getElementById('calRoomModal').value, price=getRooms().find(r=>r.name_hi===room)?.price||1999; closeCalendar(); document.getElementById('checkin').value=selRange.start; document.getElementById('checkout').value=selRange.end; document.getElementById('payCin').value=selRange.start; document.getElementById('payCout').value=selRange.end; openPayModal(room,price); selRange={start:null,end:null}}
 
-// ——— ADMIN TABS ———
+// ——— ADMIN ———
 function switchTab(tab){
   document.querySelectorAll('.admin-sidebar button').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-btn-'+tab).classList.add('active');
@@ -1059,50 +1059,48 @@ function renderBookings(){
   const tbody=document.getElementById('bookingTbody');
   document.getElementById('badgeCount').textContent=getBookings().length;
   document.getElementById('heroTotal').textContent=getBookings().length;
-  if(arr.length===0){ tbody.innerHTML=`<tr><td colspan="9" style="text-align:center;padding:28px;color:#A8A29E">${useFirebase?'Firebase में कोई Booking नहीं — beautiful popup में form भरें':'Local: कोई Booking नहीं'}</td></tr>`; return;}
+  if(arr.length===0){ tbody.innerHTML=`<tr><td colspan="10" style="text-align:center;padding:28px;color:#A8A29E">${useFirebase?'Firebase में कोई Booking नहीं':'Local: कोई नहीं'}</td></tr>`; return;}
   tbody.innerHTML=arr.map((b,i)=>{
     const d=b.createdAtStr||b.date||(b.createdAt?.toDate?.().toLocaleString('en-IN')||'');
-    return `<tr><td>${i+1}</td><td style="font-size:11px;color:#78716C">${d}</td><td><b>${b.name||'-'}</b></td><td><a href="tel:${b.phone}" style="color:var(--dark);font-weight:800">${b.phone||'-'}</a></td><td style="font-size:11px"><b>${b.room}</b><br>${b.cin||'-'} → ${b.cout||'-'} ${b.nights?`(${b.nights}N)`:''}</td><td><b>₹${(b.amount||0).toLocaleString('en-IN')}</b></td><td><span class="badge-status ${b.status==='paid'?'status-paid':'status-new'}" style="font-size:10px">${b.payment||'-'}</span><br><small style="font-size:10px;color:#78716C">${b.txn||''}</small></td><td><span class="badge-status ${b.status==='paid'?'status-paid':b.status==='confirmed'?'status-confirmed':b.status==='cancelled'?'status-cancelled':'status-new'}">${b.status}</span></td><td style="display:flex;gap:4px;flex-wrap:wrap"><button class="icon-btn" onclick="updateStatus('${b.id}','confirmed')">✓</button><button class="icon-btn" onclick="updateStatus('${b.id}','paid')">💰</button><button class="icon-btn" onclick="updateStatus('${b.id}','cancelled')">✕</button><a class="icon-btn" href="https://wa.me/91${String(b.phone||'').replace(/[^0-9]/g,'').slice(-10)}?text=Hi%20${encodeURIComponent(b.name||'')}" target="_blank" style="background:#25D366;color:#fff;border-color:#25D366">WA</a><button class="icon-btn" onclick="deleteBooking('${b.id}')" style="color:#DC2626">🗑</button></td></tr>`;
+    return `<tr><td>${i+1}</td><td style="font-size:11px;color:#78716C">${d}</td><td><b>${b.name||'-'}</b></td><td><a href="tel:${b.phone}" style="color:var(--dark);font-weight:800">${b.phone||'-'}</a></td><td style="font-size:11px"><b>${b.room}</b><br>${b.cin||'-'} → ${b.cout||'-'} ${b.nights?`(${b.nights}N)`:''}</td><td style="font-size:11px"><b>${b.adults||'-'} Adults</b><br>${b.children||0} Children</td><td><b>₹${(b.amount||0).toLocaleString('en-IN')}</b></td><td><span class="badge-status ${b.status==='paid'?'status-paid':'status-new'}" style="font-size:10px">${b.payment||'-'}</span><br><small style="font-size:10px;color:#78716C;word-break:break-all">${b.txn||''}</small></td><td><span class="badge-status ${b.status==='paid'?'status-paid':b.status==='confirmed'?'status-confirmed':b.status==='cancelled'?'status-cancelled':'status-new'}">${b.status}</span></td><td style="display:flex;gap:4px;flex-wrap:wrap"><button class="icon-btn" onclick="updateStatus('${b.id}','confirmed')">✓</button><button class="icon-btn" onclick="updateStatus('${b.id}','paid')">💰</button><button class="icon-btn" onclick="updateStatus('${b.id}','cancelled')">✕</button><a class="icon-btn" href="https://wa.me/91${String(b.phone||'').replace(/[^0-9]/g,'').slice(-10)}?text=Hi%20${encodeURIComponent(b.name||'')}" target="_blank" style="background:#25D366;color:#fff;border-color:#25D366">WA</a><button class="icon-btn" onclick="deleteBooking('${b.id}')" style="color:#DC2626">🗑</button></td></tr>`;
   }).join('');
 }
 async function updateStatus(id,status){
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ High Secure: सिर्फ '+ADMIN_EMAIL+' Payment/Status बदल सकता है');
-  if(!isHighSecureAuthorized()) return requireHighSecure('Payment/Status Update (Paid/Confirm)', ()=> updateStatus(id,status));
-  // payment status paid -> extra secure confirm
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL);
+  if(!isHighSecureAuthorized()) return requireHighSecure('Payment/Status', ()=> updateStatus(id,status));
   if(status==='paid'){
-    showPopup({type:'confirm', title:'💰 Payment Paid करें?', message:'High Secure: इस Booking को PAID Mark कर रहे हैं — क्या Payment Verify कर लिया?', confirmText:'हाँ, Paid करें 🔒', cancelText:'रद्द करें', showCancel:true, onConfirm: async()=>{
+    showPopup({type:'confirm', title:'💰 Paid करें?', message:'High Secure: PAID Mark कर रहे हैं — Verify किया?', confirmText:'हाँ, Paid 🔒', cancelText:'रद्द करें', showCancel:true, onConfirm: async()=>{
       if(useFirebase) await db.collection('bookings').doc(id).update({status, verifiedBy: ADMIN_EMAIL, verifiedAt: firebase.firestore.FieldValue.serverTimestamp()});
-      else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms();}}
-      showSuccess(`Booking ${status} — High Secure Verify ✓`, 'Secured! 🔐');
-    }});
-    return;
+      else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats();}}
+      showSuccess(`Booking ${status} — Secure ✓`, '🔐');
+    }}); return;
   }
   if(useFirebase) await db.collection('bookings').doc(id).update({status});
-  else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms();}}
-  showSuccess(`Booking ${status} कर दी गई! ✨`, 'Updated!');
+  else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats();}}
+  showSuccess(`Booking ${status} ✓`, 'Updated!');
 }
 async function deleteBooking(id){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
-  showPopup({type:'confirm', title:'Delete Booking?', message:'ये Booking हमेशा के लिए Delete हो जाएगी — Firebase से भी हटेगी।', confirmText:'हाँ, Delete करें', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
+  showPopup({type:'confirm', title:'Delete?', message:'हमेशा के लिए Delete — Firebase से भी हटेगी।', confirmText:'हाँ, Delete', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
     if(useFirebase) await db.collection('bookings').doc(id).delete();
     else { let arr=lsGet('hotel4g_bookings',[]).filter(b=>String(b.id)!==String(id)); lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats();}
-    showSuccess('Booking Delete हो गई','Deleted!');
+    showSuccess('Deleted!','🗑');
   }});
 }
 async function clearAllBookings(){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Only Your Email');
-  showPopup({type:'confirm', title:'सब Delete करें?', message:'सारी Bookings Firebase से हमेशा के लिए हट जाएंगी!', confirmText:'हाँ, सब हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
+  showPopup({type:'confirm', title:'सब Delete?', message:'सारी Bookings हट जाएंगी!', confirmText:'हाँ, सब हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
     if(useFirebase){ const snap=await db.collection('bookings').get(); const batch=db.batch(); snap.forEach(d=>batch.delete(d.ref)); await batch.commit(); }
     else { lsSet('hotel4g_bookings',[]); bookingsCache=[]; renderBookings(); updateStats();}
-    showSuccess('सारी Bookings साफ हो गईं','Cleared! 🗑');
+    showSuccess('Cleared!','🗑');
   }});
 }
 async function exportBookings(){
   const arr=getBookings(); if(!arr.length) return showError('कोई Data नहीं');
-  let csv="Date,Name,Phone,Room,CIN,COUT,Nights,Amount,Payment,TXN,Status\n";
-  arr.forEach(b=> csv+=`"${b.createdAtStr||b.date||''}","${b.name}","${b.phone}","${b.room}","${b.cin}","${b.cout}","${b.nights||''}","${b.amount||''}","${b.payment||''}","${b.txn||''}","${b.status}"\n`);
-  const blob=new Blob([csv],{type:'text/csv'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='hotel4g-colourful-'+new Date().toISOString().slice(0,10)+'.csv'; a.click(); URL.revokeObjectURL(url);
-  showSuccess('CSV Download हो गई!','Exported 📥');
+  let csv="Date,Name,Phone,Room,CIN,COUT,Nights,Adults,Children,Amount,Payment,TXN,Status\n";
+  arr.forEach(b=> csv+=`"${b.createdAtStr||b.date||''}","${b.name}","${b.phone}","${b.room}","${b.cin}","${b.cout}","${b.nights||''}","${b.adults||''}","${b.children||''}","${b.amount||''}","${b.payment||''}","${b.txn||''}","${b.status}"\n`);
+  const blob=new Blob([csv],{type:'text/csv'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='hotel4g-'+new Date().toISOString().slice(0,10)+'.csv'; a.click(); URL.revokeObjectURL(url);
+  showSuccess('CSV Download!','📥');
 }
 function updateStats(){
   const arr=getBookings();
@@ -1117,95 +1115,135 @@ function updateStats(){
   document.getElementById('todayActivity').textContent= arr.filter(b=> (b.createdAtStr||b.date||'').includes(new Date().toLocaleDateString('en-IN'))).length + ' today';
 }
 
-// ——— ROOM EDITOR WITH UPLOAD ———
+// ——— ROOM EDITOR — MULTI PHOTO ———
 function renderRoomEditor(){
   const rooms=getRooms();
-  document.getElementById('roomEditGrid').innerHTML=rooms.map(r=>`
+  document.getElementById('roomEditGrid').innerHTML=rooms.map(r=>{
+    const imgs=r.images||[r.img];
+    return `
     <div class="edit-card">
-      <div style="position:relative;border-radius:12px;overflow:hidden;height:140px;background:#FFE4B5;margin-bottom:10px">
-        <img id="preview_${r.id}" src="${r.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.45) 100%)"></div>
-        <label style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:var(--grad1);color:#fff;padding:7px 14px;border-radius:30px;font-size:11px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(255,59,130,0.25);display:flex;align-items:center;gap:6px">
-          📸 Photo बदलें <input type="file" accept="image/*" style="display:none" onchange="handleRoomUpload('${r.id}', this.files[0])">
+      <div style="border-radius:12px;overflow:hidden;background:#FFE4B5;margin-bottom:10px;padding:8px">
+        <div style="font-size:11px;font-weight:800;color:#57534E;margin-bottom:6px">📸 Room Photos — Side Scroll (Swipe) — ${imgs.length} Photos</div>
+        <div class="mini-carousel" id="mini_${r.id}">
+          ${imgs.map((url,i)=>`<div style="position:relative;flex-shrink:0"><img src="${url}" alt="" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'"><button onclick="removeRoomPhoto('${r.id}',${i})" style="position:absolute;top:2px;right:2px;width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,0.92);color:#fff;border:1px solid #fff;display:grid;place-items:center;font-size:10px;cursor:pointer">✕</button><div style="position:absolute;bottom:2px;left:2px;background:rgba(15,23,42,0.75);color:#fff;padding:2px 6px;border-radius:20px;font-size:9px;font-weight:700">${i+1}</div></div>`).join('')}
+        </div>
+        <div class="upload-bar" id="bar_${r.id}" style="display:none"><span id="prog_${r.id}"></span></div>
+        <div id="progText_${r.id}" style="font-size:11px;color:#7C3AED;font-weight:700;display:none;margin-top:4px;text-align:center">Uploading...</div>
+        <label style="display:block;margin-top:8px;background:var(--grad1);color:#fff;padding:8px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;text-align:center">
+          📸 + Add More Photos (Multiple) <input type="file" accept="image/*" multiple style="display:none" onchange="handleRoomMultiUpload('${r.id}', this.files)">
         </label>
+        <div style="font-size:10px;color:#78716C;text-align:center;margin-top:4px">Side Scroll से सभी Photos देखें — Max 6</div>
       </div>
-      <div class="upload-bar" id="bar_${r.id}" style="display:none"><span id="prog_${r.id}"></span></div>
-      <div id="progText_${r.id}" style="font-size:11px;color:#7C3AED;font-weight:700;display:none;margin-top:4px;text-align:center">Uploading...</div>
-      <label style="font-size:11px;font-weight:800;color:#57534E">Name HI</label><input id="r_name_hi_${r.id}" value="${r.name_hi}" style="width:100%;padding:9px 10px;border:1.5px solid #FFE4B5;border-radius:10px;background:#FFFBEB;margin:4px 0 6px">
-      <label style="font-size:11px;font-weight:800;color:#57534E">Name EN</label><input id="r_name_en_${r.id}" value="${r.name_en}" style="width:100%;padding:9px 10px;border:1.5px solid #FFE4B5;border-radius:10px;background:#FFFBEB;margin:4px 0 6px">
-      <label style="font-size:11px;font-weight:800;color:#57534E">Price ₹</label><input id="r_price_${r.id}" type="number" value="${r.price}" style="width:100%;padding:9px 10px;border:1.5px solid #FFE4B5;border-radius:10px;background:#FFFBEB;margin:4px 0 6px">
-      <label style="font-size:11px;font-weight:800;color:#57534E">Image URL (auto after upload)</label><input id="r_img_${r.id}" value="${r.img}" style="width:100%;padding:9px 10px;border:1.5px solid #FFE4B5;border-radius:10px;background:#FFFBEB;margin:4px 0">
-    </div>
-  `).join('');
+      <label style="font-size:11px;font-weight:800;color:#57534E">Name HI</label><input id="r_name_hi_${r.id}" value="${r.name_hi}" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px">
+      <label style="font-size:11px;font-weight:800;color:#57534E">Name EN</label><input id="r_name_en_${r.id}" value="${r.name_en}" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div><label style="font-size:11px;font-weight:800">Price ₹</label><input id="r_price_${r.id}" type="number" value="${r.price}" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px"></div>
+        <div><label style="font-size:11px;font-weight:800">Tag</label><input id="r_tag_${r.id}" value="${r.tag||''}" placeholder="★ MOST POPULAR" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div><label style="font-size:11px;font-weight:800">👤 Max Adults</label><input id="r_maxA_${r.id}" type="number" min="1" max="6" value="${r.maxAdults||2}" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px"></div>
+        <div><label style="font-size:11px;font-weight:800">🧒 Max Children</label><input id="r_maxC_${r.id}" type="number" min="0" max="4" value="${r.maxChildren||1}" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px"></div>
+      </div>
+      <label style="font-size:11px;font-weight:800;color:#57534E">Image URLs (auto)</label>
+      <div id="urlList_${r.id}" style="max-height:80px;overflow:auto;background:#FFFBEB;border:1.5px solid var(--border);border-radius:10px;padding:6px;font-size:10px;word-break:break-all">${imgs.map(u=>`<div style="padding:2px 0;border-bottom:1px solid #FFE4B5">${u}</div>`).join('')}</div>
+      <input type="hidden" id="r_img_${r.id}" value="${imgs[0]}">
+      <div id="hiddenImgs_${r.id}" style="display:none">${JSON.stringify(imgs)}</div>
+    </div>`;
+  }).join('');
 }
-async function handleRoomUpload(roomId, file){
-  if(!file) return;
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ High Secure: सिर्फ '+ADMIN_EMAIL+' Photo Upload कर सकता है');
-  if(!useFirebase) return showError('Firebase Storage के लिए Firebase Config जोड़ें — Help देखें');
-  if(!isHighSecureAuthorized()){ return requireHighSecure('Room Photo Upload', ()=> handleRoomUpload(roomId,file)); }
-  if(!file.type.startsWith('image/')) return showError('सिर्फ Image File चुनें');
-  if(file.size > 4*1024*1024) return showError('Image 4MB से कम रखें');
-  const bar=document.getElementById('bar_'+roomId), prog=document.getElementById('prog_'+roomId), txt=document.getElementById('progText_'+roomId), preview=document.getElementById('preview_'+roomId);
-  bar.style.display='block'; txt.style.display='block'; txt.textContent='Uploading to Firebase Storage...';
-  try{
-    const ref=storage.ref(`rooms/${roomId}_${Date.now()}_${file.name}`);
-    const task=ref.put(file);
-    task.on('state_changed', snap=>{
-      const pct=Math.round((snap.bytesTransferred/snap.totalBytes)*100);
-      prog.style.width=pct+'%'; txt.textContent=`Uploading... ${pct}%`;
-    });
-    await task;
-    const url=await ref.getDownloadURL();
-    document.getElementById('r_img_'+roomId).value=url;
-    preview.src=url;
-    bar.style.display='none'; txt.textContent='✅ Upload Complete — अब Save दबाएं';
-    setTimeout(()=> txt.style.display='none', 2500);
-    showSuccess('Photo Firebase Storage पर Upload हो गई! अब Save दबाएं तो Website पर तुरंत दिखेगी।','Uploaded! 📸');
-  }catch(e){ bar.style.display='none'; txt.style.display='none'; showError('Upload Failed: '+e.message); }
-}
-async function saveRooms(){
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ High Secure: सिर्फ '+ADMIN_EMAIL+' Price/Photo बदल सकता है');
-  if(!isHighSecureAuthorized()) return requireHighSecure('Price/Photo Change', ()=> saveRooms());
-  // extra confirm popup for price change — high secure
-  showPopup({
-    type:'confirm',
-    title:'🔐 Price/Photo बदलें?',
-    message:'High Secure: ये बदलाव Firebase पर Live हो जाएगा और सभी Users को दिखेगा। क्या पक्का करना है?',
-    confirmText:'हाँ, Save करें 🔒',
-    cancelText:'रद्द करें',
-    showCancel:true,
-    danger:false,
-    onConfirm: async()=>{
-      const rooms=getRooms().map(r=>({...r, name_hi:document.getElementById('r_name_hi_'+r.id).value.trim()||r.name_hi, name_en:document.getElementById('r_name_en_'+r.id).value.trim()||r.name_en, price:parseInt(document.getElementById('r_price_'+r.id).value)||r.price, img:document.getElementById('r_img_'+r.id).value.trim()||r.img}));
-      // price validation — hack prevent
-      for(let r of rooms){ if(r.price < 500 || r.price > 50000) return showError('Price ₹500 - ₹50000 के बीच रखें — Invalid Price Block'); if(!r.img.startsWith('http')) return showError('Image URL Invalid'); }
-      if(useFirebase){ const batch=db.batch(); rooms.forEach(r=> batch.set(db.collection('rooms').doc(r.id), r)); await batch.commit(); }
-      else { lsSet('hotel4g_rooms',rooms); roomsCache=rooms; renderRooms();}
-      showSuccess('🔒 High Secure Save! सारे Rooms Firebase पर Lock के साथ Save हो गए 🎨','Secured! 🔐');
-    }
-  });
-}
-async function resetRooms(){
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
-  showPopup({type:'confirm', title:'Reset करें?', message:'सारे Room Default पर आ जाएंगे — Photos भी Default होंगी।', confirmText:'हाँ, Reset करें', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
-    if(useFirebase){ const batch=db.batch(); defaultRooms.forEach(r=> batch.set(db.collection('rooms').doc(r.id), r)); await batch.commit(); }
-    else { localStorage.removeItem('hotel4g_rooms'); roomsCache=defaultRooms; renderRooms(); renderRoomEditor(); }
-    showSuccess('Rooms Reset हो गए','Done!');
+function removeRoomPhoto(roomId, idx){
+  const rooms=getRooms(); const r=rooms.find(x=>x.id===roomId); if(!r) return;
+  let imgs=[...(r.images||[r.img])];
+  if(imgs.length<=1) return showError('कम से कम 1 Photo रखें');
+  showPopup({type:'confirm', title:'Photo हटाएं?', message:`Photo ${idx+1} हट जाएगी`, confirmText:'हाँ, हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm:()=>{
+    imgs.splice(idx,1);
+    r.images=imgs; r.img=imgs[0];
+    // update hidden
+    document.getElementById('hiddenImgs_'+roomId).textContent=JSON.stringify(imgs);
+    renderRoomEditor(); // re-render will show updated
+    showSuccess('Photo हटाई — Save दबाएं तो Firebase पर Update होगी','Removed');
   }});
 }
-
-// ——— GALLERY UPLOAD ———
-async function handleGalleryUpload(files){
+async function handleRoomMultiUpload(roomId, files){
   if(!files || !files.length) return;
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ High Secure: सिर्फ '+ADMIN_EMAIL+' Gallery Upload कर सकता है');
-  if(!useFirebase) return showError('Firebase Config जोड़ें — Help देखें');
-  if(!isHighSecureAuthorized()) return requireHighSecure('Gallery Upload', ()=> handleGalleryUpload(files));
-  const bar=document.getElementById('galleryProgress'), prog=document.getElementById('galleryProgressBar'), txt=document.getElementById('galleryProgressText');
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL);
+  if(!useFirebase) return showError('Firebase Config जोड़ें');
+  if(!isHighSecureAuthorized()) return requireHighSecure('Room Multi Photo Upload', ()=> handleRoomMultiUpload(roomId, files));
+  const rooms=getRooms(); const r=rooms.find(x=>x.id===roomId); let imgs=[...(r.images||[r.img])];
+  if(imgs.length + files.length > 6) return showError('Max 6 Photos per Room — कुछ हटाएं');
+  const bar=document.getElementById('bar_'+roomId), prog=document.getElementById('prog_'+roomId), txt=document.getElementById('progText_'+roomId);
   bar.style.display='block'; txt.style.display='block';
   let done=0;
   for(let file of files){
     if(!file.type.startsWith('image/')) continue;
-    if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा है — Skip'); continue; }
+    if(file.size>4*1024*1024){ showError(file.name+' 4MB से बड़ा'); continue; }
+    try{
+      const ref=storage.ref(`rooms/${roomId}_${Date.now()}_${file.name}`);
+      const task=ref.put(file);
+      await new Promise((res,rej)=>{
+        task.on('state_changed', snap=>{
+          const pct=Math.round(((done + snap.bytesTransferred/snap.totalBytes)/files.length)*100);
+          prog.style.width=pct+'%'; txt.textContent=`Uploading ${done+1}/${files.length} — ${pct}%`;
+        }, rej, async()=>{
+          const url=await ref.getDownloadURL(); imgs.push(url); done++; res();
+        });
+      });
+    }catch(e){ showError('Upload Fail: '+e.message); }
+  }
+  bar.style.display='none'; txt.style.display='none'; prog.style.width='0%';
+  // update temp
+  r.images=imgs; r.img=imgs[0];
+  // store in DOM hidden for save
+  document.getElementById('hiddenImgs_'+roomId).textContent=JSON.stringify(imgs);
+  renderRoomEditor();
+  showSuccess(`${done} Photos Add हुईं — Save दबाएं तो Live होंगी 📸`,'Uploaded!');
+}
+async function saveRooms(){
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL+' बदल सकता है');
+  if(!isHighSecureAuthorized()) return requireHighSecure('Price/Photo Change', ()=> saveRooms());
+  showPopup({type:'confirm', title:'🔐 Save करें?', message:'High Secure: बदलाव Live हो जाएगा — सभी Users को दिखेगा।', confirmText:'हाँ, Save 🔒', cancelText:'रद्द करें', showCancel:true, onConfirm: async()=>{
+    const rooms=getRooms().map(r=>{
+      const hidden=document.getElementById('hiddenImgs_'+r.id);
+      let imgs = hidden ? JSON.parse(hidden.textContent) : (r.images||[r.img]);
+      // if user manually edited hidden? use hidden
+      return {
+        ...r,
+        name_hi:document.getElementById('r_name_hi_'+r.id).value.trim()||r.name_hi,
+        name_en:document.getElementById('r_name_en_'+r.id).value.trim()||r.name_en,
+        price:parseInt(document.getElementById('r_price_'+r.id).value)||r.price,
+        tag:document.getElementById('r_tag_'+r.id).value.trim(),
+        maxAdults:parseInt(document.getElementById('r_maxA_'+r.id).value)||2,
+        maxChildren:parseInt(document.getElementById('r_maxC_'+r.id).value)||0,
+        images: imgs,
+        img: imgs[0]
+      };
+    });
+    for(let r of rooms){ if(r.price<500||r.price>50000) return showError('Price ₹500-50000'); if(!r.images.length) return showError('हर Room में कम से कम 1 Photo'); }
+    if(useFirebase){ const batch=db.batch(); rooms.forEach(r=> batch.set(db.collection('rooms').doc(r.id), r)); await batch.commit(); }
+    else { lsSet('hotel4g_rooms',rooms); roomsCache=rooms; renderRooms();}
+    showSuccess('🔒 High Secure Save! Multi-Photo Live 🎨','Secured! 🔐');
+  }});
+}
+async function resetRooms(){
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
+  showPopup({type:'confirm', title:'Reset?', message:'सारे Room Default पर — Photos भी Default', confirmText:'हाँ, Reset', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
+    if(useFirebase){ const batch=db.batch(); defaultRooms.forEach(r=> batch.set(db.collection('rooms').doc(r.id), r)); await batch.commit(); }
+    else { localStorage.removeItem('hotel4g_rooms'); roomsCache=defaultRooms; renderRooms(); renderRoomEditor(); }
+    showSuccess('Reset Done','Done!');
+  }});
+}
+
+// ——— GALLERY ———
+async function handleGalleryUpload(files){
+  if(!files || !files.length) return;
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL);
+  if(!useFirebase) return showError('Firebase Config जोड़ें');
+  if(!isHighSecureAuthorized()) return requireHighSecure('Gallery Upload', ()=> handleGalleryUpload(files));
+  const bar=document.getElementById('galleryProgress'), prog=document.getElementById('galleryProgressBar'), txt=document.getElementById('galleryProgressText');
+  bar.style.display='block'; txt.style.display='block'; let done=0;
+  for(let file of files){
+    if(!file.type.startsWith('image/')) continue;
+    if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा'); continue; }
     try{
       const ref=storage.ref(`gallery/${Date.now()}_${file.name}`);
       const task=ref.put(file);
@@ -1214,38 +1252,31 @@ async function handleGalleryUpload(files){
           const pct=Math.round(((done + snap.bytesTransferred/snap.totalBytes)/files.length)*100);
           prog.style.width=pct+'%'; txt.textContent=`Uploading ${done+1}/${files.length} — ${pct}%`;
         }, rej, async()=>{
-          const url=await ref.getDownloadURL();
-          await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser.email});
-          done++; res();
+          const url=await ref.getDownloadURL(); await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser.email}); done++; res();
         });
       });
-    }catch(e){ showError('Gallery Upload Fail: '+e.message); }
+    }catch(e){ showError('Fail: '+e.message); }
   }
-  bar.style.display='none'; txt.style.display='none'; prog.style.width='0%';
-  document.getElementById('galleryFile').value='';
-  showSuccess(`${done} Photo(s) Gallery में Upload हो गईं! Website पर तुरंत दिखेंगी 📸`, 'Gallery Updated! ✨');
+  bar.style.display='none'; txt.style.display='none'; prog.style.width='0%'; document.getElementById('galleryFile').value=''; showSuccess(`${done} Photos Upload 📸`,'Gallery Updated! ✨');
 }
 async function addGalleryByUrl(){
   const url=document.getElementById('galleryUrlInput').value.trim();
-  if(!url) return showError('URL डालें');
-  if(!url.startsWith('http')) return showError('Valid https:// URL डालें');
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ High Secure: Unauthorized');
+  if(!url) return showError('URL डालें'); if(!url.startsWith('http')) return showError('Valid https://');
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
   if(!isHighSecureAuthorized()) return requireHighSecure('Gallery URL Add', ()=> addGalleryByUrl());
   if(useFirebase) await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser.email});
   else { const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now(), url}); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();}
-  document.getElementById('galleryUrlInput').value='';
-  showSuccess('URL से Gallery में Photo Add हो गई!','Added! 📸');
+  document.getElementById('galleryUrlInput').value=''; showSuccess('URL Add 📸','Added!');
 }
 async function deleteGallery(id){
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ High Secure: Unauthorized');
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
   if(!isHighSecureAuthorized()) return requireHighSecure('Gallery Delete', ()=> deleteGallery(id));
-  showPopup({type:'confirm', title:'Photo हटाएं?', message:'ये Photo Gallery से हमेशा के लिए हट जाएगी।', confirmText:'हाँ, हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
+  showPopup({type:'confirm', title:'Photo हटाएं?', message:'हमेशा के लिए हटेगी।', confirmText:'हाँ, हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
     if(useFirebase) await db.collection('gallery').doc(id).delete();
     else { let arr=lsGet('hotel4g_gallery',[]).filter(g=>g.id!==id); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();}
-    showSuccess('Photo हटा दी गई','Deleted 🗑');
+    showSuccess('Deleted 🗑','Deleted');
   }});
 }
-// drag & drop
 const drop=document.getElementById('galleryDrop');
 if(drop){
   ['dragenter','dragover'].forEach(ev=> drop.addEventListener(ev, e=>{e.preventDefault(); drop.classList.add('dragover')}));
@@ -1253,22 +1284,23 @@ if(drop){
   drop.addEventListener('drop', e=>{ const files=e.dataTransfer.files; if(files.length) handleGalleryUpload(files); });
 }
 
-// ——— SETTINGS — HIGH SECURE PAYMENT ———
+// ——— SETTINGS ———
 async function saveSettings(){
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ High Secure: सिर्फ '+ADMIN_EMAIL+' Payment Settings बदल सकता है');
-  if(!isHighSecureAuthorized()) return requireHighSecure('Payment Settings Change', ()=> saveSettings());
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL);
+  if(!isHighSecureAuthorized()) return requireHighSecure('Payment Settings', ()=> saveSettings());
   const s={upi:document.getElementById('setUpi').value.trim(), razorKey:document.getElementById('setRazorKey').value.trim(), coupon:document.getElementById('setCoupon').value.trim()||'HOTEL200', couponOff:200};
   if(useFirebase) await db.collection('settings').doc('main').set(s,{merge:true});
   else { lsSet('hotel4g_settings',s); settingsCache=s;}
-  showSuccess('Settings Firebase पर Save हो गईं!','Saved ⚙️');
+  showSuccess('Settings Save ⚙️','Saved!');
 }
-function copyUpi(){ navigator.clipboard.writeText(document.getElementById('qrUpi').textContent).then(()=> showSuccess('UPI Copied: '+document.getElementById('qrUpi').textContent,'Copied! 📋'))}
-
-function renderAll(){ renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); renderBookings(); updateStats(); updatePaySummary();}
+function copyUpi(){ navigator.clipboard.writeText(document.getElementById('qrUpi').textContent).then(()=> showSuccess('UPI Copied: '+document.getElementById('qrUpi').textContent,'Copied!'))}
+function renderAll(){ renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); renderBookings(); updateStats(); updatePaySummary(); updatePersonHints();}
 renderAll();
 ['payOverlay','calOverlay','adminOverlay','helpOverlay'].forEach(id=> document.getElementById(id)?.addEventListener('click',e=>{ if(e.target.id===id) document.getElementById(id).classList.remove('open')}));
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') ['payOverlay','calOverlay','adminOverlay','helpOverlay','customPopup'].forEach(id=>document.getElementById(id)?.classList.remove('open'))});
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); document.getElementById('navLinks').classList.remove('open');}}}));
+// auto update room suggest on load
+updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3da99f0b83447c1',t:'MTc4OTg0MTk5NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
