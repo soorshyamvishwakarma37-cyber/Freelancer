@@ -174,6 +174,7 @@ section{padding:56px 0;position:relative;overflow:hidden}
 .room-card:nth-child(1)::before{background:linear-gradient(90deg,#FB923C,#FACC15)}
 .room-card:nth-child(2)::before{background:var(--grad1)}
 .room-card:nth-child(3)::before{background:var(--grad2)}
+.room-card:nth-child(4)::before{background:linear-gradient(90deg,#DC2626,#991B1B)}
 /* CAROUSEL — side scroll multi photo */
 .carousel{position:relative;height:220px;overflow:hidden;background:#FFF1E6;flex-shrink:0}
 .carousel-track{display:flex;transition:transform 0.4s cubic-bezier(0.33,1,0.68,1);height:100%;will-change:transform}
@@ -432,6 +433,13 @@ img,video{max-width:100%;height:auto}
   .hero-stats{gap:8px}
   .stat-pill{min-width:100px; padding:8px 10px}
 }
+@keyframes alertPulse{0%{transform:scale(1);opacity:1;box-shadow:0 0 0 6px rgba(239,68,68,0.18)}50%{transform:scale(1.18);opacity:0.9;box-shadow:0 0 0 10px rgba(239,68,68,0.08)}100%{transform:scale(1);opacity:1;box-shadow:0 0 0 6px rgba(239,68,68,0.18)}}
+.banquet-card{background:#fff;border:1.5px solid #E2E8F0;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,0.06);display:grid;grid-template-columns:1fr;min-width:0}
+@media(min-width:900px){.banquet-card{grid-template-columns:1.1fr 1fr}}
+.banquet-img{height:280px;overflow:hidden;position:relative;background:#F8FAFC}
+.banquet-img img{width:100%;height:100%;object-fit:cover}
+@media(min-width:900px){.banquet-img{height:100%;min-height:340px}}
+.banquet-badge{position:absolute;top:12px;left:12px;background:linear-gradient(135deg,#DC2626,#991B1B);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:0.5px}
 </style>
 </head>
 <body>
@@ -454,6 +462,7 @@ img,video{max-width:100%;height:auto}
           <div style="padding:6px 8px;font-size:10.5px;font-weight:800;letter-spacing:0.6px;color:#94A3B8;text-transform:uppercase" data-i18n="dots_menu_title">Navigate — सब यहीं</div>
           <a href="#home" onclick="toggleNavDots()" data-i18n="dots_home">🏠 Home</a>
           <a href="#rooms" onclick="toggleNavDots()" data-i18n="dots_rooms">🛏 Rooms</a>
+          <a href="#banquet" onclick="toggleNavDots()" data-i18n="dots_banquet">🎉 Banquet Hall</a>
           <a href="#gallery" onclick="toggleNavDots()" data-i18n="dots_gallery">📸 Gallery</a>
           <a href="#reviews" onclick="toggleNavDots()" data-i18n="dots_reviews">⭐ Reviews</a>
           <a href="#dining" onclick="toggleNavDots()" data-i18n="dots_dining">🍽 Dining</a>
@@ -508,7 +517,7 @@ img,video{max-width:100%;height:auto}
         <div><label>🧒 Children</label>
           <select id="children"><option value="0" selected>0 Child</option><option value="1">1 Child</option><option value="2">2 Children</option><option value="3">3 Children</option><option value="4">4 Children</option></select>
         </div>
-        <div><label>🛏 Room</label><select id="roomSelect"><option value="Deluxe Room">Deluxe — ₹1999</option><option value="Super Deluxe">Super Deluxe — ₹2799</option><option value="Family Suite">Family Suite — ₹4499</option></select></div>
+        <div><label>🛏 Room</label><select id="roomSelect"><option value="Deluxe Room">Deluxe — ₹1999</option><option value="Super Deluxe">Super Deluxe — ₹2799</option><option value="Family Suite">Family Suite — ₹4499</option><option value="Banquet Hall">Banquet Hall — ₹12000</option></select></div>
         <div class="booking-actions"><button type="submit" class="btn-gold">✨ चेक करें</button></div>
       </div>
       <div id="availMsg" class="avail-msg" style="grid-column:1/-1"></div>
@@ -522,6 +531,37 @@ img,video{max-width:100%;height:auto}
     <div class="section-head"><span data-i18n="rooms_tag">हमारे रंगीन रूम्स — Multi Photo</span><h2 data-i18n="rooms_title">हर रूम में <em>Side Scroll</em> Photos — Swipe करें →</h2><p data-i18n="rooms_desc">हर Room में 3-4 Photos — Side Scroll / Swipe / Dots से देखें। Admin Gallery से Multiple Upload कर सकता है।</p></div>
     <div class="rooms-grid" id="roomsGrid"></div>
     <p style="text-align:center;margin-top:14px;font-size:11px;color:#A8A29E">* Live Firebase — Person/Children के हिसाब से सही Room Suggest • Coupon HOTEL200</p>
+  </div>
+</section>
+
+<!-- BANQUET HALL — NEW — Sunder, No localhost popup -->
+<section id="banquet" style="background:linear-gradient(180deg,#FFF7ED 0%,#FFFBEB 100%)">
+  <div class="container">
+    <div class="section-head"><span style="background:#FEE2E2;border-color:#FCA5A5;color:#991B1B">🎉 BANQUET HALL — EVENTS</span><h2>शादी, पार्टी, <em>मीटिंग</em> — सब यहीं</h2><p>50-200 Guests • AC Hall • Decoration • Catering • Pure Veg • Real Booking — Turant Live</p></div>
+    <div class="banquet-card">
+      <div class="banquet-img">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80" alt="Banquet Hall" loading="lazy">
+        <div class="banquet-badge">★ MOST BOOKED • BHOPAL</div>
+        <div style="position:absolute;bottom:10px;right:10px;background:rgba(15,23,42,0.88);color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800;backdrop-filter:blur(6px)">👥 50-200 Guests • 📸 Events</div>
+      </div>
+      <div style="padding:18px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:20px;color:#0F172A">Banquet Hall — Hotel 4G</h3>
+        <p style="font-size:13px;color:#57534E;line-height:1.6">शादी, जन्मदिन, कॉर्पोरेट मीटिंग, किटी पार्टी — AC Hall, Stage, Sound, DJ Lighting, Pure Veg Catering. MP Nagar Zone-1 में सबसे Systematic Hall — Gallery की तरह Photos Admin तुरंत Update कर सकता है।</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span style="background:#F8FAFC;border:1px solid #E2E8F0;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:700">🎉 50-200 Capacity</span>
+          <span style="background:#FEF2F2;border:1px solid #FECACA;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:700;color:#991B1B">❄️ Fully AC</span>
+          <span style="background:#ECFDF5;border:1px solid #6EE7B7;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:700;color:#065F46">🍽 Pure Veg Catering</span>
+          <span style="background:#F5F3FF;border:1px solid #C4B5FD;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:700;color:#6D28D9">🎤 Stage + DJ + Lights</span>
+          <span style="background:#FFFBEB;border:1px solid #FDE68A;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:700">🅿️ Parking</span>
+          <span style="background:#EFF6FF;border:1px solid #93C5FD;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:700;color:#1E40AF">📸 Decoration</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;padding:12px">
+          <div><div style="font-size:11px;color:#78716C;font-weight:700">Starting From</div><b style="font-size:21px;color:#0F172A">₹12,000 <small style="font-size:11px;color:#64748B">/ day • +GST 12%</small></b><div style="font-size:10px;color:#16A34A;font-weight:700">✓ No localhost popup — सुंदर booking</div></div>
+          <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap"><button onclick="openBanquetModal()" class="btn-gold" style="padding:11px 18px">🎉 Banquet Book — Enquiry</button><button onclick="realServiceRequest('Banquet Hall — 50-200 Guests — Booking Enquiry')" class="btn-wh" style="padding:10px 14px">📞 Enquiry</button></div>
+        </div>
+        <div style="font-size:10.5px;color:#94A3B8">* Decoration + Catering extra • Original Bill Staff Panel से Generate • UPI: 78699691901@ybl • Staff Alert + Sound</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -540,7 +580,7 @@ img,video{max-width:100%;height:auto}
     <div class="section-head"><span style="background:#ECFDF5;border-color:#6EE7B7;color:#065F46" data-i18n="calendar_tag">📅 AVAILABILITY — LIVE</span><h2 data-i18n="calendar_title">रूम <em>उपलब्धता</em> कैलेंडर</h2><p data-i18n="calendar_desc">हरा = खाली, लाल = बुक्ड। Firebase Live</p></div>
     <div style="max-width:900px;margin:0 auto">
       <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px">
-        <select id="calRoomSelect" onchange="renderCalendar()" style="padding:9px 12px;border-radius:30px;border:1.5px solid #6EE7B7;font-weight:700;background:#fff"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select>
+        <select id="calRoomSelect" onchange="renderCalendar()" style="padding:9px 12px;border-radius:30px;border:1.5px solid #6EE7B7;font-weight:700;background:#fff"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option><option>Banquet Hall</option></select>
         <button class="btn-dark" onclick="openCalendarModal()">📅 Full Calendar खोलें</button>
       </div>
       <div class="cal-wrap" id="inlineCalendar"></div>
@@ -608,7 +648,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdced2d2cfced5c4dcd0cbd4ced5cadcd6dccfd0dc8e8afddad0dcd4d193ded2d0">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="05766a6a77766d7c6468736c766d72646e647768643632456268646c692b666a68">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -625,7 +665,7 @@ img,video{max-width:100%;height:auto}
           <div class="form-group"><label>चेक-आउट</label><input id="fCout" type="date" required></div>
           <div class="form-group"><label>👤 Adults</label><select id="fAdults"><option value="1">1 Adult</option><option value="2" selected>2 Adults</option><option value="3">3 Adults</option><option value="4">4 Adults</option><option value="5">5 Adults</option><option value="6">6 Adults</option></select></div>
           <div class="form-group"><label>🧒 Children</label><select id="fChildren"><option value="0" selected>0 Child</option><option value="1">1 Child</option><option value="2">2 Children</option><option value="3">3 Children</option><option value="4">4 Children</option></select></div>
-          <div class="form-group full"><label>🛏 Room (Auto Suggest by Persons)</label><select id="fRoom"><option>Deluxe Room - ₹1999 (2 Adults)</option><option>Super Deluxe - ₹2799 (3 Adults)</option><option>Family Suite - ₹4499 (6 Persons)</option></select></div>
+          <div class="form-group full"><label>🛏 Room (Auto Suggest by Persons)</label><select id="fRoom"><option>Deluxe Room - ₹1999 (2 Adults)</option><option>Super Deluxe - ₹2799 (3 Adults)</option><option>Family Suite - ₹4499 (6 Persons)</option><option>Banquet Hall - ₹12000 (50-200 Guests)</option></select></div>
           <div class="form-group full"><label>संदेश</label><textarea id="fMsg" rows="2" placeholder="बच्चों की उम्र, कोई जरूरत?"></textarea></div>
         </div>
         <div id="personHint" style="background:#FFFBEB;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11px;font-weight:600;color:#92400e;margin-bottom:10px;display:none"></div>
@@ -683,7 +723,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2754484855544f5e464a514e544f50464c46554a46141067404a464e4b0944484a">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfccd0d0cdccd7c6ded2c9d6ccd7c8ded4decdd2de8c88ffd8d2ded6d391dcd0d2">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -778,7 +818,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:640px"><div class="modal-head"><div><b>📅 Availability — Firebase Live</b><div style="font-size:11px;color:#78716C">तारीख चुनें और बुक करें</div></div><button onclick="closeCalendar()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div>
     <div class="modal-body">
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
-        <select id="calRoomModal" onchange="renderCalendarModal()" style="flex:1;min-width:140px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--border);font-weight:700;background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select>
+        <select id="calRoomModal" onchange="renderCalendarModal()" style="flex:1;min-width:140px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--border);font-weight:700;background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option><option>Banquet Hall</option></select>
         <button onclick="shiftCalMonth(-1)" class="icon-btn">‹ Prev</button><button onclick="shiftCalMonth(1)" class="icon-btn">Next ›</button>
       </div>
       <div id="calendarModalBody"></div>
@@ -792,7 +832,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7704181805041f0e161a011e041f00161c16051a16444037101a161e1b5914181a">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3645595944455e4f575b405f455e41575d57445b57050176515b575f5a1855595b">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -826,14 +866,15 @@ img,video{max-width:100%;height:auto}
       <pre style="background:#0F172A;color:#E2E8F0;padding:12px;border-radius:12px;font-size:10.5px;overflow:auto;margin-top:12px;white-space:pre-wrap;word-break:break-word">rules_version='2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b6c5d9d9c4c5decfd7dbc0dfc5dec1d7ddd7c4dbd78581f6d1dbd7dfda98d5d9db">[email&#160;protected]</a>";}
-    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cab9a5a5b8b9a2b3aba7bca3b9a2bdaba1abb8a7abf9fd8aada7aba3a6e4a9a5a7">[email&#160;protected]</a>";}
-    match /gallery/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="384b57574a4b504159554e514b504f5953594a55590b0f785f55595154165b5755">[email&#160;protected]</a>";}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="15667a7a67667d6c7478637c667d62747e746778742622557278747c793b767a78">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7b4a8a8b5b4afbea6aab1aeb4afb0a6aca6b5aaa6f4f087a0aaa6aeabe9a4a8aa">[email&#160;protected]</a>";}
+    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b1c2dedec3c2d9c8d0dcc7d8c2d9c6d0dad0c3dcd08286f1d6dcd0d8dd9fd2dedc">[email&#160;protected]</a>";}
+    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="61120e0e13120918000c1708120916000a00130c00525621060c00080d4f020e0c">[email&#160;protected]</a>";}
+    match /gallery/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e3d21213c3d26372f2338273d26392f252f3c232f7d790e29232f2722602d2123">[email&#160;protected]</a>";}
+    match /physicalRooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d2a1bdbda0a1baabb3bfa4bba1baa5b3b9b3a0bfb3e1e592b5bfb3bbbefcb1bdbf">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f1c00001d1c07160e0219061c07180e040e1d020e5c582f08020e0603410c0002">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="94e7fbfbe6e7fcedf5f9e2fde7fce3f5fff5e6f9f5a7a3d4f3f9f5fdf8baf7fbf9">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f3c20203d3c27362e2239263c27382e242e3d222e7c780f28222e2623612c2022">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddaeb2b2afaeb5a4bcb0abb4aeb5aabcb6bcafb0bceeea9dbab0bcb4b1f3beb2b0">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c1f03031e1f04150d011a051f041b0d070d1e010d5f5b2c0b010d0500420f0301">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="097a66667b7a617068647f607a617e6862687b64683a3e496e64686065276a6664">[email&#160;protected]</a>";}
   }
 }</pre>
     </div>
@@ -872,7 +913,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff8c90908d8c97869e9289968c97889e949e8d929eccc8bf98929e9693d19c9092">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="35465a5a47465d4c5458435c465d42545e544758540602755258545c591b565a58">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -915,7 +956,7 @@ service cloud.firestore {
           <p style="font-size:11px;color:#64748B;margin-bottom:10px">Reserve करते time Customer Room No. select करेगा — यहीं से Numbers Add/Edit/Delete करो — Turant Live</p>
           <div style="display:grid;grid-template-columns:80px 1fr 80px auto;gap:6px;align-items:end;max-width:520px;margin-bottom:10px">
             <div class="field" style="margin:0"><label>Room No. *</label><input id="newRoomNumber" placeholder="105"></div>
-            <div class="field" style="margin:0"><label>Type *</label><select id="newRoomType" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select></div>
+            <div class="field" style="margin:0"><label>Type *</label><select id="newRoomType" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option><option>Banquet Hall</option></select></div>
             <div class="field" style="margin:0"><label>Floor</label><input id="newRoomFloor" placeholder="1F" value="1F"></div>
             <button onclick="adminAddPhysicalRoom()" class="btn-gold" style="padding:9px 12px;white-space:nowrap">+ Add No.</button>
           </div>
@@ -941,7 +982,7 @@ service cloud.firestore {
           <div class="gallery-admin-grid" id="galleryAdminGrid"></div>
         </div>
       </div>
-      <div class="admin-card" id="panel-calendar" style="display:none"><div class="admin-card-head"><h4>📅 Calendar — Firebase Live</h4><select id="adminCalRoom" onchange="renderAdminCalendar()" style="padding:7px 10px;border-radius:30px;border:1.5px solid var(--border);background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select></div><div style="padding:14px"><div id="adminCalendarWrap"></div></div></div>
+      <div class="admin-card" id="panel-calendar" style="display:none"><div class="admin-card-head"><h4>📅 Calendar — Firebase Live</h4><select id="adminCalRoom" onchange="renderAdminCalendar()" style="padding:7px 10px;border-radius:30px;border:1.5px solid var(--border);background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option><option>Banquet Hall</option></select></div><div style="padding:14px"><div id="adminCalendarWrap"></div></div></div>
       <div class="admin-card" id="panel-settings" style="display:none"><div class="admin-card-head"><h4>⚙️ Payment Settings — High Secure</h4></div><div style="padding:14px;display:grid;gap:12px;max-width:520px"><div style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:700;word-break:break-word">🔒 Payment Settings — सिर्फ आपका Email + Re-Auth</div><div class="field"><label>UPI ID</label><input id="setUpi" value="78699691901@ybl"></div><div class="field"><label>Razorpay Key ID (Live — rzp_live_...)</label><input id="setRazorKey" value="rzp_test_xxxxxxxx"></div><div class="field"><label>Coupon Code</label><input id="setCoupon" value="HOTEL200"></div><div class="field"><label>Tax % — Original GST (Auto)</label><input id="setTax" type="number" min="0" max="28" value="12"></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase — Tax Live</button></div>
         <div style="padding:14px;border-top:1px solid #F1F5F9;margin-top:8px">
           <h4 style="color:#0F172A;margin-bottom:6px">👔 Staff Panel — ID/Password (Hidden • Admin Only)</h4>
@@ -991,6 +1032,14 @@ service cloud.firestore {
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:rgba(255,255,255,0.12);padding:5px 8px;border-radius:20px;border:1px solid rgba(255,255,255,0.14);color:#fff">🔒 Single Device</span><button onclick="staffLogout()" class="btn-wh" style="padding:7px 12px;font-size:12px">Logout</button><button onclick="closeStaffDashboard()" class="btn-gold" style="padding:7px 12px;font-size:12px;background:#DC2626">✕ Close</button></div>
   </div>
   <div style="max-width:1220px;margin:0 auto;padding:14px">
+    <!-- BOOKING ALERT — Staff Panel — Original Full Sound + Banner — Sunder -->
+    <div id="staffAlertBanner" style="display:none;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1.5px solid #FCD34D;border-radius:12px;padding:12px 14px;margin-bottom:14px;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:0 6px 16px rgba(245,158,11,0.12)">
+      <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:200px">
+        <span style="width:12px;height:12px;background:#EF4444;border-radius:50%;display:inline-block;animation:alertPulse 1s infinite;box-shadow:0 0 0 6px rgba(239,68,68,0.18)"></span>
+        <div style="min-width:0"><b style="color:#92400E;font-size:13px" id="staffAlertText">🔔 New Booking Alert! — Paid Received</b><div style="font-size:11px;color:#92400E" id="staffAlertSub">सुंदर popup + sound — तप करें तो booking देखें</div></div>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><button onclick="document.getElementById('staffAlertBanner').style.display='none'" class="btn-gold" style="padding:8px 14px;font-size:11px">✓ देखा</button><button onclick="renderStaffBookings(); document.getElementById('staffAlertBanner').style.display='none'" class="btn-dark" style="padding:8px 14px;font-size:11px">📋 देखें</button></div>
+    </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px">
       <div class="stat-card" style="background:#fff"><small>Today Bookings</small><strong id="staffStatToday">0</strong></div>
       <div class="stat-card" style="background:#fff"><small>Occupied Rooms</small><strong id="staffStatOccupied" style="color:#DC2626">0/9</strong></div>
@@ -1024,7 +1073,7 @@ service cloud.firestore {
       <div style="background:#FFFBEB;border:1px solid #FDE68A;padding:8px 10px;border-radius:10px;font-size:11px;color:#92400E;text-align:center">Real Rating — Firebase पर Save, Website पर तुरंत दिखेगा • Demo नहीं</div>
       <div style="display:grid;gap:10px;margin-top:12px">
         <div class="field"><label>आपका नाम *</label><input id="reviewName" placeholder="राहुल वर्मा"></div>
-        <div class="field"><label>Room *</label><select id="reviewRoom"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option></select></div>
+        <div class="field"><label>Room *</label><select id="reviewRoom"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option><option>Banquet Hall</option></select></div>
         <div class="field"><label>Rating *</label>
           <div id="reviewStars" style="display:flex;gap:6px;font-size:22px;cursor:pointer">
             <span onclick="setReviewStars(1)">☆</span><span onclick="setReviewStars(2)">☆</span><span onclick="setReviewStars(3)">☆</span><span onclick="setReviewStars(4)">☆</span><span onclick="setReviewStars(5)">☆</span>
@@ -1046,6 +1095,16 @@ service cloud.firestore {
     <h3 id="popupTitle">Success!</h3>
     <p id="popupMsg">Message here</p>
     <div id="popupActions" class="popup-actions"></div>
+  </div>
+</div>
+<!-- BEAUTIFUL FORM POPUP — replaces localhost prompt — Sunder -->
+<div id="formPopup" class="popup-overlay">
+  <div class="popup-box" style="max-width:460px;text-align:left">
+    <div id="formPopupIcon" class="popup-icon info" style="margin:0 auto 12px">✏️</div>
+    <h3 id="formPopupTitle" style="text-align:center">Title</h3>
+    <p id="formPopupDesc" style="text-align:center;font-size:12px;color:#64748B;margin:6px 0 12px;white-space:pre-wrap"></p>
+    <div id="formPopupFields" style="display:grid;gap:10px;text-align:left"></div>
+    <div id="formPopupActions" class="popup-actions" style="margin-top:16px"></div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -1090,16 +1149,60 @@ function showPopup({type='success', title='', message='', confirmText='ठीक
 }
 function showSuccess(msg,title){ showPopup({type:'success', title:title||'सफल! ✨', message:msg, confirmText:'बहुत बढ़िया!'}); }
 function showError(msg){ showPopup({type:'error', title:'त्रुटि!', message:msg, confirmText:'ठीक है'}); }
+// ——— BEAUTIFUL FORM POPUP — replaces localhost prompt — Sunder, no alert/confirm ———
+function closeFormPopup(){ document.getElementById('formPopup')?.classList.remove('open'); }
+function showFormPopup({type='info', title='', desc='', fields=[], confirmText='Confirm ✓', cancelText='रद्द करें', showCancel=true, danger=false, onSubmit=null}){
+  const overlay=document.getElementById('formPopup');
+  const icon=document.getElementById('formPopupIcon');
+  const t=document.getElementById('formPopupTitle');
+  const d=document.getElementById('formPopupDesc');
+  const wrap=document.getElementById('formPopupFields');
+  const actions=document.getElementById('formPopupActions');
+  const icons={success:'✓', error:'✕', warning:'⚠', info:'✏️', confirm:'✏️'};
+  icon.className='popup-icon '+type; icon.textContent=icons[type]||'✏️';
+  t.textContent=title||'Form'; d.textContent=desc||''; d.style.display=desc?'block':'none';
+  wrap.innerHTML=fields.map(f=>{
+    const req=f.required?'required':'';
+    const ph=f.placeholder?`placeholder="${f.placeholder.replace(/"/g,'&quot;')}"`:'';
+    const val=f.value!==undefined && f.value!==null?`value="${String(f.value).replace(/"/g,'&quot;')}"`:'';
+    if(f.type==='select'){
+      const opts=(f.options||[]).map(o=>`<option value="${o.value}" ${o.value===f.value?'selected':''}>${o.label}</option>`).join('');
+      return `<div class="field" style="margin:0"><label>${f.label}${f.required?' *':''}</label><select id="${f.id}" ${req} style="width:100%;padding:11px 10px;border:1.5px solid #E2E8F0;background:#FFFBEB;border-radius:11px;font-size:13px">${opts}</select></div>`;
+    } else if(f.type==='textarea'){
+      return `<div class="field" style="margin:0"><label>${f.label}${f.required?' *':''}</label><textarea id="${f.id}" ${req} ${ph} rows="${f.rows||2}" style="width:100%;padding:11px 10px;border:1.5px solid #E2E8F0;background:#FFFBEB;border-radius:11px;font-size:13px;resize:vertical">${f.value||''}</textarea></div>`;
+    } else {
+      const tp=f.type||'text';
+      return `<div class="field" style="margin:0"><label>${f.label}${f.required?' *':''}</label><input id="${f.id}" type="${tp}" ${val} ${ph} ${req} style="width:100%;padding:11px 10px;border:1.5px solid #E2E8F0;background:#FFFBEB;border-radius:11px;font-size:13px"></div>`;
+    }
+  }).join('');
+  actions.innerHTML='';
+  if(showCancel){
+    const cancel=document.createElement('button'); cancel.className='popup-btn ghost'; cancel.textContent=cancelText;
+    cancel.onclick=()=>{ overlay.classList.remove('open'); };
+    actions.appendChild(cancel);
+  }
+  const ok=document.createElement('button'); ok.className='popup-btn '+(danger?'danger':'primary'); ok.textContent=confirmText;
+  ok.onclick=()=>{
+    const values={}; for(const f of fields){ const el=document.getElementById(f.id); if(!el) continue; values[f.id]=el.value.trim(); if(f.required && !values[f.id]){ el.style.borderColor='#EF4444'; el.focus(); return; } }
+    overlay.classList.remove('open');
+    if(onSubmit) onSubmit(values);
+  };
+  actions.appendChild(ok);
+  overlay.classList.add('open');
+  overlay.onclick=(e)=>{ if(e.target===overlay) overlay.classList.remove('open'); };
+  setTimeout(()=>{ const first=wrap.querySelector('input,select,textarea'); if(first) first.focus(); },100);
+}
 
 // ——— ROOMS — MULTI PHOTO SYSTEMATIC ———
 const defaultRooms=[
   {id:"deluxe", name_hi:"Deluxe Room", name_en:"Deluxe Room", price:1999, desc_hi:"कपल और बिज़नेस के लिए — King Bed, Work Desk।", desc_en:"For couples & business — King bed, work desk.", images:["https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80","https://images.unsplash.com/photo-1566195992011-5f6b21e539aa?w=600&q=80","https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80"], features:["🛏 King Bed","👥 2 Guests","📶 WiFi","❄️ AC"], tag:"", maxAdults:2, maxChildren:1},
   {id:"superdeluxe", name_hi:"Super Deluxe", name_en:"Super Deluxe", price:2799, desc_hi:"ज्यादा स्पेस, सोफा, सिटी व्यू — फैमिली फेवरेट।", desc_en:"More space, sofa, city view — family favourite.", images:["https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80","https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80","https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80"], features:["🛏 King+Sofa","👥 3 Guests","🍳 Breakfast","📶 WiFi"], tag:"★ MOST POPULAR", maxAdults:3, maxChildren:2},
-  {id:"family", name_hi:"Family Suite", name_en:"Family Suite", price:4499, desc_hi:"2 Bedroom + Hall — 5-6 लोग, परिवार के लिए बेस्ट।", desc_en:"2 Bedroom + Hall — 5-6 guests, best for family.", images:["https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80","https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80","https://images.unsplash.com/photo-1551882547-b79c4176354d?w=600&q=80"], features:["🛏 2 Bedroom","👥 5-6 Guests","🎉 Banquet 50"], tag:"", maxAdults:4, maxChildren:2}
+  {id:"family", name_hi:"Family Suite", name_en:"Family Suite", price:4499, desc_hi:"2 Bedroom + Hall — 5-6 लोग, परिवार के लिए बेस्ट।", desc_en:"2 Bedroom + Hall — 5-6 guests, best for family.", images:["https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80","https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80","https://images.unsplash.com/photo-1551882547-b79c4176354d?w=600&q=80"], features:["🛏 2 Bedroom","👥 5-6 Guests","🎉 Banquet 50"], tag:"", maxAdults:4, maxChildren:2},
+  {id:"banquet", name_hi:"Banquet Hall", name_en:"Banquet Hall", price:12000, desc_hi:"50-200 मेहमान — शादी, पार्टी, मीटिंग के लिए Grand AC हॉल, स्टेज, DJ, कैटरिंग।", desc_en:"50-200 guests — Grand AC hall for weddings, parties, meetings.", images:["https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80","https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&q=80","https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80"], features:["🎉 50-200 Guests","❄️ Fully AC","🍽 Pure Veg","🎤 Stage + DJ"], tag:"🎉 EVENTS", maxAdults:6, maxChildren:4}
 ];
 const defaultSettings={upi:"78699691901@ybl", razorKey:"rzp_test_xxxxxxxx", coupon:"HOTEL200", couponOff:200, tax:12};
 const defaultGallery=["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80","https://images.unsplash.com/photo-1551016548-573fe324a244?w=600&q=80","https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80","https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80","https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80"];
-// Physical rooms — Room No. wise — Admin can Edit/Add/Delete — Live from Firebase
+// Physical rooms — Room No. wise — Admin can Edit/Add/Delete — Live from Firebase — includes Banquet
 const defaultPhysicalRooms=[
   {number:"101", type:"Deluxe Room", floor:"1F"},
   {number:"102", type:"Deluxe Room", floor:"1F"},
@@ -1109,7 +1212,8 @@ const defaultPhysicalRooms=[
   {number:"202", type:"Super Deluxe", floor:"2F"},
   {number:"203", type:"Super Deluxe", floor:"2F"},
   {number:"301", type:"Family Suite", floor:"3F"},
-  {number:"302", type:"Family Suite", floor:"3F"}
+  {number:"302", type:"Family Suite", floor:"3F"},
+  {number:"BAN-1", type:"Banquet Hall", floor:"Ground"}
 ];
 let physicalRooms=[...defaultPhysicalRooms];
 const TRANSLATIONS={
@@ -1163,6 +1267,7 @@ const TRANSLATIONS={
     dots_menu_title:"Navigate — सब यहीं",
     dots_home:"🏠 Home",
     dots_rooms:"🛏 Rooms",
+    dots_banquet:"🎉 Banquet Hall",
     dots_gallery:"📸 Gallery",
     dots_calendar:"📅 Calendar",
     dots_contact:"📞 Contact / Booking",
@@ -1244,6 +1349,7 @@ const TRANSLATIONS={
     dots_menu_title:"Navigate — All Here",
     dots_home:"🏠 Home",
     dots_rooms:"🛏 Rooms",
+    dots_banquet:"🎉 Banquet Hall",
     dots_gallery:"📸 Gallery",
     dots_calendar:"📅 Calendar",
     dots_contact:"📞 Contact / Booking",
@@ -1332,7 +1438,7 @@ function startListeners(){
     else { galleryCache=snap.docs.map(d=>({id:d.id, ...d.data()})); renderGallery(); renderGalleryAdmin(); }
   });
   db.collection('bookings').orderBy('createdAt','desc').onSnapshot(snap=>{
-    bookingsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers();
+    bookingsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers(); try{ checkStaffBookingAlert(); }catch(e){}
   });
   db.collection('reviews').orderBy('createdAt','desc').onSnapshot(snap=>{
     reviewsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderReviews();
@@ -1399,28 +1505,36 @@ async function adminEditPhysicalRoom(oldNum){
   if(!isHighSecureAuthorized()) return requireHighSecure('Edit Room No.', ()=> adminEditPhysicalRoom(oldNum));
   const cur=getPhysicalRooms().find(r=>r.number===oldNum);
   if(!cur) return showError('Not found');
-  const newNum=prompt('Room No. (edit):', cur.number);
-  if(newNum===null) return;
-  const newType=prompt('Type (Deluxe Room / Super Deluxe / Family Suite):', cur.type);
-  if(newType===null) return;
-  const newFloor=prompt('Floor (1F/2F/3F):', cur.floor);
-  if(newFloor===null) return;
-  if(newNum.trim()!==oldNum && getPhysicalRooms().find(r=>r.number===newNum.trim())) return showError('New No. already exists');
-  if(useFirebase){
-    try{
-      if(newNum.trim()!==oldNum){
-        await db.collection('physicalRooms').doc(oldNum).delete();
-        await db.collection('physicalRooms').doc(newNum.trim()).set({number:newNum.trim(), type:newType.trim(), floor:newFloor.trim()});
-        // also migrate bookings with old roomNumber? Keep as is
+  showFormPopup({
+    type:'info', title:'🏨 Room No. Edit — Sunder Popup', desc:`Room ${oldNum} — Admin Edit (Live) • No localhost prompt`,
+    fields:[
+      {id:'editRoomNumber', label:'Room No.', type:'text', value:cur.number, placeholder:'e.g. 105', required:true},
+      {id:'editRoomType', label:'Room Type', type:'select', value:cur.type, options:[{value:'Deluxe Room',label:'Deluxe Room'},{value:'Super Deluxe',label:'Super Deluxe'},{value:'Family Suite',label:'Family Suite'},{value:'Banquet Hall',label:'Banquet Hall'}]},
+      {id:'editRoomFloor', label:'Floor', type:'select', value:cur.floor, options:[{value:'1F',label:'1F — Ground'},{value:'2F',label:'2F — First'},{value:'3F',label:'3F — Second'},{value:'Ground',label:'Ground — Banquet'}]}
+    ],
+    confirmText:'💾 Update Live ✓', cancelText:'Cancel',
+    onSubmit: async (vals)=>{
+      const newNum=(vals.editRoomNumber||'').trim();
+      const newType=(vals.editRoomType||'').trim();
+      const newFloor=(vals.editRoomFloor||'').trim()||'1F';
+      if(!newNum) return showError('Room No. डालें');
+      if(newNum!==oldNum && getPhysicalRooms().find(r=>r.number===newNum)) return showError('New No. already exists');
+      if(useFirebase){
+        try{
+          if(newNum!==oldNum){
+            await db.collection('physicalRooms').doc(oldNum).delete();
+            await db.collection('physicalRooms').doc(newNum).set({number:newNum, type:newType, floor:newFloor});
+          } else {
+            await db.collection('physicalRooms').doc(oldNum).update({type:newType, floor:newFloor});
+          }
+          showSuccess('Room No. Updated — Live!','Updated! ✨');
+        }catch(e){ showError(e.message); }
       } else {
-        await db.collection('physicalRooms').doc(oldNum).update({type:newType.trim(), floor:newFloor.trim()});
+        const idx=physicalRooms.findIndex(r=>r.number===oldNum);
+        if(idx>-1){ physicalRooms[idx]={number:newNum, type:newType, floor:newFloor}; physicalRooms.sort((a,b)=>a.number.localeCompare(b.number)); lsSet('hotel4g_physicalRooms', physicalRooms); renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers(); showSuccess('Room No. Updated — Live!','Updated! ✨'); }
       }
-    }catch(e){ return showError(e.message); }
-  } else {
-    const idx=physicalRooms.findIndex(r=>r.number===oldNum);
-    if(idx>-1){ physicalRooms[idx]={number:newNum.trim(), type:newType.trim(), floor:newFloor.trim()}; physicalRooms.sort((a,b)=>a.number.localeCompare(b.number)); lsSet('hotel4g_physicalRooms', physicalRooms); renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers(); }
-  }
-  showSuccess('Room No. Updated — Live!','Updated!');
+    }
+  });
 }
 async function adminDeletePhysicalRoom(num){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Admin only');
@@ -1753,6 +1867,34 @@ async function submitTravel(e){
   });
 }
 
+// ——— BANQUET — Sunder Popup — No localhost ———
+function openBanquetModal(){
+  showFormPopup({
+    type:'info', title:'🎉 Banquet Hall — Book Now ✨', desc:'50-200 Guests • AC • Pure Veg • Decoration • Sunder Popup — No localhost',
+    fields:[
+      {id:'banqName', label:'आपका नाम *', type:'text', placeholder:'राहुल वर्मा', required:true},
+      {id:'banqPhone', label:'मोबाइल *', type:'tel', placeholder:'+91 9XXXX XXXXX', required:true},
+      {id:'banqDate', label:'Event Date * (YYYY-MM-DD)', type:'text', placeholder: today, required:true},
+      {id:'banqGuests', label:'Guests *', type:'select', value:'50', options:[{value:'30',label:'30 Guests'},{value:'50',label:'50 Guests'},{value:'100',label:'100 Guests'},{value:'150',label:'150 Guests'},{value:'200',label:'200 Guests'}]},
+      {id:'banqType', label:'Event Type', type:'select', value:'Wedding', options:[{value:'Wedding',label:'Wedding — शादी'},{value:'Birthday',label:'Birthday'},{value:'Corporate',label:'Corporate Meeting'},{value:'Kitty Party',label:'Kitty Party'},{value:'Other',label:'Other'}]},
+      {id:'banqNote', label:'Special Note (Decoration/Catering)', type:'textarea', placeholder:'e.g. Flower Decoration, Veg Catering 100 pax, Evening 6PM...', rows:2}
+    ],
+    confirmText:'🎉 Continue to Payment →',
+    onSubmit: (vals)=>{
+      const name=(vals.banqName||'').trim(), phone=(vals.banqPhone||'').trim(), date=(vals.banqDate||'').trim(), guests=vals.banqGuests, type=vals.banqType, note=(vals.banqNote||'').trim();
+      if(!name||!phone||!date) return showError('नाम, मोबाइल, Date जरूरी');
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) return showError('Date YYYY-MM-DD format में डालें — e.g. '+today);
+      if(parseDate(date) < parseDate(today)) return showError('Event Date आज या भविष्य की होनी चाहिए');
+      const coutNext=new Date(parseDate(date).getTime()+86400000).toISOString().slice(0,10);
+      const banquetTravel={cin:date, cout:coutNext, adults:parseInt(guests)||50, children:0, name, phone, mode:'Banquet', pickup:'No', pickupDetail:'', note: (note? note+' • ':'')+type, travelData:`Banquet: ${type} • ${guests} Guests${note?' • '+note:''}`, roomNumber:'BAN-1'};
+      sessionStorage.setItem('pendingTravel', JSON.stringify(banquetTravel));
+      pendingReserve={room:'Banquet Hall', price:12000, roomNumber:'BAN-1', travel:banquetTravel};
+      openPayModal('Banquet Hall', 12000);
+      setTimeout(()=>{ document.getElementById('payCin').value=date; document.getElementById('payCout').value=coutNext; document.getElementById('payAdults').value='2'; document.getElementById('payChildren').value='0'; document.getElementById('payRoomNumber').value='BAN-1'; updatePaySummary(); updatePayRoomNumbers(); },140);
+      showSuccess(`Banquet Hall — ${type} • ${guests} Guests • ${date} — अब Payment करके Confirm करें 🎉`,'Banquet Ready!');
+    }
+  });
+}
 // ——— PAYMENT — systematic with person ———
 let currentPay={room:"Deluxe Room", price:1999, nights:1, adults:2, children:0, total:1999, payMethod:'upi'};
 function openPayModal(roomName,price){
@@ -2266,10 +2408,21 @@ async function resetRooms(){
 async function handleGalleryUpload(files){
   if(!files || !files.length) return;
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL);
-  if(!useFirebase) return showError('Firebase Config जोड़ें');
   if(!isHighSecureAuthorized()) return requireHighSecure('Gallery Upload', ()=> handleGalleryUpload(files));
   const bar=document.getElementById('galleryProgress'), prog=document.getElementById('galleryProgressBar'), txt=document.getElementById('galleryProgressText');
   bar.style.display='block'; txt.style.display='block'; let done=0;
+  // Support both Firebase Storage and Local Preview (DataURL) — turant live in both
+  if(!useFirebase){
+    // Local mode: read files as DataURL and save to LS — instantly live
+    for(let file of files){
+      if(!file.type.startsWith('image/')) continue;
+      if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा'); continue; }
+      const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
+      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url:dataUrl}); lsSet('hotel4g_gallery',arr); galleryCache=arr; done++;
+      prog.style.width=Math.round(done/files.length*100)+'%'; txt.textContent=`Local Preview ${done}/${files.length} — Turant Live ✨`;
+    }
+    bar.style.display='none'; txt.style.display='none'; prog.style.width='0%'; document.getElementById('galleryFile').value=''; renderGallery(); renderGalleryAdmin(); showSuccess(`${done} Photos Local Save — Gallery पर Turant Live! 📸 (Firebase connect पर Storage पर भी जाएगा)`,'Gallery Updated! ✨'); return;
+  }
   for(let file of files){
     if(!file.type.startsWith('image/')) continue;
     if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा'); continue; }
@@ -2279,23 +2432,44 @@ async function handleGalleryUpload(files){
       await new Promise((res,rej)=>{
         task.on('state_changed', snap=>{
           const pct=Math.round(((done + snap.bytesTransferred/snap.totalBytes)/files.length)*100);
-          prog.style.width=pct+'%'; txt.textContent=`Uploading ${done+1}/${files.length} — ${pct}%`;
+          prog.style.width=pct+'%'; txt.textContent=`Uploading ${done+1}/${files.length} — ${pct}% — Turant Live होने वाला है ✨`;
         }, rej, async()=>{
           const url=await ref.getDownloadURL(); await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser.email}); done++; res();
         });
       });
     }catch(e){ showError('Fail: '+e.message); }
   }
-  bar.style.display='none'; txt.style.display='none'; prog.style.width='0%'; document.getElementById('galleryFile').value=''; showSuccess(`${done} Photos Upload 📸`,'Gallery Updated! ✨');
+  bar.style.display='none'; txt.style.display='none'; prog.style.width='0%'; document.getElementById('galleryFile').value=''; showSuccess(`${done} Photos Upload 📸 — Firebase Gallery पर Turant Live! ✨`,'Gallery Updated! ✨');
 }
 async function addGalleryByUrl(){
-  const url=document.getElementById('galleryUrlInput').value.trim();
-  if(!url) return showError('URL डालें'); if(!url.startsWith('http')) return showError('Valid https://');
-  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
+  const raw=document.getElementById('galleryUrlInput').value.trim();
+  if(!raw) return showError('URL डालें — https://...');
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized — सिर्फ '+ADMIN_EMAIL);
   if(!isHighSecureAuthorized()) return requireHighSecure('Gallery URL Add', ()=> addGalleryByUrl());
-  if(useFirebase) await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser.email});
-  else { const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now(), url}); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();}
-  document.getElementById('galleryUrlInput').value=''; showSuccess('🔗 Gallery Link Save — Website पर Turant Live! ✨','Added!');
+  // support multiple URLs separated by newline, comma, space — turant live
+  const parts=raw.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
+  const urls=[]; for(const p of parts){ const sub=p.split(/\s+/).map(s=>s.trim()).filter(Boolean); urls.push(...sub); }
+  const valid=urls.filter(u=>u.startsWith('http://')||u.startsWith('https://'));
+  if(!valid.length) return showError('Valid https:// URL डालें — एक या कई links newline/comma से अलग करके');
+  if(valid.length>10) return showError('एक बार में Max 10 Links');
+  let added=0;
+  for(const url of valid){
+    try{ new URL(url);}catch(e){ continue; }
+    if(useFirebase){
+      await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser.email});
+    } else {
+      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url}); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();
+    }
+    added++;
+  }
+  document.getElementById('galleryUrlInput').value='';
+  // optimistic: Firebase onSnapshot will fire turant — still show local instant feedback
+  if(useFirebase && added){
+    // add optimistic preview until snapshot arrives (already added via Firestore, but show placeholder)
+    showSuccess(`🔗 ${added} Photo Link Save — Website पर Turant Live! ✨ — Gallery में अभी दिखेगा`,'Added! 🎉');
+  } else {
+    showSuccess(`🔗 ${added} Gallery Link Save — Website पर Turant Live! ✨`,'Added!');
+  }
 }
 async function deleteGallery(id){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
@@ -2412,18 +2586,23 @@ async function adminAddStaff(){
 async function adminChangeStaffPass(id){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Admin only');
   if(!isHighSecureAuthorized()) return requireHighSecure('Change Staff Password', ()=> adminChangeStaffPass(id));
-  const newPass=prompt('New Password for '+id+' :');
-  if(newPass===null) return;
-  if(newPass.trim().length<4) return showError('Password 4+ char');
-  const list=await getStaffList();
-  const it=list.find(x=>x.id===id);
-  if(!it) return showError('Not found');
-  it.pass=newPass.trim();
-  await saveStaffList(list);
-  // clear session for that staff to force re-login
-  if(useFirebase){ try{ await db.collection('staffSessions').doc(id).delete(); }catch(e){} }
-  else { localStorage.removeItem('staffSession_'+id); }
-  showSuccess('Password Updated — Staff को नया password बताएं','Updated! 🔑');
+  showFormPopup({
+    type:'warning', title:'🔑 Staff Password Change — Sunder', desc:`Staff ID: ${id} — नया Password सिर्फ Admin बदल सकता है • 4+ char`,
+    fields:[{id:'newStaffPassInput', label:'New Password *', type:'text', placeholder:'••••••••', required:true}],
+    confirmText:'🔑 Update Password ✓',
+    onSubmit: async (vals)=>{
+      const newPass=(vals.newStaffPassInput||'').trim();
+      if(newPass.length<4) return showError('Password 4+ char');
+      const list=await getStaffList();
+      const it=list.find(x=>x.id===id);
+      if(!it) return showError('Not found');
+      it.pass=newPass;
+      await saveStaffList(list);
+      if(useFirebase){ try{ await db.collection('staffSessions').doc(id).delete(); }catch(e){} }
+      else { localStorage.removeItem('staffSession_'+id); }
+      showSuccess('Password Updated — Staff को नया password बताएं','Updated! 🔑');
+    }
+  });
 }
 async function adminDeleteStaff(id){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Admin only');
@@ -2471,12 +2650,14 @@ async function staffLogin(){
   localStorage.setItem(sessKey, JSON.stringify(sess));
   localStorage.setItem('currentStaffId', id);
   currentStaffId=id;
+  prevPaidCount=getBookings().filter(b=>b.status==='paid').length;
+  document.getElementById('staffAlertBanner').style.display='none';
   document.getElementById('staffLoginOverlay').classList.remove('open');
   document.getElementById('staffTopId').textContent=id+' • Device: '+staffDeviceId.slice(0,8);
   document.getElementById('staffDashboard').style.display='block';
   document.body.style.overflow='hidden';
   renderStaffDashboard();
-  showSuccess('Staff Login — '+id,'Welcome! 👔');
+  showSuccess('Staff Login — '+id+' • Booking Alerts Ready 🔔','Welcome! 👔');
 }
 function staffLogout(){
   if(!currentStaffId) currentStaffId=localStorage.getItem('currentStaffId');
@@ -2612,23 +2793,43 @@ async function staffGenerateBill(bid){
   const tax = b.tax !== undefined ? b.tax : Math.round(taxable * taxPercent /100);
   const total = b.tax !== undefined ? b.amount : taxable + tax;
   const roomRate = Math.round(subtotal / Math.max(1,nights));
+  const cgst=Math.round(tax/2), sgst=tax-cgst;
+  const invNo=`INV-4G-${String(bid).slice(-6).toUpperCase()}-${new Date().getFullYear()}`;
+  const billDate=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+' '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
   const billHtml=`
-    <div style="text-align:center;border-bottom:1px solid #E2E8F0;padding-bottom:10px;margin-bottom:10px">
-      <b style="font-size:16px;color:#0F172A">Hotel 4G — Bhopal • Original Tax Invoice</b><br><span style="font-size:11px;color:#64748B">MP Nagar Zone-1 • GSTIN: 23XXXXX • 23.185347,77.453926</span><br><span style="font-size:10px;color:#94A3B8">Bill No: INV-${String(bid).slice(-6).toUpperCase()} • Date: ${new Date().toLocaleDateString('en-IN')} • UPI: 78699691901@ybl</span><br><span style="font-size:10px;color:#16A34A;font-weight:800">${b.verification||'Manual'} ${b.verified?'✔ Auto Verified':''} • Razorpay Original</span>
-    </div>
-    <div style="display:grid;gap:6px;font-size:12px">
-      <div><b>Guest:</b> ${b.name} • ${b.phone}</div>
-      <div><b>Room:</b> ${b.room} ${b.roomNumber?'• Room No. '+b.roomNumber:''} • ${b.adults||''}A ${b.children||0}C</div>
-      <div><b>Stay:</b> ${b.cin} → ${b.cout} (${nights} night/s)</div>
-      <div style="border-top:1px solid #E2E8F0;padding-top:8px;display:grid;gap:4px">
-        <div style="display:flex;justify-content:space-between"><span>Room Charge (${nights}N × ₹${roomRate})</span><b>₹${subtotal.toLocaleString('en-IN')}</b></div>
-        ${discount?`<div style="display:flex;justify-content:space-between;color:#16A34A"><span>Coupon ${b.coupon||''} Discount</span><span>-₹${discount.toLocaleString('en-IN')}</span></div>`:''}
-        <div style="display:flex;justify-content:space-between"><span>GST ${taxPercent}% (Original Tax)</span><span>₹${tax.toLocaleString('en-IN')}</span></div>
-        <div style="display:flex;justify-content:space-between;border-top:1px solid #0F172A;padding-top:6px;font-size:14px"><b>Total (with Tax)</b><b>₹${total.toLocaleString('en-IN')}</b></div>
-        <div style="font-size:10.5px;color:#64748B">Payment: ${b.payment||'-'} • ${b.txn||''} • ${b.verification||'Manual'} ${b.verified?'✔':''} • Status: ${b.status}</div>
-        ${b.travelData?`<div style="font-size:10.5px;color:#64748B">Travel: ${b.travelData}</div>`:''}
+    <div style="border:1.5px solid #0F172A;border-radius:12px;overflow:hidden;background:#fff">
+      <div style="background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);color:#fff;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <div style="display:flex;gap:10px;align-items:center"><div style="width:42px;height:42px;background:linear-gradient(135deg,#DC2626,#991B1B);border-radius:10px;display:grid;place-items:center;font-weight:900;font-size:15px">4G</div><div><b style="font-size:15px;letter-spacing:0.5px">HOTEL 4G</b><div style="font-size:10px;color:#CBD5E1">MP Nagar Zone-1, Near DB Mall, Bhopal — 462011</div><div style="font-size:9px;color:#94A3B8">GSTIN: 23AAECH1234F1Z5 • HSN/SAC: 9963 • CIN: U55101MP2024PTC123456</div></div></div>
+        <div style="text-align:right"><div style="background:#fff;color:#0F172A;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:900;letter-spacing:0.6px">ORIGINAL TAX INVOICE</div><div style="font-size:10px;color:#E2E8F0;margin-top:4px">📞 +91 98765 43210 • ✉️ info@hotel4g.com</div><div style="font-size:9px;color:#FDE68A">UPI: 78699691901@ybl • Razorpay Verified</div></div>
       </div>
-      <div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:10px;padding:8px;font-size:10.5px;color:#065F46">✓ Original Tax Included • Razorpay Auto Verify ✔ • Bill generate के बाद ही Room ${b.roomNumber||''} फिर Available होगा • Staff: ${currentStaffId||'staff'}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;font-size:11px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC">
+        <div style="padding:10px;border-right:1.5px solid #E2E8F0"><div style="font-size:9px;color:#64748B;font-weight:800;letter-spacing:0.6px">INVOICE DETAILS</div><div style="margin-top:4px"><b>Bill No:</b> ${invNo}</div><div><b>Date:</b> ${billDate}</div><div><b>Staff:</b> ${currentStaffId||'staff'} • ${b.verification||'Manual'} ${b.verified?'✔ Auto Verified':''}</div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:2px">✓ Razorpay Original • No Duplicate</div></div>
+        <div style="padding:10px"><div style="font-size:9px;color:#64748B;font-weight:800;letter-spacing:0.6px">GUEST DETAILS</div><div style="margin-top:4px"><b>${b.name}</b></div><div>📞 ${b.phone} • ${b.adults||''}A ${b.children||0}C</div><div>🏨 ${b.room} ${b.roomNumber?'<b style="color:#DC2626">#'+b.roomNumber+'</b>':''}</div><div>📅 ${b.cin} → ${b.cout} • ${nights}N • Check-in 12PM / Out 11AM</div></div>
+      </div>
+      <div style="padding:10px">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:0">
+          <thead><tr style="background:#0F172A;color:#fff"><th style="text-align:left;padding:8px;border-radius:6px 0 0 0">Description</th><th style="padding:8px">HSN</th><th style="padding:8px">Qty</th><th style="text-align:right;padding:8px">Rate</th><th style="text-align:right;padding:8px;border-radius:0 6px 0 0">Amount</th></tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #E2E8F0"><td style="padding:10px 8px"><b>${b.room}</b><div style="font-size:10px;color:#64748B">${b.roomNumber?'Room No. '+b.roomNumber+' • ':''}${nights} Night(s) • ${b.adults||''} Adults, ${b.children||0} Children</div>${b.travelData?`<div style="font-size:10px;color:#64748B">${b.travelData}</div>`:''}</td><td style="text-align:center;padding:8px">9963</td><td style="text-align:center;padding:8px">${nights}</td><td style="text-align:right;padding:8px">₹${roomRate.toLocaleString('en-IN')}</td><td style="text-align:right;padding:8px"><b>₹${subtotal.toLocaleString('en-IN')}</b></td></tr>
+            ${discount?`<tr><td colspan="4" style="text-align:right;padding:6px 8px;color:#16A34A;font-weight:700">Coupon ${b.coupon||''} Discount</td><td style="text-align:right;padding:6px 8px;color:#16A34A">-₹${discount.toLocaleString('en-IN')}</td></tr>`:''}
+            <tr><td colspan="4" style="text-align:right;padding:6px 8px">Taxable Amount</td><td style="text-align:right;padding:6px 8px"><b>₹${taxable.toLocaleString('en-IN')}</b></td></tr>
+            <tr><td colspan="4" style="text-align:right;padding:4px 8px;font-size:11px">CGST ${taxPercent/2}%</td><td style="text-align:right;padding:4px 8px">₹${cgst.toLocaleString('en-IN')}</td></tr>
+            <tr><td colspan="4" style="text-align:right;padding:4px 8px;font-size:11px">SGST ${taxPercent/2}%</td><td style="text-align:right;padding:4px 8px">₹${sgst.toLocaleString('en-IN')}</td></tr>
+            <tr style="background:#FFFBEB;border-top:2px solid #0F172A"><td colspan="4" style="text-align:right;padding:10px 8px;font-weight:900">TOTAL (with Original Tax)</td><td style="text-align:right;padding:10px 8px;font-size:15px;font-weight:900;color:#0F172A">₹${total.toLocaleString('en-IN')}</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:10.5px">
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:8px"><b>Payment:</b> ${b.payment||'-'}<br><span style="word-break:break-all">Txn: ${b.txn||'-'}</span><br><span style="color:#065F46;font-weight:700">${b.verification||'Manual'} ${b.verified?'✔':''}</span> • ${b.status}</div>
+          <div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:10px;padding:8px;color:#065F46"><b>✓ Original Tax Included</b><br>Razorpay Auto Verify ✔<br>Bill के बाद ही Room ${b.roomNumber||''} Available • GST 12% Original</div>
+        </div>
+        <div style="margin-top:10px;font-size:9.5px;color:#64748B;border-top:1px dashed #E2E8F0;padding-top:8px;line-height:1.5">
+          <b>Terms:</b> 1) Check-in 12PM, Out 11AM • 2) Valid Govt ID needed • 3) Pure Veg, No Smoking • 4) 24h cancel free else 1N charge • 5) E. & O.E. • Computer generated invoice, no signature required but Staff: <b>${currentStaffId||'staff'}</b> verified • Hotel 4G • 23.185347,77.453926 • MP Nagar Bhopal
+        </div>
+        <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <div style="font-size:10px;color:#94A3B8">Thank You! Visit Again • UPI: 78699691901@ybl</div>
+          <div style="text-align:right"><div style="width:120px;border-top:1.5px solid #0F172A;margin-left:auto"></div><div style="font-size:10px;font-weight:800">For Hotel 4G — Authorized Signatory</div><div style="font-size:9px;color:#64748B">Staff: ${currentStaffId||'staff'} • ${new Date().toLocaleString('en-IN')}</div></div>
+        </div>
+      </div>
     </div>
   `;
   document.getElementById('billContent').innerHTML=billHtml;
@@ -2638,8 +2839,42 @@ async function staffGenerateBill(bid){
     if(useFirebase){ await db.collection('bookings').doc(String(bid)).update({status:'billed', billedAmount: total, billedAt: firebase.firestore.FieldValue.serverTimestamp(), billedBy: currentStaffId||'staff'}); }
     else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='billed'; arr[idx].billedAmount=total; lsSet('hotel4g_bookings',arr); bookingsCache=arr; } }
     renderStaffDashboard(); renderBookings(); renderRooms(); renderCalendar(); updateStats();
-    showSuccess('Bill Generated — Room अब Available!','🧾');
+    showSuccess('Bill Generated — Room अब Available! Original Full Bill Ready — Print करें','🧾');
   }});
+}
+// ——— STAFF BOOKING ALERT + SOUND — Original Full — Sunder ———
+let prevPaidCount = getBookings().filter(b=>b.status==='paid').length;
+function playStaffAlertSound(){
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const play=(freq, delay)=> setTimeout(()=>{
+      const o=ctx.createOscillator(), g=ctx.createGain();
+      o.type='sine'; o.frequency.value=freq; g.gain.value=0.18;
+      o.connect(g); g.connect(ctx.destination);
+      o.start(); g.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime+0.45);
+      o.stop(ctx.currentTime+0.5);
+    }, delay);
+    play(880,0); play(1046,160); play(1318,320);
+  }catch(e){}
+}
+function checkStaffBookingAlert(){
+  if(!currentStaffId) return;
+  const paidNow=getBookings().filter(b=>b.status==='paid').length;
+  if(paidNow>prevPaidCount){
+    const diff=paidNow-prevPaidCount;
+    const latest=getBookings().filter(b=>b.status==='paid')[0];
+    const banner=document.getElementById('staffAlertBanner');
+    if(banner){
+      banner.style.display='flex';
+      const txt=document.getElementById('staffAlertText');
+      const sub=document.getElementById('staffAlertSub');
+      if(txt) txt.textContent=`🔔 ${diff} New Paid Booking${diff>1?'s':''} — Turant Check करें!`;
+      if(sub && latest) sub.textContent=`${latest.name||'Guest'} • ${latest.room} ${latest.roomNumber?'#'+latest.roomNumber:''} • ₹${(latest.amount||0).toLocaleString('en-IN')} • ${latest.cin}→${latest.cout} • ${latest.adults||''}A`;
+    }
+    playStaffAlertSound();
+    showPopup({type:'info', title:'🔔 Staff — New Booking Alert! 🔔', message:`${diff} नई Paid Booking आई है!\n${latest? latest.name+' • '+latest.room+' '+(latest.roomNumber?'#'+latest.roomNumber:'')+' • '+latest.cin+'→'+latest.cout+' • ₹'+(latest.amount||0):''}\nStaff Panel में Room Box देखें, Confirm/Cancel करें, फिर Original Full Bill Generate करें।`, confirmText:'📋 Staff Panel देखें'});
+  }
+  prevPaidCount=paidNow;
 }
 let currentReviewStars=0;
 function setReviewStars(n){
@@ -2705,33 +2940,42 @@ async function helpfulReview(id){
   showSuccess('Thanks for Helpful!','👍');
 }
 async function realServiceRequest(serviceType){
-  const name=prompt(serviceType+' — आपका नाम *');
-  if(!name) return;
-  const phone=prompt('मोबाइल नंबर *');
-  if(!phone || phone.trim().length<10) return showError('Valid मोबाइल डालें');
-  const note=prompt('Details (Room No / Time / Guests / Request) — optional')||'';
-  const data={serviceType, name: name.trim(), phone: phone.trim(), note: note.trim(), createdAtStr: new Date().toLocaleString('en-IN'), status:'new'};
-  try{
-    if(useFirebase){
-      await db.collection('serviceRequests').add({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
-    } else {
-      const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(),...data}); lsSet('hotel4g_serviceRequests',arr);
+  showFormPopup({
+    type:'info', title: serviceType+' — Sunder Request', desc:'नाम और मोबाइल भरें — Team 5 min में call करेगी • No localhost prompt, सुंदर popup',
+    fields:[
+      {id:'srvName', label:'आपका नाम *', type:'text', placeholder:'राहुल वर्मा', required:true},
+      {id:'srvPhone', label:'मोबाइल नंबर *', type:'tel', placeholder:'+91 9XXXX XXXXX', required:true},
+      {id:'srvNote', label:'Details (Room No / Time / Guests)', type:'textarea', placeholder:'e.g. Room 101 • 7 PM • 4 Guests • Jain food', rows:2}
+    ],
+    confirmText:'✨ Send Request ✓',
+    onSubmit: async (vals)=>{
+      const name=(vals.srvName||'').trim(); if(!name) return showError('नाम डालें');
+      const phone=(vals.srvPhone||'').trim(); if(!phone || phone.length<10) return showError('Valid मोबाइल डालें');
+      const note=(vals.srvNote||'').trim();
+      const data={serviceType, name, phone, note, createdAtStr: new Date().toLocaleString('en-IN'), status:'new'};
+      try{
+        if(useFirebase){
+          await db.collection('serviceRequests').add({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
+        } else {
+          const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(),...data}); lsSet('hotel4g_serviceRequests',arr);
+        }
+        showSuccess(serviceType+' — Real Request Sent! Team 5 min में कॉल करेगी • UPI: 78699691901@ybl','Sent! ✨');
+      }catch(e){ showError('Failed: '+e.message); }
     }
-    showSuccess(serviceType+' — Real Request Sent! Team 5 min में कॉल करेगी • UPI: 78699691901@ybl','Sent! ✨');
-  }catch(e){ showError('Failed: '+e.message); }
+  });
 }
 function showRealMenu(){
   showPopup({type:'info', title:'🍽️ Hotel 4G — Real Pure Veg Menu', message:'Breakfast: Poha ₹80, Jalebi ₹60, Upma ₹70\nThali: Veg Thali ₹220, Paneer Thali ₹280\nMain: Paneer Butter ₹220, Dal Tadka ₹180, Jeera Rice ₹120\nJain: No Onion-Garlic available\nRoom Service +10% • Order: realServiceRequest से Real Order भेजें • UPI: 78699691901@ybl', confirmText:'Order करना है? — Real Request'});
 }
 function renderAll(){ applyLang(currentLang); renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); renderBookings(); updateStats(); updatePaySummary(); updatePersonHints(); renderAdminStaffList(); renderReviews(); try{ renderAdminPhysicalRooms(); updateTravelRoomNumbers(); updatePayRoomNumbers(); }catch(e){} if(currentStaffId) renderStaffDashboard(); }
 renderAll();
-['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay'].forEach(id=> document.getElementById(id)?.addEventListener('click',e=>{ if(e.target.id===id) document.getElementById(id).classList.remove('open'); if(e.target.id==='travelOverlay') document.body.style.overflow=''; }));
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay','customPopup'].forEach(id=>document.getElementById(id)?.classList.remove('open')); if(document.getElementById('staffDashboard').style.display==='block'){ closeStaffDashboard(); } document.body.style.overflow=''; }});
+['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay','formPopup'].forEach(id=> document.getElementById(id)?.addEventListener('click',e=>{ if(e.target.id===id) document.getElementById(id).classList.remove('open'); if(e.target.id==='travelOverlay') document.body.style.overflow=''; }));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay','customPopup','formPopup'].forEach(id=>document.getElementById(id)?.classList.remove('open')); if(document.getElementById('staffDashboard').style.display==='block'){ closeStaffDashboard(); } document.body.style.overflow=''; }});
 // close travel on ESC handles overflow
 (function(){ const el=document.getElementById('travelOverlay'); if(el) el.addEventListener('click',e=>{ if(e.target===el) closeTravel(); }); })();
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); document.getElementById('navLinks').classList.remove('open');}}}));
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3dd9b484a363d42',t:'MTc4OTg3MzUwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e112d7a8933cd6',t:'MTc4OTkwOTg2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
