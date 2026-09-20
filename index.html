@@ -595,42 +595,13 @@ img,video{max-width:100%;height:auto}
   </div>
 </section>
 
-<!-- GALLERY — Direct Upload + Live Systematic — No overflow — Professional -->
+<!-- GALLERY — Staff Only Upload, Website Live — No overflow -->
 <section id="gallery" style="background:#FFFBEB">
   <div class="container">
-    <div class="section-head"><span style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-color:#C4B5FD;color:#6D28D9" data-i18n="gallery_tag">📸 GALLERY — FIREBASE LIVE</span><h2 data-i18n="gallery_title">Hotel 4G की <em>रंगीन झलक</em></h2><p data-i18n="gallery_desc">Direct Photo डालें — Website पर Turant Live • Systematic • No localhost</p></div>
-    <!-- Direct Gallery Upload — Sabhi ke liye — File + URL — Turant Live -->
-    <div style="max-width:860px;margin:0 auto 16px;background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:14px;box-shadow:0 4px 16px rgba(15,23,42,0.06)">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
-        <b style="font-size:13px;color:#0F172A">📸 Direct Gallery — Photo डालें, Website पर तुरंत Live</b>
-        <span id="galleryDirectBadge" style="font-size:10px;background:#ECFDF5;border:1px solid #6EE7B7;color:#065F46;padding:4px 8px;border-radius:20px">🔥 Firebase Live • Systematic</span>
-      </div>
-      <div id="galleryDirectControls">
-        <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center">
-          <input type="file" id="galleryDirectFile" multiple accept="image/*" style="padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:12px;background:#FFFBEB;font-size:12px">
-          <button onclick="directGalleryUpload()" class="btn-gold" style="padding:10px 14px;white-space:nowrap;font-size:12px">📤 Upload Files</button>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center">
-          <input id="galleryDirectUrl" placeholder="या Image URL Paste करें (https://...) — comma/newline से कई" style="flex:1;min-width:180px;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:12px;background:#FFFBEB;font-size:12px">
-          <button onclick="directGalleryUrlAdd()" class="btn-dark" style="padding:9px 14px;font-size:12px">Add URL</button>
-          <button onclick="openAdminGallery()" class="icon-btn" style="font-size:11px;border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF">⚙ Full Manage</button>
-        </div>
-      </div>
-      <div id="galleryDirectLoginMsg" style="display:none;background:#FEF2F2;border:1.5px solid #FECACA;border-radius:12px;padding:12px;margin-top:10px;text-align:center">
-        <div style="font-size:12px;color:#991B1B;font-weight:700">🔒 Direct Upload — Admin/Staff Login Required</div>
-        <div style="font-size:11px;color:#7F1D1D;margin:6px 0">Website visitors को gallery upload नहीं दिखेगा — Admin/Staff login के बाद ही upload कर सकते हैं, फिर website पर तुरंत live होगा</div>
-        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
-          <button onclick="openAdminLogin()" class="btn-dark" style="padding:8px 14px;font-size:11px">🔐 Admin Login</button>
-          <button onclick="openStaffLogin()" class="btn-gold" style="padding:8px 14px;font-size:11px">👔 Staff Login</button>
-        </div>
-      </div>
-      <div id="galleryDirectStatus" style="font-size:11px;color:#64748B;margin-top:8px;line-height:1.5">✨ Direct — File या URL से Add करें, तुरंत नीचे Gallery में Live दिखेगा • Admin/Staff login पर ही upload — <5MB • image/* • Systematic</div>
-      <div id="galleryDirectProgress" style="display:none;margin-top:8px;background:#E2E8F0;border-radius:20px;overflow:hidden;height:10px"><div id="galleryDirectBar" style="height:100%;width:0%;background:linear-gradient(90deg,#DC2626,#F59E0B);transition:width 0.3s"></div></div>
-      <div id="galleryDirectTxt" style="display:none;font-size:11px;color:#92400E;margin-top:4px;font-weight:700"></div>
-    </div>
+    <div class="section-head"><span style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-color:#C4B5FD;color:#6D28D9" data-i18n="gallery_tag">📸 GALLERY — LIVE</span><h2 data-i18n="gallery_title">Hotel 4G की <em>रंगीन झलक</em></h2><p data-i18n="gallery_desc">Staff द्वारा Gallery Update — Website पर Turant Live • Sirf Staff Panel se Manage</p></div>
     <div class="gallery-wrap"><div class="gallery-grid" id="galleryGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px"></div></div>
     <div style="text-align:center;margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <button onclick="openAdminGallery()" class="btn-wh" style="border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF" data-i18n="gallery_btn">⚙ Admin Gallery खोलें</button>
+      <button id="homeAdminGalleryBtn" onclick="openAdminGallery()" class="btn-wh" style="border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF;display:none" data-i18n="gallery_btn">⚙ Staff Gallery (Staff Only)</button>
       <button onclick="document.getElementById('galleryGrid').scrollIntoView({behavior:'smooth'})" class="icon-btn" style="font-size:11px">👁 Gallery देखें</button>
     </div>
   </div>
@@ -711,7 +682,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3b0acacb1b0abbaa2aeb5aab0abb4a2a8a2b1aea2f0f483a4aea2aaafeda0acae">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="02716d6d70716a7b636f746b716a75636963706f63313542656f636b6e2c616d6f">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -786,7 +757,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7d0e12120f0e15041c100b140e150a1c161c0f101c4e4a3d1a101c1411531e1210">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0b3afafb2b3a8b9a1adb6a9b3a8b7a1aba1b2ada1f3f780a7ada1a9aceea3afad">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -902,7 +873,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c5f43435e5f44554d415a455f445b4d474d5e414d1f1b6c4b414d4540024f4341">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f7c60607d7c67766e6279667c67786e646e7d626e3c384f68626e6663216c6062">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -940,11 +911,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0774686875746f7e666a716e746f70666c66756a66343047606a666e6b2964686a">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb889494898893829a968d9288938c9a909a89969ac8ccbb9c969a9297d5989496">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f685999984859e8f979b809f859e81979d97849b97c5c1b6919b979f9ad895999b">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="44372b2b36372c3d2529322d372c33252f253629257773042329252d286a272b29">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0774686875746f7e666a716e746f70666c66756a66343047606a666e6b2964686a">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5625393924253e2f373b203f253e21373d37243b37656116313b373f3a7835393b">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d6a5b9b9a4a5beafb7bba0bfa5bea1b7bdb7a4bbb7e5e196b1bbb7bfbaf8b5b9bb">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="25564a4a57564d5c4448534c564d52444e445748441612654248444c490b464a48">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -985,7 +956,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfbca0a0bdbca7b6aea2b9a6bca7b8aea4aebda2aefcf88fa8a2aea6a3e1aca0a2">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2754484855544f5e464a514e544f50464c46554a46141067404a464e4b0944484a">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -2815,6 +2786,8 @@ function updateGalleryDirectVisibility(){
   if(badge){ badge.textContent = allowed ? '✓ Authorized — Upload Enabled' : '🔒 Login Required — Hidden for Visitors'; badge.style.background = allowed ? '#DCFCE7' : '#FEF2F2'; badge.style.borderColor = allowed ? '#6EE7B7' : '#FECACA'; badge.style.color = allowed ? '#065F46' : '#991B1B'; }
   const status=document.getElementById('galleryDirectStatus');
   if(status){ status.textContent = allowed ? '✨ Authorized — File या URL से Add करें, तुरंत नीचे Gallery में Live दिखेगा • <5MB • image/* • Systematic' : '🔒 Customer view — Upload controls Admin/Staff login के बाद ही दिखेंगे — Gallery display सभी को दिखेगा, upload सिर्फ authorized को'; }
+  const homeBtn=document.getElementById('homeAdminGalleryBtn');
+  if(homeBtn) homeBtn.style.display = allowed ? 'inline-flex' : 'none';
 }
 async function deleteGallery(id){
   if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only — Gallery delete sirf Staff/Admin se');
@@ -3337,7 +3310,14 @@ function checkStaffBookingAlert(){
       if(sub && latest) sub.textContent=`${latest.name||'Guest'} • ${latest.room} ${latest.roomNumber?'#'+latest.roomNumber:''} • ₹${(latest.amount||0).toLocaleString('en-IN')} • ${latest.cin}→${latest.cout} • ${latest.adults||''}A`;
     }
     playStaffAlertSound();
-    showPopup({type:'info', title:'🔔 Staff — New Booking Alert! 🔔', message:`${diff} नई Paid Booking आई है!\n${latest? latest.name+' • '+latest.room+' '+(latest.roomNumber?'#'+latest.roomNumber:'')+' • '+latest.cin+'→'+latest.cout+' • ₹'+(latest.amount||0):''}\nStaff Panel में Room Box देखें, Confirm/Cancel करें, फिर Original Full Bill Generate करें।`, confirmText:'📋 Staff Panel देखें'});
+    // Sirf Staff Panel me popup — Home par nahi (user request)
+    const staffPanelEl=document.getElementById('staffDashboard');
+    const isStaffOpen=staffPanelEl && staffPanelEl.style.display==='block';
+    if(isStaffOpen){
+      showPopup({type:'info', title:'🔔 Staff — New Booking Alert! 🔔', message:`${diff} नई Paid Booking आई है!
+${latest? latest.name+' • '+latest.room+' '+(latest.roomNumber?'#'+latest.roomNumber:'')+' • '+latest.cin+'→'+latest.cout+' • ₹'+(latest.amount||0):''}
+Staff Panel में Room Box देखें, Confirm/Cancel करें, फिर Original Full Bill Generate करें।`, confirmText:'📋 Staff Panel देखें'});
+    }
   }
   prevPaidCount=paidNow;
 }
@@ -3771,5 +3751,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e1c5844eab5644',t:'MTc4OTkxNzE3OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e1dddf8a005e20',t:'MTc4OTkxODE3Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
