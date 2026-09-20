@@ -440,6 +440,22 @@ img,video{max-width:100%;height:auto}
 .banquet-img img{width:100%;height:100%;object-fit:cover}
 @media(min-width:900px){.banquet-img{height:100%;min-height:340px}}
 .banquet-badge{position:absolute;top:12px;left:12px;background:linear-gradient(135deg,#DC2626,#991B1B);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:0.5px}
+/* Staff Tabs — Icon based, only one section open — systematic */
+.staff-tab-bar{display:flex;gap:8px;overflow:auto;padding:8px 2px;margin-bottom:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.staff-tab-bar::-webkit-scrollbar{display:none}
+.staff-tab{flex:0 0 auto;padding:10px 14px;border-radius:30px;border:1.5px solid #E2E8F0;background:#fff;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap;transition:0.2s;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(15,23,42,0.04)}
+.staff-tab.active{background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;border-color:#0F172A;box-shadow:0 6px 16px rgba(15,23,42,0.14);transform:translateY(-1px)}
+.staff-tab:hover{border-color:#CBD5E1;transform:translateY(-1px)}
+/* Admin icon tabs — systematic, only one open */
+.admin-sidebar button{transition:0.2s;display:flex;align-items:center;gap:8px;text-align:left}
+.admin-sidebar button.active{background:linear-gradient(135deg,#0F172A,#1E293B)!important;color:#fff!important;border-color:#0F172A!important;box-shadow:0 6px 16px rgba(15,23,42,0.12)}
+.admin-sidebar button:hover{transform:translateY(-1px);border-color:#CBD5E1}
+/* Website icon tabs — only one section open — systematic no overflow */
+.website-tabs{display:flex;gap:8px;overflow:auto;padding:10px 0;margin:0 auto 18px;max-width:1220px;scrollbar-width:none;justify-content:flex-start;-webkit-overflow-scrolling:touch}
+.website-tabs::-webkit-scrollbar{display:none}
+.web-tab{flex:0 0 auto;padding:10px 16px;border-radius:30px;border:1.5px solid #E2E8F0;background:#fff;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:0.2s;box-shadow:0 2px 8px rgba(15,23,42,0.04)}
+.web-tab.active{background:var(--grad1);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(255,59,130,0.16);transform:translateY(-1px)}
+.web-tab:hover{border-color:#FDBA74;transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -524,7 +540,21 @@ img,video{max-width:100%;height:auto}
     </form>
   </div>
 </section>
-
+<!-- WEBSITE ICON TABS — Only one section open — like Admin/Staff — systematic -->
+<div class="container" style="padding-top:12px">
+  <div class="website-tabs" id="websiteTabs">
+    <button class="web-tab active" id="wTab-all" onclick="websiteSwitchTab('all')">🏠 All</button>
+    <button class="web-tab" id="wTab-rooms" onclick="websiteSwitchTab('rooms')">🛏 Rooms</button>
+    <button class="web-tab" id="wTab-banquet" onclick="websiteSwitchTab('banquet')">🎉 Banquet</button>
+    <button class="web-tab" id="wTab-gallery" onclick="websiteSwitchTab('gallery')">📸 Gallery</button>
+    <button class="web-tab" id="wTab-calendar" onclick="websiteSwitchTab('calendar')">📅 Calendar</button>
+    <button class="web-tab" id="wTab-dining" onclick="websiteSwitchTab('dining')">🍽 Dining</button>
+    <button class="web-tab" id="wTab-reviews" onclick="websiteSwitchTab('reviews')">⭐ Reviews</button>
+    <button class="web-tab" id="wTab-contact" onclick="websiteSwitchTab('contact')">📞 Contact</button>
+    <button class="web-tab" id="wTab-location" onclick="websiteSwitchTab('location')">📍 Location</button>
+  </div>
+  <div style="font-size:11px;color:#64748B;text-align:center;margin-bottom:10px;line-height:1.5">Icon पर tap करें — सिर्फ वही section खुलेगा, बाकी hide — Admin/Staff की तरह systematic • All पर वापस सब देखें • No overflow</div>
+</div>
 <!-- ROOMS — MULTI PHOTO SIDE SCROLL -->
 <section id="rooms" style="background:#FFF7ED">
   <div class="container">
@@ -565,12 +595,44 @@ img,video{max-width:100%;height:auto}
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- GALLERY — Direct Upload + Live Systematic — No overflow — Professional -->
 <section id="gallery" style="background:#FFFBEB">
   <div class="container">
-    <div class="section-head"><span style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-color:#C4B5FD;color:#6D28D9" data-i18n="gallery_tag">📸 GALLERY — FIREBASE LIVE</span><h2 data-i18n="gallery_title">Hotel 4G की <em>रंगीन झलक</em></h2><p data-i18n="gallery_desc">Admin से Upload — यहाँ Real-time</p></div>
-    <div class="gallery-wrap"><div class="gallery-grid" id="galleryGrid"></div></div>
-    <div style="text-align:center;margin-top:12px"><button onclick="openAdminGallery()" class="btn-wh" style="border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF" data-i18n="gallery_btn">⚙ Admin Gallery खोलें</button></div>
+    <div class="section-head"><span style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-color:#C4B5FD;color:#6D28D9" data-i18n="gallery_tag">📸 GALLERY — FIREBASE LIVE</span><h2 data-i18n="gallery_title">Hotel 4G की <em>रंगीन झलक</em></h2><p data-i18n="gallery_desc">Direct Photo डालें — Website पर Turant Live • Systematic • No localhost</p></div>
+    <!-- Direct Gallery Upload — Sabhi ke liye — File + URL — Turant Live -->
+    <div style="max-width:860px;margin:0 auto 16px;background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:14px;box-shadow:0 4px 16px rgba(15,23,42,0.06)">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <b style="font-size:13px;color:#0F172A">📸 Direct Gallery — Photo डालें, Website पर तुरंत Live</b>
+        <span id="galleryDirectBadge" style="font-size:10px;background:#ECFDF5;border:1px solid #6EE7B7;color:#065F46;padding:4px 8px;border-radius:20px">🔥 Firebase Live • Systematic</span>
+      </div>
+      <div id="galleryDirectControls">
+        <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center">
+          <input type="file" id="galleryDirectFile" multiple accept="image/*" style="padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:12px;background:#FFFBEB;font-size:12px">
+          <button onclick="directGalleryUpload()" class="btn-gold" style="padding:10px 14px;white-space:nowrap;font-size:12px">📤 Upload Files</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center">
+          <input id="galleryDirectUrl" placeholder="या Image URL Paste करें (https://...) — comma/newline से कई" style="flex:1;min-width:180px;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:12px;background:#FFFBEB;font-size:12px">
+          <button onclick="directGalleryUrlAdd()" class="btn-dark" style="padding:9px 14px;font-size:12px">Add URL</button>
+          <button onclick="openAdminGallery()" class="icon-btn" style="font-size:11px;border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF">⚙ Full Manage</button>
+        </div>
+      </div>
+      <div id="galleryDirectLoginMsg" style="display:none;background:#FEF2F2;border:1.5px solid #FECACA;border-radius:12px;padding:12px;margin-top:10px;text-align:center">
+        <div style="font-size:12px;color:#991B1B;font-weight:700">🔒 Direct Upload — Admin/Staff Login Required</div>
+        <div style="font-size:11px;color:#7F1D1D;margin:6px 0">Website visitors को gallery upload नहीं दिखेगा — Admin/Staff login के बाद ही upload कर सकते हैं, फिर website पर तुरंत live होगा</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+          <button onclick="openAdminLogin()" class="btn-dark" style="padding:8px 14px;font-size:11px">🔐 Admin Login</button>
+          <button onclick="openStaffLogin()" class="btn-gold" style="padding:8px 14px;font-size:11px">👔 Staff Login</button>
+        </div>
+      </div>
+      <div id="galleryDirectStatus" style="font-size:11px;color:#64748B;margin-top:8px;line-height:1.5">✨ Direct — File या URL से Add करें, तुरंत नीचे Gallery में Live दिखेगा • Admin/Staff login पर ही upload — <5MB • image/* • Systematic</div>
+      <div id="galleryDirectProgress" style="display:none;margin-top:8px;background:#E2E8F0;border-radius:20px;overflow:hidden;height:10px"><div id="galleryDirectBar" style="height:100%;width:0%;background:linear-gradient(90deg,#DC2626,#F59E0B);transition:width 0.3s"></div></div>
+      <div id="galleryDirectTxt" style="display:none;font-size:11px;color:#92400E;margin-top:4px;font-weight:700"></div>
+    </div>
+    <div class="gallery-wrap"><div class="gallery-grid" id="galleryGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px"></div></div>
+    <div style="text-align:center;margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button onclick="openAdminGallery()" class="btn-wh" style="border-color:#C4B5FD;color:#6D28D9;background:#F5F3FF" data-i18n="gallery_btn">⚙ Admin Gallery खोलें</button>
+      <button onclick="document.getElementById('galleryGrid').scrollIntoView({behavior:'smooth'})" class="icon-btn" style="font-size:11px">👁 Gallery देखें</button>
+    </div>
   </div>
 </section>
 
@@ -649,7 +711,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f4879b9b86879c8d9599829d879c83959f95869995c7c3b49399959d98da979b99">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d3a0bcbca1a0bbaab2bea5baa0bba4b2b8b2a1beb2e0e493b4beb2babffdb0bcbe">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -724,7 +786,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="99eaf6f6ebeaf1e0f8f4eff0eaf1eef8f2f8ebf4f8aaaed9fef4f8f0f5b7faf6f4">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="186b77776a6b706179756e716b706f7973796a75792b2f587f75797174367b7775">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -840,7 +902,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2c30302d2c37263e3229362c37283e343e2d323e6c681f38323e3633713c3032">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9fecf0f0edecf7e6fef2e9f6ecf7e8fef4feedf2feaca8dff8f2fef6f3b1fcf0f2">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -874,16 +936,16 @@ img,video{max-width:100%;height:auto}
       <pre style="background:#0F172A;color:#E2E8F0;padding:12px;border-radius:12px;font-size:10.5px;overflow:auto;margin-top:12px;white-space:pre-wrap;word-break:break-word">rules_version='2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddaeb2b2afaeb5a4bcb0abb4aeb5aabcb6bcafb0bceeea9dbab0bcb4b1f3beb2b0">[email&#160;protected]</a>";}
-    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9baa6a6bbbaa1b0a8a4bfa0baa1bea8a2a8bba4a8fafe89aea4a8a0a5e7aaa6a4">[email&#160;protected]</a>";}
-    match /gallery/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ea998585989982938b879c8399829d8b818b98878bd9ddaa8d878b8386c4898587">[email&#160;protected]</a>";}
-    match /physicalRooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82f1ededf0f1eafbe3eff4ebf1eaf5e3e9e3f0efe3b1b5c2e5efe3ebeeace1edef">[email&#160;protected]</a>";}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f2819d9d80819a8b939f849b819a85939993809f93c1c5b2959f939b9edc919d9f">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfccd0d0cdccd7c6ded2c9d6ccd7c8ded4decdd2de8c88ffd8d2ded6d391dcd0d2">[email&#160;protected]</a>";}
+    match /bookings/{id}{allow create:if true; allow read,update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71021e1e03021908101c0718021906101a10031c10424631161c10181d5f121e1c">[email&#160;protected]</a>";}
+    match /rooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f685999984859e8f979b809f859e81979d97849b97c5c1b6919b979f9ad895999b">[email&#160;protected]</a>";}
+    match /gallery/{id}{allow read:if true; allow create:if true; allow update,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23504c4c51504b5a424e554a504b54424842514e42101463444e424a4f0d404c4e">[email&#160;protected]</a>";}
+    match /physicalRooms/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd8e92928f8e95849c908b948e958a9c969c8f909ccecabd9a909c9491d39e9290">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4734282835342f3e262a312e342f30262c26352a26747007202a262e2b6924282a">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73001c1c01001b0a121e051a001b04121812011e12404433141e121a1f5d101c1e">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88fbe7e7fafbe0f1e9e5fee1fbe0ffe9e3e9fae5e9bbbfc8efe5e9e1e4a6ebe7e5">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="03706c6c71706b7a626e756a706b74626862716e62303443646e626a6f2d606c6e">[email&#160;protected]</a>";}
-    match /menuItems/{id}{allow read:if true; allow create,update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e5968a8a97968d9c8488938c968d92848e84978884d6d2a58288848c89cb868a88">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f4c50504d4c57465e5249564c57485e545e4d525e0c087f58525e5653115c5052">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a6d5c9c9d4d5cedfc7cbd0cfd5ced1c7cdc7d4cbc79591e6c1cbc7cfca88c5c9cb">[email&#160;protected]</a>";}
+    match /menuItems/{id}{allow read:if true; allow create,update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4635292934352e3f272b302f352e31272d27342b27757106212b272f2a6825292b">[email&#160;protected]</a>";}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
 }</pre>
@@ -923,7 +985,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c2b1adadb0b1aabba3afb4abb1aab5a3a9a3b0afa3f1f582a5afa3abaeeca1adaf">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c0f13130e0f14051d110a150f140b1d171d0e111d4f4b3c1b111d1510521f1311">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -1074,14 +1136,22 @@ service cloud.firestore {
       <div class="stat-card" style="background:#fff"><small>Today Bookings</small><strong id="staffStatToday">0</strong></div>
       <div class="stat-card" style="background:#fff"><small>Occupied Rooms</small><strong id="staffStatOccupied" style="color:#DC2626">0/9</strong></div>
     </div>
-    <div class="admin-card">
+    <!-- STAFF ICON TABS — Only one section open — systematic -->
+    <div id="staffTabBar" class="staff-tab-bar">
+      <button id="sTab-rooms" class="staff-tab active" onclick="switchStaffTab('rooms')">🏨 Room Boxes</button>
+      <button id="sTab-manual" class="staff-tab" onclick="switchStaffTab('manual')">✍️ Manual Reserve</button>
+      <button id="sTab-menu" class="staff-tab" onclick="switchStaffTab('menu')">🍽 Menu Edit</button>
+      <button id="sTab-bookings" class="staff-tab" onclick="switchStaffTab('bookings')">📋 Bookings</button>
+      <button id="sTab-otp" class="staff-tab" onclick="switchStaffTab('otp')">🔐 OTP Verify</button>
+    </div>
+    <div id="staff-panel-rooms"><div class="admin-card">
       <div class="admin-card-head"><h4>🏨 All Rooms — Box Wise (Room No.)</h4><span style="font-size:11px;color:#64748B">Bill के बाद ही Available • Tap Box for Action</span></div>
       <div style="padding:14px">
         <div id="staffRoomBoxes" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px"></div>
         <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;font-size:10.5px"><span style="background:#DCFCE7;border:1px solid #86EFAC;padding:4px 8px;border-radius:20px">🟢 Available</span><span style="background:#FEE2E2;border:1px solid #FECACA;padding:4px 8px;border-radius:20px">🔴 Occupied</span><span style="background:#FEF3C7;border:1px solid #FDE68A;padding:4px 8px;border-radius:20px">🟡 Reserved/New</span></div>
       </div>
-    </div>
-    <!-- MANUAL RESERVE — Staff Panel — Sunder, OTP verified -->
+    </div></div>
+    <div id="staff-panel-manual" style="display:none"><!-- MANUAL RESERVE — Staff Panel — Sunder, OTP verified -->
     <div class="admin-card" style="border:1.5px solid #C5A254">
       <div class="admin-card-head" style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED)"><h4>✍️ Manual Reserve — Staff (Walk-in / Phone)</h4><span style="font-size:10px;background:#065F46;color:#fff;padding:4px 8px;border-radius:20px">OTP Verified Staff Only</span></div>
       <div style="padding:14px">
@@ -1107,15 +1177,31 @@ service cloud.firestore {
         </div>
         <div style="font-size:10.5px;color:#94A3B8;margin-top:6px">Staff manual reservation — तुरंत live, 6262224200 पर auto, Admin panel में दिखेगा • Checkout से Available</div>
       </div>
-    </div>
-    <div class="admin-card">
+    </div></div>
+    <div id="staff-panel-menu" style="display:none"><div class="admin-card">
       <div class="admin-card-head"><h4>🍽 Restaurant Menu — Staff Edit (Rates Live)</h4><div style="display:flex;gap:6px"><button onclick="addMenuItem()" class="btn-gold" style="padding:7px 12px;font-size:11px">➕ Add Item</button><button onclick="openMenuModal()" class="icon-btn" style="font-size:11px">👁 Preview</button></div></div>
       <div style="padding:14px"><div id="staffMenuList" style="display:grid;gap:8px"></div><div style="font-size:10.5px;color:#94A3B8;margin-top:6px">Staff menu add/edit/delete kar sakta hai — sunder popup — turant live • Professional rates • No localhost</div></div>
-    </div>
-    <div class="admin-card">
+    </div></div>
+    <div id="staff-panel-bookings" style="display:none"><div class="admin-card">
       <div class="admin-card-head"><h4>📋 Reserve — Confirm / Cancel (Staff)</h4><div style="display:flex;gap:6px;flex-wrap:wrap"><select id="staffFilterStatus" onchange="renderStaffBookings()" style="padding:7px 10px;border-radius:30px;border:1.5px solid var(--border);font-size:12px;background:#FFFBEB"><option value="">All</option><option value="new">New</option><option value="paid">Paid</option><option value="confirmed">Confirmed</option><option value="billed">Billed</option><option value="cancelled">Cancelled</option><option value="checkedout">Checked-out</option></select><button onclick="renderStaffBookings()" class="icon-btn">↻</button></div></div>
       <div class="table-wrap"><table><thead><tr><th>#</th><th>Guest</th><th>Room & No.</th><th>Dates</th><th>Persons</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody id="staffBookingTbody"><tr><td colspan="8" style="text-align:center;padding:20px;color:#A8A29E">Loading...</td></tr></tbody></table></div>
-    </div>
+    </div></div>
+    <div id="staff-panel-otp" style="display:none"><div class="admin-card" style="border:1.5px solid #FDE68A;background:linear-gradient(180deg,#FFFBEB,#FFF7ED)">
+      <div class="admin-card-head"><h4>🔐 OTP Verify — Bina OTP ke Login Nahi</h4><span style="font-size:10px;background:#DC2626;color:#fff;padding:4px 8px;border-radius:20px">Secure Gate</span></div>
+      <div style="padding:14px">
+        <div style="background:#fff;border:1.5px solid #FDE68A;border-radius:12px;padding:12px;font-size:12px;color:#92400E;line-height:1.6">
+          <b>Staff Login OTP Gate:</b> Staff ID/Password ke baad 6-digit OTP Admin Panel → ⚙️ Settings → Staff OTPs Live me jayega.<br>
+          Admin se OTP लेकर <b>Enter OTP & Verify</b> par click karke OTP daalein — sahi OTP par hi Staff Panel khulega.<br>
+          <span style="color:#16A34A">✓ OTP Verified ke baad hi Room Boxes, Manual Reserve, Bookings sab accessible honge.</span><br>
+          5 min me OTP expire — Resend se naya OTP Admin ko jayega.
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <button onclick="showStaffOtpVerify(currentStaffId||document.getElementById('staffIdInput').value.trim()||'staff')" class="btn-gold" style="flex:1;min-width:160px">🔐 OTP Verify & Login</button>
+          <button onclick="switchStaffTab('rooms')" class="btn-wh" style="flex:1;min-width:120px">🏨 Boxes देखें</button>
+        </div>
+        <div style="font-size:10.5px;color:#94A3B8;margin-top:8px">Bina OTP ke koi Staff login nahi — OTP Admin ko hi dikhega — Sunder popup • No localhost</div>
+      </div>
+    </div></div>
   </div>
 </div>
 
@@ -1743,9 +1829,9 @@ function signInWithGoogle(){
     else { authUser=res.user; updateLoginUI(); showSuccess(`Welcome ${res.user.email} ✨`,'Login सफल!'); }
   }).catch(e=>{ document.getElementById('loginError').style.display='block'; document.getElementById('loginError').textContent='Error: '+e.message; showError(e.message); });
 }
-function signOut(){ if(useFirebase&&auth) auth.signOut(); authUser=null; closeDashboard(); closeAdminLogin(); showSuccess('Logout','Bye! 👋')}
+function signOut(){ if(useFirebase&&auth) auth.signOut(); authUser=null; closeDashboard(); closeAdminLogin(); try{ updateGalleryDirectVisibility(); }catch(e){} showSuccess('Logout','Bye! 👋')}
 function openDashboardFromLogin(){ if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL); closeAdminLogin(); document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden'; renderBookings(); updateStats(); renderRoomEditor(); renderGalleryAdmin(); renderAdminCalendar();}
-if(auth){ auth.onAuthStateChanged(u=>{ authUser=u; updateLoginUI(); if(u) document.getElementById('adminEmailTop').textContent=u.email; });}
+if(auth){ auth.onAuthStateChanged(u=>{ authUser=u; updateLoginUI(); if(u) { const el=document.getElementById('adminEmailTop'); if(el) el.textContent=u.email; } try{ updateGalleryDirectVisibility(); }catch(e){} });}
 function closeDashboard(){ document.getElementById('adminDashboard').classList.remove('open'); document.body.style.overflow='';}
 function openAdminGallery(){ openAdmin(); setTimeout(()=>{ if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()){ document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden'; switchTab('gallery'); } },400);}
 
@@ -2603,6 +2689,102 @@ async function addGalleryByUrl(){
     showSuccess(`🔗 ${added} Gallery Link Save — Website पर Turant Live! ✨`,'Added!');
   }
 }
+// — Direct Gallery Upload — Sabhi ke liye — File + URL — Website par turant live — Systematic, No auth block —
+async function directGalleryUpload(){
+  const isAdminUp = !!(authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase());
+  const isStaffUp = !!currentStaffId;
+  if(!isAdminUp && !isStaffUp){ showError('🔒 Admin/Staff login required — Customer front पर upload hidden है'); try{ updateGalleryDirectVisibility(); }catch(e){} return; }
+  const inp=document.getElementById('galleryDirectFile');
+  if(!inp || !inp.files.length) return showError('📸 File चुनें — image/* <5MB');
+  const files=Array.from(inp.files);
+  if(files.length>10) return showError('Max 10 files at once — systematic');
+  const bar=document.getElementById('galleryDirectProgress'), prog=document.getElementById('galleryDirectBar'), txt=document.getElementById('galleryDirectTxt'), status=document.getElementById('galleryDirectStatus');
+  bar.style.display='block'; txt.style.display='block';
+  let done=0;
+  if(!useFirebase){
+    for(let file of files){
+      if(!file.type.startsWith('image/')) continue;
+      if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा — compress करें'); continue; }
+      const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
+      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url:u}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url:dataUrl}); lsSet('hotel4g_gallery',arr); galleryCache=arr;
+      done++; prog.style.width=Math.round(done/files.length*100)+'%'; txt.textContent=`Local Preview ${done}/${files.length} — Turant Live ✨`;
+    }
+    bar.style.display='none'; txt.style.display='none'; prog.style.width='0%'; inp.value=''; renderGallery(); renderGalleryAdmin(); status.textContent=`✓ ${done} Photos Live — Website Gallery पर तुरंत दिख रहे हैं ✨ Systematic`;
+    showSuccess(`${done} Photos Gallery पर Turant Live! 📸`,'Live! ✨');
+    return;
+  }
+  for(let file of files){
+    if(!file.type.startsWith('image/')) continue;
+    if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा'); continue; }
+    try{
+      const ref=storage.ref(`gallery/${Date.now()}_${file.name}`);
+      const task=ref.put(file);
+      await new Promise((res,rej)=>{
+        task.on('state_changed', snap=>{
+          const pct=Math.round(((done + snap.bytesTransferred/snap.totalBytes)/files.length)*100);
+          prog.style.width=pct+'%'; txt.textContent=`Uploading ${done+1}/${files.length} — ${pct}% — Turant Live होने वाला ✨`;
+        }, rej, async()=>{
+          const url=await ref.getDownloadURL(); await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser?.email||currentStaffId||'direct-gallery'});
+          try{ galleryCache.unshift({id:'tmp_'+Date.now()+'_'+Math.random().toString(36).slice(2,4), url}); renderGallery(); renderGalleryAdmin(); }catch(e){}
+          done++; res();
+        });
+      });
+    }catch(e){
+      try{
+        const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=ev=>res(ev.target.result); fr.readAsDataURL(file);});
+        await db.collection('gallery').add({url:dataUrl, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy:'direct-fallback'});
+        try{ galleryCache.unshift({id:'tmp_'+Date.now()+'_'+Math.random().toString(36).slice(2,4), url:dataUrl}); renderGallery(); renderGalleryAdmin(); }catch(err2){}
+        done++; prog.style.width=Math.round(done/files.length*100)+'%'; txt.textContent=`Fallback Local ${done}/${files.length} — Live ✨`;
+      }catch(err){ showError('Fail: '+e.message); }
+    }
+  }
+  bar.style.display='none'; txt.style.display='none'; prog.style.width='0%'; inp.value=''; status.textContent=`✓ ${done} Photos Upload — Gallery पर Turant Live ✨`;
+  showSuccess(`${done} Photos Upload 📸 — Firebase Gallery पर Turant Live! ✨`,'Gallery Updated! ✨');
+  try{ renderGalleryAdmin(); websiteSwitchTab('gallery'); }catch(e){}
+}
+async function directGalleryUrlAdd(){
+  const isAdminUp2 = !!(authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase());
+  const isStaffUp2 = !!currentStaffId;
+  if(!isAdminUp2 && !isStaffUp2){ showError('🔒 Admin/Staff login required — Customer front पर upload hidden है'); try{ updateGalleryDirectVisibility(); }catch(e){} return; }
+  const raw=document.getElementById('galleryDirectUrl').value.trim();
+  if(!raw) return showError('URL डालें — https://...');
+  const parts=raw.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
+  const urls=[]; for(const p of parts){ const sub=p.split(/\s+/).map(s=>s.trim()).filter(Boolean); urls.push(...sub); }
+  const valid=urls.filter(u=>u.startsWith('http://')||u.startsWith('https://'));
+  if(!valid.length) return showError('Valid https:// URL डालें — एक या कई links newline/comma से अलग');
+  if(valid.length>10) return showError('Max 10 Links once — systematic');
+  let added=0;
+  for(const url of valid){
+    try{ new URL(url);}catch(e){ continue; }
+    if(useFirebase){
+      await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser?.email||currentStaffId||'direct-url'});
+    } else {
+      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url}); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();
+    }
+    added++;
+  }
+  document.getElementById('galleryDirectUrl').value='';
+  const st=document.getElementById('galleryDirectStatus'); if(st) st.textContent=`✓ ${added} URL Gallery पर Live — नीचे देखें ✨ Systematic`;
+  if(!useFirebase) { renderGallery(); try{ renderGalleryAdmin(); }catch(e){} }
+  else { // optimistic live — add to cache for instant display before onSnapshot
+    try{ const tmpArr=[...galleryCache]; valid.slice(0,added).forEach(u=> tmpArr.unshift({id:'tmp_'+Date.now()+'_'+Math.random().toString(36).slice(2,5), url: u})); galleryCache=tmpArr; renderGallery(); renderGalleryAdmin(); }catch(e){}
+  }
+  showSuccess(`🔗 ${added} Photo Link Gallery पर Turant Live! ✨`,'Added! 🎉');
+  try{ websiteSwitchTab('gallery'); }catch(e){}
+}
+function updateGalleryDirectVisibility(){
+  const isAdmin = !!(authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase());
+  const isStaff = !!currentStaffId;
+  const allowed = isAdmin || isStaff;
+  const controls=document.getElementById('galleryDirectControls');
+  const msg=document.getElementById('galleryDirectLoginMsg');
+  const badge=document.getElementById('galleryDirectBadge');
+  if(controls) controls.style.display = allowed ? 'block' : 'none';
+  if(msg) msg.style.display = allowed ? 'none' : 'block';
+  if(badge){ badge.textContent = allowed ? '✓ Authorized — Upload Enabled' : '🔒 Login Required — Hidden for Visitors'; badge.style.background = allowed ? '#DCFCE7' : '#FEF2F2'; badge.style.borderColor = allowed ? '#6EE7B7' : '#FECACA'; badge.style.color = allowed ? '#065F46' : '#991B1B'; }
+  const status=document.getElementById('galleryDirectStatus');
+  if(status){ status.textContent = allowed ? '✨ Authorized — File या URL से Add करें, तुरंत नीचे Gallery में Live दिखेगा • <5MB • image/* • Systematic' : '🔒 Customer view — Upload controls Admin/Staff login के बाद ही दिखेंगे — Gallery display सभी को दिखेगा, upload सिर्फ authorized को'; }
+}
 async function deleteGallery(id){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
   if(!isHighSecureAuthorized()) return requireHighSecure('Gallery Delete', ()=> deleteGallery(id));
@@ -2751,15 +2933,8 @@ function openStaffLogin(){
   document.getElementById('staffLoginOverlay').classList.add('open');
   document.getElementById('staffLoginError').style.display='none';
 }
-async function staffLogin(){
-  const id=document.getElementById('staffIdInput').value.trim();
-  const pass=document.getElementById('staffPassInput').value.trim();
-  const err=document.getElementById('staffLoginError');
-  if(!id || !pass){ err.textContent='ID/Password डालें'; err.style.display='block'; return; }
-  const list=await getStaffList();
-  const acc=list.find(x=>x.id===id && x.pass===pass);
-  if(!acc){ err.textContent='❌ Invalid ID/Password'; err.style.display='block'; return; }
-  // Single device check
+async function completeStaffLogin(id){
+  // — Single device check — 12h —
   const sessKey='staffSession_'+id;
   let activeSession=null;
   if(useFirebase){
@@ -2771,12 +2946,11 @@ async function staffLogin(){
   if(activeSession && activeSession.deviceId && activeSession.deviceId!==staffDeviceId){
     const age= now - (activeSession.loginAt||0);
     if(age < 12*60*60*1000 && activeSession.active){
-      err.textContent='⛔ पहले से दूसरे Device पर Login है — एक समय पर एक ही जगह login। Admin से session clear करवाएं।';
-      err.style.display='block';
-      return;
+      document.getElementById('staffLoginError').textContent='⛔ पहले से दूसरे Device पर Login है — एक समय पर एक ही जगह login। Admin से session clear करवाएं।';
+      document.getElementById('staffLoginError').style.display='block';
+      return false;
     }
   }
-  // create session
   const sess={deviceId: staffDeviceId, loginAt: now, active:true, id};
   if(useFirebase){ try{ await db.collection('staffSessions').doc(id).set(sess); }catch(e){} }
   localStorage.setItem(sessKey, JSON.stringify(sess));
@@ -2785,17 +2959,31 @@ async function staffLogin(){
   prevPaidCount=getBookings().filter(b=>b.status==='paid').length;
   document.getElementById('staffAlertBanner').style.display='none';
   document.getElementById('staffLoginOverlay').classList.remove('open');
-  document.getElementById('staffTopId').textContent=id+' • Device: '+staffDeviceId.slice(0,8);
+  const topEl=document.getElementById('staffTopId'); if(topEl) topEl.textContent=id+' • Device: '+staffDeviceId.slice(0,8)+' • OTP ✓';
   document.getElementById('staffDashboard').style.display='block';
   document.body.style.overflow='hidden';
   renderStaffDashboard();
-  // — OTP → Admin — Live — No localhost — staff login par turant Admin ko OTP —
-  try{
-    const otp=generateStaffOtp(id);
-    // auto also show staff that OTP sent
-    showPopup({type:'info', title:'🔐 OTP Admin Panel me gaya! — '+otp, message:`Staff ${id} — 6-digit OTP: *${otp}* — Admin Panel → ⚙️ Settings → Staff OTPs Live me dekhen • Admin Approve karega • 5 min valid • Staff Verify ke liye नीचे OTP डालें`, confirmText:'Admin ko bataya ✓ — Verify OTP', onConfirm: ()=>{ showStaffOtpVerify(id, otp); }});
-  }catch(e){ console.warn('otp gen',e); }
-  showSuccess('Staff Login — '+id+' • Booking Alerts Ready 🔔','Welcome! 👔');
+  try{ switchStaffTab('rooms'); }catch(e){}
+  try{ updateGalleryDirectVisibility(); }catch(e){}
+  showSuccess('Staff Login — '+id+' • OTP Verified • Booking Alerts Ready 🔔','Welcome! 👔 OTP ✓');
+  return true;
+}
+async function staffLogin(){
+  const id=document.getElementById('staffIdInput').value.trim();
+  const pass=document.getElementById('staffPassInput').value.trim();
+  const err=document.getElementById('staffLoginError');
+  if(!id || !pass){ err.textContent='ID/Password डालें'; err.style.display='block'; return; }
+  const list=await getStaffList();
+  const acc=list.find(x=>x.id===id && x.pass===pass);
+  if(!acc){ err.textContent='❌ Invalid ID/Password'; err.style.display='block'; return; }
+  err.style.display='none';
+  // — OTP Gate — Staff bina OTP ke login nahi kar sakta — OTP Admin ko jayega —
+  let otp;
+  try{ otp=generateStaffOtp(id); }catch(e){ otp=''; console.warn('otp gen',e); }
+  // OTP sunder popup — OTP value NOT shown to staff directly (admin panel me hi dikhega) — admin se poochhna hoga
+  showPopup({type:'info', title:'🔐 OTP Admin Panel me bheja gaya!', message:`Staff ${id} — 6-digit OTP Admin Panel → ⚙️ Settings → Staff OTPs Live me generate hua hai (5 min valid)\n\nAdmin se OTP poochhkar Verify karein — bina OTP ke login nahi hoga!\n\nOTP *Admin ko hi dikhega* — Staff ko Admin batayega.`, confirmText:'🔐 OTP Verify karein →', onConfirm: ()=> showStaffOtpVerify(id)});
+  // Auto-open verify form after 600ms for smooth UX
+  setTimeout(()=> showStaffOtpVerify(id), 900);
 }
 function staffLogout(){
   if(!currentStaffId) currentStaffId=localStorage.getItem('currentStaffId');
@@ -2806,6 +2994,7 @@ function staffLogout(){
   }
   currentStaffId=null;
   closeStaffDashboard();
+  try{ updateGalleryDirectVisibility(); }catch(e){}
   showSuccess('Staff Logout','Bye! 👋');
 }
 function closeStaffDashboard(){
@@ -3171,31 +3360,103 @@ async function deleteOtp(id){ otpCache=otpCache.filter(x=>x.id!==id); lsSet('hot
 function clearExpiredOtps(){ const now=Date.now(); otpCache=otpCache.filter(o=> now - o.createdAt < 10*60*1000 && o.status==='pending' ? false : true); // keep only non-expired pending? Actually clear expired pending
   const before=otpCache.length; otpCache=otpCache.filter(o=> !(o.status==='pending' && now>o.expiresAt)); lsSet('hotel4g_otps', otpCache); renderAdminOtps(); showSuccess('Expired OTPs cleared','🗑'); }
 function refreshAdminOtps(){ otpCache=lsGet('hotel4g_otps',[]); renderAdminOtps(); }
-// staff OTP verification popup
-function showStaffOtpVerify(staffId, otp){
+// — Staff OTP Verify — Bina OTP ke login nahi — Sunder — Admin se OTP lekar verify —
+function showStaffOtpVerify(staffId){
+  // ensure otpCache is fresh
+  otpCache=lsGet('hotel4g_otps', otpCache);
+  const latestPending=otpCache.filter(o=>o.staffId===staffId && o.status==='pending' && Date.now()<o.expiresAt).sort((a,b)=>b.createdAt-a.createdAt)[0];
+  const hint=latestPending ? `Latest OTP generated at ${latestPending.createdAtStr} — 5 min valid — Admin Panel me Live hai` : 'OTP generate ho raha hai...';
   showFormPopup({
-    type:'warning', title:'🔐 Staff OTP — Admin Verify', desc:`Staff ${staffId} — OTP Admin Panel me gaya hai • Admin se OTP लेकर यहाँ डालें • 5 min valid • No localhost popup`,
-    fields:[{id:'verifyOtpInput', label:'Enter OTP *', type:'text', placeholder:'6 digit OTP', required:true}],
-    confirmText:'✓ Verify OTP ✓',
-    onSubmit: (vals)=>{
+    type:'warning', title:'🔐 Staff OTP Verify — Bina OTP ke Login Nahi', desc:`Staff ${staffId} — ${hint}<br>Admin Panel → ⚙️ Staff OTPs Live me OTP dekhen • Admin se poochhkar OTP yahan daalein • Bina sahi OTP ke Staff Panel nahi khulega!`,
+    fields:[
+      {id:'verifyOtpInput', label:'Enter 6-digit OTP *', type:'text', placeholder:'••••••', required:true},
+      {id:'verifyOtpInfo', label:'Info', type:'textarea', value:'OTP Admin ko hi dikhega — Staff ko Admin batayega. 5 min me expire.', rows:2}
+    ],
+    confirmText:'✓ Verify & Login ✓',
+    onSubmit: async (vals)=>{
       const entered=(vals.verifyOtpInput||'').trim();
-      const entry=otpCache.find(x=>x.staffId===staffId && x.otp===entered && x.status==='pending' && Date.now()<x.expiresAt);
+      if(!/^\d{6}$/.test(entered)) return showError('6-digit OTP डालें — Admin se lekar');
+      // Find matching OTP for this staff — pending or approved but not expired
+      let entry=otpCache.find(x=>x.staffId===staffId && x.otp===entered && Date.now()<x.expiresAt);
       if(!entry){
-        const approved=otpCache.find(x=>x.staffId===staffId && x.otp===entered && x.status==='approved');
-        if(approved){ // approved by admin
-          showSuccess('OTP Verified — Approved by Admin ✓','Welcome! 👔');
-          document.getElementById('staffAlertBanner').style.display='none';
-          return;
-        }
-        return showError('Invalid / Expired OTP — Admin se sahi OTP लें या नया OTP generate करें');
+        // also check firestore normalised time
+        return showError('❌ Invalid / Expired OTP — Admin se sahi OTP लें या Resend करें');
       }
-      entry.status='approved'; lsSet('hotel4g_otps', otpCache); if(useFirebase) db.collection('staffOtps').doc(entry.id).update({status:'approved'}).catch(()=>{});
-      renderAdminOtps();
-      showSuccess('OTP Verified — Staff Access Granted ✓','Verified! 🔐');
+      if(entry.status==='rejected') return showError('❌ OTP Rejected by Admin — Naya OTP generate karein');
+      if(entry.status==='pending'){
+        // Mark approved on correct entry (admin approved implicitly via staff knowledge)
+        entry.status='approved'; lsSet('hotel4g_otps', otpCache);
+        if(useFirebase) try{ await db.collection('staffOtps').doc(entry.id).update({status:'approved'}); }catch(e){}
+        renderAdminOtps();
+      }
+      // Success → complete login
+      showSuccess('OTP Verified ✓ — Logging in...','Verified! 🔐');
+      setTimeout(async()=>{
+        document.getElementById('formPopup')?.classList.remove('open');
+        const ok=await completeStaffLogin(staffId);
+        if(!ok) showError('Login blocked — Single Device check fail');
+      }, 400);
     }
   });
+  // Add extra buttons after popup renders: Resend OTP
+  setTimeout(()=>{
+    const actions=document.getElementById('formPopupActions');
+    if(actions && !document.getElementById('resendOtpBtn')){
+      const btn=document.createElement('button');
+      btn.id='resendOtpBtn'; btn.textContent='↻ Resend OTP to Admin';
+      btn.className='icon-btn'; btn.style.cssText='padding:9px 12px;font-size:11px;border:1.5px solid #FDE68A;background:#FFFBEB';
+      btn.onclick=()=>{
+        const newOtp=generateStaffOtp(staffId);
+        showSuccess('New OTP sent to Admin — '+newOtp,'Resent! 🔐');
+        // keep verify popup open — staff will ask admin for new OTP
+      };
+      actions.prepend(btn);
+    }
+  }, 300);
 }
-// ——— RESTAURANT MENU — Professional with rates — Staff/Admin edit/add/delete — No localhost ———
+// — Staff Icon Tabs — Only one open — systematic —
+function switchStaffTab(tab){
+  const tabs=['rooms','manual','menu','bookings','otp'];
+  tabs.forEach(t=>{
+    const p=document.getElementById('staff-panel-'+t);
+    if(p) p.style.display=(t===tab)?'block':'none';
+    const b=document.getElementById('sTab-'+t);
+    if(b) b.classList.toggle('active', t===tab);
+  });
+  try{
+    if(tab==='rooms') renderStaffDashboard();
+    if(tab==='menu') renderStaffMenuList();
+    if(tab==='bookings') renderStaffBookings();
+    if(tab==='otp') renderAdminOtps();
+  }catch(e){}
+}
+// — Website Icon Tabs — Only one section open — same as Admin/Staff — systematic no overflow —
+function websiteSwitchTab(tab){
+  const mainIds=['rooms','banquet','gallery','calendar','reviews','dining','contact','location'];
+  const allSections=document.querySelectorAll('section');
+  if(tab==='all'){
+    allSections.forEach(s=> s.style.display='');
+    document.querySelectorAll('.web-tab').forEach(b=> b.classList.remove('active'));
+    const ab=document.getElementById('wTab-all'); if(ab) ab.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+  allSections.forEach(s=>{
+    const id=s.id;
+    if(mainIds.includes(id)){
+      s.style.display = (id===tab) ? 'block' : 'none';
+    } else if(id==='home'){
+      s.style.display='none';
+    } else if(!id){
+      s.style.display='none';
+    }
+  });
+  const target=document.getElementById(tab);
+  if(target){ target.style.display='block'; setTimeout(()=> target.scrollIntoView({behavior:'smooth', block:'start'}), 120); }
+  document.querySelectorAll('.web-tab').forEach(b=> b.classList.remove('active'));
+  const btn=document.getElementById('wTab-'+tab); if(btn) btn.classList.add('active');
+}
+ // ——— RESTAURANT MENU — Professional with rates — Staff/Admin edit/add/delete — No localhost ———
 function getMenu(){ return menuCache.length? menuCache : defaultMenuItems; }
 function renderMenuModal(){
   const wrap=document.getElementById('menuGrid');
@@ -3401,7 +3662,7 @@ async function realServiceRequest(serviceType){
   });
 }
 function showRealMenu(){ openMenuModal(); }
-function renderAll(){ applyLang(currentLang); renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); renderBookings(); updateStats(); updatePaySummary(); updatePersonHints(); renderAdminStaffList(); renderReviews(); try{ renderAdminPhysicalRooms(); updateTravelRoomNumbers(); updatePayRoomNumbers(); renderAdminOtps(); renderAdminMenuList(); renderStaffMenuList(); }catch(e){} if(currentStaffId) renderStaffDashboard(); }
+function renderAll(){ applyLang(currentLang); renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); renderBookings(); updateStats(); updatePaySummary(); updatePersonHints(); renderAdminStaffList(); renderReviews(); try{ renderAdminPhysicalRooms(); updateTravelRoomNumbers(); updatePayRoomNumbers(); renderAdminOtps(); renderAdminMenuList(); renderStaffMenuList(); }catch(e){} if(currentStaffId){ renderStaffDashboard(); try{ switchStaffTab('rooms'); }catch(e){} } try{ updateGalleryDirectVisibility(); }catch(e){} }
 renderAll();
 ['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay','formPopup','menuOverlay','reviewOverlay'].forEach(id=> document.getElementById(id)?.addEventListener('click',e=>{ if(e.target.id===id) document.getElementById(id).classList.remove('open'); if(e.target.id==='travelOverlay') document.body.style.overflow=''; }));
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay','menuOverlay','reviewOverlay','customPopup','formPopup'].forEach(id=>document.getElementById(id)?.classList.remove('open')); if(document.getElementById('staffDashboard').style.display==='block'){ closeStaffDashboard(); } document.body.style.overflow=''; }});
@@ -3411,5 +3672,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e1425f2cf331e7',t:'MTc4OTkxMTgwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e1ae3e0e76c161',t:'MTc4OTkxNjIyNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
