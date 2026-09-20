@@ -554,6 +554,9 @@ img,video{max-width:100%;height:auto}
     <button class="web-tab" id="wTab-location" onclick="websiteSwitchTab('location')">📍 Location</button>
   </div>
   <div style="font-size:11px;color:#64748B;text-align:center;margin-bottom:10px;line-height:1.5">Icon पर tap करें — सिर्फ वही section खुलेगा, बाकी hide — Admin/Staff की तरह systematic • All पर वापस सब देखें • No overflow</div>
+  <div id="websiteBackBtn" style="display:none;text-align:center;margin:8px 0 12px">
+    <button onclick="websiteSwitchTab('all')" class="btn-wh" style="padding:9px 18px;font-size:12px;border:1.5px solid #C5A254;color:#92400E;background:#FFFBEB;box-shadow:0 4px 12px rgba(197,162,84,0.12)">← Back to All — सभी Sections देखें</button>
+  </div>
 </div>
 <!-- ROOMS — MULTI PHOTO SIDE SCROLL -->
 <section id="rooms" style="background:#FFF7ED">
@@ -682,7 +685,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1764787865647f6e767a617e647f60767c76657a76242057707a767e7b3974787a">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7c4d8d8c5c4dfced6dac1dec4dfc0d6dcd6c5dad68480f7d0dad6dedb99d4d8da">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -757,7 +760,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ceff3f3eeeff4e5fdf1eaf5eff4ebfdf7fdeef1fdafabdcfbf1fdf5f0b2fff3f1">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9fecf0f0edecf7e6fef2e9f6ecf7e8fef4feedf2feaca8dff8f2fef6f3b1fcf0f2">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -873,7 +876,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23504c4c51504b5a424e554a504b54424842514e42101463444e424a4f0d404c4e">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c5f43435e5f44554d415a455f445b4d474d5e414d1f1b6c4b414d4540024f4341">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -911,11 +914,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97e4f8f8e5e4ffeef6fae1fee4ffe0f6fcf6e5faf6a4a0d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c1f03031e1f04150d011a051f041b0d070d1e010d5f5b2c0b010d0500420f0301">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e1d01011c1d06170f0318071d06190f050f1c030f5d592e09030f0702400d0103">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d9aab6b6abaab1a0b8b4afb0aab1aeb8b2b8abb4b8eaee99beb4b8b0b5f7bab6b4">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c5b6aaaab7b6adbca4a8b3acb6adb2a4aea4b7a8a4f6f285a2a8a4aca9eba6aaa8">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dba8b4b4a9a8b3a2bab6adb2a8b3acbab0baa9b6bae8ec9bbcb6bab2b7f5b8b4b6">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="75061a1a07061d0c1418031c061d02141e140718144642351218141c195b161a18">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="15667a7a67667d6c7478637c667d62747e746778742622557278747c793b767a78">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -956,7 +959,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8bf8e4e4f9f8e3f2eae6fde2f8e3fceae0eaf9e6eab8bccbece6eae2e7a5e8e4e6">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2754484855544f5e464a514e544f50464c46554a46141067404a464e4b0944484a">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -986,6 +989,9 @@ service cloud.firestore {
         <div class="stat-card"><small>Pending</small><strong id="sPending" style="color:#DC2626">0</strong><span>need action</span></div>
         <div class="stat-card"><small>Paid / Confirmed</small><strong id="sConfirmed" style="color:#059669">0</strong><span>revenue</span></div>
         <div class="stat-card"><small>Revenue (Paid)</small><strong id="sRevenue">₹0</strong><span>Firebase</span></div>
+      </div>
+      <div id="adminInsideBack" style="display:none;text-align:center;margin:0 0 12px">
+        <button onclick="switchTab('bookings')" class="btn-wh" style="padding:8px 16px;font-size:11px;border:1.5px solid #0F172A;color:#0F172A;background:#fff">← Back to Bookings</button>
       </div>
       <div class="admin-card" id="panel-bookings">
         <div class="admin-card-head"><h4>📋 Bookings — Person/Children सहित</h4><div style="display:flex;gap:6px;flex-wrap:wrap"><select id="filterStatus" onchange="renderBookings()" style="padding:7px 10px;border-radius:30px;border:1.5px solid var(--border);font-size:12px;background:#FFFBEB"><option value="">All</option><option value="new">New</option><option value="paid">Paid</option><option value="confirmed">Confirmed</option><option value="cancelled">Cancelled</option></select><input id="searchBooking" placeholder="Search..." oninput="renderBookings()" style="padding:7px 10px;border:1.5px solid var(--border);border-radius:30px;font-size:12px;width:130px;background:#FFFBEB"><button onclick="renderBookings()" class="icon-btn">↻</button></div></div>
@@ -1019,10 +1025,7 @@ service cloud.firestore {
             <div class="upload-bar" id="galleryProgress"><span id="galleryProgressBar"></span></div>
             <div id="galleryProgressText" style="font-size:11px;color:#7C3AED;font-weight:700;margin-top:6px;display:none">Uploading...</div>
           </div>
-          <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap">
-            <input id="galleryUrlInput" placeholder="या Image URL Paste करें (https://...)" style="flex:1;min-width:180px;padding:9px 10px;border:1.5px solid var(--border);border-radius:11px;background:#FFFBEB;min-width:0">
-            <button onclick="addGalleryByUrl()" class="btn-dark">Add URL</button>
-          </div>
+          <div style="text-align:center;margin:12px 0;font-size:11px;color:#16A34A;font-weight:700;background:#F0FDF4;border:1px solid #6EE7B7;padding:8px;border-radius:10px">📸 Sirf Direct Gallery Upload — Auto Compress → Firebase → Turant Live — Link hata diya</div>
           <div class="gallery-admin-grid" id="galleryAdminGrid"></div>
         </div>
       </div>
@@ -1117,6 +1120,10 @@ service cloud.firestore {
       <button id="sTab-bookings" class="staff-tab" onclick="switchStaffTab('bookings')">📋 Bookings</button>
       <button id="sTab-otp" class="staff-tab" onclick="switchStaffTab('otp')">🔐 OTP</button>
     </div>
+    <div id="staffInsideBack" style="display:none;text-align:center;margin:0 0 12px">
+      <button onclick="switchStaffTab('rooms')" class="btn-wh" style="padding:8px 16px;font-size:11px;border:1.5px solid #0F172A;color:#0F172A;background:#fff">← Back to Boxes — All Rooms</button>
+      <button onclick="closeStaffDashboard()" class="icon-btn" style="padding:8px 12px;font-size:11px;margin-left:6px">✕ Close</button>
+    </div>
     <div id="staff-panel-rooms"><div class="admin-card">
       <div class="admin-card-head"><h4>🏨 All Rooms — Box Wise (Room No.)</h4><span style="font-size:11px;color:#64748B">Bill के बाद ही Available • Tap Box for Action</span></div>
       <div style="padding:14px">
@@ -1143,10 +1150,7 @@ service cloud.firestore {
           <div class="upload-bar" id="staffGalleryProgress" style="display:none;margin-top:8px;background:#E2E8F0;border-radius:20px;overflow:hidden;height:10px"><span id="staffGalleryProgressBar" style="display:block;height:100%;width:0%;background:linear-gradient(90deg,#DC2626,#F59E0B)"></span></div>
           <div id="staffGalleryProgressText" style="display:none;font-size:11px;color:#7C3AED;font-weight:700;margin-top:6px">Uploading...</div>
         </div>
-        <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap">
-          <input id="staffGalleryUrlInput" placeholder="Image URL https://..." style="flex:1;min-width:180px;padding:9px 10px;border:1.5px solid var(--border);border-radius:11px;background:#FFFBEB">
-          <button onclick="addStaffGalleryByUrl()" class="btn-dark">Add URL</button>
-        </div>
+        <div style="text-align:center;margin:12px 0;font-size:11px;color:#16A34A;font-weight:700;background:#F0FDF4;border:1px solid #6EE7B7;padding:8px;border-radius:10px">📸 Sirf Direct File Upload — Auto Compress 72% → Firebase → Turant Live</div>
         <div class="gallery-admin-grid" id="staffGalleryGrid"></div>
       </div>
     </div></div>
@@ -2411,6 +2415,8 @@ function switchTab(tab){
   document.getElementById('panel-calendar').style.display=tab==='calendar'?'block':'none';
   document.getElementById('panel-settings').style.display=tab==='settings'?'block':'none';
   document.getElementById('panel-stats').style.display=tab==='stats'?'block':'none';
+  const aback=document.getElementById('adminInsideBack');
+  if(aback) aback.style.display = (tab==='bookings') ? 'none' : 'block';
   if(tab==='calendar') renderAdminCalendar();
   if(tab==='rooms'){ renderRoomEditor(); renderAdminPhysicalRooms(); }
   if(tab==='gallery') renderGalleryAdmin();
@@ -2497,11 +2503,7 @@ function renderRoomEditor(){
           📸 + Add More Photos (Multiple) <input type="file" accept="image/*" multiple style="display:none" onchange="handleRoomMultiUpload('${r.id}', this.files)">
         </label>
         <div style="font-size:10px;color:#78716C;text-align:center;margin-top:4px">Side Scroll से सभी Photos देखें — Max 6</div>
-        <div style="display:flex;gap:6px;margin-top:8px">
-          <input id="r_url_${r.id}" placeholder="🔗 Link Paste https://..." style="flex:1;padding:7px 8px;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-size:11px;min-width:0">
-          <button onclick="addRoomPhotoByUrl('${r.id}')" class="icon-btn" style="background:#DC2626;color:#fff;border-color:#DC2626;white-space:nowrap;font-weight:800">+ Link Add</button>
-        </div>
-        <div style="font-size:9.5px;color:#64748B;margin-top:4px">🔗 Link डालें → Add → Turant Website पर Live!</div>
+        <div style="font-size:9.5px;color:#16A34A;font-weight:700;margin-top:6px;text-align:center;background:#F0FDF4;border:1px solid #86EFAC;padding:6px;border-radius:8px">📸 Direct Gallery se Auto Compress → Firebase → Turant Live</div>
       </div>
       <label style="font-size:11px;font-weight:800;color:#57534E">Name HI — Auto Live</label><input id="r_name_hi_${r.id}" value="${r.name_hi}" oninput="scheduleRoomAutoSave()" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px">
       <label style="font-size:11px;font-weight:800;color:#57534E">Name EN — Auto Live</label><input id="r_name_en_${r.id}" value="${r.name_en}" oninput="scheduleRoomAutoSave()" style="width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:10px;background:#FFFBEB;margin:4px 0 6px">
@@ -2542,39 +2544,7 @@ function removeRoomPhoto(roomId, idx){
     const el=document.getElementById('autoSaveStatus'); if(el) el.textContent='✅ Photo Delete — Firebase Auto Updated '+new Date().toLocaleTimeString();
   }});
 }
-async function addRoomPhotoByUrl(roomId){
-  const input=document.getElementById('r_url_'+roomId);
-  const url=input.value.trim();
-  if(!url) return showError('🔗 Link डालें — https://...');
-  if(!url.startsWith('http')) return showError('Valid https:// link डालें');
-  if(!currentStaffId) return showError('⛔ Staff only — Room link photo sirf Staff se');
-  // Staff/Admin verified
-  const rooms=getRooms(); const r=rooms.find(x=>x.id===roomId); if(!r) return showError('Room not found');
-  let imgs=[...(r.images||[r.img].filter(Boolean))];
-  if(imgs.length>=6) return showError('Max 6 Photos — पहले कोई हटाएं');
-  try{ new URL(url); }catch(e){ return showError('Invalid URL'); }
-  // quick check image extension optional
-  imgs.push(url);
-  if(useFirebase){
-    try{
-      await db.collection('rooms').doc(roomId).update({images: imgs, img: imgs[0]});
-      // Local cache & hidden update — taaki Save overwrite na kare aur same photo turant dikhe
-      r.images=imgs; r.img=imgs[0];
-      const he=document.getElementById('hiddenImgs_'+roomId); if(he) he.textContent=JSON.stringify(imgs);
-      const ue=document.getElementById('urlList_'+roomId); if(ue) ue.innerHTML=imgs.map(u=>`<div style="padding:2px 0;border-bottom:1px solid #FFE4B5">${u}</div>`).join('');
-      renderRooms();
-      input.value='';
-      showPopup({type:'success', title:'✅ Same Photo Live!', message:`✅ Yehi link website पर live ho gaya:\n${url}\n\nRoom: ${r.name_hi} • ${imgs.length} Photos — Website ke Room Carousel में ab yehi photo dikhegi (side scroll)`, confirmText:'Great! — Website देखो'});
-    }catch(e){ showError('Firebase Error: '+e.message); }
-  } else {
-    r.images=imgs; r.img=imgs[0];
-    const arr=getRooms();
-    lsSet('hotel4g_rooms', arr); roomsCache=arr;
-    renderRooms(); renderRoomEditor();
-    input.value='';
-    showSuccess('🔗 Link Save — Local पर Turant Live! ✨','Added!');
-  }
-}
+async function addRoomPhotoByUrl(roomId){ return showError('🔗 Link hata diya — Sirf Direct Gallery Photo Upload se Auto Compress → Firebase Live'); }
 async function handleRoomMultiUpload(roomId, files){
   if(!files || !files.length) return;
   if(!currentStaffId) return showError('⛔ Staff only — Room photo upload sirf Staff OTP login se — Customer front par hidden');
@@ -2749,37 +2719,7 @@ async function handleGalleryUpload(files){
   }
   bar.style.display='none'; txt.style.display='none'; prog.style.width='0%'; document.getElementById('galleryFile').value=''; showSuccess(`${done} Photos Upload 📸 — Firebase Gallery पर Turant Live! ✨`,'Gallery Updated! ✨');
 }
-async function addGalleryByUrl(){
-  const raw=document.getElementById('galleryUrlInput').value.trim();
-  if(!raw) return showError('URL डालें — https://...');
-  if(!currentStaffId) return showError('⛔ Staff only — Gallery URL add sirf Staff login se');
-  // Staff/Admin verified
-  // support multiple URLs separated by newline, comma, space — turant live
-  const parts=raw.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
-  const urls=[]; for(const p of parts){ const sub=p.split(/\s+/).map(s=>s.trim()).filter(Boolean); urls.push(...sub); }
-  const valid=urls.filter(u=>u.startsWith('http://')||u.startsWith('https://'));
-  if(!valid.length) return showError('Valid https:// URL डालें — एक या कई links newline/comma से अलग करके');
-  if(valid.length>10) return showError('एक बार में Max 10 Links');
-  let added=0;
-  for(const url of valid){
-    try{ new URL(url);}catch(e){ continue; }
-    if(useFirebase){
-      await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: authUser.email});
-    } else {
-      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url}); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();
-    }
-    added++;
-  }
-  document.getElementById('galleryUrlInput').value='';
-  // optimistic: Firebase onSnapshot will fire turant — still show local instant feedback
-  if(useFirebase && added){
-    // add optimistic preview until snapshot arrives (already added via Firestore, but show placeholder)
-    showSuccess(`🔗 ${added} Photo Link Save — Website पर Turant Live! ✨ — Gallery में अभी दिखेगा`,'Added! 🎉');
-  } else {
-    showSuccess(`🔗 ${added} Gallery Link Save — Website पर Turant Live! ✨`,'Added!');
-  }
-}
-// — Gallery Direct Upload removed from Home — Now Staff Panel Only (staff-panel-gallery) —
+async function addGalleryByUrl(){ return showError('🔗 Link hata diya — Sirf Direct Gallery Photo Upload se Auto Compress → Firebase Live'); }
 function updateGalleryDirectVisibility(){
   const isAdmin = !!(authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase());
   const isStaff = !!currentStaffId;
@@ -2839,30 +2779,7 @@ async function handleStaffGalleryUpload(files){
   }
   bar.style.display='none'; txt.style.display='none'; if(prog) prog.style.width='0%'; const inp2=document.getElementById('staffGalleryFile'); if(inp2) inp2.value=''; renderGallery(); renderGalleryAdmin(); showSuccess(`${done} Photos Staff Gallery Live! 📸`,'Live!'); try{ websiteSwitchTab('gallery'); }catch(e){}
 }
-async function addStaffGalleryByUrl(){
-  if(!currentStaffId) return showError('⛔ Staff only — Gallery URL add sirf Staff');
-  const raw=document.getElementById('staffGalleryUrlInput').value.trim();
-  if(!raw) return showError('URL डालें');
-  const parts=raw.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean);
-  const urls=[]; for(const p of parts){ const sub=p.split(/\s+/).map(s=>s.trim()).filter(Boolean); urls.push(...sub); }
-  const valid=urls.filter(u=>u.startsWith('http://')||u.startsWith('https://'));
-  if(!valid.length) return showError('Valid https:// URL डालें');
-  if(valid.length>10) return showError('Max 10');
-  let added=0;
-  for(const url of valid){
-    try{ new URL(url);}catch(e){ continue; }
-    if(useFirebase){
-      await db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), uploadedBy: currentStaffId});
-      try{ galleryCache.unshift({id:'tmp_'+Date.now(), url}); renderGallery(); renderGalleryAdmin(); }catch(e){}
-    } else {
-      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url}); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();
-    }
-    added++;
-  }
-  document.getElementById('staffGalleryUrlInput').value='';
-  showSuccess(`🔗 ${added} Gallery URL Live! 📸`,'Added!');
-  try{ renderGalleryAdmin(); const sg=document.getElementById('staffGalleryGrid'); const ag=document.getElementById('galleryAdminGrid'); if(sg&&ag) sg.innerHTML=ag.innerHTML; websiteSwitchTab('gallery'); }catch(e){}
-}
+async function addStaffGalleryByUrl(){ return showError('🔗 Link hata diya — Sirf Direct Gallery Photo Upload se Auto Compress → Firebase Live'); }
 const drop=document.getElementById('galleryDrop');
 if(drop){
   ['dragenter','dragover'].forEach(ev=> drop.addEventListener(ev, e=>{e.preventDefault(); drop.classList.add('dragover')}));
@@ -2884,6 +2801,41 @@ function copyUpi(){ navigator.clipboard.writeText(document.getElementById('qrUpi
 let currentStaffId=localStorage.getItem('currentStaffId')||null;
 let staffDeviceId=localStorage.getItem('staffDeviceId')||('dev_'+Math.random().toString(36).slice(2)+'_'+Date.now());
 localStorage.setItem('staffDeviceId', staffDeviceId);
+// ——— Staff Persistent Login — Logout par hi logout, bar-bar login nahi ———
+async function autoRestoreStaffSession(){
+  if(!currentStaffId) return false;
+  const sessKey='staffSession_'+currentStaffId;
+  let sess=null;
+  try{
+    if(useFirebase){
+      try{ const doc=await db.collection('staffSessions').doc(currentStaffId).get(); if(doc.exists) sess=doc.data(); }catch(e){}
+      // fallback to local if firebase fails
+      if(!sess) try{ sess=JSON.parse(localStorage.getItem(sessKey)||'null'); }catch(e){}
+    } else {
+      try{ sess=JSON.parse(localStorage.getItem(sessKey)||'null'); }catch(e){}
+    }
+    if(!sess || !sess.active) return false;
+    if(sess.deviceId && sess.deviceId!==staffDeviceId) return false;
+    const age=Date.now()-(sess.loginAt||0);
+    if(age > 12*60*60*1000) return false; // 12h expiry
+    // valid session — restore without OTP
+    const topEl=document.getElementById('staffTopId');
+    if(topEl) topEl.textContent=currentStaffId+' • Device: '+staffDeviceId.slice(0,8)+' • Auto-Login ✓';
+    try{ renderStaffDashboard(); updateGuestVisibility(); updateGalleryDirectVisibility(); }catch(e){}
+    return true;
+  }catch(e){ return false; }
+}
+// Auto restore on load
+setTimeout(()=>{ autoRestoreStaffSession().then(ok=>{
+  if(ok) console.log('Staff auto-restored:', currentStaffId);
+  // Show staff quick access button if logged in
+  try{
+    const btn=document.getElementById('staffQuickAccess');
+    if(btn) btn.style.display=currentStaffId?'flex':'none';
+    const hint=document.getElementById('staffLoggedHint');
+    if(hint) hint.textContent=currentStaffId?'👔 Logged: '+currentStaffId+' • Tap to open panel':'';
+  }catch(e){}
+}); }, 800);
 async function getStaffList(){
   // try Firebase first, fallback local
   if(useFirebase){
@@ -2999,6 +2951,21 @@ async function adminDeleteStaff(id){
   }});
 }
 function openStaffLogin(){
+  // If already logged in with valid session, directly open dashboard without OTP
+  if(currentStaffId){
+    const sessKey='staffSession_'+currentStaffId;
+    let sess=null;
+    try{ sess=JSON.parse(localStorage.getItem(sessKey)||'null'); }catch(e){}
+    if(sess && sess.active && sess.deviceId===staffDeviceId && (Date.now()-sess.loginAt < 12*60*60*1000)){
+      const topEl=document.getElementById('staffTopId');
+      if(topEl) topEl.textContent=currentStaffId+' • Device: '+staffDeviceId.slice(0,8)+' • Auto-Login ✓';
+      document.getElementById('staffDashboard').style.display='block';
+      document.body.style.overflow='hidden';
+      try{ renderStaffDashboard(); switchStaffTab('rooms'); }catch(e){}
+      showSuccess('Staff Panel — Already Logged In ✓','Welcome back! 👔');
+      return;
+    }
+  }
   document.getElementById('staffLoginOverlay').classList.add('open');
   document.getElementById('staffLoginError').style.display='none';
 }
@@ -3501,6 +3468,8 @@ function switchStaffTab(tab){
     const b=document.getElementById('sTab-'+t);
     if(b) b.classList.toggle('active', t===tab);
   });
+  const back=document.getElementById('staffInsideBack');
+  if(back) back.style.display = (tab==='rooms') ? 'none' : 'block';
   try{
     if(tab==='rooms') renderStaffDashboard();
     if(tab==='roomphotos'){ renderRoomEditor(); try{ const sg=document.getElementById('staffRoomEditGrid'); const ag=document.getElementById('roomEditGrid'); if(sg && ag) sg.innerHTML=ag.innerHTML; }catch(e){} }
@@ -3514,6 +3483,9 @@ function switchStaffTab(tab){
 function websiteSwitchTab(tab){
   const mainIds=['rooms','banquet','gallery','calendar','reviews','dining','contact','location'];
   const allSections=document.querySelectorAll('section');
+  // Back button handling
+  const backBtn=document.getElementById('websiteBackBtn');
+  if(backBtn) backBtn.style.display = (tab==='all') ? 'none' : 'block';
   if(tab==='all'){
     allSections.forEach(s=> s.style.display='');
     document.querySelectorAll('.web-tab').forEach(b=> b.classList.remove('active'));
@@ -3532,7 +3504,21 @@ function websiteSwitchTab(tab){
     }
   });
   const target=document.getElementById(tab);
-  if(target){ target.style.display='block'; setTimeout(()=> target.scrollIntoView({behavior:'smooth', block:'start'}), 120); }
+  if(target){ 
+    target.style.display='block'; 
+    // Inject inner back button if not exists
+    if(!target.querySelector('.inner-back-btn')){
+      const head=target.querySelector('.section-head');
+      if(head){
+        const btn=document.createElement('div');
+        btn.className='inner-back-btn';
+        btn.style.cssText='text-align:center;margin-bottom:12px';
+        btn.innerHTML='<button onclick="websiteSwitchTab(\'all\')" class="btn-wh" style="padding:7px 14px;font-size:11px;border:1.5px solid #E2E8F0;background:#fff">← Back</button>';
+        head.parentNode.insertBefore(btn, head.nextSibling);
+      }
+    }
+    setTimeout(()=> target.scrollIntoView({behavior:'smooth', block:'start'}), 120); 
+  }
   document.querySelectorAll('.web-tab').forEach(b=> b.classList.remove('active'));
   const btn=document.getElementById('wTab-'+tab); if(btn) btn.classList.add('active');
 }
@@ -3598,30 +3584,28 @@ async function addMenuItem(){
       {id:'menuCategory', label:'Category *', type:'select', value:'Main', options:[{value:'Breakfast',label:'Breakfast'},{value:'Thali',label:'Thali'},{value:'Main',label:'Main'},{value:'Snacks',label:'Snacks'},{value:'Jain',label:'Jain'},{value:'Beverages',label:'Beverages'},{value:'Banquet',label:'Banquet'}]},
       {id:'menuPrice', label:'Price ₹ *', type:'number', placeholder:'220', required:true},
       {id:'menuDesc', label:'Description', type:'textarea', placeholder:'Creamy, spicy...', rows:2},
-      {id:'menuImageFile', label:'📸 Photo Upload — Auto Compress (Direct Gallery)', type:'file', accept:'image/*'},
-      {id:'menuImage', label:'या Image URL (https://...)', type:'text', placeholder:'https://... • File चुने तो URL optional'},
+      {id:'menuImageFile', label:'📸 Photo Upload — Auto Compress (Direct Gallery) *', type:'file', accept:'image/*', required:true},
       {id:'menuVeg', label:'Veg?', type:'select', value:'yes', options:[{value:'yes',label:'🟢 Veg'},{value:'no',label:'🔴 Non-Veg'}]}
     ],
     confirmText:'➕ Add Item ✓',
     onSubmit: async (vals)=>{
       const price=parseInt(vals.menuPrice); if(!vals.menuName||!price||price<10) return showError('Name & valid price (₹10+) required');
-      let imageUrl=vals.menuImage.trim()||'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80';
-      // Direct gallery file → auto compress → Firebase save
       const file=vals.menuImageFile;
-      if(file){
-        try{
-          const cFile=await compressImage(file);
-          showPopup({type:'info', title:'⏳ Photo Compress & Upload...', message:'Auto compress 70% → Firebase Storage → Turant Live...', confirmText:'Please wait...'});
-          if(useFirebase){
-            const ref=storage.ref(`menu/${Date.now()}_${cFile.name}`);
-            await ref.put(cFile);
-            imageUrl=await ref.getDownloadURL();
-          } else {
-            imageUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(cFile); });
-          }
-          document.getElementById('customPopup')?.classList.remove('open');
-        }catch(e){ document.getElementById('customPopup')?.classList.remove('open'); return showError('Photo upload fail: '+e.message); }
-      }
+      if(!file) return showError('📸 Photo चुने — Direct Gallery se Auto Compress');
+      let imageUrl='';
+      try{
+        const cFile=await compressImage(file);
+        showPopup({type:'info', title:'⏳ Photo Compress & Upload...', message:'Auto compress 72% → Firebase Storage → Turant Live...', confirmText:'Please wait...'});
+        if(useFirebase){
+          const ref=storage.ref(`menu/${Date.now()}_${cFile.name}`);
+          await ref.put(cFile);
+          imageUrl=await ref.getDownloadURL();
+        } else {
+          imageUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(cFile); });
+        }
+        document.getElementById('customPopup')?.classList.remove('open');
+      }catch(e){ document.getElementById('customPopup')?.classList.remove('open'); return showError('Photo upload fail: '+e.message); }
+      if(!imageUrl) return showError('Photo upload failed');
       const item={id:'m'+Date.now(), name:vals.menuName.trim(), category:vals.menuCategory, price, desc:vals.menuDesc.trim()||'Tasty', image:imageUrl, veg:vals.menuVeg==='yes', available:true};
       if(useFirebase){ await db.collection('menuItems').doc(item.id).set({...item, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); try{ menuCache.unshift(item); renderMenuModal(); }catch(e){} }
       else { menuCache.unshift(item); lsSet('hotel4g_menu', menuCache); }
@@ -3639,19 +3623,18 @@ async function editMenuItem(id){
       {id:'editMenuCategory', label:'Category', type:'select', value:m.category, options:[{value:'Breakfast',label:'Breakfast'},{value:'Thali',label:'Thali'},{value:'Main',label:'Main'},{value:'Snacks',label:'Snacks'},{value:'Jain',label:'Jain'},{value:'Beverages',label:'Beverages'},{value:'Banquet',label:'Banquet'}]},
       {id:'editMenuPrice', label:'Price ₹ *', type:'number', value:String(m.price), required:true},
       {id:'editMenuDesc', label:'Description', type:'textarea', value:m.desc, rows:2},
-      {id:'editMenuImageFile', label:'📸 New Photo — Auto Compress (optional)', type:'file', accept:'image/*'},
-      {id:'editMenuImage', label:'Image URL', type:'text', value:m.image},
+      {id:'editMenuImageFile', label:'📸 New Photo — Auto Compress (Direct Gallery)', type:'file', accept:'image/*'},
       {id:'editMenuAvail', label:'Available?', type:'select', value:m.available?'yes':'no', options:[{value:'yes',label:'✓ Available'},{value:'no',label:'✕ Out of Stock'}]}
     ],
     confirmText:'💾 Update ✓',
     onSubmit: async (vals)=>{
       const price=parseInt(vals.editMenuPrice); if(!price) return showError('Valid price');
-      let newImage=vals.editMenuImage.trim()||m.image;
+      let newImage=m.image;
       const eFile=vals.editMenuImageFile;
       if(eFile){
         try{
           const cFile=await compressImage(eFile);
-          showPopup({type:'info', title:'⏳ Photo Compress...', message:'Auto compress → Firebase → Turant Live...', confirmText:'Please wait'});
+          showPopup({type:'info', title:'⏳ Photo Compress...', message:'Auto compress 72% → Firebase → Turant Live...', confirmText:'Please wait'});
           if(useFirebase){
             const ref=storage.ref(`menu/${Date.now()}_${cFile.name}`);
             await ref.put(cFile);
@@ -3795,5 +3778,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e2935cafe147bf',t:'MTc4OTkyNTYxMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e2b8b88a7f7b2f',t:'MTc4OTkyNzE0MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
