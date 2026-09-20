@@ -305,7 +305,7 @@ footer a{color:#A1A1AA;font-size:12.5px;display:block;margin-bottom:5px;word-bre
 .popup-overlay.open{display:flex}
 .popup-box{width:100%;max-width:400px;background:#fff;border-radius:20px;padding:22px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.22);border:1.5px solid var(--border);animation:popIn 0.3s;min-width:0}
 .popup-icon{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:26px;margin:0 auto 12px}
-.popup-icon.success{background:linear-gradient(135deg,#DCFCE7,#BBF7D0);color:#065F46;border:2px solid #86EFAC}
+.popup-icon.success{background:linear-gradient(135deg,#DCFCE7,#BBF7D0);color:#065F46;border:2px solid #86EFAC;box-shadow:0 8px 20px rgba(16,185,129,0.25);animation:popSuccess 0.6s}
 .popup-icon.error{background:linear-gradient(135deg,#FEE2E2,#FECACA);color:#991B1B;border:2px solid #FCA5A5}
 .popup-icon.warning{background:linear-gradient(135deg,#FEF3C7,#FDE68A);color:#92400E;border:2px solid #FCD34D}
 .popup-icon.info{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);color:#1E40AF;border:2px solid #93C5FD}
@@ -317,6 +317,7 @@ footer a{color:#A1A1AA;font-size:12.5px;display:block;margin-bottom:5px;word-bre
 .popup-btn.primary{background:var(--grad1);color:#fff}
 .popup-btn.ghost{background:#fff;color:var(--dark);border:1.5px solid #E7E5E4}
 .popup-btn.danger{background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff}
+@keyframes popSuccess{0%{transform:scale(0.5)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
 #adminDashboard{display:none;position:fixed;inset:0;z-index:1500;background:#FFF7ED;overflow:auto}
 #adminDashboard.open{display:block}
 .admin-topbar{position:sticky;top:0;background:#fff;border-bottom:1.5px solid var(--border);padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;z-index:10;flex-wrap:wrap}
@@ -685,7 +686,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a697575686972637b776c7369726d7b717b68777b292d5a7d777b737634797577">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f4c50504d4c57465e5249564c57485e545e4d525e0c087f58525e5653115c5052">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -760,7 +761,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="22514d4d50514a5b434f544b514a55434943504f43111562454f434b4e0c414d4f">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="13607c7c61607b6a727e657a607b64727872617e72202453747e727a7f3d707c7e">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -876,7 +877,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cbb8a4a4b9b8a3b2aaa6bda2b8a3bcaaa0aab9a6aaf8fc8baca6aaa2a7e5a8a4a6">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abd8c4c4d9d8c3d2cac6ddc2d8c3dccac0cad9c6ca989cebccc6cac2c785c8c4c6">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -914,11 +915,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cbb8a4a4b9b8a3b2aaa6bda2b8a3bcaaa0aab9a6aaf8fc8baca6aaa2a7e5a8a4a6">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f0839f9f82839889919d8699839887919b91829d91c3c7b0979d91999cde939f9d">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bac9d5d5c8c9d2c3dbd7ccd3c9d2cddbd1dbc8d7db898dfaddd7dbd3d694d9d5d7">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfccd0d0cdccd7c6ded2c9d6ccd7c8ded4decdd2de8c88ffd8d2ded6d391dcd0d2">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="96e5f9f9e4e5feeff7fbe0ffe5fee1f7fdf7e4fbf7a5a1d6f1fbf7fffab8f5f9fb">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0675696974756e7f676b706f756e71676d67746b67353146616b676f6a2865696b">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4635292934352e3f272b302f352e31272d27342b27757106212b272f2a6825292b">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91e2fefee3e2f9e8f0fce7f8e2f9e6f0faf0e3fcf0a2a6d1f6fcf0f8fdbff2fefc">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -959,7 +960,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74071b1b06071c0d1519021d071c03151f150619154743341319151d185a171b19">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84f7ebebf6f7ecfde5e9f2edf7ecf3e5efe5f6e9e5b7b3c4e3e9e5ede8aae7ebe9">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -2591,7 +2592,7 @@ function renderAdminRequests(){
   if(!combined.length){ wrap.innerHTML='<tr><td colspan="7" style="text-align:center;padding:20px;color:#94A3B8">No requests — Live Firebase</td></tr>'; return; }
   wrap.innerHTML=combined.map((r,i)=>{
     const d=r.createdAtStr||(r.createdAt?.toDate?.().toLocaleString('en-IN')||'');
-    return `<tr><td>${i+1}</td><td style="font-size:11px;color:#78716C">${d}</td><td><b>${r.serviceType||r.type||'Request'}</b><div style="font-size:10px;color:#64748B">${r.room||''}</div></td><td><b>${r.name||'-'}</b></td><td><a href="tel:${r.phone}" style="color:#0F172A;font-weight:700">${r.phone||'-'}</a></td><td style="font-size:11px;max-width:200px;white-space:normal;word-break:break-word">${r.note||r.msg||r.details||'-'}<div style="font-size:10px;color:#94A3B8">${r.cin?r.cin+'→'+r.cout:''} ${r.adults?r.adults+'A':''}</div></td><td><a href="https://wa.me/91${String(r.phone||'').replace(/[^0-9]/g,'').slice(-10)}?text=Hi ${encodeURIComponent(r.name||'')}" target="_blank" style="background:#25D366;color:#fff;padding:5px 8px;border-radius:8px;font-size:11px;text-decoration:none">WA</a> <button onclick="if(confirm('Delete request?')){ if(useFirebase) db.collection('serviceRequests').doc('${r.id}').delete(); else { let a=lsGet('hotel4g_serviceRequests',[]).filter(x=>x.id!=='${r.id}'); lsSet('hotel4g_serviceRequests',a); serviceRequestsCache=a; renderAdminRequests(); } }" class="icon-btn" style="font-size:11px;color:#DC2626">🗑</button></td></tr>`;
+    return `<tr><td>${i+1}</td><td style="font-size:11px;color:#78716C">${d}</td><td><b>${r.serviceType||r.type||'Request'}</b><div style="font-size:10px;color:#64748B">${r.room||''}</div></td><td><b>${r.name||'-'}</b></td><td><a href="tel:${r.phone}" style="color:#0F172A;font-weight:700">${r.phone||'-'}</a></td><td style="font-size:11px;max-width:200px;white-space:normal;word-break:break-word">${r.note||r.msg||r.details||'-'}<div style="font-size:10px;color:#94A3B8">${r.cin?r.cin+'→'+r.cout:''} ${r.adults?r.adults+'A':''}</div></td><td><a href="https://wa.me/91${String(r.phone||'').replace(/[^0-9]/g,'').slice(-10)}?text=Hi ${encodeURIComponent(r.name||'')}" target="_blank" style="background:#25D366;color:#fff;padding:5px 8px;border-radius:8px;font-size:11px;text-decoration:none">WA</a> <button onclick="showPopup({type:'confirm', title:'🗑 Delete Request?', message:'Ye request hamesha ke liye delete ho jayega — confirm kare?', confirmText:'हाँ, Delete', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm:()=>{ if(useFirebase) db.collection('serviceRequests').doc('${r.id}').delete(); else { let a=lsGet('hotel4g_serviceRequests',[]).filter(x=>x.id!=='${r.id}'); lsSet('hotel4g_serviceRequests',a); serviceRequestsCache=a; renderAdminRequests(); } showPopup({type:'success', title:'✅ Deleted', message:'Request delete ho gaya', confirmText:'ठीक है'}); }})" class="icon-btn" style="font-size:11px;color:#DC2626">🗑</button></td></tr>`;
   }).join('');
 }
 function renderStaffRequests(){
@@ -2702,35 +2703,52 @@ async function forceUpdateSingleRoom(roomId){
 }
 // ——— HEADER PHOTO — Website header ke niche ka photo — Staff Panel me — Auto Compress ———
 async function handleHeaderUpload(files){
-  if(!files || !files.length) return;
-  if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Header update sirf Staff/Admin');
+  if(!files || !files.length) return showPopup({type:'error', title:'⚠️ Photo nahi mila', message:'Pehle Phone Gallery se photo select kare — Click karke Gallery open kare', confirmText:'ठीक है'});
+  if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showPopup({type:'error', title:'⛔ Access Denied', message:'Header update sirf Staff/Admin kar sakte hai', confirmText:'ठीक है'});
   let file=files[0];
-  if(!file.type.startsWith('image/')) return showError('Image file chune');
+  if(!file.type || !file.type.startsWith('image/')) return showPopup({type:'error', title:'⚠️ Image chune', message:'Sirf Image file (JPG/PNG) chune', confirmText:'ठीक है'});
   const preview=document.getElementById('headerPreview');
   try{
     file=await compressImage(file);
-    // Silent — no progress
+    if(file.size>5*1024*1024) return showPopup({type:'warning', title:'⚠️ 5MB se bada', message:file.name+' 5MB se bada hai — chhota photo chune', confirmText:'ठीक है'});
     let url='';
     if(useFirebase){
-      const ref=storage.ref(`header/${Date.now()}_${file.name}`);
-      await ref.put(file);
-      url=await ref.getDownloadURL();
-      // Save to settings
-      await db.collection('settings').doc('main').set({heroImage: url, headerUpdatedBy: currentStaffId||authUser?.email, headerUpdatedAt: firebase.firestore.FieldValue.serverTimestamp()}, {merge:true});
-      if(preview) preview.src=url;
-      applyHeroImage(url);
-      showSuccess('🖼️ Header Photo Updated — Auto Compress → Firebase → Website header turant live!','Live! ✨');
+      try{
+        const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+        const ref=storage.ref(`header/${Date.now()}_${safeName}`);
+        await ref.put(file);
+        url=await ref.getDownloadURL();
+        await db.collection('settings').doc('main').set({heroImage: url, headerUpdatedBy: currentStaffId||authUser?.email, headerUpdatedAt: firebase.firestore.FieldValue.serverTimestamp()}, {merge:true});
+        if(preview) preview.src=url;
+        applyHeroImage(url);
+        showPopup({type:'success', title:'✅ Update Successful!', message:'🖼️ Header Photo turant Live ho gaya! Website header pe naya photo dikh raha hai — Refresh karke dekhe!', confirmText:'बहुत बढ़िया! 🎉'});
+      }catch(e){
+        console.warn('Header storage fail fallback', e);
+        // Fallback to DataURL
+        url=await new Promise(res=>{ const fr=new FileReader(); fr.onload=ev=>res(ev.target.result); fr.readAsDataURL(file); });
+        try{
+          await db.collection('settings').doc('main').set({heroImage: url, headerUpdatedBy: (currentStaffId||authUser?.email||'staff')+'-fallback', headerUpdatedAt: firebase.firestore.FieldValue.serverTimestamp()}, {merge:true});
+        }catch(e2){
+          const s=getSettings(); s.heroImage=url; lsSet('hotel4g_settings', s); settingsCache=s;
+        }
+        if(preview) preview.src=url;
+        applyHeroImage(url);
+        showPopup({type:'success', title:'✅ Update Successful! (Local)', message:'Header Photo Local Live — Firebase Storage fail par DataURL se live kiya. '+e.message, confirmText:'ठीक है'});
+      }
     } else {
       url=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
       const s=getSettings(); s.heroImage=url; lsSet('hotel4g_settings', s); settingsCache=s;
       if(preview) preview.src=url;
       applyHeroImage(url);
-      showSuccess('🖼️ Header Photo Local Live — Firebase par bhi jayega','Live!');
+      showPopup({type:'success', title:'✅ Update Successful!', message:'🖼️ Header Photo Local Live — Firebase connect par aur bhi fast jayega!', confirmText:'बहुत बढ़िया! 🎉'});
     }
     try{ document.getElementById('headerFile').value=''; }catch(e){}
     const urlInput=document.getElementById('headerImageUrl'); if(urlInput) urlInput.value=url;
+    // Reset header file count
+    const cnt=document.getElementById('headerFileCount'); if(cnt) cnt.style.display='none';
+    pendingHeaderFiles=null;
   }catch(e){
-    showError('Header upload fail: '+e.message);
+    showPopup({type:'error', title:'❌ Header Upload Fail', message:'Header upload fail: '+e.message, confirmText:'ठीक है'});
   }
 }
 async function forceUpdateHeader(){
@@ -2996,50 +3014,65 @@ function removeRoomPhoto(roomId, idx){
 }
 async function addRoomPhotoByUrl(roomId){ return showError('🔗 Link hata diya — Sirf Direct Gallery Photo Upload se Auto Compress → Firebase Live'); }
 async function handleRoomMultiUpload(roomId, files){
-  if(!files || !files.length) return;
-  if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only — Room photo upload sirf Staff/Admin se');
-  // Staff/Admin verified — allow both Firebase and local preview — turant live
-  const rooms=getRooms(); const r=rooms.find(x=>x.id===roomId); let imgs=[...(r.images||[r.img])];
-  if(imgs.length + files.length > 6) return showError('Max 6 Photos per Room — कुछ हटाएं');
-  let done=0; // Silent — no loading — no bar
-  for(let file of files){
-    file = await compressImage(file);
-    if(!file.type.startsWith('image/')) continue;
-    if(file.size>4*1024*1024){ showError(file.name+' 4MB से बड़ा'); continue; }
-    if(!useFirebase){
-      // Local preview — dataUrl — turant live for staff
-      const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
-      imgs.push(dataUrl); done++;
-      continue;
-    }
+  if(!files || !files.length) return showPopup({type:'error', title:'⚠️ Photo nahi mila', message:'Pehle Phone Gallery se photo select kare — Click karke Gallery open kare', confirmText:'ठीक है'});
+  if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showPopup({type:'error', title:'⛔ Access Denied', message:'Room photo update sirf Staff/Admin kar sakte hai', confirmText:'ठीक है'});
+  const rooms=getRooms(); const r=rooms.find(x=>x.id===roomId); if(!r) return showPopup({type:'error', title:'Room nahi mila', message:'Room ID '+roomId+' not found', confirmText:'ठीक है'});
+  let imgs=[...(r.images||[r.img])].filter(Boolean);
+  if(!imgs.length) imgs=[r.img].filter(Boolean);
+  const fileArr=Array.from(files);
+  if(imgs.length + fileArr.length > 6) return showPopup({type:'warning', title:'⚠️ Max 6 Photos', message:`Har Room me max 6 photos — Abhi ${imgs.length} hai, aap ${fileArr.length} add kar rahe ho. Kuch photo delete kare phir add kare.`, confirmText:'Samajh gaya'});
+  let done=0;
+  let newUrls=[];
+  for(let file of fileArr){
     try{
-      const ref=storage.ref(`rooms/${roomId}_${Date.now()}_${file.name}`);
-      const task=ref.put(file);
-      await new Promise((res,rej)=>{
-        task.on('state_changed', null, rej, async()=>{
-          const url=await ref.getDownloadURL(); imgs.push(url); done++; res();
-        });
-      });
-    }catch(e){ showError('Upload Fail: '+e.message); }
+      file = await compressImage(file);
+      if(!file.type || !file.type.startsWith('image/')){ showPopup({type:'warning', title:'⚠️ Image nahi', message:file.name+' image file nahi hai — JPG/PNG chune'}); continue; }
+      if(file.size>4*1024*1024){ showPopup({type:'warning', title:'⚠️ 4MB se bada', message:file.name+' 4MB se bada hai — chhota photo chune'}); continue; }
+      if(!useFirebase){
+        const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
+        newUrls.push(dataUrl); done++;
+        continue;
+      }
+      try{
+        const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+        const ref=storage.ref(`rooms/${roomId}_${Date.now()}_${safeName}`);
+        await ref.put(file);
+        const url=await ref.getDownloadURL();
+        newUrls.push(url); done++;
+      }catch(e){
+        console.warn('Room storage fail fallback DataURL', e);
+        const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=ev=>res(ev.target.result); fr.readAsDataURL(file); });
+        newUrls.push(dataUrl); done++;
+      }
+    }catch(e){
+      showPopup({type:'error', title:'Photo Error', message:'Photo error: '+e.message});
+    }
   }
-  // Silent — no loading bar to hide
-  // Auto Firebase Documents Update — Turant Live — Same Photo
+  if(!done) return showPopup({type:'error', title:'❌ Koi photo add nahi hui', message:'Koi valid photo add nahi hui — Phone Gallery se sahi JPG/PNG chune (4MB tak)', confirmText:'ठीक है'});
+  imgs=[...imgs, ...newUrls].slice(0,6);
   if(useFirebase){
     try{
       await db.collection('rooms').doc(roomId).update({images: imgs, img: imgs[0]});
-      // Local same photo update — turant website pe yehi dikhe
       r.images=imgs; r.img=imgs[0];
       const he=document.getElementById('hiddenImgs_'+roomId); if(he) he.textContent=JSON.stringify(imgs);
-      const ue=document.getElementById('urlList_'+roomId); if(ue) ue.innerHTML=imgs.map(u=>`<div style="padding:2px 0;border-bottom:1px solid #FFE4B5">${u}</div>`).join('');
+      const ue=document.getElementById('urlList_'+roomId); if(ue) ue.innerHTML=imgs.map(u=>`<div style="padding:2px 0;border-bottom:1px solid #FFE4B5;word-break:break-all">${u.slice(0,70)}...</div>`).join('');
       renderRooms();
-      showSuccess(`${done} Photos Add — Yehi photos website पर live! 📸`,'Uploaded!');
-      const el=document.getElementById('autoSaveStatus'); if(el) el.textContent='✅ Multi Photo — Same Photo Live '+new Date().toLocaleTimeString();
-    }catch(e){ showError('Firebase Error: '+e.message); }
+      try{ renderRoomEditor(); }catch(e){}
+      showPopup({type:'success', title:'✅ Update Successful!', message:`✅ ${done} Photos Room me Successfully Add ho gaye! Website pe turant Live hai — Rooms section me swipe karke dekhe!`, confirmText:'बहुत बढ़िया! 🎉'});
+      const el=document.getElementById('autoSaveStatus'); if(el) el.textContent='✅ Photos Live '+new Date().toLocaleTimeString();
+    }catch(e){
+      console.warn('Firestore update fail fallback local', e);
+      r.images=imgs; r.img=imgs[0];
+      try{ document.getElementById('hiddenImgs_'+roomId).textContent=JSON.stringify(imgs); }catch(_){}
+      lsSet('hotel4g_rooms', getRooms()); roomsCache=getRooms();
+      renderRooms(); try{ renderRoomEditor(); }catch(_){}
+      showPopup({type:'success', title:'✅ Update Successful! (Local)', message:`✅ ${done} Photos Local Save ho gaye! Firebase error par local live kiya: ${e.message}. Firebase connect par fir se sync hoga.`, confirmText:'ठीक है'});
+    }
   } else {
     r.images=imgs; r.img=imgs[0];
-    document.getElementById('hiddenImgs_'+roomId).textContent=JSON.stringify(imgs);
-    lsSet('hotel4g_rooms', getRooms()); roomsCache=getRooms(); renderRooms(); renderRoomEditor();
-    showSuccess(`${done} Photos Add — Local Auto Updated 📸`,'Uploaded!');
+    try{ document.getElementById('hiddenImgs_'+roomId).textContent=JSON.stringify(imgs); }catch(_){}
+    lsSet('hotel4g_rooms', getRooms()); roomsCache=getRooms(); renderRooms(); try{ renderRoomEditor(); }catch(_){}
+    showPopup({type:'success', title:'✅ Update Successful!', message:`✅ ${done} Photos add — Local Live! Firebase connect par Storage pe bhi jayega.`, confirmText:'बहुत बढ़िया! 🎉'});
   }
 }
 async function saveRooms(){
@@ -4261,5 +4294,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e3320178ed0b2c',t:'MTc4OTkzMjEwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e34a26e9103e2d',t:'MTc4OTkzMzA5OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
