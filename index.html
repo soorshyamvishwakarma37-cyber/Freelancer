@@ -704,7 +704,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfccd0d0cdccd7c6ded2c9d6ccd7c8ded4decdd2de8c88ffd8d2ded6d391dcd0d2">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6714080815140f1e060a110e140f10060c06150a06545027000a060e0b4904080a">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -779,7 +779,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aeddc1c1dcddc6d7cfc3d8c7ddc6d9cfc5cfdcc3cf9d99eec9c3cfc7c280cdc1c3">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcafb3b3aeafb4a5bdb1aab5afb4abbdb7bdaeb1bdefeb9cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -851,7 +851,12 @@ img,video{max-width:100%;height:auto}
         <div class="field"><label>🧒 Children</label><select id="payChildren"><option value="0" selected>0 Child</option><option value="1">1 Child</option><option value="2">2 Children</option><option value="3">3 Children</option><option value="4">4 Children</option></select></div>
       </div>
       <div class="field"><label>🏨 Room No. — Select (Admin Edit/Add/Delete)</label><select id="payRoomNumber" style="width:100%;padding:11px 10px;border:1.5px solid #E2E8F0;background:#FFFBEB;border-radius:11px;font-size:13px;outline:none"><option value="">Auto Assign — Best Available</option></select><div style="font-size:10px;color:#64748B;margin-top:2px" id="payRoomNumberHint">Available numbers for selected room & dates • Admin edit कर सकता है</div></div>
-      <div class="field"><label>Coupon</label><input id="payCoupon" placeholder="HOTEL200" oninput="updatePaySummary()"></div>
+      <div id="availableCoupons" style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:12px;padding:10px;display:none">
+        <div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px"><span>🎟️ Available Coupons — Click to Apply</span><span style="font-size:10px;color:#64748B;font-weight:600" id="couponCountBadge">0 coupons</span></div>
+        <div id="availableCouponsList" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+        <div style="font-size:10px;color:#065F46;margin-top:6px">Admin hi coupon add kar sakta hai • Apply par celebration + popup</div>
+      </div>
+      <div class="field"><label>Coupon — Code Dale / Upar se Click Kare</label><input id="payCoupon" placeholder="HOTEL200 — ya upar coupons se click kare" oninput="updatePaySummary()"></div>
       <div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid var(--border);border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center"><div><div style="font-size:11px;color:#78716C;font-weight:700">Total Payable (with Tax)</div><strong id="payTotal" style="font-size:20px;color:var(--dark)">₹1999</strong><div id="payBreakup" style="font-size:11px;color:#78716C">1 night • 2 Adults</div><div id="payTaxDetail" style="font-size:11px;color:#065F46;font-weight:800;margin-top:3px">+ GST 12% = ₹0 • Original Tax</div><div style="font-size:10px;color:#92400E;margin-top:2px">✓ Tax Original • Razorpay Auto Verify</div></div><div style="text-align:right"><span id="payNights" style="background:var(--dark);color:#fff;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800">1 night</span></div></div>
       <div style="background:#FFFBEB;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11px;font-weight:600;color:#92400e;margin-top:8px" id="payPersonHint"></div>
       <div id="payGuestInfo" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1.5px solid #6EE7B7;border-radius:12px;padding:10px;margin-top:8px;display:none"></div>
@@ -905,7 +910,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff8c90908d8c97869e9289968c97889e949e8d929eccc8bf98929e9693d19c9092">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb889494898893829a968d9288938c9a909a89969ac8ccbb9c969a9297d5989496">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -1006,11 +1011,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="780b17170a0b100119150e110b100f1913190a15194b4f381f15191114561b1715">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2c30302d2c37263e3229362c37283e343e2d323e6c681f38323e3633713c3032">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6b5a9a9b4b5aebfa7abb0afb5aeb1a7ada7b4aba7f5f186a1aba7afaae8a5a9ab">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="483b27273a3b203129253e213b203f2923293a25297b7f082f25292124662b2725">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7605191904051e0f171b001f051e01171d17041b17454136111b171f1a5815191b">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="becdd1d1cccdd6c7dfd3c8d7cdd6c9dfd5dfccd3df8d89fed9d3dfd7d290ddd1d3">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97e4f8f8e5e4ffeef6fae1fee4ffe0f6fcf6e5faf6a4a0d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="32415d5d40415a4b535f445b415a45535953405f53010572555f535b5e1c515d5f">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -1051,7 +1056,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f88b97978a8b908199958e918b908f9993998a9599cbcfb89f95999194d69b9795">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d3e22223f3e25342c203b243e253a2c262c3f202c7e7a0d2a202c2421632e2220">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -1139,7 +1144,18 @@ service cloud.firestore {
         </div>
       </div>
       <div class="admin-card" id="panel-calendar" style="display:none"><div class="admin-card-head"><h4>📅 Calendar — Firebase Live</h4><select id="adminCalRoom" onchange="renderAdminCalendar()" style="padding:7px 10px;border-radius:30px;border:1.5px solid var(--border);background:#FFFBEB"><option>Deluxe Room</option><option>Super Deluxe</option><option>Family Suite</option><option>Banquet Hall</option></select></div><div style="padding:14px"><div id="adminCalendarWrap"></div></div></div>
-      <div class="admin-card" id="panel-settings" style="display:none"><div class="admin-card-head"><h4>⚙️ Payment Settings — High Secure</h4></div><div style="padding:14px;display:grid;gap:12px;max-width:520px"><div style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:700;word-break:break-word">🔒 Payment Settings — सिर्फ आपका Email + Re-Auth</div><div class="field"><label>UPI ID</label><input id="setUpi" value="78699691901@ybl"></div><div class="field"><label>Razorpay Key ID (Live — rzp_live_...)</label><input id="setRazorKey" value="rzp_test_xxxxxxxx"></div><div class="field"><label>Coupon Code</label><input id="setCoupon" value="HOTEL200"></div><div class="field"><label>Tax % — Original GST (Auto)</label><input id="setTax" type="number" min="0" max="28" value="12"></div><div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:12px;padding:10px"><div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:8px">🎉 Banquet Hall Pricing — Admin Edit (Persons badhne par price badhega)</div><div class="field" style="margin-bottom:8px"><label>Banquet Base Price ₹ — (1 Guest ka base)</label><input id="setBanquetBase" type="number" min="1000" max="100000" value="6000" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div class="field" style="margin-bottom:0"><label>Per Person Extra ₹ — (Har extra person ka charge)</label><input id="setBanquetPerPerson" type="number" min="10" max="1000" value="110" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:6px">Formula: Base + PerPerson×Guests + tier extra → Final Price (GST extra) • 10 Guests → ~₹<span id="banquetPreviewHint">calculate</span></div></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase — Tax + Banquet Live</button></div>
+      <div class="admin-card" id="panel-settings" style="display:none"><div class="admin-card-head"><h4>⚙️ Payment Settings — High Secure</h4></div><div style="padding:14px;display:grid;gap:12px;max-width:520px"><div style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:700;word-break:break-word">🔒 Payment Settings — सिर्फ आपका Email + Re-Auth</div><div class="field"><label>UPI ID</label><input id="setUpi" value="78699691901@ybl"></div><div class="field"><label>Razorpay Key ID (Live — rzp_live_...)</label><input id="setRazorKey" value="rzp_test_xxxxxxxx"></div><div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px">
+        <div style="font-size:12px;font-weight:800;color:#0F172A;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:8px"><span>🎟️ Coupons — Admin Only (Add/Delete)</span><span style="font-size:10px;background:#FFFBEB;border:1px solid #FDE68A;padding:3px 8px;border-radius:20px;color:#92400E" id="adminCouponCount">0 coupons</span></div>
+        <div id="adminCouponsList" style="display:grid;gap:8px;margin-bottom:10px;max-height:200px;overflow:auto"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end">
+          <div class="field" style="margin:0"><label>New Coupon Code * (e.g. DIWALI500)</label><input id="newCouponCode" placeholder="DIWALI500" style="text-transform:uppercase"></div>
+          <div class="field" style="margin:0"><label>Discount ₹ *</label><input id="newCouponOff" type="number" placeholder="500" min="10" max="5000"></div>
+          <button onclick="adminAddCoupon()" class="btn-gold" style="padding:10px 14px;white-space:nowrap">+ Add Coupon</button>
+        </div>
+        <div class="field" style="margin-top:8px"><label>Description (optional)</label><input id="newCouponDesc" placeholder="e.g. Diwali Offer — 500 off on 2+ nights"></div>
+        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff8c90908d8c97869e9289968c97889e949e8d929eccc8bf98929e9693d19c9092">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
+        <div style="display:none"><input id="setCoupon" value="HOTEL200"></div>
+      </div><div class="field"><label>Tax % — Original GST (Auto)</label><input id="setTax" type="number" min="0" max="28" value="12"></div><div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:12px;padding:10px"><div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:8px">🎉 Banquet Hall Pricing — Admin Edit (Persons badhne par price badhega)</div><div class="field" style="margin-bottom:8px"><label>Banquet Base Price ₹ — (1 Guest ka base)</label><input id="setBanquetBase" type="number" min="1000" max="100000" value="6000" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div class="field" style="margin-bottom:0"><label>Per Person Extra ₹ — (Har extra person ka charge)</label><input id="setBanquetPerPerson" type="number" min="10" max="1000" value="110" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:6px">Formula: Base + PerPerson×Guests + tier extra → Final Price (GST extra) • 10 Guests → ~₹<span id="banquetPreviewHint">calculate</span></div></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase — Tax + Banquet Live</button></div>
         <div style="padding:14px;border-top:1px solid #F1F5F9;margin-top:8px">
           <h4 style="color:#0F172A;margin-bottom:6px">👔 Staff Panel — ID/Password (Hidden • Admin Only)</h4>
           <p style="font-size:11px;color:#64748B;margin-bottom:10px">IDs किसी को नहीं दिखतीं — सिर्फ Admin को यहाँ दिखती हैं • Password सिर्फ Admin बदल सकता है • Single Device Login</p>
@@ -1731,6 +1747,164 @@ const defaultRooms=[
   {id:"banquet", name_hi:"Banquet Hall", name_en:"Banquet Hall", price:12000, desc_hi:"20-500 मेहमान — शादी, पार्टी, मीटिंग के लिए Grand AC हॉल, स्टेज, DJ, कैटरिंग। Minimum 20", desc_en:"20-500 guests — Grand AC hall for weddings, parties, meetings. Minimum 20", images:["https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80","https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&q=80","https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80"], features:["🎉 20-500 Guests","❄️ Fully AC","🍽 Pure Veg","🎤 Stage + DJ"], tag:"🎉 EVENTS", maxAdults:6, maxChildren:4}
 ];
 const defaultSettings={upi:"78699691901@ybl", razorKey:"rzp_test_xxxxxxxx", coupon:"HOTEL200", couponOff:200, tax:12, heroImage:"https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80", banquetBase:6000, banquetPerPerson:110, banquetMax:500};
+// ——— COUPONS — Multiple, Admin Only Add, Available above coupon box, Celebration on apply — Firebase Live ———
+const defaultCoupons=[
+  {id:'c1', code:'HOTEL200', discount:200, desc:'Flat ₹200 off — Popular', createdBy:'admin', createdAtStr: new Date().toLocaleString('en-IN')},
+  {id:'c2', code:'WELCOME100', discount:100, desc:'Welcome Offer — New Guest', createdBy:'admin', createdAtStr: new Date().toLocaleString('en-IN')},
+  {id:'c3', code:'FESTIVAL500', discount:500, desc:'Festival Special — 500 off on 3+ nights', createdBy:'admin', createdAtStr: new Date().toLocaleString('en-IN')},
+  {id:'c4', code:'DIWALI300', discount:300, desc:'Diwali Dhamaka — 300 off', createdBy:'admin', createdAtStr: new Date().toLocaleString('en-IN')}
+];
+let couponsCache = [...defaultCoupons];
+ // Firebase only — coupons cache in memory, Firebase onSnapshot will update permanent live
+ // try{ couponsCache = JSON.parse(localStorage.getItem('hotel4g_coupons')||'null') || [...defaultCoupons]; }catch(e){}
+function getCoupons(){ return couponsCache.length? couponsCache : defaultCoupons; }
+function getCouponByCode(code){
+  const c=(code||'').trim().toUpperCase();
+  if(!c) return null;
+  // check in couponsCache first, then fallback to settings single coupon
+  let found=getCoupons().find(x=> x.code.toUpperCase()===c);
+  if(found) return found;
+  // fallback to old single coupon in settings
+  const s=getSettings();
+  if(s.coupon && s.coupon.toUpperCase()===c) return {code:s.coupon, discount:s.couponOff||200, desc:'Legacy coupon'};
+  return null;
+}
+function saveCouponsLS(arr){
+  couponsCache=arr;
+  // Firebase only — local storage disabled as per request, permanent until next update, front pe turant live via onSnapshot
+  // try{ localStorage.setItem('hotel4g_coupons', JSON.stringify(arr)); }catch(e){} // disabled
+}
+async function syncCouponsFromFirebase(){
+  if(!useFirebase || !db) return;
+  try{
+    const snap=await db.collection('coupons').get();
+    if(!snap.empty){
+      const arr=snap.docs.map(d=> ({id:d.id, ...d.data()}));
+      arr.sort((a,b)=> (b.discount||0)-(a.discount||0));
+      saveCouponsLS(arr);
+    } else {
+      // seed default if empty and admin
+      const isAdmin = authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase();
+      if(isAdmin){
+        const batch=db.batch();
+        defaultCoupons.forEach(c=> batch.set(db.collection('coupons').doc(c.id), {...c, createdAt: firebase.firestore.FieldValue.serverTimestamp()}));
+        await batch.commit();
+      }
+    }
+  }catch(e){ console.log('coupons sync fail',e); }
+}
+function listenCoupons(){
+  if(!useFirebase || !db) return;
+  try{
+    db.collection('coupons').onSnapshot(snap=>{
+      const arr=snap.docs.map(d=> ({id:d.id, ...d.data()}));
+      arr.sort((a,b)=> (b.discount||0)-(a.discount||0));
+      saveCouponsLS(arr);
+      try{ renderAvailableCoupons(); }catch(e){}
+      try{ renderAdminCoupons(); }catch(e){}
+    });
+  }catch(e){}
+}
+function renderAvailableCoupons(){
+  const wrap=document.getElementById('availableCoupons');
+  const list=document.getElementById('availableCouponsList');
+  const badge=document.getElementById('couponCountBadge');
+  if(!wrap || !list) return;
+  const coupons=getCoupons();
+  if(!coupons.length){ wrap.style.display='none'; return; }
+  wrap.style.display='block';
+  if(badge) badge.textContent=coupons.length+' coupons';
+  list.innerHTML=coupons.map(c=>`
+    <button onclick="applyCouponCode('${c.code}')" style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:800;color:#92400E;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap">
+      <span style="background:#0F172A;color:#FDE68A;padding:2px 6px;border-radius:20px;font-size:10px">${c.code}</span>
+      <span>₹${c.discount} off</span>
+      <span style="font-size:10px;color:#57534E">${c.desc? '• '+c.desc.slice(0,20):''}</span>
+    </button>
+  `).join('');
+}
+function applyCouponCode(code){
+  const input=document.getElementById('payCoupon');
+  if(input){ input.value=code; input.dispatchEvent(new Event('input')); }
+  // also trigger updatePaySummary which will celebrate if valid
+  try{ updatePaySummary(); }catch(e){}
+  // focus coupon input
+  setTimeout(()=>{ try{ document.getElementById('payCoupon')?.focus(); }catch(e){} },100);
+}
+let lastCelebratedCoupon='';
+function celebrateCoupon(code, discount){
+  if(lastCelebratedCoupon===code) return;
+  lastCelebratedCoupon=code;
+  // Beautiful alert popup
+  showPopup({type:'success', title:'🎉 Coupon Applied! — Celebration!', message:`<div style="text-align:center"><div style="font-size:42px;margin-bottom:8px">🎊🎉✨</div><b style="font-size:16px;color:#0F172A">${code} — ₹${discount} OFF Applied!</b><div style="font-size:11px;color:#065F46;margin-top:6px;background:#ECFDF5;border:1px solid #6EE7B7;padding:6px 10px;border-radius:10px">Coupon successfully applied — Discount ₹${discount} deducted<br>Total payable updated with celebration!</div><div style="font-size:10px;color:#64748B;margin-top:8px">Admin added coupons • Firebase live • Happy Stay!</div></div>`, confirmText:'🎉 Awesome! — Book Now'});
+  // Confetti effect
+  try{
+    const confetti=document.createElement('div');
+    confetti.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden';
+    confetti.innerHTML=Array.from({length:24}).map((_,i)=>`<div style="position:absolute;left:${Math.random()*100}%;top:-10px;width:8px;height:14px;background:${['#FF6B35','#FACC15','#06D6A0','#7C3AED','#FF3B82'][i%5]};transform:rotate(${Math.random()*360}deg);animation:confettiFall 1.2s ease-in ${i*0.05}s forwards;border-radius:2px"></div>`).join('');
+    document.body.appendChild(confetti);
+    const style=document.createElement('style');
+    style.textContent='@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg); opacity:1} 100%{transform:translateY(110vh) rotate(720deg); opacity:0}}';
+    document.head.appendChild(style);
+    setTimeout(()=>{ try{ confetti.remove(); style.remove(); }catch(e){} }, 1800);
+  }catch(e){}
+  // reset after 3s so same coupon can celebrate again if re-applied
+  setTimeout(()=>{ lastCelebratedCoupon=''; }, 3000);
+}
+function renderAdminCoupons(){
+  const wrap=document.getElementById('adminCouponsList');
+  const count=document.getElementById('adminCouponCount');
+  if(!wrap) return;
+  const coupons=getCoupons();
+  if(count) count.textContent=coupons.length+' coupons';
+  if(!coupons.length){ wrap.innerHTML='<div style="text-align:center;padding:12px;color:#94A3B8">No coupons — Admin add kare</div>'; return; }
+  wrap.innerHTML=coupons.map(c=>`
+    <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+      <div><b style="font-size:12px;color:#0F172A">${c.code}</b><span style="background:#DCFCE7;border:1px solid #86EFAC;padding:2px 6px;border-radius:20px;font-size:10px;font-weight:800;color:#065F46;margin-left:6px">₹${c.discount} off</span><div style="font-size:11px;color:#64748B">${c.desc||''} • by ${c.createdBy||'admin'}</div></div>
+      <button onclick="adminDeleteCoupon('${c.id}')" style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:6px 10px;border-radius:8px;font-size:11px;cursor:pointer">🗑 Delete</button>
+    </div>
+  `).join('');
+}
+async function adminAddCoupon(){
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Sirf Admin ('+ADMIN_EMAIL+') hi coupon add kar sakta hai');
+  const code=(document.getElementById('newCouponCode')?.value||'').trim().toUpperCase();
+  const off=parseInt(document.getElementById('newCouponOff')?.value||'0');
+  const desc=(document.getElementById('newCouponDesc')?.value||'').trim();
+  if(!code || !/^[A-Z0-9]{4,20}$/.test(code)) return showError('Coupon code 4-20 chars, A-Z0-9 only (e.g. DIWALI500)');
+  if(!off || off<10 || off>5000) return showError('Discount ₹10-5000 tak');
+  if(getCoupons().some(c=> c.code.toUpperCase()===code)) return showError('Coupon already exists — dusra code');
+  const id='c'+Date.now().toString(36).slice(-6);
+  const data={id, code, discount:off, desc:desc||code+' — ₹'+off+' off', createdBy: authUser.email, createdAtStr: new Date().toLocaleString('en-IN')};
+  // High secure re-auth check
+  try{
+    const ok=await ensureHighSecure('Add Coupon — '+code);
+    if(!ok) return;
+  }catch(e){}
+  if(useFirebase && db){
+    try{ await db.collection('coupons').doc(id).set({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){ showError('Firebase save failed — coupon not saved'); return; }
+  } else { showError('Firebase not connected — coupon not saved (admin only, Firebase required)'); return; }
+  document.getElementById('newCouponCode').value=''; document.getElementById('newCouponOff').value=''; document.getElementById('newCouponDesc').value='';
+  renderAvailableCoupons(); renderAdminCoupons();
+  showPopup({type:'success', title:'✅ Coupon Added — Admin Only', message:`<div style="text-align:center"><b style="color:#0F172A">${code} — ₹${off} off</b><br><span style="font-size:11px;color:#065F46">Coupon Firebase me permanent save — Front pe turant live, coupon box ke upar dikhega</span></div>`, confirmText:'Great! 🎉'});
+}
+async function adminDeleteCoupon(id){
+  if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Sirf Admin hi delete kar sakta hai');
+  const c=getCoupons().find(x=>x.id===id);
+  if(!c) return showError('Not found');
+  showPopup({type:'confirm', title:'🗑 Delete Coupon '+c.code+'?', message:`Coupon ${c.code} — ₹${c.discount} off ko permanently delete karna hai?`, confirmText:'🗑 Delete', showCancel:true, danger:true, onConfirm: async()=>{
+    try{
+      const ok=await ensureHighSecure('Delete Coupon — '+c.code);
+      if(!ok) return;
+    }catch(e){}
+    if(useFirebase && db){
+      try{ await db.collection('coupons').doc(id).delete(); }catch(e){ showError('Firebase delete failed'); return; }
+    } else { showError('Firebase not connected — delete not allowed'); return; }
+    renderAvailableCoupons(); renderAdminCoupons();
+    showSuccess('Coupon '+c.code+' deleted','Deleted 🗑');
+  }});
+}
+// Init coupons
+setTimeout(()=>{ try{ syncCouponsFromFirebase(); listenCoupons(); renderAvailableCoupons(); renderAdminCoupons(); }catch(e){} }, 800);
+
 const defaultGallery=["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80","https://images.unsplash.com/photo-1551016548-573fe324a244?w=600&q=80","https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80","https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80","https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80"];
 // Physical rooms — Room No. wise — Admin can Edit/Add/Delete — Live from Firebase — includes Banquet
 const defaultPhysicalRooms=[
@@ -1960,14 +2134,17 @@ function setLang(lang){
 // ——— FIRESTORE LISTENERS ———
 function startListeners(){
   if(!useFirebase){
-    roomsCache=lsGet('hotel4g_rooms',defaultRooms); // migrate old single img to images array
+    // Firebase only as per request — local storage disabled, show Firebase required message
+    roomsCache=[...defaultRooms];
     roomsCache=roomsCache.map(r=>{ if(r.img && !r.images) r.images=[r.img]; if(!r.maxAdults) r.maxAdults=2; return r; });
-    settingsCache={...defaultSettings, ...lsGet('hotel4g_settings',{})};
-    bookingsCache=lsGet('hotel4g_bookings',[]);
-    galleryCache=lsGet('hotel4g_gallery', defaultGallery.map((url,i)=>({id:'g'+i, url})));
-    reviewsCache=lsGet('hotel4g_reviews', []);
-    physicalRooms=lsGet('hotel4g_physicalRooms', [...defaultPhysicalRooms]);
-    menuCache=lsGet('hotel4g_menu', [...defaultMenuItems]);
+    settingsCache={...defaultSettings};
+    bookingsCache=[];
+    galleryCache=defaultGallery.map((url,i)=>({id:'g'+i, url}));
+    reviewsCache=[];
+    physicalRooms=[...defaultPhysicalRooms];
+    menuCache=[...defaultMenuItems];
+    // Show Firebase required popup once
+    setTimeout(()=>{ try{ if(!useFirebase) showPopup({type:'warning', title:'🔥 Firebase Required', message:'Firebase not configured — sabhi data Firebase me save hota hai (local storage disabled as per request). Firebase config kare taaki data permanent live rahe.', confirmText:'Samajh gaya'}); }catch(e){} }, 800);
     otpCache=lsGet('hotel4g_otps', []);
     renderAll(); return;
   }
@@ -2020,19 +2197,20 @@ function startListeners(){
       otpCache=snap.docs.map(d=>({id:d.id, ...d.data(), createdAt: d.data().createdAt?.toMillis ? d.data().createdAt.toMillis() : (d.data().createdAt||Date.now()) }));
       // normalize timestamps if Firestore Timestamp
       otpCache.forEach(o=>{ if(typeof o.createdAt!=='number') o.createdAt=Date.now(); if(!o.expiresAt) o.expiresAt=o.createdAt+5*60*1000; if(!o.createdAtStr) o.createdAtStr=new Date(o.createdAt).toLocaleString('en-IN'); });
-      lsSet('hotel4g_otps', otpCache);
+      /* Firebase only — hotel4g_otps local storage disabled as per request */
       try{ renderAdminOtps(); }catch(e){}
     }
   }, err=>{ console.warn('staffOtps listener', err); });
 }
 startListeners();
-roomsCache=roomsCache||lsGet('hotel4g_rooms',defaultRooms).map(r=> r.img&&!r.images?{...r,images:[r.img]}:r);
-settingsCache=settingsCache||{...defaultSettings,...lsGet('hotel4g_settings',{})};
-galleryCache=galleryCache.length?galleryCache: lsGet('hotel4g_gallery', defaultGallery.map((url,i)=>({id:'g'+i,url})));
-reviewsCache=reviewsCache||lsGet('hotel4g_reviews', []);
-physicalRooms=physicalRooms.length?physicalRooms: lsGet('hotel4g_physicalRooms', [...defaultPhysicalRooms]);
-menuCache=menuCache.length?menuCache: lsGet('hotel4g_menu', [...defaultMenuItems]);
-otpCache=otpCache.length?otpCache: lsGet('hotel4g_otps', []);
+roomsCache=roomsCache||[...defaultRooms].map(r=> r.img&&!r.images?{...r,images:[r.img]}:r);
+settingsCache=settingsCache||{...defaultSettings};
+galleryCache=galleryCache.length?galleryCache: defaultGallery.map((url,i)=>({id:'g'+i,url}));
+reviewsCache=reviewsCache||[];
+physicalRooms=physicalRooms.length?physicalRooms: [...defaultPhysicalRooms];
+menuCache=menuCache.length?menuCache: [...defaultMenuItems];
+otpCache=otpCache.length?otpCache: [];
+// Firebase only — permanent live
 setTimeout(()=>{ try{ renderAdminPhysicalRooms(); updateTravelRoomNumbers(); updatePayRoomNumbers(); }catch(e){} },400);
 function getRooms(){return roomsCache||defaultRooms}
 function getSettings(){return settingsCache||defaultSettings}
@@ -2049,7 +2227,7 @@ function applyHeroImage(url){
   if(pv && url) pv.src=url;
 }
 function getBookings(){return bookingsCache||[]}
-function getServiceRequests(){ return serviceRequestsCache.length? serviceRequestsCache : lsGet('hotel4g_serviceRequests',[]); }
+function getServiceRequests(){ return serviceRequestsCache.length? serviceRequestsCache : []; } // Firebase only — local storage disabled, permanent via Firebase onSnapshot }
 function getGallery(){return galleryCache||[]}
 function getReviews(){return reviewsCache||[]}
 function getPhysicalRooms(){return physicalRooms||defaultPhysicalRooms}
@@ -2082,7 +2260,7 @@ async function adminAddPhysicalRoom(){
   if(useFirebase){
     try{ await db.collection('physicalRooms').doc(num).set(newRoom); }catch(e){ return showError(e.message); }
   } else {
-    physicalRooms.push(newRoom); physicalRooms.sort((a,b)=>a.number.localeCompare(b.number)); lsSet('hotel4g_physicalRooms', physicalRooms); renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers();
+    physicalRooms.push(newRoom); physicalRooms.sort((a,b)=>a.number.localeCompare(b.number)); if(useFirebase && db){ try{ await db.collection('physicalRooms').doc(newRoom.number).set(newRoom); }catch(e){ showError('Firebase save failed — room not saved'); return; } } else { showError('Firebase not connected — room not saved'); return; } renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers();
   }
   document.getElementById('newRoomNumber').value=''; 
   showSuccess('Room No. '+num+' Added — Customer Reserve में तुरंत दिखेगा','Added!');
@@ -2117,7 +2295,7 @@ async function adminEditPhysicalRoom(oldNum){
         }catch(e){ showError(e.message); }
       } else {
         const idx=physicalRooms.findIndex(r=>r.number===oldNum);
-        if(idx>-1){ physicalRooms[idx]={number:newNum, type:newType, floor:newFloor}; physicalRooms.sort((a,b)=>a.number.localeCompare(b.number)); lsSet('hotel4g_physicalRooms', physicalRooms); renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers(); showSuccess('Room No. Updated — Live!','Updated! ✨'); }
+        if(idx>-1){ physicalRooms[idx]={number:newNum, type:newType, floor:newFloor}; physicalRooms.sort((a,b)=>a.number.localeCompare(b.number)); if(useFirebase && db){ try{ await db.collection('physicalRooms').doc(newNum).set(physicalRooms[idx]); if(newNum!==num) await db.collection('physicalRooms').doc(num).delete(); }catch(e){ showError('Firebase update failed'); return; } } else { showError('Firebase not connected — update not saved'); return; } renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers(); showSuccess('Room No. Updated — Live!','Updated! ✨'); }
       }
     }
   });
@@ -2128,7 +2306,7 @@ async function adminDeletePhysicalRoom(num){
     if(useFirebase){
       try{ await db.collection('physicalRooms').doc(num).delete(); }catch(e){ return showError(e.message); }
     } else {
-      physicalRooms=physicalRooms.filter(r=>r.number!==num); lsSet('hotel4g_physicalRooms', physicalRooms); renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers();
+      physicalRooms=physicalRooms.filter(r=>r.number!==num); if(useFirebase && db){ try{ await db.collection('physicalRooms').doc(num).delete(); }catch(e){ showError('Firebase delete failed'); return; } } else { showError('Firebase not connected — delete not allowed'); return; } renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers();
     }
     showSuccess('Room No. Deleted','🗑');
   }});
@@ -2322,12 +2500,13 @@ function refreshGuestOrders(){
   </div>`).join('');
 }
 function clearGuestData(){
-  if(!confirm('Local guest data clear kare? Bookings Firebase me safe rahenge, sirf is device ka local hat jayega')) return;
-  localStorage.removeItem('hotel4g_myBookings');
-  localStorage.removeItem('hotel4g_hasBooking');
-  localStorage.removeItem('hotel4g_guestUid');
-  showSuccess('Local data cleared','Done');
-  refreshGuestOrders();
+  showPopup({type:'confirm', title:'Local Data Clear Kare?', message:'Bookings Firebase me safe rahenge, sirf is device ka local hat jayega — confirm kare? (Sunder popup, no localhost box)', confirmText:'Clear Kare', showCancel:true, onConfirm:()=>{
+    localStorage.removeItem('hotel4g_myBookings');
+    localStorage.removeItem('hotel4g_hasBooking');
+    localStorage.removeItem('hotel4g_guestUid');
+    showSuccess('Local data cleared — Firebase me safe','Done ✓');
+    refreshGuestOrders();
+  }});
 }
 
 function openDashboardFromLogin(){ if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ सिर्फ '+ADMIN_EMAIL); closeAdminLogin(); document.getElementById('adminDashboard').classList.add('open'); document.body.style.overflow='hidden'; renderBookings(); updateStats(); renderRoomEditor(); renderGalleryAdmin(); renderAdminCalendar();}
@@ -2656,9 +2835,8 @@ function openBanquetModal(){
       {id:'banqType', label:'Event Type', type:'select', value:'Wedding', options:[{value:'Wedding',label:'Wedding — शादी'},{value:'Birthday',label:'Birthday'},{value:'Corporate',label:'Corporate Meeting'},{value:'Kitty Party',label:'Kitty Party'},{value:'Other',label:'Other'}]},
       {id:'banqNote', label:'Special Note (Decoration/Catering)', type:'textarea', placeholder:'e.g. Flower Decoration, Veg Catering 100 pax, Evening 6PM...', rows:2}
     ],
-    confirmText:'🎉 Continue to Payment →',
-        onSubmit: (vals)=>{
-      const name=(vals.banqName||'').trim(), phone=(vals.banqPhone||'').trim(), date=(vals.banqDate||'').trim(), guestsRaw=vals.banqGuests, type=vals.banqType, note=(vals.banqNote||'').trim();
+    confirmText:'📩 Send Enquiry — No Payment Now (Paise nahi katenge)',
+                onSubmit: async (vals)=>{const name=(vals.banqName||'').trim(), phone=(vals.banqPhone||'').trim(), date=(vals.banqDate||'').trim(), guestsRaw=vals.banqGuests, type=vals.banqType, note=(vals.banqNote||'').trim();
       let guests=parseInt(guestsRaw)||0;
       if(!name||!phone||!date) return showError('नाम, मोबाइल, Date जरूरी');
       if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) return showError('Date YYYY-MM-DD format में डालें — e.g. '+today);
@@ -2667,11 +2845,30 @@ function openBanquetModal(){
       const price=calcBanquetPrice(guests);
       const coutNext=new Date(parseDate(date).getTime()+86400000).toISOString().slice(0,10);
       const banquetTravel={cin:date, cout:coutNext, adults:guests, children:0, name, phone, mode:'Banquet', pickup:'No', pickupDetail:'', note: (note? note+' • ':'')+type, travelData:`Banquet: ${type} • ${guests} Guests • Price ₹${price} (Persons badhne par price badha)${note?' • '+note:''}`, roomNumber:'BAN-1', banquetGuests: guests, banquetPrice: price};
-      sessionStorage.setItem('pendingTravel', JSON.stringify(banquetTravel));
-      pendingReserve={room:'Banquet Hall', price:price, roomNumber:'BAN-1', travel:banquetTravel};
-      openPayModal('Banquet Hall', price);
-      setTimeout(()=>{ document.getElementById('payCin').value=date; document.getElementById('payCout').value=coutNext; document.getElementById('payAdults').value=String(Math.min(6, Math.max(1, Math.ceil(guests/20)))); document.getElementById('payChildren').value='0'; document.getElementById('payRoomNumber').value='BAN-1'; updatePaySummary(); updatePayRoomNumbers(); },140);
-      showSuccess(`Banquet Hall — ${type} • ${guests} Guests • ₹${price} • ${date} — Persons ke saath price auto — Payment kare 🎉`,'Banquet Ready!');
+      // FIX: Banquet hall booking paise nahi katne — sirf enquiry, staff confirm karega (thik kiya)
+      const banquetEnquiryData = {
+        name, phone, cin:date, cout:coutNext, room:'Banquet Hall', roomNumber:'BAN-1',
+        adults:guests, children:0, nights:1,
+        amount:price, subtotal:price, tax:Math.round(price* (getSettings().tax||12)/100), taxPercent:getSettings().tax||12,
+        discount:0, coupon:'', payment:'Pending — Enquiry (No Payment Yet)', txn:'', status:'pending',
+        verified:false, verification:'Banquet Enquiry — Staff Confirm',
+        travelData:`Banquet: ${type} • ${guests} Guests • Price ₹${price} (20-500, Minimum 20)${note?' • '+note:''}`,
+        banquetGuests:guests, banquetPrice:price, banquetType:type, banquetNote:note,
+        createdAtStr:new Date().toLocaleString('en-IN'),
+        guestUid:getCurrentGuestUid(), guestDeviceId:guestDeviceId
+      };
+      try{
+        if(useFirebase && db){
+          await db.collection('bookings').add({...banquetEnquiryData, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
+          showPopup({type:'success', title:'✅ Banquet Enquiry Sent! — No Payment Deducted', message:`<div style="text-align:left"><b style="color:#0F172A">🎉 Banquet Hall — ${type}</b><br>📅 Date: ${date} • Guests: ${guests} • Price: ₹${price} (GST extra)<br><br><span style="background:#ECFDF5;border:1px solid #6EE7B7;padding:6px 8px;border-radius:8px;display:block;color:#065F46;font-weight:700">✅ Paise abhi nahi kate — Sirf enquiry gayi hai<br>Staff 30 min me call karke confirm karega, phir payment link bhejega</span><br>Room No. BAN-1 • Status: Pending • Staff Panel me live dikhega</div>`, confirmText:'Great! 🎉'});
+        } else {
+          showError('Firebase not connected — enquiry not saved, please check connection');
+          return;
+        }
+        try{ renderBookings(); }catch(e){}
+      }catch(err){
+        showError('Banquet enquiry failed: '+err.message);
+      }
     }
   });
   // Live price update on guests change — Custom number (20-500) — Minimum 20 — persons badhne par price badhega — Admin editable
@@ -2715,6 +2912,7 @@ function openBanquetModal(){
 let currentPay={room:"Deluxe Room", price:1999, nights:1, adults:2, children:0, total:1999, payMethod:'upi'};
 function openPayModal(roomName,price){
   currentPay.room=roomName; currentPay.price=price;
+  try{ renderAvailableCoupons(); }catch(e){}
   document.getElementById('payRoomName').textContent=roomName;
   document.getElementById('payCin').value=document.getElementById('checkin').value||today;
   document.getElementById('payCout').value=document.getElementById('checkout').value||tmr;
@@ -2762,7 +2960,16 @@ function updatePaySummary(){
   const taxPercent = (s.tax!==undefined ? s.tax : 12);
   let subtotal=currentPay.price*nights;
   const coupon=document.getElementById('payCoupon').value.trim().toUpperCase();
-  let disc=0; if(coupon && coupon===s.coupon.toUpperCase()){disc=s.couponOff;}
+  let disc=0; let matchedCoupon=null;
+  if(coupon){
+    const found=getCouponByCode(coupon);
+    if(found){ disc=found.discount; matchedCoupon=found; }
+    else if(coupon && s.coupon && coupon===s.coupon.toUpperCase()){ disc=s.couponOff; matchedCoupon={code:s.coupon, discount:s.couponOff}; }
+  }
+  // Celebration on valid coupon apply — only once per code
+  if(matchedCoupon && disc>0 && lastCelebratedCoupon!==matchedCoupon.code){
+    setTimeout(()=> celebrateCoupon(matchedCoupon.code, matchedCoupon.discount), 150);
+  }
   let taxable=Math.max(0, subtotal - disc);
   let tax=Math.round(taxable * taxPercent / 100);
   let total=taxable + tax;
@@ -2815,9 +3022,9 @@ async function addBooking(data){
     const ref=await db.collection('bookings').add({...savedData, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
     savedData.id=ref.id;
   } else {
-    savedData.id=Date.now().toString();
-    savedData.date=savedData.createdAtStr;
-    const arr=lsGet('hotel4g_bookings',[]); arr.unshift(savedData); lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms();
+    // Firebase only — local host storage me save nahi as per request
+    showError('Firebase not connected — Booking not saved. Please check Firebase config (local storage disabled)');
+    return savedData;
   }
   // Store my booking for guest check (room service/restaurant visibility for booked guest)
   try{
@@ -3024,7 +3231,7 @@ async function handleContact(e){
         const _uidForService = getCurrentGuestUid();
     const _devForService = guestDeviceId;
     if(useFirebase){ await db.collection('serviceRequests').add({...enquiryData, guestUid: _uidForService, guestDeviceId: _devForService, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }
-    else { const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(), ...enquiryData}); lsSet('hotel4g_serviceRequests', arr); }
+    else { showError('Firebase not connected — enquiry not saved (Firebase required)'); return; }
   }catch(err){ return showError('Enquiry fail: '+err.message); }
   showPopup({type:'success', title:'✅ Enquiry Sent — Payment Required', message:`${name} — Enquiry mil gayi! Room ${roomName} ke liye Original Payment (UPI 78699691901@ybl / Razorpay GST ke saath) karne par hi Reservation Confirm hoga — Team 10 min me call karegi. Bina payment ka koi reservation nahi.` , confirmText:'💳 Pay karke Confirm करें', onConfirm:()=>{ document.getElementById('payCin').value=cin; document.getElementById('payCout').value=cout; document.getElementById('payAdults').value=adults; document.getElementById('payChildren').value=children; openPayModal(roomName, rData?rData.price:1999); }});
   e.target.reset(); document.getElementById('fCin').value=today; document.getElementById('fCout').value=tmr; document.getElementById('fAdults').value="2"; document.getElementById('fChildren').value="0"; updatePersonHints();
@@ -3084,21 +3291,24 @@ const defaultRestaurantTables=[
   {id:'t11', tableNumber:'T11', capacity:2, type:'Family', status:'Maintenance', description:'Maintenance — Soon Available', image:'https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&q=80'},
   {id:'t12', tableNumber:'T12', capacity:4, type:'Indoor AC', status:'Available', description:'Indoor AC — 4 Guests • Standard', image:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80'}
 ];
-let restaurantTablesCache = [];
-try{ restaurantTablesCache = JSON.parse(localStorage.getItem('hotel4g_restaurantTables')||'null') || []; }catch(e){ restaurantTablesCache=[]; }
-if(!restaurantTablesCache.length) restaurantTablesCache = [...defaultRestaurantTables];
+let restaurantTablesCache = [...defaultRestaurantTables];
+ // Firebase only — initial cache from default, Firebase onSnapshot will update permanent live
+ // try{ restaurantTablesCache = JSON.parse(localStorage.getItem('hotel4g_restaurantTables')||'null') || []; }catch(e){}
 let tableBookingsCache = [];
-try{ tableBookingsCache = JSON.parse(localStorage.getItem('hotel4g_tableBookings')||'null') || []; }catch(e){ tableBookingsCache=[]; }
+ // Firebase only — bookings cache in memory, Firebase onSnapshot will populate permanent
+ // try{ tableBookingsCache = JSON.parse(localStorage.getItem('hotel4g_tableBookings')||'null') || []; }catch(e){}
 
 function getRestaurantTables(){ return restaurantTablesCache.length? restaurantTablesCache : defaultRestaurantTables; }
 function saveRestaurantTablesLS(arr){
   restaurantTablesCache = arr;
-  try{ localStorage.setItem('hotel4g_restaurantTables', JSON.stringify(arr)); }catch(e){}
+  // Firebase only — permanent until next update, front pe turant live
+  // try{ localStorage.setItem('hotel4g_restaurantTables', JSON.stringify(arr)); }catch(e){} // disabled
 }
 function getTableBookings(){ return tableBookingsCache; }
 function saveTableBookingsLS(arr){
   tableBookingsCache = arr;
-  try{ localStorage.setItem('hotel4g_tableBookings', JSON.stringify(arr)); }catch(e){}
+  // Firebase only — permanent until next update
+  // try{ localStorage.setItem('hotel4g_tableBookings', JSON.stringify(arr)); }catch(e){} // disabled
 }
 
 // Firebase sync for tables
@@ -3244,9 +3454,10 @@ function openTableBookingModal(prefId){
       if(useFirebase && db){
         try{
           await db.collection('tableBookings').doc(id).set({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
-        }catch(e){ console.log('firebase table booking fail',e); const arr=[data, ...getTableBookings()]; saveTableBookingsLS(arr); }
+        }catch(e){ console.log('firebase table booking fail',e); showError('Firebase save failed — table booking not saved (local storage disabled)'); return; }
       } else {
-        const arr=[data, ...getTableBookings()]; saveTableBookingsLS(arr);
+        showError('Firebase not connected — table booking not saved (local storage disabled as per request)');
+        return;
       }
       // also add a pending notification to staff
       showSuccess(`✅ Table ${table.tableNumber} • ${date} ${time} • ${guests} Guests — Request sent! Staff confirm karega — Table No. Wise`, 'Booked! 🍽');
@@ -3319,14 +3530,14 @@ function renderStaffTables(){
 async function staffAddTable(){
   if(!currentStaffId && !(authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only');
   showFormPopup({
-    type:'info', title:'➕ Add New Table — No. Wise', desc:'Table No. unique hona chahiye (e.g. T13) • Image URL optional, <5MB wali image ka link',
+    type:'info', title:'➕ Add New Table — No. Wise', desc:'Table No. unique hona chahiye (e.g. T13) • Gallery se direct photo chune ya URL dale • Image URL optional, <5MB',
     fields:[
       {id:'tblNumber', label:'Table No. * (e.g. T13, T14)', type:'text', placeholder:'T13', required:true},
       {id:'tblCap', label:'Capacity * (Guests)', type:'select', value:'4', options:[{value:'2',label:'2 Guests'},{value:'4',label:'4 Guests'},{value:'6',label:'6 Guests'},{value:'8',label:'8 Guests'},{value:'10',label:'10 Guests'}]},
       {id:'tblType', label:'Type *', type:'select', value:'Indoor AC', options:[{value:'Indoor AC',label:'Indoor AC'},{value:'Outdoor Garden',label:'Outdoor Garden'},{value:'Window Side',label:'Window Side'},{value:'Family',label:'Family'},{value:'Private Cabin',label:'Private Cabin'}]},
       {id:'tblStatus', label:'Status *', type:'select', value:'Available', options:[{value:'Available',label:'Available'},{value:'Reserved',label:'Reserved'},{value:'Maintenance',label:'Maintenance'}]},
       {id:'tblDesc', label:'Description', type:'textarea', placeholder:'e.g. Couple Special, Garden View...', rows:2},
-      {id:'tblImage', label:'Image URL (optional)', type:'text', placeholder:'https://.../photo.jpg'}
+      {id:'tblImage', label:'Image URL (optional) — Gallery se chune ya paste kare', type:'text', placeholder:'https://.../photo.jpg — ya neeche Gallery se click kare'}
     ],
     confirmText:'➕ Add Table — Live',
     onSubmit: async (vals)=>{
@@ -3342,26 +3553,39 @@ async function staffAddTable(){
       const id='t'+Date.now().toString(36).slice(-4);
       const data={id, tableNumber:num, capacity:cap, type, status, description:desc, image:img, createdBy: currentStaffId||authUser?.email||'staff', createdAtStr: new Date().toLocaleString('en-IN')};
       if(useFirebase && db){
-        try{ await db.collection('restaurantTables').doc(id).set({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){ const arr=[...getRestaurantTables(), data]; saveRestaurantTablesLS(arr); }
-      } else { const arr=[...getRestaurantTables(), data]; saveRestaurantTablesLS(arr); }
+        try{ await db.collection('restaurantTables').doc(id).set({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){ showError('Firebase save failed — table not saved'); return; }
+      } else { showError('Firebase not connected — table not saved (local storage disabled)'); return; }
       renderRestaurantTables(); renderStaffTables();
       showSuccess(`Table ${num} added — Live!`,'Added 🪑');
     }
   });
+  // Gallery se direct photo chune — inject gallery picker after popup opens
+  setTimeout(()=>{
+    try{
+      const imgInput=document.getElementById('tblImage');
+      if(!imgInput) return;
+      const gal=getGallery();
+      if(!gal.length) return;
+      const wrap=document.createElement('div');
+      wrap.style.cssText='margin-top:10px;padding:8px;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:12px';
+      wrap.innerHTML=`<div style="font-size:11px;font-weight:800;color:#0F172A;margin-bottom:6px">📸 Gallery se direct chune — click kare (permanent live)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-height:140px;overflow:auto">${gal.slice(0,16).map(g=>`<img src="${g.url}" style="width:100%;height:58px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent" onclick="document.getElementById('tblImage').value=this.src; document.getElementById('tblImage').style.borderColor='#16A34A'; this.style.borderColor='#DC2626'; showSuccess('Gallery photo selected — permanent live','Selected! 📸')" title="Click to select gallery photo">`).join('')}</div><div style="font-size:10px;color:#64748B;margin-top:4px">Gallery photo select karne par URL auto fill hoga — Firebase me permanent save, front website pe turant live</div>`;
+      imgInput.parentElement.appendChild(wrap);
+    }catch(e){}
+  }, 500);
 }
 async function staffEditTable(id){
   if(!currentStaffId && !(authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only');
   const tb=getRestaurantTables().find(x=>x.id===id);
   if(!tb) return showError('Not found');
   showFormPopup({
-    type:'info', title:`✏️ Edit Table ${tb.tableNumber} — No. Wise`, desc:'Capacity/Type/Status/Image edit kare — Turant live',
+    type:'info', title:`✏️ Edit Table ${tb.tableNumber} — No. Wise`, desc:'Capacity/Type/Status/Image edit kare — Gallery se direct chune ya URL — Turant live permanent',
     fields:[
       {id:'tblNumber', label:'Table No. *', type:'text', value:tb.tableNumber, required:true},
       {id:'tblCap', label:'Capacity *', type:'select', value:String(tb.capacity), options:[{value:'2',label:'2'},{value:'4',label:'4'},{value:'6',label:'6'},{value:'8',label:'8'},{value:'10',label:'10'}]},
       {id:'tblType', label:'Type *', type:'select', value:tb.type, options:[{value:'Indoor AC',label:'Indoor AC'},{value:'Outdoor Garden',label:'Outdoor Garden'},{value:'Window Side',label:'Window Side'},{value:'Family',label:'Family'},{value:'Private Cabin',label:'Private Cabin'}]},
       {id:'tblStatus', label:'Status *', type:'select', value:tb.status, options:[{value:'Available',label:'Available'},{value:'Reserved',label:'Reserved'},{value:'Maintenance',label:'Maintenance'}]},
       {id:'tblDesc', label:'Description', type:'textarea', value:tb.description||'', rows:2},
-      {id:'tblImage', label:'Image URL', type:'text', value:tb.image||''}
+      {id:'tblImage', label:'Image URL — Gallery se chune ya paste kare', type:'text', value:tb.image||''}
     ],
     confirmText:'💾 Save Edit — Live',
     onSubmit: async (vals)=>{
@@ -3375,12 +3599,24 @@ async function staffEditTable(id){
       if(num!==tb.tableNumber && getRestaurantTables().some(t=> t.tableNumber.toUpperCase()===num)) return showError('Table No. already exists');
       const updated={...tb, tableNumber:num, capacity:cap, type, status, description:desc, image:img, updatedBy: currentStaffId||authUser?.email||'staff', updatedAtStr: new Date().toLocaleString('en-IN')};
       if(useFirebase && db){
-        try{ await db.collection('restaurantTables').doc(id).update({...updated, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){ const arr=getRestaurantTables().map(x=> x.id===id? updated: x); saveRestaurantTablesLS(arr); }
-      } else { const arr=getRestaurantTables().map(x=> x.id===id? updated: x); saveRestaurantTablesLS(arr); }
+        try{ await db.collection('restaurantTables').doc(id).update({...updated, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){ showError('Firebase update failed — table not updated'); return; }
+      } else { showError('Firebase not connected — table not updated'); return; }
       renderRestaurantTables(); renderStaffTables();
       showSuccess(`Table ${num} updated — Live!`,'Updated ✏️');
     }
   });
+  setTimeout(()=>{
+    try{
+      const imgInput=document.getElementById('tblImage');
+      if(!imgInput) return;
+      const gal=getGallery();
+      if(!gal.length) return;
+      const wrap=document.createElement('div');
+      wrap.style.cssText='margin-top:10px;padding:8px;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:12px';
+      wrap.innerHTML=`<div style="font-size:11px;font-weight:800;color:#0F172A;margin-bottom:6px">📸 Gallery se direct chune — click kare (permanent live)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-height:140px;overflow:auto">${gal.slice(0,16).map(g=>`<img src="${g.url}" style="width:100%;height:58px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid ${g.url===tb.image?'#16A34A':'transparent'}" onclick="document.getElementById('tblImage').value=this.src; document.getElementById('tblImage').style.borderColor='#16A34A'; Array.from(this.parentElement.children).forEach(c=>c.style.borderColor='transparent'); this.style.borderColor='#DC2626'; showSuccess('Gallery photo selected','Selected! 📸')" title="Click to select">`).join('')}</div><div style="font-size:10px;color:#64748B;margin-top:4px">Current: ${tb.image? '• gallery se select ya URL edit kare':''} — Firebase me permanent, front pe turant live</div>`;
+      imgInput.parentElement.appendChild(wrap);
+    }catch(e){}
+  }, 500);
 }
 async function staffDeleteTable(id){
   if(!currentStaffId && !(authUser && authUser.email && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only');
@@ -3518,19 +3754,19 @@ async function updateStatus(id,status){
   if(status==='paid'){
     showPopup({type:'confirm', title:'💰 Paid करें?', message:'High Secure: PAID Mark कर रहे हैं — Verify किया?', confirmText:'हाँ, Paid 🔒', cancelText:'रद्द करें', showCancel:true, onConfirm: async()=>{
       if(useFirebase) await db.collection('bookings').doc(id).update({status, verifiedBy: ADMIN_EMAIL, verifiedAt: firebase.firestore.FieldValue.serverTimestamp()});
-      else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats();}}
+      else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; renderBookings(); updateStats();}}
       showSuccess(`Booking ${status} — Secure ✓`, '🔐');
     }}); return;
   }
   if(useFirebase) await db.collection('bookings').doc(id).update({status});
-  else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats();}}
+  else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(b=>String(b.id)===String(id)); if(idx>-1){arr[idx].status=status; /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; renderBookings(); updateStats();}}
   showSuccess(`Booking ${status} ✓`, 'Updated!');
 }
 async function deleteBooking(id){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Unauthorized');
   showPopup({type:'confirm', title:'Delete?', message:'हमेशा के लिए Delete — Firebase से भी हटेगी।', confirmText:'हाँ, Delete', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
     if(useFirebase) await db.collection('bookings').doc(id).delete();
-    else { let arr=lsGet('hotel4g_bookings',[]).filter(b=>String(b.id)!==String(id)); lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderBookings(); updateStats();}
+    else { let arr=lsGet('hotel4g_bookings',[]).filter(b=>String(b.id)!==String(id)); /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; renderBookings(); updateStats();}
     showSuccess('Deleted!','🗑');
   }});
 }
@@ -3538,7 +3774,7 @@ async function clearAllBookings(){
   if(!authUser || authUser.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()) return showError('⛔ Only Your Email');
   showPopup({type:'confirm', title:'सब Delete?', message:'सारी Bookings हट जाएंगी!', confirmText:'हाँ, सब हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
     if(useFirebase){ const snap=await db.collection('bookings').get(); const batch=db.batch(); snap.forEach(d=>batch.delete(d.ref)); await batch.commit(); }
-    else { lsSet('hotel4g_bookings',[]); bookingsCache=[]; renderBookings(); updateStats();}
+    else { /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=[]; renderBookings(); updateStats();}
     showSuccess('Cleared!','🗑');
   }});
 }
@@ -3585,7 +3821,7 @@ function renderAdminRequests(){
   if(!combined.length){ wrap.innerHTML='<tr><td colspan="7" style="text-align:center;padding:20px;color:#94A3B8">No requests — Live Firebase</td></tr>'; return; }
   wrap.innerHTML=combined.map((r,i)=>{
     const d=r.createdAtStr||(r.createdAt?.toDate?.().toLocaleString('en-IN')||'');
-    return `<tr><td>${i+1}</td><td style="font-size:11px;color:#78716C">${d}</td><td><b>${r.serviceType||r.type||'Request'}</b><div style="font-size:10px;color:#64748B">${r.room||''}</div></td><td><b>${r.name||'-'}</b></td><td><a href="tel:${r.phone}" style="color:#0F172A;font-weight:700">${r.phone||'-'}</a></td><td style="font-size:11px;max-width:200px;white-space:normal;word-break:break-word">${r.note||r.msg||r.details||'-'}<div style="font-size:10px;color:#94A3B8">${r.cin?r.cin+'→'+r.cout:''} ${r.adults?r.adults+'A':''}</div></td><td><a href="https://wa.me/91${String(r.phone||'').replace(/[^0-9]/g,'').slice(-10)}?text=Hi ${encodeURIComponent(r.name||'')}" target="_blank" style="background:#25D366;color:#fff;padding:5px 8px;border-radius:8px;font-size:11px;text-decoration:none">WA</a> <button onclick="showPopup({type:'confirm', title:'🗑 Delete Request?', message:'Ye request hamesha ke liye delete ho jayega — confirm kare?', confirmText:'हाँ, Delete', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm:()=>{ if(useFirebase) db.collection('serviceRequests').doc('${r.id}').delete(); else { let a=lsGet('hotel4g_serviceRequests',[]).filter(x=>x.id!=='${r.id}'); lsSet('hotel4g_serviceRequests',a); serviceRequestsCache=a; renderAdminRequests(); } showPopup({type:'success', title:'✅ Deleted', message:'Request delete ho gaya', confirmText:'ठीक है'}); }})" class="icon-btn" style="font-size:11px;color:#DC2626">🗑</button></td></tr>`;
+    return `<tr><td>${i+1}</td><td style="font-size:11px;color:#78716C">${d}</td><td><b>${r.serviceType||r.type||'Request'}</b><div style="font-size:10px;color:#64748B">${r.room||''}</div></td><td><b>${r.name||'-'}</b></td><td><a href="tel:${r.phone}" style="color:#0F172A;font-weight:700">${r.phone||'-'}</a></td><td style="font-size:11px;max-width:200px;white-space:normal;word-break:break-word">${r.note||r.msg||r.details||'-'}<div style="font-size:10px;color:#94A3B8">${r.cin?r.cin+'→'+r.cout:''} ${r.adults?r.adults+'A':''}</div></td><td><a href="https://wa.me/91${String(r.phone||'').replace(/[^0-9]/g,'').slice(-10)}?text=Hi ${encodeURIComponent(r.name||'')}" target="_blank" style="background:#25D366;color:#fff;padding:5px 8px;border-radius:8px;font-size:11px;text-decoration:none">WA</a> <button onclick="showPopup({type:'confirm', title:'🗑 Delete Request?', message:'Ye request hamesha ke liye delete ho jayega — confirm kare?', confirmText:'हाँ, Delete', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm:()=>{ if(useFirebase) db.collection('serviceRequests').doc('${r.id}').delete(); else { let a=lsGet('hotel4g_serviceRequests',[]).filter(x=>x.id!=='${r.id}'); /* Firebase only — hotel4g_serviceRequests local storage disabled as per request */ serviceRequestsCache=a; renderAdminRequests(); } showPopup({type:'success', title:'✅ Deleted', message:'Request delete ho gaya', confirmText:'ठीक है'}); }})" class="icon-btn" style="font-size:11px;color:#DC2626">🗑</button></td></tr>`;
   }).join('');
 }
 function renderStaffRequests(){
@@ -3623,7 +3859,7 @@ async function forceUpdateRooms(){
         rooms.forEach(r=> batch.set(db.collection('rooms').doc(r.id), {...r, forceUpdatedAt: firebase.firestore.FieldValue.serverTimestamp(), forceBy: currentStaffId||authUser?.email||'admin'}, {merge:true}));
         await batch.commit();
       } else {
-        lsSet('hotel4g_rooms', rooms);
+        /* Firebase only — hotel4g_rooms local storage disabled as per request */
       }
       renderRooms(); renderRoomEditor();
       try{ const sg=document.getElementById('staffRoomEditGrid'); const ag=document.getElementById('roomEditGrid'); if(sg&&ag) sg.innerHTML=ag.innerHTML; }catch(e){}
@@ -3686,7 +3922,7 @@ async function forceUpdateSingleRoom(roomId){
       if(useFirebase){
         await db.collection('rooms').doc(roomId).update({images: imgs, img: imgs[0], forceUpdatedAt: firebase.firestore.FieldValue.serverTimestamp(), forceBy: currentStaffId||authUser?.email||'admin'});
       } else {
-        r.images=imgs; r.img=imgs[0]; lsSet('hotel4g_rooms', getRooms()); roomsCache=getRooms();
+        r.images=imgs; r.img=imgs[0]; /* Firebase only — hotel4g_rooms local storage disabled as per request */; roomsCache=getRooms();
       }
       renderRooms(); renderRoomEditor();
       try{ const sg=document.getElementById('staffRoomEditGrid'); const ag=document.getElementById('roomEditGrid'); if(sg&&ag) sg.innerHTML=ag.innerHTML; }catch(e){}
@@ -3727,7 +3963,7 @@ async function handleHeaderUpload(files){
     try{
       if(preview) preview.src=url;
       applyHeroImage(url);
-      try{ const s=getSettings(); s.heroImage=url; lsSet('hotel4g_settings', s); settingsCache=s; }catch(_){}
+      try{ const s=getSettings(); s.heroImage=url; /* Firebase only — hotel4g_settings local storage disabled as per request */ settingsCache=s; }catch(_){}
       try{ const urlInput=document.getElementById('headerImageUrl'); if(urlInput) urlInput.value=url; }catch(_){}
     }catch(_){}
     // Firebase sync — auto document + resume on fail
@@ -3758,7 +3994,7 @@ async function forceUpdateHeader(){
       if(useFirebase){
         await db.collection('settings').doc('main').set({heroImage: url, headerUpdatedAt: firebase.firestore.FieldValue.serverTimestamp(), headerUpdatedBy: currentStaffId||authUser?.email}, {merge:true});
       } else {
-        const s=getSettings(); s.heroImage=url; lsSet('hotel4g_settings',s); settingsCache=s;
+        const s=getSettings(); s.heroImage=url; /* Firebase only — hotel4g_settings local storage disabled as per request */ settingsCache=s;
       }
       applyHeroImage(url);
       showSuccess('🖼️ Header Force Live — Website header turant update!','Live! ✨');
@@ -3876,7 +4112,7 @@ async function confirmGallerySelection(){
         r.images=selected; r.img=selected[0];
         const hidden=document.getElementById('hiddenImgs_'+roomId);
         if(hidden) hidden.textContent=JSON.stringify(selected);
-        lsSet('hotel4g_rooms', getRooms()); roomsCache=getRooms();
+        /* Firebase only — hotel4g_rooms local storage disabled as per request */; roomsCache=getRooms();
       }
       renderRooms(); renderRoomEditor();
       try{ const sg=document.getElementById('staffRoomEditGrid'); const ag=document.getElementById('roomEditGrid'); if(sg&&ag) sg.innerHTML=ag.innerHTML; }catch(e){}
@@ -3889,7 +4125,7 @@ async function confirmGallerySelection(){
       if(useFirebase){
         await db.collection('settings').doc('main').set({heroImage: url, headerUpdatedAt: firebase.firestore.FieldValue.serverTimestamp(), headerUpdatedBy: currentStaffId||authUser?.email}, {merge:true});
       } else {
-        const s=getSettings(); s.heroImage=url; lsSet('hotel4g_settings', s); settingsCache=s;
+        const s=getSettings(); s.heroImage=url; /* Firebase only — hotel4g_settings local storage disabled as per request */ settingsCache=s;
       }
       applyHeroImage(url);
       const pv=document.getElementById('headerPreview'); if(pv) pv.src=url;
@@ -4120,7 +4356,7 @@ function removeRoomPhoto(roomId, idx){
     } else {
       r.images=imgs; r.img=imgs[0];
       document.getElementById('hiddenImgs_'+roomId).textContent=JSON.stringify(imgs);
-      lsSet('hotel4g_rooms', getRooms()); roomsCache=getRooms(); renderRooms(); renderRoomEditor();
+      /* Firebase only — hotel4g_rooms local storage disabled as per request */; roomsCache=getRooms(); renderRooms(); renderRoomEditor();
       showSuccess('Photo हटाई — Local Auto Updated','Removed');
     }
     const el=document.getElementById('autoSaveStatus'); if(el) el.textContent='✅ Photo Delete — Firebase Auto Updated '+new Date().toLocaleTimeString();
@@ -4157,7 +4393,7 @@ async function handleRoomMultiUpload(roomId, files){
     try{
       r.images=tmpImgs; r.img=tmpImgs[0];
       try{ const he=document.getElementById('hiddenImgs_'+roomId); if(he) he.textContent=JSON.stringify(tmpImgs); }catch(_){}
-      try{ lsSet('hotel4g_rooms', rooms); roomsCache=rooms; }catch(_){}
+      try{ /* Firebase only — hotel4g_rooms local storage disabled as per request */ roomsCache=rooms; }catch(_){}
       try{ renderRooms(); }catch(_){}
       try{ renderRoomEditor(); }catch(_){}
       // Direct carousel patch instant
@@ -4207,7 +4443,7 @@ async function handleRoomMultiUpload(roomId, files){
     try{ const he=document.getElementById('hiddenImgs_'+roomId); if(he) he.textContent=JSON.stringify(imgs); }catch(_){}
     try{ const ue=document.getElementById('urlList_'+roomId); if(ue) ue.innerHTML=imgs.map(u=>`<div style="padding:2px 0;border-bottom:1px solid #FFE4B5;word-break:break-all">${u.slice(0,80)}...</div>`).join(''); }catch(_){}
     // If roomsCache is same reference, already updated; ensure LS
-    try{ lsSet('hotel4g_rooms', rooms); roomsCache=rooms; }catch(_){}
+    try{ /* Firebase only — hotel4g_rooms local storage disabled as per request */ roomsCache=rooms; }catch(_){}
     // Force re-render website Rooms + Staff editor
     try{ renderRooms(); }catch(_){}
     try{ renderRoomEditor(); }catch(_){}
@@ -4304,7 +4540,7 @@ async function saveRooms(){
     });
     for(let r of rooms){ if(r.price<500||r.price>50000) return showError('Price ₹500-50000'); if(!r.images.length) return showError('हर Room में कम से कम 1 Photo'); }
     if(useFirebase){ const batch=db.batch(); rooms.forEach(r=> batch.set(db.collection('rooms').doc(r.id), r)); await batch.commit(); }
-    else { lsSet('hotel4g_rooms',rooms); roomsCache=rooms; renderRooms();}
+    else { /* Firebase only — hotel4g_rooms local storage disabled as per request */ roomsCache=rooms; renderRooms();}
     showSuccess('🔒 High Secure Save! Documents Auto Updated to Firebase — Website पर Turant Live 🎨','Secured! 🔐');
     const el=document.getElementById('autoSaveStatus'); if(el) el.textContent='✅ Manual Save Done — Firebase Documents Auto Updated! '+new Date().toLocaleTimeString();
   }});
@@ -4347,7 +4583,7 @@ async function autoSaveRoomsSilent(){
     if(useFirebase){
       const batch=db.batch(); rooms.forEach(r=> batch.set(db.collection('rooms').doc(r.id), r)); await batch.commit();
     } else {
-      lsSet('hotel4g_rooms',rooms); roomsCache=rooms; renderRooms();
+      /* Firebase only — hotel4g_rooms local storage disabled as per request */ roomsCache=rooms; renderRooms();
     }
     const el=document.getElementById('autoSaveStatus');
     if(el){ el.textContent='✅ Auto-Saved to Firebase — Documents Auto Updated! Website पर Turant Live! '+new Date().toLocaleTimeString(); el.style.color='#065F46'; el.style.background='#ECFDF5'; setTimeout(()=>{ el.textContent='💡 Edit करते ही Auto Firebase Update — Live • Save दबाते ही Documents Auto Update'; el.style.color='#065F46'; }, 3500); }
@@ -4379,7 +4615,7 @@ async function handleGalleryUpload(files){
       if(!file.type.startsWith('image/')) continue;
       if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा'); continue; }
       const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
-      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url:dataUrl}); lsSet('hotel4g_gallery',arr); galleryCache=arr; done++;
+      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url:dataUrl}); /* Firebase only — hotel4g_gallery local storage disabled as per request */ galleryCache=arr; done++;
       // silent preview
     }
     try{ document.getElementById('galleryFile').value=''; }catch(e){} renderGallery(); renderGalleryAdmin(); showSuccess(`${done} Photos Gallery Live!`,'Done!'); return;
@@ -4410,10 +4646,10 @@ function updateGalleryDirectVisibility(){
 }
 async function deleteGallery(id){
   if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only — Gallery delete sirf Staff/Admin se');
-  showPopup({type:'confirm', title:'Photo हटाएं?', message:'हमेशा के लिए हटेगी।', confirmText:'हाँ, हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
-    if(useFirebase) await db.collection('gallery').doc(id).delete();
-    else { let arr=lsGet('hotel4g_gallery',[]).filter(g=>g.id!==id); lsSet('hotel4g_gallery',arr); galleryCache=arr; renderGallery(); renderGalleryAdmin();}
-    showSuccess('Deleted 🗑','Deleted');
+  showPopup({type:'confirm', title:'Photo हटाएं? — Permanent', message:'Ye photo Firebase se permanent delete hogi — front website se turant hat jayega, jab tak update na kare permanent rahega — confirm?', confirmText:'हाँ, हटाएं', cancelText:'रद्द करें', showCancel:true, danger:true, onConfirm: async()=>{
+    if(useFirebase && db) await db.collection('gallery').doc(id).delete();
+    else { showError('Firebase not connected — delete not allowed (local storage disabled)'); return; }
+    showSuccess('Deleted 🗑 — Firebase permanent, front pe turant live','Deleted');
   }});
 }
 let pendingGalleryFiles=null;
@@ -4466,7 +4702,7 @@ async function handleStaffGalleryUpload(files){
       if(!file.type.startsWith('image/')) continue;
       if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा'); continue; }
       const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
-      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url:dataUrl}); lsSet('hotel4g_gallery',arr); galleryCache=arr; done++;
+      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url:dataUrl}); /* Firebase only — hotel4g_gallery local storage disabled as per request */ galleryCache=arr; done++;
     }
     try{ document.getElementById('staffGalleryFile').value=''; }catch(e){} try{ const sg=document.getElementById('staffGalleryGrid'); const ag=document.getElementById('galleryAdminGrid'); if(sg&&ag) sg.innerHTML=ag.innerHTML; }catch(e){} showSuccess(`${done} Photos Gallery Live!`,'Done!'); try{ websiteSwitchTab('gallery'); }catch(e){} return;
   }
@@ -4509,7 +4745,7 @@ async function saveSettings(){
   if(!isHighSecureAuthorized()) return requireHighSecure('Payment Settings', ()=> saveSettings());
   const s={upi:document.getElementById('setUpi').value.trim(), razorKey:document.getElementById('setRazorKey').value.trim(), coupon:document.getElementById('setCoupon').value.trim()||'HOTEL200', couponOff:200, tax: parseInt(document.getElementById('setTax').value)||12, banquetBase: parseInt(document.getElementById('setBanquetBase')?.value)||6000, banquetPerPerson: parseInt(document.getElementById('setBanquetPerPerson')?.value)||110};
   if(useFirebase) await db.collection('settings').doc('main').set(s,{merge:true});
-  else { lsSet('hotel4g_settings',s); settingsCache=s;}
+  else { /* Firebase only — hotel4g_settings local storage disabled as per request */ settingsCache=s;}
   settingsCache=s;
   try{ const hint=document.getElementById('banquetPreviewHint'); if(hint) hint.textContent='₹'+calcBanquetPrice(50).toLocaleString('en-IN')+' for 50 Guests'; updateBanquetCardPrice(); updatePaySummary(); }catch(e){}
   showSuccess('Settings Save ⚙️ — Tax + Banquet Price Live!','Saved!');
@@ -4562,7 +4798,7 @@ async function getStaffList(){
   return lsGet('hotel4g_staff', []);
 }
 async function saveStaffList(list){
-  lsSet('hotel4g_staff', list);
+  /* Firebase only — hotel4g_staff local storage disabled as per request */
   if(useFirebase){
     try{ await db.collection('staffAccounts').doc('main').set({list, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){}
   }
@@ -4858,7 +5094,7 @@ async function staffConfirmBooking(bid){
   }
   showPopup({type:'confirm', title:'Confirm Booking?', message:`${b.name} • ${b.room} #${roomNum} • ${b.cin}→${b.cout} को Confirmed करें?`, confirmText:'✓ Confirm', showCancel:true, onConfirm: async()=>{
     if(useFirebase){ await db.collection('bookings').doc(String(bid)).update({status:'confirmed', roomNumber: roomNum, confirmedBy: currentStaffId||'staff', confirmedAt: firebase.firestore.FieldValue.serverTimestamp()}); }
-    else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='confirmed'; arr[idx].roomNumber=roomNum; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderStaffDashboard(); renderBookings(); renderRooms(); } }
+    else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='confirmed'; arr[idx].roomNumber=roomNum; /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; renderStaffDashboard(); renderBookings(); renderRooms(); } }
     showSuccess('Confirmed — Room '+roomNum,'✓');
   }});
 }
@@ -4867,7 +5103,7 @@ async function staffCancelBooking(bid){
   if(!b) return showError('Not found');
   showPopup({type:'confirm', title:'Cancel Reserve?', message:`${b.name} • ${b.room} को Cancel करें?`, confirmText:'✕ Cancel Booking', showCancel:true, danger:true, onConfirm: async()=>{
     if(useFirebase){ await db.collection('bookings').doc(String(bid)).update({status:'cancelled', cancelledBy: currentStaffId||'staff', cancelledAt: firebase.firestore.FieldValue.serverTimestamp()}); }
-    else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='cancelled'; lsSet('hotel4g_bookings',arr); bookingsCache=arr; renderStaffDashboard(); renderBookings(); renderRooms(); renderCalendar(); } }
+    else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='cancelled'; /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; renderStaffDashboard(); renderBookings(); renderRooms(); renderCalendar(); } }
     showSuccess('Cancelled','✕');
   }});
 }
@@ -4897,11 +5133,11 @@ async function submitGuestRating(){
   const reviewData={rating:currentRatingStars, text: text||'No text', name: b?b.name:'Guest', room: b?b.room:'Hotel', phone: b?b.phone:'', bookingId: currentRatingBid, createdAtStr: new Date().toLocaleString('en-IN')};
   try{
     if(useFirebase){ await db.collection('reviews').add({...reviewData, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }
-    else { const arr=lsGet('hotel4g_reviews',[]); arr.unshift({id:'r'+Date.now(), ...reviewData}); lsSet('hotel4g_reviews',arr); reviewsCache=arr; }
+    else { const arr=lsGet('hotel4g_reviews',[]); arr.unshift({id:'r'+Date.now(), ...reviewData}); /* Firebase only — hotel4g_reviews local storage disabled as per request */ reviewsCache=arr; }
     // Mark booking as rated
     if(b){
       if(useFirebase){ try{ await db.collection('bookings').doc(String(currentRatingBid)).update({rated: true, rating: currentRatingStars}); }catch(e){} }
-      else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(currentRatingBid)); if(idx>-1){ arr[idx].rated=true; arr[idx].rating=currentRatingStars; lsSet('hotel4g_bookings',arr); bookingsCache=arr; } }
+      else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(currentRatingBid)); if(idx>-1){ arr[idx].rated=true; arr[idx].rating=currentRatingStars; /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; } }
     }
     closeGuestRating();
     showPopup({type:'success', title:'⭐ Thank You!', message:`${currentRatingStars} Stars — Aapka feedback mil gaya! Hotel 4G ko aur behtar banayenge.`, confirmText:'Thanks! 💖'});
@@ -5061,7 +5297,7 @@ async function staffGenerateBill(bid){
         const idx=arr.findIndex(x=>String(x.id)===String(gb.id));
         if(idx>-1){ arr[idx].status='billed'; arr[idx].billedAmount = String(gb.id)===String(bid) ? finalBillTotal : arr[idx].amount; arr[idx].billedCustomTotal=customTotalAll; arr[idx].billedGroup=guestUid; }
       });
-      lsSet('hotel4g_bookings',arr); bookingsCache=arr;
+      /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr;
     }
     // After bill, if current device's UID is same, generate new UID for next booking (sirf bill ke baad hi naya UID)
     try{
@@ -5154,7 +5390,7 @@ async function staffAddCustomItem(bid){
       } else {
         const arr=lsGet('hotel4g_bookings',[]);
         const idx=arr.findIndex(x=>String(x.id)===String(bid));
-        if(idx>-1){ arr[idx].customItems=updatedCustom; arr[idx].customTotal=customTotal; lsSet('hotel4g_bookings',arr); bookingsCache=arr; }
+        if(idx>-1){ arr[idx].customItems=updatedCustom; arr[idx].customTotal=customTotal; /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; }
       }
       renderStaffDashboard(); renderBookings();
       showSuccess(`✅ ${name} ×${qty} = ₹${total} — Room ${b.roomNumber||b.room} ke bill me auto add! Total custom: ₹${customTotal}`, 'Added! ➕');
@@ -5179,7 +5415,7 @@ async function staffRemoveCustomItem(bid, itemId){
     } else {
       const arr=lsGet('hotel4g_bookings',[]);
       const idx=arr.findIndex(x=>String(x.id)===String(bid));
-      if(idx>-1){ arr[idx].customItems=updated; arr[idx].customTotal=customTotal; lsSet('hotel4g_bookings',arr); bookingsCache=arr; }
+      if(idx>-1){ arr[idx].customItems=updated; arr[idx].customTotal=customTotal; /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; }
     }
     renderStaffDashboard(); renderBookings();
     showSuccess('Item removed — Bill se auto hata diya','Removed 🗑');
@@ -5220,7 +5456,7 @@ async function staffCompleteCheckout(bid){
   const total=b.billedAmount||b.amount||0;
   showPopup({type:'confirm', title:'✅ Complete Checkout — Room Available करें?', message:`Guest: ${b.name} • ${b.room} ${b.roomNumber?'#'+b.roomNumber:''}\nStay: ${b.cin} → ${b.cout} (${nights}N) • ₹${total.toLocaleString('en-IN')}\nCheckout करके Room को तुरंत Available करना है? Original Bill पहले generate किया?`, confirmText:'✅ Checkout & Free Room', cancelText:'रद्द करें', showCancel:true, onConfirm: async()=>{
     if(useFirebase){ await db.collection('bookings').doc(String(bid)).update({status:'checkedout', checkedOutBy: currentStaffId||'staff', checkedOutAt: firebase.firestore.FieldValue.serverTimestamp(), checkoutAmount: total}); }
-    else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='checkedout'; arr[idx].checkedOutBy=currentStaffId||'staff'; arr[idx].checkedOutAt=new Date().toISOString(); lsSet('hotel4g_bookings',arr); bookingsCache=arr; } }
+    else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='checkedout'; arr[idx].checkedOutBy=currentStaffId||'staff'; arr[idx].checkedOutAt=new Date().toISOString(); /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; } }
     renderStaffDashboard(); renderBookings(); renderRooms(); renderCalendar(); updateStats();
     showSuccess(`Checkout Complete — Room ${b.roomNumber||''} अब Available! 🎉`,'✅ Checked-out');
     // also forward to 6262224200
@@ -5313,7 +5549,7 @@ function staffManUpdatePreview(){
   const price=rData?rData.price:1999;
   let nights=1; try{ nights=Math.max(1, Math.round((parseDate(cout)-parseDate(cin))/86400000)||1); }catch(e){ nights=1; }
   const s=getSettings(); const taxPercent=s.tax||12;
-  let subtotal=price*nights; let disc=(coupon && coupon===s.coupon.toUpperCase())?s.couponOff:0;
+  let subtotal=price*nights; let disc=0; { const f=getCouponByCode(coupon); if(f) disc=f.discount; else if(coupon && s.coupon && coupon===s.coupon.toUpperCase()) disc=s.couponOff; }
   let taxable=Math.max(0, subtotal-disc); let tax=Math.round(taxable*taxPercent/100); let total=taxable+tax;
   const el=document.getElementById('staffManPreview');
   if(el) el.textContent=`${nights}N × ₹${price} = ₹${subtotal.toLocaleString('en-IN')} ${disc?'-₹'+disc+' coupon':''} + GST ₹${tax} = ₹${total.toLocaleString('en-IN')} • ${room}`;
@@ -5360,7 +5596,7 @@ async function staffManualReserveEnquiry(){
   const adults=document.getElementById('staffManAdults').value, children=document.getElementById('staffManChildren').value;
   const data={serviceType:'Staff Enquiry — '+room, name, phone, cin, cout, room, adults:parseInt(adults), children:parseInt(children), note:'Staff Manual Enquiry by '+currentStaffId, createdAtStr:new Date().toLocaleString('en-IN'), status:'new'};
   if(useFirebase){ await db.collection('serviceRequests').add({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }
-  else { const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(),...data}); lsSet('hotel4g_serviceRequests',arr); }
+  else { const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(),...data}); /* Firebase only — hotel4g_serviceRequests local storage disabled as per request */ }
   showSuccess('Enquiry Saved — 6262224200 पर भी भेजें','📋');
 }
 function forwardStaffManualTo6262224200(){
@@ -5376,7 +5612,7 @@ function forwardStaffManualTo6262224200(){
 function generateStaffOtp(staffId){
   const otp=String(Math.floor(100000+Math.random()*900000));
   const entry={id:'otp_'+Date.now()+'_'+staffId, staffId, otp, createdAtStr:new Date().toLocaleString('en-IN'), createdAt: Date.now(), status:'pending', deviceId: staffDeviceId, expiresAt: Date.now()+5*60*1000};
-  otpCache.unshift(entry); lsSet('hotel4g_otps', otpCache);
+  otpCache.unshift(entry); /* Firebase only — hotel4g_otps local storage disabled as per request */
   if(useFirebase){ db.collection('staffOtps').doc(entry.id).set({...entry, createdAt: firebase.firestore.FieldValue.serverTimestamp()}).catch(()=>{}); }
   renderAdminOtps();
   // also attempt push to 6262224200 as admin notification (optional)
@@ -5400,11 +5636,11 @@ function renderAdminOtps(){
   }).join('');
 }
 function copyOtp(otp){ navigator.clipboard.writeText(otp).then(()=> showSuccess('OTP Copied: '+otp,'Copied! 📋')); }
-async function approveOtp(id){ const it=otpCache.find(x=>x.id===id); if(!it) return; it.status='approved'; lsSet('hotel4g_otps', otpCache); if(useFirebase) try{ await db.collection('staffOtps').doc(id).update({status:'approved'}); }catch(e){} renderAdminOtps(); showSuccess('OTP Approved — Staff ko batayen: '+it.otp,'Approved ✓'); }
-async function rejectOtp(id){ const it=otpCache.find(x=>x.id===id); if(!it) return; it.status='rejected'; lsSet('hotel4g_otps', otpCache); if(useFirebase) try{ await db.collection('staffOtps').doc(id).update({status:'rejected'}); }catch(e){} renderAdminOtps(); showError('OTP Rejected'); }
-async function deleteOtp(id){ otpCache=otpCache.filter(x=>x.id!==id); lsSet('hotel4g_otps', otpCache); if(useFirebase) try{ await db.collection('staffOtps').doc(id).delete(); }catch(e){} renderAdminOtps(); }
+async function approveOtp(id){ const it=otpCache.find(x=>x.id===id); if(!it) return; it.status='approved'; /* Firebase only — hotel4g_otps local storage disabled as per request */ if(useFirebase) try{ await db.collection('staffOtps').doc(id).update({status:'approved'}); }catch(e){} renderAdminOtps(); showSuccess('OTP Approved — Staff ko batayen: '+it.otp,'Approved ✓'); }
+async function rejectOtp(id){ const it=otpCache.find(x=>x.id===id); if(!it) return; it.status='rejected'; /* Firebase only — hotel4g_otps local storage disabled as per request */ if(useFirebase) try{ await db.collection('staffOtps').doc(id).update({status:'rejected'}); }catch(e){} renderAdminOtps(); showError('OTP Rejected'); }
+async function deleteOtp(id){ otpCache=otpCache.filter(x=>x.id!==id); /* Firebase only — hotel4g_otps local storage disabled as per request */ if(useFirebase) try{ await db.collection('staffOtps').doc(id).delete(); }catch(e){} renderAdminOtps(); }
 function clearExpiredOtps(){ const now=Date.now(); otpCache=otpCache.filter(o=> now - o.createdAt < 10*60*1000 && o.status==='pending' ? false : true); // keep only non-expired pending? Actually clear expired pending
-  const before=otpCache.length; otpCache=otpCache.filter(o=> !(o.status==='pending' && now>o.expiresAt)); lsSet('hotel4g_otps', otpCache); renderAdminOtps(); showSuccess('Expired OTPs cleared','🗑'); }
+  const before=otpCache.length; otpCache=otpCache.filter(o=> !(o.status==='pending' && now>o.expiresAt)); /* Firebase only — hotel4g_otps local storage disabled as per request */ renderAdminOtps(); showSuccess('Expired OTPs cleared','🗑'); }
 function refreshAdminOtps(){ otpCache=lsGet('hotel4g_otps',[]); renderAdminOtps(); }
 // — Staff OTP Verify — Bina OTP ke login nahi — Sunder — Admin se OTP lekar verify —
 function showStaffOtpVerify(staffId){
@@ -5431,7 +5667,7 @@ function showStaffOtpVerify(staffId){
       if(entry.status==='rejected') return showError('❌ OTP Rejected by Admin — Naya OTP generate karein');
       if(entry.status==='pending'){
         // Mark approved on correct entry (admin approved implicitly via staff knowledge)
-        entry.status='approved'; lsSet('hotel4g_otps', otpCache);
+        entry.status='approved'; /* Firebase only — hotel4g_otps local storage disabled as per request */
         if(useFirebase) try{ await db.collection('staffOtps').doc(entry.id).update({status:'approved'}); }catch(e){}
         renderAdminOtps();
       }
@@ -5607,7 +5843,7 @@ async function addMenuItem(){
       try{ tempUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); }); }catch(e){}
       const item={id:'m'+Date.now(), name:vals.menuName.trim(), category:vals.menuCategory, price, desc:vals.menuDesc.trim()||'Tasty', image:tempUrl||'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80', veg:vals.menuVeg==='yes', available:true};
       // Instant live
-      try{ menuCache.unshift(item); lsSet('hotel4g_menu', menuCache); renderMenuModal(); }catch(e){}
+      try{ menuCache.unshift(item); /* Firebase only — hotel4g_menu local storage disabled as per request */ renderMenuModal(); }catch(e){}
       showPopup({type:'success', title:'⚡ Turant Live! Menu Added!', message:`${item.name} — Photo turant live! Background me Firebase save ho raha hai...`, confirmText:'Wow! ⚡'});
       closeFormPopup();
       // Background: compress + storage + Firestore with https
@@ -5625,7 +5861,7 @@ async function addMenuItem(){
         }catch(e){ console.warn('Menu storage bg fail', e); }
         if(imageUrl && imageUrl!==tempUrl){
           // Update with https URL
-          try{ item.image=imageUrl; if(useFirebase) await db.collection('menuItems').doc(item.id).set({...item, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); else { lsSet('hotel4g_menu', menuCache); } renderMenuModal(); console.log('Menu https updated'); }catch(e){}
+          try{ item.image=imageUrl; if(useFirebase) await db.collection('menuItems').doc(item.id).set({...item, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); else { /* Firebase only — hotel4g_menu local storage disabled as per request */ } renderMenuModal(); console.log('Menu https updated'); }catch(e){}
         } else {
           // Already live with DataURL, ensure Firestore doc exists
           try{ if(useFirebase) await db.collection('menuItems').doc(item.id).set({...item, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){}
@@ -5634,7 +5870,7 @@ async function addMenuItem(){
       return; // Don't wait
       // Old flow removed for turant
       if(useFirebase){ await db.collection('menuItems').doc(item.id).set({...item, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); try{ menuCache.unshift(item); renderMenuModal(); }catch(e){} }
-      else { menuCache.unshift(item); lsSet('hotel4g_menu', menuCache); }
+      else { menuCache.unshift(item); /* Firebase only — hotel4g_menu local storage disabled as per request */ }
       renderMenuModal(); showSuccess('Menu Item Added — Photo auto compress → Firebase Live!','Added! 🍽');
     }
   });
@@ -5664,7 +5900,7 @@ async function editMenuItem(id){
         if(tmpUrl){
           newImage=tmpUrl;
           // Instant live
-          const idxTmp=menuCache.findIndex(x=>x.id===id); if(idxTmp>-1){ menuCache[idxTmp].image=tmpUrl; menuCache[idxTmp].name=vals.editMenuName.trim(); menuCache[idxTmp].price=price; lsSet('hotel4g_menu', menuCache); renderMenuModal(); }
+          const idxTmp=menuCache.findIndex(x=>x.id===id); if(idxTmp>-1){ menuCache[idxTmp].image=tmpUrl; menuCache[idxTmp].name=vals.editMenuName.trim(); menuCache[idxTmp].price=price; /* Firebase only — hotel4g_menu local storage disabled as per request */ renderMenuModal(); }
           showPopup({type:'success', title:'⚡ Turant Live!', message:'Photo turant update — Background me Firebase save...', confirmText:'OK'});
           closeFormPopup();
           // Background https
@@ -5677,7 +5913,7 @@ async function editMenuItem(id){
               if(httpsUrl && httpsUrl!==tmpUrl){
                 newImage=httpsUrl;
                 const upd={name:vals.editMenuName.trim(), category:vals.editMenuCategory, price, desc:vals.editMenuDesc.trim(), image:newImage, available:vals.editMenuAvail==='yes', veg:m.veg};
-                if(useFirebase) await db.collection('menuItems').doc(id).update(upd); else { const idx=menuCache.findIndex(x=>x.id===id); if(idx>-1) Object.assign(menuCache[idx], upd); lsSet('hotel4g_menu', menuCache); renderMenuModal(); }
+                if(useFirebase) await db.collection('menuItems').doc(id).update(upd); else { const idx=menuCache.findIndex(x=>x.id===id); if(idx>-1) Object.assign(menuCache[idx], upd); /* Firebase only — hotel4g_menu local storage disabled as per request */ renderMenuModal(); }
               }
             }catch(e){ console.warn(e); }
           })();
@@ -5702,9 +5938,9 @@ async function editMenuItem(id){
       }
       const upd={name:vals.editMenuName.trim(), category:vals.editMenuCategory, price, desc:vals.editMenuDesc.trim(), image:newImage, available:vals.editMenuAvail==='yes', veg:m.veg};
       if(useFirebase){ await db.collection('menuItems').doc(id).update(upd); }
-      else { const idx=menuCache.findIndex(x=>x.id===id); if(idx>-1){ Object.assign(menuCache[idx], upd); lsSet('hotel4g_menu', menuCache); } else { // fallback to default
+      else { const idx=menuCache.findIndex(x=>x.id===id); if(idx>-1){ Object.assign(menuCache[idx], upd); /* Firebase only — hotel4g_menu local storage disabled as per request */ } else { // fallback to default
           const dm=defaultMenuItems.find(x=>x.id===id); if(dm) Object.assign(dm, upd);
-          menuCache=getMenu(); lsSet('hotel4g_menu', menuCache);
+          menuCache=getMenu(); /* Firebase only — hotel4g_menu local storage disabled as per request */
         }
       }
       renderMenuModal(); showSuccess('Menu Updated — Live!','Updated! ✨');
@@ -5717,7 +5953,7 @@ async function deleteMenuItem(id){
     if(useFirebase){ await db.collection('menuItems').doc(id).delete(); }
     else { menuCache=menuCache.filter(x=>x.id!==id); // also check default
       if(!menuCache.length) menuCache=defaultMenuItems.filter(x=>x.id!==id);
-      lsSet('hotel4g_menu', menuCache);
+      /* Firebase only — hotel4g_menu local storage disabled as per request */
     }
     renderMenuModal(); showSuccess('Deleted','🗑');
   }});
@@ -5727,7 +5963,7 @@ async function toggleMenuAvailable(id){
   const m=getMenu().find(x=>x.id===id); if(!m) return;
   const upd={available:!m.available};
   if(useFirebase){ await db.collection('menuItems').doc(id).update(upd); }
-  else { m.available=!m.available; lsSet('hotel4g_menu', getMenu()); }
+  else { m.available=!m.available; /* Firebase only — hotel4g_menu local storage disabled as per request */; }
   renderMenuModal();
 }
 let currentReviewStars=0;
@@ -5756,7 +5992,7 @@ async function submitRealReview(){
   if(useFirebase){
     await db.collection('reviews').add({...rev, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
   } else {
-    const arr=lsGet('hotel4g_reviews', []); rev.id='r'+Date.now(); arr.unshift(rev); lsSet('hotel4g_reviews', arr); reviewsCache=arr; renderReviews();
+    const arr=lsGet('hotel4g_reviews', []); rev.id='r'+Date.now(); arr.unshift(rev); /* Firebase only — hotel4g_reviews local storage disabled as per request */ reviewsCache=arr; renderReviews();
   }
   document.getElementById('reviewOverlay').classList.remove('open');
   showSuccess('⭐ Real Review Saved — Firebase Live!','धन्यवाद!');
@@ -5789,7 +6025,7 @@ async function helpfulReview(id){
   if(useFirebase){
     await db.collection('reviews').doc(String(id)).update({helpful: firebase.firestore.FieldValue.increment(1)});
   } else {
-    const arr=lsGet('hotel4g_reviews', []); const it=arr.find(x=>String(x.id)===String(id)); if(it){ it.helpful=(it.helpful||0)+1; lsSet('hotel4g_reviews', arr); reviewsCache=arr; renderReviews(); }
+    const arr=lsGet('hotel4g_reviews', []); const it=arr.find(x=>String(x.id)===String(id)); if(it){ it.helpful=(it.helpful||0)+1; /* Firebase only — hotel4g_reviews local storage disabled as per request */ reviewsCache=arr; renderReviews(); }
   }
   showSuccess('Thanks for Helpful!','👍');
 }
@@ -5824,7 +6060,7 @@ async function realServiceRequest(serviceType){
         if(useFirebase){
           await db.collection('serviceRequests').add({...data, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
         } else {
-          const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(),...data}); lsSet('hotel4g_serviceRequests',arr);
+          const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(),...data}); /* Firebase only — hotel4g_serviceRequests local storage disabled as per request */
         }
         showSuccess(serviceType+' — Real Request Sent! Team 5 min में कॉल करेगी • UPI: 78699691901@ybl','Sent! ✨');
       }catch(e){ showError('Failed: '+e.message); }
@@ -5854,5 +6090,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eb44c9297b9be3',t:'MTc5MDAxNjc2NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eb8182284b3026',t:'MTc5MDAxOTI1MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
