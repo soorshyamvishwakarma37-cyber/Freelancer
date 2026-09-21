@@ -84,7 +84,7 @@ body{background:#F8FAFC}
 .btn-gold{background:linear-gradient(135deg,#C5A254 0%,#B8933F 100%);box-shadow:0 4px 14px rgba(197,162,84,0.25)}
 .btn-gold:hover{box-shadow:0 8px 20px rgba(197,162,84,0.32)}
 .mobile-toggle{background:linear-gradient(135deg,#C5A254 0%,#B8933F 100%)}
-.hero{background:linear-gradient(180deg, rgba(15,23,42,0.82) 0%, rgba(15,23,42,0.76) 100%), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80') center/cover}
+.hero{background:linear-gradient(180deg, rgba(15,23,42,0.48) 0%, rgba(15,23,42,0.32) 100%), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80') center/cover; filter:brightness(1.18) contrast(1.06) saturate(1.08)}
 .hero::before{display:none}
 .badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#FDE68A;backdrop-filter:blur(8px)}
 .hero h1{color:#fff}
@@ -391,6 +391,12 @@ td{padding:10px 10px;border-top:1px solid #FFF1E6;white-space:nowrap}
 .faq-item.open .faq-ans{display:block!important}
 .faq-item.open span{transform:rotate(45deg)}
 .review-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,23,42,0.08)!important}
+.reviews-grid{ gap:18px !important; }
+.review-card{ padding:20px !important; min-height:170px !important; border-radius:18px !important; box-shadow:0 6px 22px rgba(15,23,42,0.06) !important; }
+.review-card p{ font-size:14px !important; line-height:1.6 !important; }
+#reviewsGrid{ grid-template-columns:repeat(auto-fit,minmax(320px,1fr)) !important; gap:18px !important; }
+@media(min-width:768px){ #reviewsGrid{ grid-template-columns:repeat(auto-fit,minmax(360px,1fr)) !important; gap:20px !important; } .review-card{ padding:22px !important; min-height:180px !important; } }
+@media(max-width:640px){ #reviewsGrid{ grid-template-columns:1fr !important; } .review-card{ padding:18px !important; } }
 /* DESKTOP / LAPTOP / TABLET — systematic perfect adjust, no overflow */
 html,body{max-width:100%;overflow-x:hidden}
 .container{max-width:1280px}
@@ -482,6 +488,9 @@ img,video{max-width:100%;height:auto}
   border:none !important;
   animation:popIn 0.25s ease-out !important;
 }
+/* PAYMENT LOCK — by default locked, Edit se unlock */
+#payOverlay.pay-locked input, #payOverlay.pay-locked select, #payOverlay.pay-locked textarea{ pointer-events:none !important; background:#F1F5F9 !important; opacity:0.92; cursor:not-allowed !important; }
+#payOverlay.pay-locked #payCoupon{ pointer-events:auto !important; background:#fff !important; opacity:1 !important; cursor:text !important; }
 #payOverlay .modal-head, #travelOverlay .modal-head{
   position:sticky !important;
   top:0 !important;
@@ -498,6 +507,39 @@ img,video{max-width:100%;height:auto}
 @media(min-width:768px){
   #payOverlay .modal, #travelOverlay .modal{ max-width:640px !important; margin:20px auto !important; height:auto !important; max-height:92vh !important; border-radius:20px !important; box-shadow:0 24px 60px rgba(0,0,0,0.22) !important; border:1.5px solid var(--border) !important; }
   #payOverlay.modal-overlay, #travelOverlay.modal-overlay{ padding:16px !important; align-items:center !important; background:rgba(15,23,42,0.55) !important; }
+}
+/* SABHI PASE FULL SCREEN — Booking + Bill + Menu + Review + Calendar + Admin + Policy + Staff + GalleryPicker + Help + GuestSettings */
+#billOverlay.modal-overlay, #menuOverlay.modal-overlay, #reviewOverlay.modal-overlay, #calOverlay.modal-overlay, #adminOverlay.modal-overlay, #helpOverlay.modal-overlay, #policyOverlay.modal-overlay, #staffLoginOverlay.modal-overlay, #galleryPickerOverlay.modal-overlay, #guestSettingsOverlay.modal-overlay, #guestRatingOverlay.modal-overlay, #formPopup.modal-overlay{
+  inset:0 !important;
+  padding:0 !important;
+  background:rgba(255,251,235,0.98) !important;
+  backdrop-filter:blur(16px) saturate(1.2) !important;
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  align-items:stretch !important;
+  justify-content:center !important;
+  overflow-y:auto !important;
+  z-index:3000 !important;
+}
+#billOverlay .modal, #menuOverlay .modal, #reviewOverlay .modal, #calOverlay .modal, #adminOverlay .modal, #helpOverlay .modal, #policyOverlay .modal, #staffLoginOverlay .modal, #galleryPickerOverlay .modal, #guestSettingsOverlay .modal, #guestRatingOverlay .modal, #formPopup .modal{
+  max-width:100% !important;
+  width:100% !important;
+  height:100% !important;
+  max-height:100vh !important;
+  border-radius:0 !important;
+  margin:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  box-shadow:none !important;
+  border:none !important;
+  animation:popIn 0.25s ease-out !important;
+}
+#billOverlay .modal-head, #menuOverlay .modal-head, #reviewOverlay .modal-head, #calOverlay .modal-head{ position:sticky !important; top:0 !important; z-index:2 !important; border-radius:0 !important; }
+#billOverlay .modal-body, #menuOverlay .modal-body, #reviewOverlay .modal-body, #calOverlay .modal-body{ flex:1 !important; overflow-y:auto !important; -webkit-overflow-scrolling:touch; }
+@media(min-width:768px){
+  #billOverlay .modal, #menuOverlay .modal, #reviewOverlay .modal, #calOverlay .modal, #galleryPickerOverlay .modal{ max-width:680px !important; margin:20px auto !important; height:auto !important; max-height:92vh !important; border-radius:20px !important; box-shadow:0 24px 60px rgba(0,0,0,0.22) !important; border:1.5px solid var(--border) !important; }
+  #billOverlay.modal-overlay, #menuOverlay.modal-overlay, #reviewOverlay.modal-overlay, #calOverlay.modal-overlay, #galleryPickerOverlay.modal-overlay{ padding:16px !important; align-items:center !important; background:rgba(15,23,42,0.55) !important; }
+  #adminOverlay .modal{ max-width:460px !important; margin:20px auto !important; height:auto !important; max-height:92vh !important; border-radius:20px !important; }
+  #helpOverlay .modal, #policyOverlay .modal, #staffLoginOverlay .modal, #guestSettingsOverlay .modal{ max-width:640px !important; margin:20px auto !important; height:auto !important; max-height:92vh !important; border-radius:20px !important; box-shadow:0 24px 60px rgba(0,0,0,0.22) !important; border:1.5px solid var(--border) !important; }
 }
 /* STRICT PHOTO LIVE — All images Firebase live, High Secure */
 .rooms-grid .room-card img, .gallery-grid img, .carousel-slide img{ transition:transform 0.3s, filter 0.3s; }
@@ -749,7 +791,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a697575686972637b776c7369726d7b717b68777b292d5a7d777b737634797577">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6b5a9a9b4b5aebfa7abb0afb5aeb1a7ada7b4aba7f5f186a1aba7afaae8a5a9ab">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -824,7 +866,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7a4b8b8a5a4bfaeb6baa1bea4bfa0b6bcb6a5bab6e4e097b0bab6bebbf9b4b8ba">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddaeb2b2afaeb5a4bcb0abb4aeb5aabcb6bcafb0bceeea9dbab0bcb4b1f3beb2b0">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -885,7 +927,7 @@ img,video{max-width:100%;height:auto}
 <!-- PAY MODAL — systematic with person/children -->
 <div id="payOverlay" class="modal-overlay">
   <div class="modal">
-    <div class="modal-head"><div><b id="payRoomName">Deluxe Room</b><div style="font-size:11px;color:#78716C" id="payRoomPrice">₹1999 / night</div></div><button onclick="closePay()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div>
+    <div class="modal-head"><div><b id="payRoomName">Deluxe Room</b><div style="font-size:11px;color:#78716C" id="payRoomPrice">₹1999 / night</div></div><div style="display:flex;gap:6px;align-items:center"><button id="payEditBtn" onclick="togglePayEdit()" style="padding:7px 12px;border-radius:20px;border:1.5px solid #C5A254;background:#FFFBEB;color:#92400E;font-weight:800;font-size:11px;cursor:pointer;white-space:nowrap">✏️ Edit</button><button onclick="closePay()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div>
     <div class="modal-body">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
         <div class="field"><label>Check-in *</label><input type="date" id="payCin"></div>
@@ -955,7 +997,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="20534f4f52534859414d5649534857414b41524d41131760474d41494c0e434f4d">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7e0d11110c0d16071f1308170d16091f151f0c131f4d493e19131f1712501d1113">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -1056,11 +1098,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a4d7cbcbd6d7ccddc5c9d2cdd7ccd3c5cfc5d6c9c59793e4c3c9c5cdc88ac7cbc9">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4c7dbdbc6c7dccdd5d9c2ddc7dcc3d5dfd5c6d9d58783f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="80f3efeff2f3e8f9e1edf6e9f3e8f7e1ebe1f2ede1b3b7c0e7ede1e9ecaee3efed">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="85f6eaeaf7f6edfce4e8f3ecf6edf2e4eee4f7e8e4b6b2c5e2e8e4ece9abe6eae8">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e89b87879a9b809189859e819b809f8983899a8589dbdfa88f85898184c68b8785">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24574b4b56574c5d4549524d574c53454f455649451713644349454d480a474b49">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5e2d31312c2d36273f3328372d36293f353f2c333f6d691e39333f3732703d3133">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bbc8d4d4c9c8d3c2dad6cdd2c8d3ccdad0dac9d6da888cfbdcd6dad2d795d8d4d6">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -1101,7 +1143,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deadb1b1acadb6a7bfb3a8b7adb6a9bfb5bfacb3bfede99eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74071b1b06071c0d1519021d071c03151f150619154743341319151d185a171b19">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -1198,7 +1240,7 @@ service cloud.firestore {
           <button onclick="adminAddCoupon()" class="btn-gold" style="padding:10px 14px;white-space:nowrap">+ Add Coupon</button>
         </div>
         <div class="field" style="margin-top:8px"><label>Description (optional)</label><input id="newCouponDesc" placeholder="e.g. Diwali Offer — 500 off on 2+ nights"></div>
-        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="196a76766b6a716078746f706a716e7872786b74782a2e597e74787075377a7674">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
+        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a392525383922332b273c2339223d2b212b38272b797d0a2d272b232664292527">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
         <div style="display:none"><input id="setCoupon" value="HOTEL200"></div>
       </div><div class="field"><label>Tax % — Original GST (Auto)</label><input id="setTax" type="number" min="0" max="28" value="12"></div><div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:12px;padding:10px"><div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:8px">🎉 Banquet Hall Pricing — Admin Edit (Persons badhne par price badhega)</div><div class="field" style="margin-bottom:8px"><label>Banquet Base Price ₹ — (1 Guest ka base)</label><input id="setBanquetBase" type="number" min="1000" max="100000" value="6000" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div class="field" style="margin-bottom:0"><label>Per Person Extra ₹ — (Har extra person ka charge)</label><input id="setBanquetPerPerson" type="number" min="10" max="1000" value="110" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:6px">Formula: Base + PerPerson×Guests + tier extra → Final Price (GST extra) • 10 Guests → ~₹<span id="banquetPreviewHint">calculate</span></div></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase — Tax + Banquet Live</button></div>
         <div style="padding:14px;border-top:1px solid #F1F5F9;margin-top:8px">
@@ -1432,19 +1474,19 @@ service cloud.firestore {
 
 <!-- BILL POPUP -->
 <style>
-@page { size: A4; margin: 10mm; }
+@page { size: A4; margin: 6mm; }
 @media print {
-  html, body { height: auto !important; overflow: visible !important; background: #fff !important; }
+  html, body { height: 297mm !important; max-height: 297mm !important; overflow: hidden !important; background: #fff !important; margin:0 !important; padding:0 !important; }
   body * { visibility: hidden !important; }
   #billOverlay, #billOverlay * { visibility: visible !important; }
-  #billOverlay { position: static !important; left: 0 !important; top: 0 !important; width: 210mm !important; height: auto !important; min-height: 0 !important; background: #fff !important; z-index: 9999 !important; display: block !important; overflow: visible !important; margin: 0 auto !important; padding: 0 !important; }
-  #billOverlay .modal { max-width: 210mm !important; width: 210mm !important; margin: 0 auto !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; max-height: none !important; overflow: visible !important; height: auto !important; }
+  #billOverlay { position: fixed !important; left: 0 !important; top: 0 !important; width: 210mm !important; height: 297mm !important; max-height: 297mm !important; background: #fff !important; z-index: 9999 !important; display: block !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
+  #billOverlay .modal { max-width: 210mm !important; width: 210mm !important; height: 297mm !important; max-height: 297mm !important; margin: 0 auto !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; overflow: hidden !important; display:block !important; }
   #billOverlay .modal-head, #billOverlay .no-print { display: none !important; }
-  #billContent { width: 190mm !important; height: auto !important; min-height: 0 !important; overflow: visible !important; font-size: 11px !important; page-break-inside: auto !important; margin: 0 auto !important; padding: 6mm 8mm !important; box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  #billContent * { overflow-wrap: break-word !important; word-break: break-word !important; }
-  #billContent table { page-break-inside: auto !important; border-collapse: collapse !important; }
-  #billContent tr, #billContent thead, #billContent tbody { page-break-inside: avoid !important; page-break-after: auto !important; }
-  #billContent div, #billContent p { page-break-inside: avoid; }
+  #billContent { width: 190mm !important; height: 277mm !important; max-height: 277mm !important; overflow: hidden !important; font-size: 9.2px !important; line-height:1.32 !important; page-break-inside: avoid !important; page-break-after: avoid !important; page-break-before: avoid !important; margin: 0 auto !important; padding: 3mm 5mm !important; box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  #billContent * { overflow-wrap: break-word !important; word-break: break-word !important; page-break-inside: avoid !important; page-break-after: avoid !important; }
+  #billContent table { page-break-inside: avoid !important; border-collapse: collapse !important; }
+  #billContent tr, #billContent thead, #billContent tbody { page-break-inside: avoid !important; page-break-after: avoid !important; }
+  #billContent div, #billContent p { page-break-inside: avoid !important; }
   .no-print { display: none !important; }
 }
 
@@ -1507,11 +1549,28 @@ h1,h2,h3,h4,p,span,div,td,th,label,b,strong { overflow-wrap:break-word; word-bre
 </div>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function printBillA4(){
-  // Ensure only bill prints, 1 copy
+  // SINGLE PAGE STRICT — 1 Page me pura bill, kuch katega nahi — auto scale if overflow
   const before = document.title;
   document.title = 'Hotel4G-Bill-'+new Date().toISOString().slice(0,10);
+  try{
+    const bc=document.getElementById('billContent');
+    if(bc){
+      bc.style.transform=''; bc.style.zoom='';
+      const h=bc.scrollHeight, maxH=1050; // ~277mm at 96dpi
+      if(h>maxH){
+        const scale=Math.max(0.72, maxH/h);
+        bc.style.transform='scale('+scale+')';
+        bc.style.transformOrigin='top center';
+        bc.style.zoom=String(scale);
+        console.log('Single page scale',scale,'h',h);
+      }
+    }
+  }catch(e){}
   window.print();
-  setTimeout(()=>{ document.title = before; }, 500);
+  setTimeout(()=>{ 
+    try{ const bc=document.getElementById('billContent'); if(bc){ bc.style.transform=''; bc.style.zoom=''; } }catch(e){}
+    document.title = before; 
+  }, 800);
 }
 </script>
 <!-- GALLERY PICKER — Direct Gallery se Select → Save — No loading percentage -->
@@ -2963,7 +3022,7 @@ function openPayModal(roomName,price){
   document.getElementById('payCout').value=document.getElementById('checkout').value||tmr;
   document.getElementById('payAdults').value=document.getElementById('adults').value||"2";
   document.getElementById('payChildren').value=document.getElementById('children').value||"0";
-  document.getElementById('payOverlay').classList.add('open'); selectPay('upi'); updatePaySummary(); updatePersonHints(); updatePayRoomNumbers();
+  document.getElementById('payOverlay').classList.add('open'); document.getElementById('payOverlay').classList.add('pay-locked'); payEditMode=false; try{ const b=document.getElementById('payEditBtn'); if(b){ b.textContent='✏️ Edit'; b.style.background='#FFFBEB'; b.style.borderColor='#C5A254'; b.style.color='#92400E'; } }catch(e){} selectPay('upi'); updatePaySummary(); updatePersonHints(); updatePayRoomNumbers();
   // Show Guest UID + Guest info from travel
   try{
     const uid=getCurrentGuestUid();
@@ -2993,7 +3052,9 @@ function openPayModalFromForm(){
   document.getElementById('payAdults').value=document.getElementById('fAdults').value; document.getElementById('payChildren').value=document.getElementById('fChildren').value;
   openPayModal(room,price);
 }
-function closePay(){document.getElementById('payOverlay').classList.remove('open')}
+function closePay(){document.getElementById('payOverlay').classList.remove('open'); try{ document.getElementById('payOverlay').classList.add('pay-locked'); payEditMode=false; const b=document.getElementById('payEditBtn'); if(b){ b.textContent='✏️ Edit'; b.style.background='#FFFBEB'; b.style.borderColor='#C5A254'; b.style.color='#92400E'; } }catch(e){}}
+let payEditMode=false;
+function togglePayEdit(){ payEditMode=!payEditMode; const o=document.getElementById('payOverlay'); const b=document.getElementById('payEditBtn'); if(payEditMode){ o.classList.remove('pay-locked'); if(b){ b.textContent='🔒 Lock'; b.style.background='#DCFCE7'; b.style.borderColor='#16A34A'; b.style.color='#065F46'; } try{ showSuccess('Edit mode ON — Ab fields editable hai','✏️ Edit'); }catch(e){} } else { o.classList.add('pay-locked'); if(b){ b.textContent='✏️ Edit'; b.style.background='#FFFBEB'; b.style.borderColor='#C5A254'; b.style.color='#92400E'; } } }
 function selectPay(m){ currentPay.payMethod=m; document.getElementById('opt-upi').classList.toggle('active',m==='upi'); document.getElementById('opt-razor').classList.toggle('active',m==='razor'); document.getElementById('upiBox').style.display=m==='upi'?'block':'none'; document.getElementById('razorBox').style.display=m==='razor'?'block':'none';}
 function updatePaySummary(){
   const cin=document.getElementById('payCin').value, cout=document.getElementById('payCout').value;
@@ -3609,6 +3670,32 @@ async function staffAddTable(){
     try{
       const imgInput=document.getElementById('tblImage');
       if(!imgInput) return;
+      // --- Direct File se Photo — turant live staff panel se ---
+      const fileWrap=document.createElement('div');
+      fileWrap.style.cssText='margin-top:10px;padding:10px;background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px dashed #C5A254;border-radius:12px';
+      fileWrap.innerHTML=`<div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:6px">📂 Direct File se Photo — Turant Save & Live (Staff Panel)</div><input type="file" id="tblFileDirect" accept="image/*" style="width:100%;padding:8px;border-radius:8px;border:1.5px solid #FDBA74;background:#fff"><div style="font-size:10px;color:#065F46;margin-top:4px" id="tblFileStatus">File chune → auto compress → Firebase Storage → URL auto fill → Turant Live</div><div id="tblFilePreview" style="margin-top:8px;display:none"><img id="tblFilePreviewImg" style="width:100%;height:120px;object-fit:cover;border-radius:8px;border:1.5px solid #FDBA74"></div>`;
+      imgInput.parentElement.appendChild(fileWrap);
+      const fileInput=fileWrap.querySelector('#tblFileDirect');
+      const statusEl=fileWrap.querySelector('#tblFileStatus');
+      const previewWrap=fileWrap.querySelector('#tblFilePreview');
+      const previewImg=fileWrap.querySelector('#tblFilePreviewImg');
+      fileInput.addEventListener('change', async(e)=>{
+        const file=e.target.files[0];
+        if(!file) return;
+        if(!file.type.startsWith('image/')) return showError('Sirf image file chune');
+        if(file.size>5*1024*1024) return showError('5MB se bada');
+        statusEl.textContent='⏳ Compress + Upload ho raha hai...';
+        statusEl.style.color='#C5A254';
+        const urlImg=URL.createObjectURL(file);
+        previewImg.src=urlImg; previewWrap.style.display='block';
+        try{
+          let cf=file;
+          try{ cf=await compressImage(file); }catch(e){}
+          const ref=storage.ref(`restaurantTables/${Date.now()}_${cf.name||'table.jpg'}`);
+          const task=ref.put(cf);
+          await new Promise((res,rej)=>{ task.on('state_changed', null, rej, async()=>{ const url=await ref.getDownloadURL(); imgInput.value=url; imgInput.style.borderColor='#16A34A'; statusEl.textContent='✅ Upload Done — URL auto fill — Add dabaye turant Live!'; statusEl.style.color='#065F46'; showSuccess('Table photo direct upload — URL filled, Add se Live','Uploaded! 📸'); res(); }); });
+        }catch(err){ statusEl.textContent='❌ Fail: '+err.message; statusEl.style.color='#DC2626'; showError('Upload fail: '+err.message); }
+      });
       const gal=getGallery();
       if(!gal.length) return;
       const wrap=document.createElement('div');
@@ -3654,6 +3741,32 @@ async function staffEditTable(id){
     try{
       const imgInput=document.getElementById('tblImage');
       if(!imgInput) return;
+      // --- Direct File se Photo — turant live staff panel se (Edit) ---
+      const fileWrap=document.createElement('div');
+      fileWrap.style.cssText='margin-top:10px;padding:10px;background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px dashed #C5A254;border-radius:12px';
+      fileWrap.innerHTML=`<div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:6px">📂 Direct File se Photo — Turant Save & Live (Staff Panel)</div><input type="file" id="tblFileDirectEdit" accept="image/*" style="width:100%;padding:8px;border-radius:8px;border:1.5px solid #FDBA74;background:#fff"><div style="font-size:10px;color:#065F46;margin-top:4px" id="tblFileStatusEdit">File chune → auto compress → Firebase Storage → URL auto fill → Turant Live</div><div id="tblFilePreviewEdit" style="margin-top:8px;display:${tb.image?'block':'none'}"><img id="tblFilePreviewImgEdit" src="${tb.image||''}" style="width:100%;height:120px;object-fit:cover;border-radius:8px;border:1.5px solid #FDBA74; display:${tb.image?'block':'none'}"></div>`;
+      imgInput.parentElement.appendChild(fileWrap);
+      const fileInput=fileWrap.querySelector('#tblFileDirectEdit');
+      const statusEl=fileWrap.querySelector('#tblFileStatusEdit');
+      const previewWrap=fileWrap.querySelector('#tblFilePreviewEdit');
+      const previewImg=fileWrap.querySelector('#tblFilePreviewImgEdit');
+      fileInput.addEventListener('change', async(e)=>{
+        const file=e.target.files[0];
+        if(!file) return;
+        if(!file.type.startsWith('image/')) return showError('Sirf image file chune');
+        if(file.size>5*1024*1024) return showError('5MB se bada');
+        statusEl.textContent='⏳ Compress + Upload ho raha hai...';
+        statusEl.style.color='#C5A254';
+        const urlImg=URL.createObjectURL(file);
+        previewImg.src=urlImg; previewImg.style.display='block'; previewWrap.style.display='block';
+        try{
+          let cf=file;
+          try{ cf=await compressImage(file); }catch(e){}
+          const ref=storage.ref(`restaurantTables/${Date.now()}_${cf.name||'table.jpg'}`);
+          const task=ref.put(cf);
+          await new Promise((res,rej)=>{ task.on('state_changed', null, rej, async()=>{ const url=await ref.getDownloadURL(); imgInput.value=url; imgInput.style.borderColor='#16A34A'; statusEl.textContent='✅ Upload Done — URL auto fill — Save se Live!'; statusEl.style.color='#065F46'; showSuccess('Table photo direct upload — URL filled','Uploaded! 📸'); res(); }); });
+        }catch(err){ statusEl.textContent='❌ Fail: '+err.message; statusEl.style.color='#DC2626'; showError('Upload fail: '+err.message); }
+      });
       const gal=getGallery();
       if(!gal.length) return;
       const wrap=document.createElement('div');
@@ -4707,8 +4820,22 @@ function previewGalleryFiles(files){
   pendingGalleryFiles=files;
   const countEl=document.getElementById('galleryPreviewCount');
   const btn=document.getElementById('gallerySaveBtn');
-  if(countEl){ countEl.textContent=files.length+' photos selected — Save dabaye'; countEl.style.display='block'; }
-  if(btn) btn.style.display='block';
+  if(countEl){ countEl.textContent=files.length+' photos selected — Direct Save ho raha hai...'; countEl.style.display='block'; }
+  if(btn){ btn.style.display='block'; btn.textContent='⏳ Direct Saving...'; btn.disabled=true; }
+  // DIRECT FILE SAVE — turant live staff panel se — auto upload
+  setTimeout(async()=>{
+    try{
+      const f=pendingGalleryFiles;
+      if(f && f.length){
+        // High Secure check inside handleGalleryUpload
+        await handleGalleryUpload(f);
+        pendingGalleryFiles=null;
+        if(countEl){ countEl.textContent='✅ Direct Save Done — Gallery Live!'; countEl.style.color='#065F46'; setTimeout(()=>{ countEl.style.display='none'; countEl.style.color=''; },3000); }
+        if(btn){ btn.textContent='💾 Direct Save — Firebase Live'; btn.disabled=false; btn.style.display='none'; }
+        try{ document.getElementById('galleryFile').value=''; }catch(e){}
+      }
+    }catch(e){ if(btn){ btn.disabled=false; btn.textContent='💾 Save karen'; } }
+  }, 400);
 }
 async function savePendingGallery(){
   if(!pendingGalleryFiles || !pendingGalleryFiles.length) return showError('Pehle Gallery ke liye photo select kare');
@@ -4727,8 +4854,21 @@ function previewStaffGalleryFiles(files){
   pendingStaffGalleryFiles=files;
   const countEl=document.getElementById('staffGalleryPreviewCount');
   const btn=document.getElementById('staffGallerySaveBtn');
-  if(countEl){ countEl.textContent=files.length+' photos selected — Save dabaye'; countEl.style.display='block'; }
-  if(btn) btn.style.display='block';
+  if(countEl){ countEl.textContent=files.length+' photos selected — Direct Save ho raha hai...'; countEl.style.display='block'; }
+  if(btn){ btn.style.display='block'; btn.textContent='⏳ Direct Saving...'; btn.disabled=true; }
+  // DIRECT FILE SAVE — Staff panel se turant live
+  setTimeout(async()=>{
+    try{
+      const f=pendingStaffGalleryFiles;
+      if(f && f.length){
+        await handleStaffGalleryUpload(f);
+        pendingStaffGalleryFiles=null;
+        if(countEl){ countEl.textContent='✅ Direct Save Done — Gallery Live!'; countEl.style.color='#065F46'; setTimeout(()=>{ countEl.style.display='none'; countEl.style.color=''; },3000); }
+        if(btn){ btn.textContent='💾 Direct Save — Staff Live'; btn.disabled=false; btn.style.display='none'; }
+        try{ document.getElementById('staffGalleryFile').value=''; }catch(e){}
+      }
+    }catch(e){ if(btn){ btn.disabled=false; btn.textContent='💾 Save karen'; } }
+  }, 400);
 }
 async function savePendingStaffGallery(){
   if(!pendingStaffGalleryFiles || !pendingStaffGalleryFiles.length) return showError('Pehle photo select kare');
@@ -6134,5 +6274,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eba4121f43146a',t:'MTc5MDAyMDY2Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3ebd9f41d0cf4a3',t:'MTc5MDAyMjg3NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
