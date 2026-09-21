@@ -686,7 +686,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff8c90908d8c97869e9289968c97889e949e8d929eccc8bf98929e9693d19c9092">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="72011d1d00011a0b131f041b011a05131913001f13414532151f131b1e5c111d1f">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -761,7 +761,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c1b2aeaeb3b2a9b8a0acb7a8b2a9b6a0aaa0b3aca0f2f681a6aca0a8adefa2aeac">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e4d51514c4d56475f5348574d56495f555f4c535f0d097e59535f5752105d5153">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -836,6 +836,10 @@ img,video{max-width:100%;height:auto}
       <div class="field"><label>Coupon</label><input id="payCoupon" placeholder="HOTEL200" oninput="updatePaySummary()"></div>
       <div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid var(--border);border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center"><div><div style="font-size:11px;color:#78716C;font-weight:700">Total Payable (with Tax)</div><strong id="payTotal" style="font-size:20px;color:var(--dark)">₹1999</strong><div id="payBreakup" style="font-size:11px;color:#78716C">1 night • 2 Adults</div><div id="payTaxDetail" style="font-size:11px;color:#065F46;font-weight:800;margin-top:3px">+ GST 12% = ₹0 • Original Tax</div><div style="font-size:10px;color:#92400E;margin-top:2px">✓ Tax Original • Razorpay Auto Verify</div></div><div style="text-align:right"><span id="payNights" style="background:var(--dark);color:#fff;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800">1 night</span></div></div>
       <div style="background:#FFFBEB;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11px;font-weight:600;color:#92400e;margin-top:8px" id="payPersonHint"></div>
+      <div id="payGuestInfo" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1.5px solid #6EE7B7;border-radius:12px;padding:10px;margin-top:8px;display:none"></div>
+      <div style="background:#EFF6FF;border:1px solid #93C5FD;border-radius:10px;padding:8px;margin-top:8px;font-size:11px;color:#1E40AF;display:flex;justify-content:space-between;align-items:center;gap:8px">
+        <div><b>🆔 Guest UID (Same Device)</b><div style="font-size:10px;color:#64748B">Is device ka UID — Bill tak same rahega, Bill ke baad naya UID auto</div></div><code id="payGuestUid" style="background:#0F172A;color:#FDE68A;padding:4px 8px;border-radius:6px;font-size:10px;word-break:break-all">-</code>
+      </div>
       <div class="pay-options">
         <div id="opt-upi" class="pay-opt active" onclick="selectPay('upi')"><div class="icon">📱</div><b style="font-size:13px;color:var(--dark)">UPI QR</b><div style="font-size:11px;color:#78716C">GPay / PhonePe</div></div>
         <div id="opt-razor" class="pay-opt" onclick="selectPay('razor')"><div class="icon">💳</div><b style="font-size:13px;color:var(--dark)">Razorpay</b><div style="font-size:11px;color:#78716C">Card / Netbanking</div></div>
@@ -883,7 +887,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6615090914150e1f070b100f150e11070d07140b07555126010b070f0a4805090b">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c2f33332e2f34253d312a352f342b3d373d2e313d6f6b1c3b313d3530723f3331">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -921,11 +925,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d6a5b9b9a4a5beafb7bba0bfa5bea1b7bdb7a4bbb7e5e196b1bbb7bfbaf8b5b9bb">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b0c3dfdfc2c3d8c9d1ddc6d9c3d8c7d1dbd1c2ddd18387f0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a392525383922332b273c2339223d2b212b38272b797d0a2d272b232664292527">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abd8c4c4d9d8c3d2cac6ddc2d8c3dccac0cad9c6ca989cebccc6cac2c785c8c4c6">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5a293535282932233b372c3329322d3b313b28373b696d1a3d373b333674393537">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e1928e8e93928998808c9788928996808a80938c80d2d6a1868c80888dcf828e8c">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ea998585989982938b879c8399829d8b818b98878bd9ddaa8d878b8386c4898587">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0675696974756e7f676b706f756e71676d67746b67353146616b676f6a2865696b">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -966,7 +970,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9fecf0f0edecf7e6fef2e9f6ecf7e8fef4feedf2feaca8dff8f2fef6f3b1fcf0f2">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7a4b8b8a5a4bfaeb6baa1bea4bfa0b6bcb6a5bab6e4e097b0bab6bebbf9b4b8ba">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -1389,6 +1393,45 @@ try{
 }catch(e){ console.error(e); document.getElementById('firebaseBanner').className='firebase-banner show warn'; document.getElementById('firebaseBanner').innerHTML='❌ Config Error'; useFirebase=false; }
 function lsGet(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function lsSet(k,v){localStorage.setItem(k,JSON.stringify(v))}
+// ===== GUEST UID SYSTEM — Same Device = Same UID, Bill ke baad New UID =====
+let guestDeviceId = localStorage.getItem('hotel4g_guestDeviceId') || ('gdev_'+Math.random().toString(36).slice(2)+'_'+Date.now());
+localStorage.setItem('hotel4g_guestDeviceId', guestDeviceId);
+function generateNewGuestUid(){
+  const uid='GUEST-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,6).toUpperCase()+'-'+guestDeviceId.slice(-4).toUpperCase();
+  localStorage.setItem('hotel4g_guestUid', uid);
+  localStorage.setItem('hotel4g_guestUid_createdAt', new Date().toISOString());
+  console.log('New Guest UID:', uid);
+  return uid;
+}
+function getGuestUid(){
+  let uid=localStorage.getItem('hotel4g_guestUid');
+  if(!uid){
+    uid=generateNewGuestUid();
+  } else {
+    // Check if all bookings for this UID are billed/checkedout/cancelled — then new UID for next booking
+    try{
+      const bookings=getBookings().filter(b=> b.guestUid===uid);
+      if(bookings.length && bookings.every(b=> b.status==='billed' || b.status==='checkedout' || b.status==='cancelled')){
+        // All billed — new UID for next booking
+        uid=generateNewGuestUid();
+      }
+    }catch(e){}
+  }
+  return uid;
+}
+function getCurrentGuestUid(){ return localStorage.getItem('hotel4g_guestUid') || getGuestUid(); }
+function getGuestBookings(uid){
+  const id=uid||getCurrentGuestUid();
+  return getBookings().filter(b=> b.guestUid===id);
+}
+function getGuestServices(uid){
+  const id=uid||getCurrentGuestUid();
+  return getServiceRequests().filter(s=> s.guestUid===id);
+}
+// On load, ensure UID
+try{ getGuestUid(); }catch(e){}
+// Show Guest UID in console and banner for debug
+setTimeout(()=>{ try{ console.log('Guest Device:', guestDeviceId, 'Guest UID:', getCurrentGuestUid()); const el=document.getElementById('guestUidDisplay'); if(el) el.textContent=getCurrentGuestUid(); }catch(e){} }, 800);
 // ——— AUTO COMPRESS — Direct Gallery / Room / Menu — Photo auto compress → Firebase save + turant website live — Systematic
 async function compressImage(file, maxW=1280, quality=0.72){
   try{
@@ -2307,6 +2350,27 @@ function openPayModal(roomName,price){
   document.getElementById('payAdults').value=document.getElementById('adults').value||"2";
   document.getElementById('payChildren').value=document.getElementById('children').value||"0";
   document.getElementById('payOverlay').classList.add('open'); selectPay('upi'); updatePaySummary(); updatePersonHints(); updatePayRoomNumbers();
+  // Show Guest UID + Guest info from travel
+  try{
+    const uid=getCurrentGuestUid();
+    const el=document.getElementById('payGuestUid'); if(el) el.textContent=uid;
+    const info=document.getElementById('payGuestInfo');
+    let travelInfo=null; try{ travelInfo=JSON.parse(sessionStorage.getItem('pendingTravel')||'null'); }catch(e){}
+    if(travelInfo && info){
+      let h=`<div style="font-size:12px;font-weight:800;color:#065F46;margin-bottom:6px">📋 Reserve Me Bhari Gai Jankari (Auto Bill me jayegi)</div>`;
+      h+=`<div style="font-size:11px;color:#0F172A"><b>Guest:</b> ${travelInfo.name||'-'} • ${travelInfo.phone||'-'}</div>`;
+      if(travelInfo.personsText) h+=`<div style="font-size:11px;color:#57534E;margin-top:4px"><b>👥 Persons:</b> ${travelInfo.personsText}</div>`;
+      if(travelInfo.adultsDetails) h+=`<div style="font-size:10px;color:#92400E;margin-top:4px">Adults: ${travelInfo.adultsDetails.map((p,i)=>`#${i+1} ${p.name} ${p.age}Y ${p.gender}`).join(' | ')}</div>`;
+      if(travelInfo.childrenDetails && travelInfo.childrenDetails.length) h+=`<div style="font-size:10px;color:#065F46">Children: ${travelInfo.childrenDetails.map((p,i)=>`#${i+1} ${p.name} ${p.age}Y ${p.gender}`).join(' | ')}</div>`;
+      if(travelInfo.foodOrder) h+=`<div style="font-size:11px;color:#991B1B;margin-top:4px"><b>🍽️ Food:</b> ${travelInfo.foodOrder}</div>`;
+      h+=`<div style="font-size:10px;color:#64748B;margin-top:4px"><b>Travel:</b> ${travelInfo.travelData||''} • Room No: ${travelInfo.roomNumber||'Auto'}</div>`;
+      h+=`<div style="font-size:10px;color:#16A34A;margin-top:4px">🆔 UID: ${uid} — Is device se sab bookings/services isi UID me jod kar Bill banega (GST ke saath)</div>`;
+      info.innerHTML=h; info.style.display='block';
+    } else if(info){
+      info.innerHTML=`<div style="font-size:11px;color:#92400E">Guest details Travel form se ayenge — Reserve → Persons bharo → Fir Payment me yahan sab dikhega — UID: ${uid}</div>`;
+      info.style.display='block';
+    }
+  }catch(e){}
   if(pendingReserve.room===roomName && pendingReserve.roomNumber){ const sel=document.getElementById('payRoomNumber'); if(sel) sel.value=pendingReserve.roomNumber; }
 }
 function openPayModalFromForm(){
@@ -2366,11 +2430,16 @@ document.getElementById('payCout').addEventListener('change',()=>{updatePaySumma
 document.getElementById('payAdults').addEventListener('change',()=>{updatePaySummary(); updatePersonHints();});
 document.getElementById('payChildren').addEventListener('change',()=>{updatePaySummary(); updatePersonHints();});
 async function addBooking(data){
+  // ===== Guest UID — Same Device = Same UID, Firebase me save, Auto Documents =====
+  const guestUid = getGuestUid();
+  const deviceId = guestDeviceId;
+  data.guestUid = data.guestUid || guestUid;
+  data.guestDeviceId = data.guestDeviceId || deviceId;
   // auto assign Room No. if available
   if(!data.roomNumber && data.cin && data.cout){
     try{ const availNums=getAvailableRoomNumbers(data.room, data.cin, data.cout); if(availNums.length) data.roomNumber=availNums[0]; }catch(e){}
   }
-  let savedData={...data, createdAtStr:new Date().toLocaleString('en-IN')};
+  let savedData={...data, createdAtStr:new Date().toLocaleString('en-IN'), guestUid: data.guestUid, guestDeviceId: deviceId, uidGeneratedAt: new Date().toISOString()};
   if(useFirebase){
     const ref=await db.collection('bookings').add({...savedData, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
     savedData.id=ref.id;
@@ -2511,7 +2580,9 @@ async function handleContact(e){
   }
   const enquiryData={type:'Room Enquiry — '+roomName, name, phone, cin, cout, room:roomName, adults:parseInt(adults), children:parseInt(children), msg, amount:rData?rData.price:0, payment:'Enquiry — Payment Pending', status:'enquiry', createdAtStr: new Date().toLocaleString('en-IN')};
   try{
-    if(useFirebase){ await db.collection('serviceRequests').add({...enquiryData, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }
+        const _uidForService = getCurrentGuestUid();
+    const _devForService = guestDeviceId;
+    if(useFirebase){ await db.collection('serviceRequests').add({...enquiryData, guestUid: _uidForService, guestDeviceId: _devForService, createdAt: firebase.firestore.FieldValue.serverTimestamp()}); }
     else { const arr=lsGet('hotel4g_serviceRequests',[]); arr.unshift({id:'s'+Date.now(), ...enquiryData}); lsSet('hotel4g_serviceRequests', arr); }
   }catch(err){ return showError('Enquiry fail: '+err.message); }
   showPopup({type:'success', title:'✅ Enquiry Sent — Payment Required', message:`${name} — Enquiry mil gayi! Room ${roomName} ke liye Original Payment (UPI 78699691901@ybl / Razorpay GST ke saath) karne par hi Reservation Confirm hoga — Team 10 min me call karegi. Bina payment ka koi reservation nahi.` , confirmText:'💳 Pay karke Confirm करें', onConfirm:()=>{ document.getElementById('payCin').value=cin; document.getElementById('payCout').value=cout; document.getElementById('payAdults').value=adults; document.getElementById('payChildren').value=children; openPayModal(roomName, rData?rData.price:1999); }});
@@ -4002,13 +4073,33 @@ async function staffGenerateBill(bid){
   if(!b) return showError('Not found');
   if(b.status==='cancelled') return showError('Cancelled — Bill नहीं');
   if(b.status==='billed' || b.status==='checkedout') return showError('Already Billed');
-  const nights=b.nights||Math.max(1, Math.round((parseDate(b.cout)-parseDate(b.cin))/86400000)||1);
+  // ===== Guest UID — Same Device ke sab bookings/services ko jod kar Bill =====
+  const guestUid = b.guestUid || 'NO-UID';
+  const guestBookings = getBookings().filter(x=> x.guestUid===guestUid && (x.status==='paid' || x.status==='confirmed' || String(x.id)===String(bid)));
+  const guestServices = getServiceRequests().filter(s=> s.guestUid===guestUid);
+  // Calculate aggregate totals for this guest UID
+  let aggSubtotal=0, aggDiscount=0, aggTax=0, aggTotal=0, aggNights=0;
+  let allItems=[];
+  guestBookings.forEach(gb=>{
+    const n=gb.nights||Math.max(1, Math.round((parseDate(gb.cout)-parseDate(gb.cin))/86400000)||1);
+    const tp = gb.taxPercent || getSettings().tax || 12;
+    const st = gb.subtotal!==undefined ? gb.subtotal : gb.amount;
+    const disc = gb.discount||0;
+    const taxable=Math.max(0, st-disc);
+    const tx = gb.tax!==undefined ? gb.tax : Math.round(taxable*tp/100);
+    const tot = gb.tax!==undefined ? gb.amount : taxable+tx;
+    aggSubtotal+=st; aggDiscount+=disc; aggTax+=tx; aggTotal+=tot; aggNights+=n;
+    allItems.push({room:gb.room, nights:n, rate:Math.round(st/Math.max(1,n)), subtotal:st, tax:tx, total:tot, taxPercent:tp, adultsDetails: gb.adultsDetails, childrenDetails: gb.childrenDetails, foodOrder: gb.foodOrder, roomNumber: gb.roomNumber, name: gb.name});
+  });
+  // Use aggregate if multiple, else single
+  const isMulti = guestBookings.length>1;
+  const nights=isMulti? aggNights : (b.nights||Math.max(1, Math.round((parseDate(b.cout)-parseDate(b.cin))/86400000)||1));
   const taxPercent = b.taxPercent || getSettings().tax || 12;
-  const subtotal = b.subtotal !== undefined ? b.subtotal : b.amount;
-  const discount = b.discount || 0;
+  const subtotal = isMulti? aggSubtotal : (b.subtotal !== undefined ? b.subtotal : b.amount);
+  const discount = isMulti? aggDiscount : (b.discount || 0);
   const taxable = Math.max(0, subtotal - discount);
-  const tax = b.tax !== undefined ? b.tax : Math.round(taxable * taxPercent /100);
-  const total = b.tax !== undefined ? b.amount : taxable + tax;
+  const tax = isMulti? aggTax : (b.tax !== undefined ? b.tax : Math.round(taxable * taxPercent /100));
+  const total = isMulti? aggTotal : (b.tax !== undefined ? b.amount : taxable + tax);
   const roomRate = Math.round(subtotal / Math.max(1,nights));
   const cgst=Math.round(tax/2), sgst=tax-cgst;
   const invNo=`INV-4G-${String(bid).slice(-6).toUpperCase()}-${new Date().getFullYear()}`;
@@ -4020,18 +4111,19 @@ async function staffGenerateBill(bid){
         <div style="text-align:right"><div style="background:#fff;color:#0F172A;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:900;letter-spacing:0.6px">ORIGINAL TAX INVOICE</div><div style="font-size:10px;color:#E2E8F0;margin-top:4px">📞 +91 98765 43210 • ✉️ info@hotel4g.com</div><div style="font-size:9px;color:#FDE68A">UPI: 78699691901@ybl • Razorpay Verified</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;font-size:11px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC">
-        <div style="padding:10px;border-right:1.5px solid #E2E8F0"><div style="font-size:9px;color:#64748B;font-weight:800;letter-spacing:0.6px">INVOICE DETAILS</div><div style="margin-top:4px"><b>Bill No:</b> ${invNo}</div><div><b>Date:</b> ${billDate}</div><div><b>Staff:</b> ${currentStaffId||'staff'} • ${b.verification||'Manual'} ${b.verified?'✔ Auto Verified':''}</div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:2px">✓ Razorpay Original • No Duplicate</div></div>
-        <div style="padding:10px"><div style="font-size:9px;color:#64748B;font-weight:800;letter-spacing:0.6px">GUEST DETAILS</div><div style="margin-top:4px"><b>${b.name}</b></div><div>📞 ${b.phone} • ${b.adults||''}A ${b.children||0}C</div><div>🏨 ${b.room} ${b.roomNumber?'<b style="color:#DC2626">#'+b.roomNumber+'</b>':''}</div><div>📅 ${b.cin} → ${b.cout} • ${nights}N • Check-in 12PM / Out 11AM</div></div>
+        <div style="padding:10px;border-right:1.5px solid #E2E8F0"><div style="font-size:9px;color:#64748B;font-weight:800;letter-spacing:0.6px">INVOICE DETAILS</div><div style="margin-top:4px"><b>Bill No:</b> ${invNo}</div><div><b>Date:</b> ${billDate}</div><div><b>Staff:</b> ${currentStaffId||'staff'} • ${b.verification||'Manual'} ${b.verified?'✔ Auto Verified':''}</div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:2px">✓ Razorpay Original • No Duplicate</div><div style="font-size:9px;color:#0F172A;background:#FDE68A;padding:3px 6px;border-radius:6px;margin-top:4px;display:inline-block">🆔 Guest UID: ${guestUid} ${isMulti?`• ${guestBookings.length} Bookings Combined`:''}</div></div>
+        <div style="padding:10px"><div style="font-size:9px;color:#64748B;font-weight:800;letter-spacing:0.6px">GUEST DETAILS (Same Device)</div><div style="margin-top:4px"><b>${b.name}</b> ${isMulti?`<span style="background:#0F172A;color:#fff;padding:2px 6px;border-radius:20px;font-size:9px">${guestBookings.length} Bookings</span>`:''}</div><div>📞 ${b.phone} • ${b.adults||''}A ${b.children||0}C ${b.adultsDetails?`• ${b.adultsDetails.map(p=>p.name).join(', ')}`:''}</div><div>🏨 ${b.room} ${b.roomNumber?'<b style="color:#DC2626">#'+b.roomNumber+'</b>':''} ${isMulti?`<div style="font-size:10px;color:#92400E">${guestBookings.map(g=>`${g.room} ${g.roomNumber?'#'+g.roomNumber:''} (${g.nights||1}N)`).join(' • ')}</div>`:''}</div><div>📅 ${b.cin} → ${b.cout} • ${nights}N • Check-in 12PM / Out 11AM</div><div style="font-size:9px;color:#16A34A">UID ${guestUid} — Same device se sab services isi bill me</div></div>
       </div>
       <div style="padding:10px">
         <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:0">
           <thead><tr style="background:#0F172A;color:#fff"><th style="text-align:left;padding:8px;border-radius:6px 0 0 0">Description</th><th style="padding:8px">HSN</th><th style="padding:8px">Qty</th><th style="text-align:right;padding:8px">Rate</th><th style="text-align:right;padding:8px;border-radius:0 6px 0 0">Amount</th></tr></thead>
           <tbody>
-            <tr style="border-bottom:1px solid #E2E8F0"><td style="padding:10px 8px"><b>${b.room}</b><div style="font-size:10px;color:#64748B">${b.roomNumber?'Room No. '+b.roomNumber+' • ':''}${nights} Night(s) • ${b.adults||''} Adults, ${b.children||0} Children</div>${b.travelData?`<div style="font-size:10px;color:#64748B">${b.travelData}</div>`:''}
+            ${isMulti ? allItems.map((it,i)=>`<tr style="border-bottom:1px solid #E2E8F0"><td style="padding:8px"><b>${i+1}. ${it.room}</b> ${it.roomNumber?`<span style="color:#DC2626">#${it.roomNumber}</span>`:''}<div style="font-size:10px;color:#64748B">${it.nights}N • ${it.rate?`₹${it.rate}/N`:`-`}${it.adultsDetails?` • ${it.adultsDetails.map(p=>p.name).join(', ')}`:''}</div>${it.foodOrder?`<div style="font-size:9px;color:#991B1B">🍽️ ${it.foodOrder}</div>`:''}</td><td style="text-align:center;padding:8px">9963</td><td style="text-align:center;padding:8px">${it.nights}</td><td style="text-align:right;padding:8px">₹${it.rate.toLocaleString('en-IN')}</td><td style="text-align:right;padding:8px"><b>₹${it.subtotal.toLocaleString('en-IN')}</b></td></tr>`).join('') : `<tr style="border-bottom:1px solid #E2E8F0"><td style="padding:10px 8px"><b>${b.room}</b><div style="font-size:10px;color:#64748B">${b.roomNumber?'Room No. '+b.roomNumber+' • ':''}${nights} Night(s) • ${b.adults||''} Adults, ${b.children||0} Children</div>${b.travelData?`<div style="font-size:10px;color:#64748B">${b.travelData}</div>`:''}
               ${b.adultsDetails && b.adultsDetails.length ? `<div style="margin-top:6px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:6px"><b style="font-size:11px;color:#92400E">👥 Adults Details:</b><div style="font-size:10px;color:#57534E">${b.adultsDetails.map((p,i)=>`#${i+1} ${p.name} — ${p.age}Y, ${p.gender}`).join(' • ')}</div></div>`:''}
               ${b.childrenDetails && b.childrenDetails.length ? `<div style="margin-top:4px;background:#F0FDF4;border:1px solid #6EE7B7;border-radius:8px;padding:6px"><b style="font-size:11px;color:#065F46">🧒 Children Details:</b><div style="font-size:10px;color:#57534E">${b.childrenDetails.map((p,i)=>`#${i+1} ${p.name} — ${p.age}Y, ${p.gender}`).join(' • ')}</div></div>`:''}
               ${b.foodOrder ? `<div style="margin-top:4px;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:6px"><b style="font-size:11px;color:#991B1B">🍽️ Food Order (Room: ${b.room}):</b><div style="font-size:10px;color:#57534E">${b.foodOrder}</div></div>`:''}
-            </td><td style="text-align:center;padding:8px">9963</td><td style="text-align:center;padding:8px">${nights}</td><td style="text-align:right;padding:8px">₹${roomRate.toLocaleString('en-IN')}</td><td style="text-align:right;padding:8px"><b>₹${subtotal.toLocaleString('en-IN')}</b></td></tr>
+            </td><td style="text-align:center;padding:8px">9963</td><td style="text-align:center;padding:8px">${nights}</td><td style="text-align:right;padding:8px">₹${roomRate.toLocaleString('en-IN')}</td><td style="text-align:right;padding:8px"><b>₹${subtotal.toLocaleString('en-IN')}</b></td></tr>`}
+            ${guestServices.length? `<tr><td colspan="5" style="padding:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px"><b style="font-size:11px;color:#0F172A">🛎️ Services (Same UID ${guestUid}):</b><div style="font-size:10px;color:#57534E">${guestServices.map(s=>`${s.serviceType||s.type||'Service'} — ${s.name} (${s.phone})`).join(' • ')||'No extra services'}</div></td></tr>`:''}
             ${b.foodOrder ? `<tr><td colspan="4" style="text-align:right;padding:6px 8px;font-size:11px">🍽️ Food Order Amount (Room Service)</td><td style="text-align:right;padding:6px 8px">Included</td></tr>` : ''}
             ${discount?`<tr><td colspan="4" style="text-align:right;padding:6px 8px;color:#16A34A;font-weight:700">Coupon ${b.coupon||''} Discount</td><td style="text-align:right;padding:6px 8px;color:#16A34A">-₹${discount.toLocaleString('en-IN')}</td></tr>`:''}
             <tr><td colspan="4" style="text-align:right;padding:6px 8px">Taxable Amount</td><td style="text-align:right;padding:6px 8px"><b>₹${taxable.toLocaleString('en-IN')}</b></td></tr>
@@ -4056,12 +4148,45 @@ async function staffGenerateBill(bid){
   `;
   document.getElementById('billContent').innerHTML=billHtml;
   document.getElementById('billOverlay').classList.add('open');
-  // on bill confirm, mark billed and make room available
-  showPopup({type:'confirm', title:'🧾 Bill Generate करें?', message:`Room ${b.roomNumber||''} का Bill ₹${total} generate करके Room को Available करें?`, confirmText:'✓ Generate & Free Room', showCancel:true, onConfirm: async()=>{
-    if(useFirebase){ await db.collection('bookings').doc(String(bid)).update({status:'billed', billedAmount: total, billedAt: firebase.firestore.FieldValue.serverTimestamp(), billedBy: currentStaffId||'staff'}); }
-    else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='billed'; arr[idx].billedAmount=total; lsSet('hotel4g_bookings',arr); bookingsCache=arr; } }
+  // on bill confirm, mark billed and make room available — Same UID ke sab bookings ko bill + New UID for next
+  const billMsg = isMulti ? `Guest UID ${guestUid} — ${guestBookings.length} Bookings + ${guestServices.length} Services = Total ₹${total.toLocaleString('en-IN')} (GST ${taxPercent}% included) — Sab ko Billed karke Bill generate करें?` : `Room ${b.roomNumber||''} का Bill ₹${total.toLocaleString('en-IN')} generate करके Room को Available करें?`;
+  showPopup({type:'confirm', title:'🧾 Bill Generate करें? (UID: '+guestUid.slice(-8)+')', message: billMsg, confirmText:'✓ Generate & Free Room — New UID Next', showCancel:true, onConfirm: async()=>{
+    // Bill all bookings for this UID
+    if(useFirebase){
+      try{
+        const batch=db.batch();
+        guestBookings.forEach(gb=>{
+          const ref=db.collection('bookings').doc(String(gb.id));
+          batch.update(ref, {status:'billed', billedAmount: gb===b ? total : gb.amount, billedAt: firebase.firestore.FieldValue.serverTimestamp(), billedBy: currentStaffId||'staff', billedGroup: guestUid, billTotal: total});
+        });
+        // Also mark services as billed
+        for(let s of guestServices){
+          try{ batch.update(db.collection('serviceRequests').doc(String(s.id)), {status:'billed', billedAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){}
+        }
+        await batch.commit();
+      }catch(e){
+        // Fallback single update
+        await db.collection('bookings').doc(String(bid)).update({status:'billed', billedAmount: total, billedAt: firebase.firestore.FieldValue.serverTimestamp(), billedBy: currentStaffId||'staff'});
+      }
+    } else {
+      const arr=lsGet('hotel4g_bookings',[]);
+      guestBookings.forEach(gb=>{
+        const idx=arr.findIndex(x=>String(x.id)===String(gb.id));
+        if(idx>-1){ arr[idx].status='billed'; arr[idx].billedAmount = gb===b ? total : arr[idx].amount; arr[idx].billedGroup=guestUid; }
+      });
+      lsSet('hotel4g_bookings',arr); bookingsCache=arr;
+    }
+    // After bill, if current device's UID is same, generate new UID for next booking (sirf bill ke baad hi naya UID)
+    try{
+      const curUid=localStorage.getItem('hotel4g_guestUid');
+      if(curUid===guestUid){
+        const newUid=generateNewGuestUid();
+        console.log('Bill done — New Guest UID for next booking:', newUid);
+        showPopup({type:'info', title:'🆔 New UID Generated', message:`Bill generate hone ke baad same device ke liye naya UID ban gaya: ${newUid}\nAgla Reserve isi naye UID me jayega — Purana UID ${guestUid} ka hisaab complete.`, confirmText:'Samajh gaya'});
+      }
+    }catch(e){}
     renderStaffDashboard(); renderBookings(); renderRooms(); renderCalendar(); updateStats();
-    showSuccess('Bill Generated — Room अब Available! Original Full Bill Ready — Print करें','🧾');
+    showSuccess(`Bill Generated — ${isMulti? guestBookings.length+' Bookings Combined': 'Room'} Available! UID ${guestUid.slice(-8)} Total ₹${total.toLocaleString('en-IN')} — Print करें`,'🧾');
     // ⭐ Guest Rating popup — Staff Bill generate karte hi Guest ke paas rating box
     setTimeout(()=>{
       try{ openGuestRating(bid); }catch(e){ console.log(e); }
@@ -4613,6 +4738,9 @@ async function helpfulReview(id){
   showSuccess('Thanks for Helpful!','👍');
 }
 async function realServiceRequest(serviceType){
+  // Attach guestUid for same device tracking
+  const _guestUid = getCurrentGuestUid();
+  const _deviceId = guestDeviceId;
   const needGuest=/Room Service|Restaurant|Table Booking|Laundry/i.test(serviceType);
   if(needGuest && !currentStaffId && !hasMyBooking()){
     return showError('Room Service / Restaurant — Room book kiye hue guests / Staff hi request kar sakte hain — Bahar sirf Menu View Only. Pehle room book kare — Staff help karega.');
@@ -4653,5 +4781,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e94269afd53f85',t:'MTc4OTk5NTY5NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e9751fe9d92967',t:'MTc4OTk5Nzc3Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
