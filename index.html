@@ -457,6 +457,51 @@ img,video{max-width:100%;height:auto}
 .web-tab{flex:0 0 auto;padding:10px 16px;border-radius:30px;border:1.5px solid #E2E8F0;background:#fff;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:0.2s;box-shadow:0 2px 8px rgba(15,23,42,0.04)}
 .web-tab.active{background:var(--grad1);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(255,59,130,0.16);transform:translateY(-1px)}
 .web-tab:hover{border-color:#FDBA74;transform:translateY(-1px)}
+/* FULL SCREEN RESERVE — Pay & Travel Strict Professional — High Secure */
+#payOverlay.modal-overlay, #travelOverlay.modal-overlay, #guestLoginOverlay.modal-overlay{
+  inset:0 !important;
+  padding:0 !important;
+  background:rgba(255,251,235,0.98) !important;
+  backdrop-filter:blur(16px) saturate(1.2) !important;
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  align-items:stretch !important;
+  justify-content:center !important;
+  overflow-y:auto !important;
+  z-index:3000 !important;
+}
+#payOverlay .modal, #travelOverlay .modal, #guestLoginOverlay .modal{
+  max-width:100% !important;
+  width:100% !important;
+  height:100% !important;
+  max-height:100vh !important;
+  border-radius:0 !important;
+  margin:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  box-shadow:none !important;
+  border:none !important;
+  animation:popIn 0.25s ease-out !important;
+}
+#payOverlay .modal-head, #travelOverlay .modal-head{
+  position:sticky !important;
+  top:0 !important;
+  z-index:2 !important;
+  border-radius:0 !important;
+  padding:14px 16px !important;
+}
+#payOverlay .modal-body, #travelOverlay .modal-body{
+  flex:1 !important;
+  overflow-y:auto !important;
+  padding:16px !important;
+  -webkit-overflow-scrolling:touch;
+}
+@media(min-width:768px){
+  #payOverlay .modal, #travelOverlay .modal{ max-width:640px !important; margin:20px auto !important; height:auto !important; max-height:92vh !important; border-radius:20px !important; box-shadow:0 24px 60px rgba(0,0,0,0.22) !important; border:1.5px solid var(--border) !important; }
+  #payOverlay.modal-overlay, #travelOverlay.modal-overlay{ padding:16px !important; align-items:center !important; background:rgba(15,23,42,0.55) !important; }
+}
+/* STRICT PHOTO LIVE — All images Firebase live, High Secure */
+.rooms-grid .room-card img, .gallery-grid img, .carousel-slide img{ transition:transform 0.3s, filter 0.3s; }
+.rooms-grid .room-card img:hover, .gallery-grid img:hover{ transform:scale(1.02); filter:brightness(1.05); }
 </style>
 </head>
 <body>
@@ -704,7 +749,7 @@ img,video{max-width:100%;height:auto}
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6714080815140f1e060a110e140f10060c06150a06545027000a060e0b4904080a">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a697575686972637b776c7369726d7b717b68777b292d5a7d777b737634797577">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -779,7 +824,7 @@ img,video{max-width:100%;height:auto}
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcafb3b3aeafb4a5bdb1aab5afb4abbdb7bdaeb1bdefeb9cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7a4b8b8a5a4bfaeb6baa1bea4bfa0b6bcb6a5bab6e4e097b0bab6bebbf9b4b8ba">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -910,7 +955,7 @@ img,video{max-width:100%;height:auto}
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb889494898893829a968d9288938c9a909a89969ac8ccbb9c969a9297d5989496">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="20534f4f52534859414d5649534857414b41524d41131760474d41494c0e434f4d">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -1011,11 +1056,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6b5a9a9b4b5aebfa7abb0afb5aeb1a7ada7b4aba7f5f186a1aba7afaae8a5a9ab">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="483b27273a3b203129253e213b203f2923293a25297b7f082f25292124662b2725">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a4d7cbcbd6d7ccddc5c9d2cdd7ccd3c5cfc5d6c9c59793e4c3c9c5cdc88ac7cbc9">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4c7dbdbc6c7dccdd5d9c2ddc7dcc3d5dfd5c6d9d58783f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97e4f8f8e5e4ffeef6fae1fee4ffe0f6fcf6e5faf6a4a0d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="32415d5d40415a4b535f445b415a45535953405f53010572555f535b5e1c515d5f">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e89b87879a9b809189859e819b809f8983899a8589dbdfa88f85898184c68b8785">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24574b4b56574c5d4549524d574c53454f455649451713644349454d480a474b49">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -1056,7 +1101,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d3e22223f3e25342c203b243e253a2c262c3f202c7e7a0d2a202c2421632e2220">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deadb1b1acadb6a7bfb3a8b7adb6a9bfb5bfacb3bfede99eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -1153,7 +1198,7 @@ service cloud.firestore {
           <button onclick="adminAddCoupon()" class="btn-gold" style="padding:10px 14px;white-space:nowrap">+ Add Coupon</button>
         </div>
         <div class="field" style="margin-top:8px"><label>Description (optional)</label><input id="newCouponDesc" placeholder="e.g. Diwali Offer — 500 off on 2+ nights"></div>
-        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff8c90908d8c97869e9289968c97889e949e8d929eccc8bf98929e9693d19c9092">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
+        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="196a76766b6a716078746f706a716e7872786b74782a2e597e74787075377a7674">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
         <div style="display:none"><input id="setCoupon" value="HOTEL200"></div>
       </div><div class="field"><label>Tax % — Original GST (Auto)</label><input id="setTax" type="number" min="0" max="28" value="12"></div><div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:12px;padding:10px"><div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:8px">🎉 Banquet Hall Pricing — Admin Edit (Persons badhne par price badhega)</div><div class="field" style="margin-bottom:8px"><label>Banquet Base Price ₹ — (1 Guest ka base)</label><input id="setBanquetBase" type="number" min="1000" max="100000" value="6000" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div class="field" style="margin-bottom:0"><label>Per Person Extra ₹ — (Har extra person ka charge)</label><input id="setBanquetPerPerson" type="number" min="10" max="1000" value="110" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:6px">Formula: Base + PerPerson×Guests + tier extra → Final Price (GST extra) • 10 Guests → ~₹<span id="banquetPreviewHint">calculate</span></div></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase — Tax + Banquet Live</button></div>
         <div style="padding:14px;border-top:1px solid #F1F5F9;margin-top:8px">
@@ -4186,6 +4231,7 @@ window.saveRoomFiles = async function saveRoomFiles(roomId){
   console.log('saveRoomFiles clicked', roomId);
   if(autoLiveTimers[roomId]){ clearTimeout(autoLiveTimers[roomId]); autoLiveTimers[roomId]=null; }
   if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showPopup({type:'error', title:'⛔ Access Denied', message:'Photo save sirf Staff/Admin kar sakte hai — Pehle Staff login kare', confirmText:'ठीक है'});
+  if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase() && !isHighSecureAuthorized()) return requireHighSecure('Room Photo Save — High Secure 🔒', ()=> saveRoomFiles(roomId));
   let files=pendingRoomFilesMap[roomId];
   // Fallback: agar pending null ho (auto-live ne clear kar diya) to input se direct lo
   if(!files || !files.length){
@@ -4366,6 +4412,7 @@ async function addRoomPhotoByUrl(roomId){ return showError('🔗 Link hata diya 
 async function handleRoomMultiUpload(roomId, files){
   if(!files || !files.length) return showPopup({type:'error', title:'⚠️ Photo nahi mila', message:'Pehle Phone Gallery se photo select kare — Click karke Gallery open kare', confirmText:'ठीक है'});
   if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showPopup({type:'error', title:'⛔ Access Denied', message:'Room photo update sirf Staff/Admin kar sakte hai', confirmText:'ठीक है'});
+  if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase() && !isHighSecureAuthorized()) return requireHighSecure('Room Photo Upload — High Secure 🔒', ()=> handleRoomMultiUpload(roomId, files));
   // Ensure roomsCache loaded
   if(!roomsCache) roomsCache=lsGet('hotel4g_rooms', defaultRooms);
   const rooms=getRooms(); const r=rooms.find(x=>x.id===roomId); if(!r) return showPopup({type:'error', title:'Room nahi mila', message:'Room ID '+roomId+' not found', confirmText:'ठीक है'});
@@ -4520,6 +4567,7 @@ async function handleRoomMultiUpload(roomId, files){
 }
 async function saveRooms(){
   if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only — Room Photo/Price change sirf Staff/Admin se');
+  if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase() && !isHighSecureAuthorized()) return requireHighSecure('Room Photo/Price Save — High Secure 🔒', ()=> saveRooms());
   // Staff/Admin verified
   showPopup({type:'confirm', title:'🔐 Save करें?', message:'High Secure: बदलाव Live हो जाएगा — सभी Users को दिखेगा।', confirmText:'हाँ, Save 🔒', cancelText:'रद्द करें', showCancel:true, onConfirm: async()=>{
     const rooms=getRooms().map(r=>{
@@ -4605,6 +4653,7 @@ async function resetRooms(){
 async function handleGalleryUpload(files){
   if(!files || !files.length) return;
   if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only — Gallery photo change sirf Staff/Admin se');
+  if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase() && !isHighSecureAuthorized()) return requireHighSecure('Gallery Upload — High Secure 🔒', ()=> handleGalleryUpload(files));
   // Staff/Admin verified
   let done=0; // Silent — no loading percentage
   // Support both Firebase Storage and Local Preview (DataURL) — turant live in both
@@ -4694,17 +4743,12 @@ async function savePendingStaffGallery(){
 }
 async function handleStaffGalleryUpload(files){
   if(!currentStaffId && !(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Staff/Admin only — Gallery upload sirf Staff/Admin se');
+  if(authUser && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase() && !isHighSecureAuthorized()) return requireHighSecure('Staff Gallery Upload — High Secure 🔒', ()=> handleStaffGalleryUpload(files));
   if(!files || !files.length) return;
   let done=0; // Silent — no loading — Staff/Admin direct
   if(!useFirebase){
-    for(let file of files){
-    file = await compressImage(file);
-      if(!file.type.startsWith('image/')) continue;
-      if(file.size>5*1024*1024){ showError(file.name+' 5MB से बड़ा'); continue; }
-      const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.readAsDataURL(file); });
-      const arr=lsGet('hotel4g_gallery', defaultGallery.map((u,i)=>({id:'g'+i,url}))); arr.unshift({id:'g'+Date.now()+'_'+Math.random().toString(36).slice(2,6), url:dataUrl}); /* Firebase only — hotel4g_gallery local storage disabled as per request */ galleryCache=arr; done++;
-    }
-    try{ document.getElementById('staffGalleryFile').value=''; }catch(e){} try{ const sg=document.getElementById('staffGalleryGrid'); const ag=document.getElementById('galleryAdminGrid'); if(sg&&ag) sg.innerHTML=ag.innerHTML; }catch(e){} showSuccess(`${done} Photos Gallery Live!`,'Done!'); try{ websiteSwitchTab('gallery'); }catch(e){} return;
+    showError('🔒 Firebase not connected — Gallery upload sirf Firebase Live se • Local storage disabled (Strict) — Firebase config kare');
+    return;
   }
   for(let file of files){
     file = await compressImage(file);
@@ -6090,5 +6134,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // auto update room suggest on load
 updatePersonHints();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eb8182284b3026',t:'MTc5MDAxOTI1MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eba4121f43146a',t:'MTc5MDAyMDY2Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
