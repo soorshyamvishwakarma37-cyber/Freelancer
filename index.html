@@ -620,6 +620,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <button class="dots-btn" onclick="toggleNavDots(event)" aria-label="Menu" title="Menu — सब कुछ यहाँ">⋮</button>
         <div id="navDotsMenu" class="dots-menu" style="min-width:210px;max-height:78vh;overflow-y:auto">
           <div style="padding:6px 8px;font-size:10.5px;font-weight:800;letter-spacing:0.6px;color:#94A3B8;text-transform:uppercase" data-i18n="dots_menu_title">Navigate — सब यहीं</div>
+          <a href="#" onclick="openGuestSettings(); toggleNavDots(); return false;" style="background:linear-gradient(135deg,#C5A254,#FDE68A);color:#0F172A;border:1.5px solid #C5A254;font-weight:900;white-space:normal;line-height:1.35;text-align:center" data-i18n="dots_account">👤 My Account — Order History / Logout</a>
           <a href="#home" onclick="toggleNavDots()" data-i18n="dots_home">🏠 Home</a>
           <a href="#rooms" onclick="toggleNavDots()" data-i18n="dots_rooms">🛏 Rooms</a>
           <a href="#banquet" onclick="toggleNavDots()" data-i18n="dots_banquet">🎉 Banquet Hall</a>
@@ -634,7 +635,6 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
           <a href="#booking" onclick="toggleNavDots()" style="background:#FFF7ED;border:1px solid #FDE68A" data-i18n="dots_book">✨ Book Now — बुक करें</a>
           <a href="#" onclick="openAdmin(); toggleNavDots(); return false;" data-i18n="dots_admin">⚙️ Admin Login</a>
           <a href="#" onclick="openAdminSettings(); toggleNavDots(); return false;" data-i18n="dots_settings">⚙️ Settings (Admin)</a>
-          <a href="#" onclick="openGuestSettings(); toggleNavDots(); return false;" style="background:linear-gradient(135deg,#C5A254,#FDE68A);color:#0F172A;border:1.5px solid #C5A254" data-i18n="dots_account">👤 My Account — Order History / Logout</a>
           <a href="#" onclick="openStaffLogin(); toggleNavDots(); return false;" style="background:#0F172A;color:#fff" data-i18n="dots_staff">👔 Staff Panel Login</a>
           <div class="dots-sep"></div>
           <a href="#" onclick="document.getElementById('helpOverlay').classList.add('open'); toggleNavDots(); return false;" data-i18n="dots_help">❓ Help / Firebase Setup</a>
@@ -1105,6 +1105,19 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
   <div class="modal" style="max-width:640px;max-height:92vh;overflow:auto;border-radius:20px">
     <div class="modal-head" style="background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;position:sticky;top:0;z-index:2"><div><b data-i18n="acc_head">⚙️ My Settings — Hotel 4G</b><div style="font-size:11px;color:#CBD5E1" id="guestSettingsEmail" data-i18n="acc_guest">Guest</div></div><button onclick="closeGuestSettings()" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.12);color:#fff;cursor:pointer;font-weight:800">✕</button></div>
     <div class="modal-body" style="padding:16px">
+      <div id="guestProfileCard" style="background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:16px;padding:14px;margin-bottom:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#C5A254,#FDE68A);display:grid;place-items:center;font-size:22px;font-weight:900;color:#0F172A" id="profAvatar">👤</div>
+        <div style="flex:1;min-width:160px">
+          <div style="font-size:11px;color:#94A3B8;font-weight:800;letter-spacing:0.6px;text-transform:uppercase" data-i18n="prof_head">👤 My Profile</div>
+          <div id="profName" style="color:#fff;font-size:15px;font-weight:900;margin-top:2px">Guest</div>
+          <div id="profEmail" style="color:#CBD5E1;font-size:11.5px;word-break:break-all">—</div>
+        </div>
+        <div style="display:grid;gap:4px;font-size:10.5px">
+          <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#FDE68A;padding:4px 10px;border-radius:20px;font-weight:800" id="profType">Google</span>
+          <span style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);color:#6EE7B7;padding:4px 10px;border-radius:20px;font-weight:800" id="profStatus">● Logged In</span>
+        </div>
+        <div style="width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:6px 10px;font-size:10.5px;color:#CBD5E1;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span data-i18n="prof_uid_lbl">Guest UID</span><code id="profUid" style="color:#FDE68A;word-break:break-all">-</code></div>
+      </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
         <div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1.5px solid #93C5FD;border-radius:12px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748B;font-weight:700" data-i18n="acc_bookings">My Bookings</div><b id="guestOrderCount" style="font-size:18px;color:#0F172A">0</b></div>
         <div style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1.5px solid #6EE7B7;border-radius:12px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748B;font-weight:700" data-i18n="acc_uid">My UID</div><code id="guestSettingsUid" style="font-size:10px;background:#0F172A;color:#FDE68A;padding:4px 6px;border-radius:6px;word-break:break-all">-</code></div>
@@ -1353,6 +1366,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <div class="field"><label>Staff ID *</label><input id="staffIdInput" placeholder="e.g. staff01"></div>
         <div class="field"><label>Password *</label><input id="staffPassInput" type="password" placeholder="••••••••"></div>
         <button onclick="staffLogin()" class="btn-gold" style="width:100%;padding:12px">🔒 Login — Single Device</button>
+        <button id="staffAdminDirectBtn" onclick="staffAdminDirect()" style="display:none;width:100%;padding:12px;border-radius:30px;border:none;background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;font-weight:800;cursor:pointer">👑 Admin Login se Direct Kholein — No OTP</button>
         <button onclick="document.getElementById('staffLoginOverlay').classList.remove('open')" class="btn-wh" style="width:100%">Cancel</button>
         <div style="font-size:10.5px;color:#94A3B8;text-align:center">IDs hidden — केवल Admin panel में दिखती हैं<br>एक device पर एक ही login • Password Admin ही बदल सकता है</div>
       </div>
@@ -2529,6 +2543,11 @@ const TRANSLATIONS={
     restaurant_tag:"🍽 रेस्टोरेंट — टेबल बुकिंग",
     restaurant_title:"टेबल <em>बुक करें</em> — No. Wise",
     restaurant_desc:"Table No. Wise Booking — Staff द्वारा Add/Edit/Delete, Guest तुरंत Book • Firebase Live",
+    prof_head:"👤 मेरी प्रोफाइल",
+    prof_uid_lbl:"गेस्ट UID",
+    pay_conf_title:"✅ बुकिंग कन्फर्म — पेमेंट सफल!",
+    pay_conf_msg:" धन्यवाद <b>{name}</b>! आपकी बुकिंग कन्फर्म हो गई है।<br>🛏 रूम: <b>{room}</b><br>📅 {cin} → {cout} • {nights} रात • {adults}A {children}C<br>💰 चुकाया गया: <b>₹{amount}</b> (GST ₹{tax} शामिल)<br>🆔 Payment ID: <code>{txn}</code><br>📲 Booking details WhatsApp/SMS par bhi mil jayengi — Check-in par Govt. ID layen",
+    pay_conf_ok:"✓ धन्यवाद — जारी रखें",
     js_available:"उपलब्ध",
     js_booked:"बुक्ड",
     js_adults:"वयस्क",
@@ -2927,6 +2946,11 @@ const TRANSLATIONS={
     restaurant_tag:"🍽 RESTAURANT — TABLE BOOKING",
     restaurant_title:"Book a <em>Table</em> — Number-wise",
     restaurant_desc:"Table-wise booking — Staff add/edit/delete, guests book instantly • Firebase Live",
+    prof_head:"👤 My Profile",
+    prof_uid_lbl:"Guest UID",
+    pay_conf_title:"✅ Booking Confirmed — Payment Successful!",
+    pay_conf_msg:"🎉 Thank you <b>{name}</b>! Your booking is confirmed.<br>🛏 Room: <b>{room}</b><br>📅 {cin} → {cout} • {nights} night(s) • {adults}A {children}C<br>💰 Paid: <b>₹{amount}</b> (GST ₹{tax} included)<br>🆔 Payment ID: <code>{txn}</code><br>📲 Please carry a Govt. ID at check-in",
+    pay_conf_ok:"✓ Thank You — Continue",
     js_available:"Available",
     js_booked:"Booked",
     js_adults:"Adults",
@@ -3394,6 +3418,14 @@ function openGuestSettings(){
     return;
   }
   document.getElementById('guestSettingsEmail').textContent=authUser.email + ' • ' + (authUser.displayName||'Guest');
+  try{
+    const pn=document.getElementById('profName'); if(pn) pn.textContent=authUser.displayName||authUser.email.split('@')[0]||'Guest';
+    const pe=document.getElementById('profEmail'); if(pe) pe.textContent=authUser.email||'—';
+    const pa=document.getElementById('profAvatar'); if(pa) pa.textContent=(authUser.displayName||authUser.email||'G').trim().charAt(0).toUpperCase();
+    const pt=document.getElementById('profType'); if(pt) pt.textContent=(authUser.providerData&&authUser.providerData[0]&&authUser.providerData[0].providerId==='password')?'📧 Email Account':'🇬 Google Account';
+    const ps=document.getElementById('profStatus'); if(ps) ps.textContent='● '+T('acc_active');
+    const pu=document.getElementById('profUid'); if(pu) pu.textContent=getCurrentGuestUid();
+  }catch(e){}
   document.getElementById('guestSettingsUid').textContent=getCurrentGuestUid();
   document.getElementById('guestSettingsStatus').textContent='Logged In';
   refreshGuestOrders();
@@ -4083,6 +4115,10 @@ function showReserveConfirm(b){
   `;
   showPopup({type:'success', title:'✅ Reserve Confirmed! — Hotel 4G', message: billHtml, confirmText:'🎉 Great! — Bill dekhu'});
 }
+function showBookingConfirmPopup(d){
+  const msg=T('pay_conf_msg',{room:(d.room||'')+(d.roomNumber?' #'+d.roomNumber:''), cin:d.cin||'', cout:d.cout||'', nights:d.nights||1, adults:d.adults||0, children:d.children||0, amount:(d.amount||0).toLocaleString('en-IN'), tax:(d.tax||0).toLocaleString('en-IN'), txn:d.txn||'', name:d.name||''});
+  showPopup({type:'success', title:T('pay_conf_title'), message:'<div style="text-align:left;line-height:1.6">'+msg+'</div>', confirmText:T('pay_conf_ok')});
+}
 function payWithRazorpay(){
   const cin=document.getElementById('payCin').value, cout=document.getElementById('payCout').value;
   if(!cin||!cout) return showError('तारीख चुनें');
@@ -4101,7 +4137,7 @@ function payWithRazorpay(){
   const extra2 = travelInfo2 ? {travelMode:travelInfo2.mode, pickup:travelInfo2.pickup, pickupDetail:travelInfo2.pickupDetail, travelNote:travelInfo2.note, travelData: travelInfo2.travelData, adultsDetails: travelInfo2.adultsDetails||[], childrenDetails: travelInfo2.childrenDetails||[], foodOrder: travelInfo2.foodOrder||'', personsText: travelInfo2.personsText||''} : {};
   const rzEmail=(travelInfo2&&travelInfo2.email)||(document.getElementById('fEmail')?document.getElementById('fEmail').value:'')||'';
   const rzpBtn=document.getElementById('razorPayBtn'); if(rzpBtn){ rzpBtn.disabled=true; rzpBtn.textContent='⏳ Razorpay Checkout खुल रहा है...'; }
-  const opts={key:key, amount:Math.round(currentPay.total*100), currency:"INR", name:"Hotel 4G Bhopal", description:currentPay.room+` - ${currentPay.nights}N, ${currentPay.adults}A ${currentPay.children}C + GST ${currentPay.taxPercent}%`, method:{upi:true,card:true,netbanking:true,wallet:true}, notes:{room:currentPay.room, roomNumber:selectedRoomNo2||'Auto', checkin:cin, checkout:cout, nights:String(currentPay.nights), adults:String(currentPay.adults), children:String(currentPay.children), coupon:(document.getElementById('payCoupon').value.trim().toUpperCase()||'-'), guestUid:(typeof getGuestUid==='function'?getGuestUid():'')}, handler: function(r){ const nm=(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'Razorpay Guest'; const ph=(travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'—'; addBooking({name:nm, phone:ph, cin,cout, time: (document.getElementById('payTime')?.value)||(travelInfo2&&travelInfo2.time)||'', room:currentPay.room, roomNumber: selectedRoomNo2||undefined, nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, subtotal:currentPay.subtotal, tax:currentPay.tax, taxPercent:currentPay.taxPercent, discount:currentPay.disc||0, coupon:document.getElementById('payCoupon').value.trim().toUpperCase(), payment:'Razorpay', txn:r.razorpay_payment_id, status:'paid', verified:true, verification:'Razorpay Auto ✔', razorpay_payment_id:r.razorpay_payment_id, ...extra2}).then(()=>{try{sessionStorage.removeItem('pendingTravel')}catch(e){}; closePay(); showSuccess('✅ Razorpay Auto Verified! Tax ₹'+(currentPay.tax||0)+' included — Booking Paid','Verified! ✔')})}, prefill:{name:(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'', contact:String((travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'').replace(/[^0-9]/g,'').slice(-10), email:rzEmail}, theme:{color:"#C5A254"}, modal:{escape:true, ondismiss:function(){ try{ const b=document.getElementById('razorPayBtn'); if(b){ b.disabled=false; b.textContent='💳 Pay Now — Razorpay Secure Checkout'; } }catch(e){} }}};
+  const opts={key:key, amount:Math.round(currentPay.total*100), currency:"INR", name:"Hotel 4G Bhopal", description:currentPay.room+` - ${currentPay.nights}N, ${currentPay.adults}A ${currentPay.children}C + GST ${currentPay.taxPercent}%`, method:{upi:true,card:true,netbanking:true,wallet:true}, notes:{room:currentPay.room, roomNumber:selectedRoomNo2||'Auto', checkin:cin, checkout:cout, nights:String(currentPay.nights), adults:String(currentPay.adults), children:String(currentPay.children), coupon:(document.getElementById('payCoupon').value.trim().toUpperCase()||'-'), guestUid:(typeof getGuestUid==='function'?getGuestUid():'')}, handler: function(r){ const nm=(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'Razorpay Guest'; const ph=(travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'—'; addBooking({name:nm, phone:ph, cin,cout, time: (document.getElementById('payTime')?.value)||(travelInfo2&&travelInfo2.time)||'', room:currentPay.room, roomNumber: selectedRoomNo2||undefined, nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, subtotal:currentPay.subtotal, tax:currentPay.tax, taxPercent:currentPay.taxPercent, discount:currentPay.disc||0, coupon:document.getElementById('payCoupon').value.trim().toUpperCase(), payment:'Razorpay', txn:r.razorpay_payment_id, status:'paid', verified:true, verification:'Razorpay Auto ✔', razorpay_payment_id:r.razorpay_payment_id, ...extra2}).then(()=>{try{sessionStorage.removeItem('pendingTravel')}catch(e){}; closePay(); showSuccess('✅ Razorpay Auto Verified! Tax ₹'+(currentPay.tax||0)+' included — Booking Paid','Verified! ✔'); showBookingConfirmPopup({name:nm, phone:ph, cin:cin, cout:cout, room:currentPay.room, roomNumber:selectedRoomNo2||'', nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, tax:currentPay.tax, txn:r.razorpay_payment_id}); })}, prefill:{name:(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'', contact:String((travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'').replace(/[^0-9]/g,'').slice(-10), email:rzEmail}, theme:{color:"#C5A254"}, modal:{escape:true, ondismiss:function(){ try{ const b=document.getElementById('razorPayBtn'); if(b){ b.disabled=false; b.textContent='💳 Pay Now — Razorpay Secure Checkout'; } }catch(e){} }}};
   const rzp=new Razorpay(opts);
   rzp.on('payment.failed', function(resp){ const d=(resp&&resp.error)||{}; try{ const b=document.getElementById('razorPayBtn'); if(b){ b.disabled=false; b.textContent='💳 Pay Now — Razorpay Secure Checkout'; } }catch(e){}
     showError('❌ Payment Failed — '+(d.description||'दोबारा कोशिश करें')+(d.code?' ('+d.code+')':'')+' • Amount नहीं कटा होगा'); });
@@ -5817,12 +5853,19 @@ setTimeout(()=>{ autoRestoreStaffSession().then(ok=>{
     if(hint) hint.textContent=currentStaffId?'👔 Logged: '+currentStaffId+' • Tap to open panel':'';
   }catch(e){}
 }); }, 800);
+const DEFAULT_STAFF=[{id:'staff1',pass:'123456',name:'Staff 1',role:'staff'}];
 async function getStaffList(){
-  // try Firebase first, fallback local
+  // try Firebase first, fallback local, fallback default seed
   if(useFirebase){
-    try{ const doc=await db.collection('staffAccounts').doc('main').get(); if(doc.exists && doc.data().list) return doc.data().list; }catch(e){}
+    try{
+      const doc=await db.collection('staffAccounts').doc('main').get();
+      if(doc.exists && doc.data().list && doc.data().list.length) return doc.data().list;
+      if(!doc.exists){ try{ await db.collection('staffAccounts').doc('main').set({list:DEFAULT_STAFF, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){} return DEFAULT_STAFF; }
+    }catch(e){}
   }
-  return lsGet('hotel4g_staff', []);
+  const local=lsGet('hotel4g_staff', []);
+  if(local && local.length) return local;
+  return DEFAULT_STAFF;
 }
 async function saveStaffList(list){
   /* Firebase only — hotel4g_staff local storage disabled as per request */
@@ -5949,6 +5992,12 @@ function openStaffLogin(){
   }
   document.getElementById('staffLoginOverlay').classList.add('open');
   document.getElementById('staffLoginError').style.display='none';
+  try{ const ab=document.getElementById('staffAdminDirectBtn'); if(ab) ab.style.display=(authUser && authUser.email && ADMIN_EMAIL && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())?'block':'none'; }catch(e){}
+}
+function staffAdminDirect(){
+  if(!(authUser && authUser.email && ADMIN_EMAIL && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())) return showError('⛔ Pehle Admin (Google) login karein — fir ye button kaam karega');
+  document.getElementById('staffLoginOverlay').classList.remove('open');
+  completeStaffLogin('admin');
 }
 async function completeStaffLogin(id){
   // — Single device check — 12h —
@@ -7216,6 +7265,8 @@ setTimeout(()=>{ try{ renderAll(); }catch(e){ console.error('final renderAll fai
         }
       }
       _safeShow('staffLoginOverlay');
+      try{ const se=document.getElementById('staffLoginError'); if(se) se.style.display='none'; }catch(e){}
+      try{ const ab=document.getElementById('staffAdminDirectBtn'); if(ab) ab.style.display=(typeof authUser!=='undefined' && authUser && authUser.email && typeof ADMIN_EMAIL!=='undefined' && authUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase())?'block':'none'; }catch(e){}
     }catch(e){ console.error('openStaffLogin fail',e); const el=document.getElementById('staffLoginOverlay'); if(el){ el.style.display='flex'; el.classList.add('open'); } }
   };
   const _origOpenTravel = window.openTravel;
@@ -7289,5 +7340,5 @@ setTimeout(()=>{ try{ renderAll(); }catch(e){ console.error('final renderAll fai
   <img src="" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,0.5)">
   <button onclick="closeLightbox()" style="position:absolute;top:16px;right:16px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3)">✕</button>
 </div>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eeabbb69d27143',t:'MTc5MDA1MjQzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f472fcf9933fb4',t:'MTc5MDExMzAyOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eeabbb69d27143',t:'MTc5MDA1MjQzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f4b8b1bdd9bd55',t:'MTc5MDExNTg4Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
