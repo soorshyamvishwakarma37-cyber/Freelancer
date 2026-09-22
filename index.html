@@ -542,11 +542,41 @@ img,video{max-width:100%;height:auto}
   #helpOverlay .modal, #policyOverlay .modal, #staffLoginOverlay .modal, #guestSettingsOverlay .modal{ max-width:640px !important; margin:20px auto !important; height:auto !important; max-height:92vh !important; border-radius:20px !important; box-shadow:0 24px 60px rgba(0,0,0,0.22) !important; border:1.5px solid var(--border) !important; }
 }
 /* STRICT PHOTO LIVE — All images Firebase live, High Secure */
-button, .btn-gold, .btn-wh, .btn-dark, .icon-btn{ cursor:pointer !important; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+button, .btn-gold, .btn-wh, .btn-dark, .icon-btn{ cursor:pointer !important; -webkit-tap-highlight-color:transparent; touch-action:manipulation; pointer-events:auto !important; opacity:1; }
+button:disabled, .btn-gold:disabled{ opacity:0.45 !important; pointer-events:none !important; cursor:not-allowed !important; }
+/* Ensure booking card and room cards are always visible and clickable */
+.booking-card, .room-card, .banquet-card{ pointer-events:auto !important; }
+
 button:active, .btn-gold:active{ transform:scale(0.98); }
 .rooms-grid .room-card img, .gallery-grid img, .carousel-slide img{ transition:transform 0.3s, filter 0.3s; }
 .rooms-grid .room-card img, .gallery-grid img, .carousel-slide img{ transition:transform 0.3s, filter 0.3s; }
 .rooms-grid .room-card img:hover, .gallery-grid img:hover{ transform:scale(1.02); filter:brightness(1.05); }
+
+/* Debug banner — shows site loaded OK */
+#debugBanner{ position:fixed; bottom:10px; right:10px; background:#0F172A; color:#fff; padding:8px 12px; border-radius:8px; font-size:11px; z-index:9999; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+#debugBanner.show{ display:block; }
+</style>
+
+<style>
+/* ============ BOOKINGS FULL SCREEN VIEW ============ */
+#adminDashboard.bookings-fullscreen{display:flex;flex-direction:column;overflow:hidden}
+#adminDashboard.bookings-fullscreen .admin-topbar{flex:0 0 auto}
+#adminDashboard.bookings-fullscreen .admin-layout{flex:1 1 auto;min-height:0;grid-template-rows:1fr}
+#adminDashboard.bookings-fullscreen .admin-main{overflow:hidden;display:flex;flex-direction:column;min-height:0}
+#adminDashboard.bookings-fullscreen .stat-grid{flex:0 0 auto}
+#adminDashboard.bookings-fullscreen #adminInsideBack{flex:0 0 auto}
+#adminDashboard.bookings-fullscreen #panel-bookings{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;margin-bottom:0}
+#adminDashboard.bookings-fullscreen #panel-bookings .admin-card-head{flex:0 0 auto}
+#adminDashboard.bookings-fullscreen #panel-bookings .table-wrap{flex:1 1 auto;min-height:0;overflow:auto}
+@media(max-width:899px){
+  #adminDashboard.bookings-fullscreen .admin-layout{grid-template-rows:auto 1fr}
+}
+#staffDashboard.bookings-fullscreen{display:flex;flex-direction:column;overflow:hidden!important}
+#staffDashboard.bookings-fullscreen > *{min-width:0}
+#staffDashboard.bookings-fullscreen #staff-panel-bookings{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;margin-bottom:0}
+#staffDashboard.bookings-fullscreen #staff-panel-bookings .admin-card{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+#staffDashboard.bookings-fullscreen #staff-panel-bookings .admin-card-head{flex:0 0 auto}
+#staffDashboard.bookings-fullscreen #staff-panel-bookings .table-wrap{flex:1 1 auto;min-height:0;overflow:auto}
 </style>
 </head>
 <body>
@@ -794,7 +824,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f7c60607d7c67766e6279667c67786e646e7d626e3c384f68626e6663216c6062">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73001c1c01001b0a121e051a001b04121812011e12404433141e121a1f5d101c1e">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">78699691901@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -869,7 +899,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e794888895948f9e868a918e948f90868c86958a86d4d0a7808a868e8bc984888a">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="31425e5e43425948505c4758425946505a50435c50020671565c50585d1f525e5c">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -930,7 +960,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
 <!-- PAY MODAL — systematic with person/children -->
 <div id="payOverlay" class="modal-overlay">
   <div class="modal">
-    <div class="modal-head"><div><b id="payRoomName">Deluxe Room</b><div style="font-size:11px;color:#78716C" id="payRoomPrice">₹1999 / night</div></div><div style="display:flex;gap:6px;align-items:center"><button id="payEditBtn" onclick="togglePayEdit()" style="padding:7px 12px;border-radius:20px;border:1.5px solid #C5A254;background:#FFFBEB;color:#92400E;font-weight:800;font-size:11px;cursor:pointer;white-space:nowrap">✏️ Edit</button><button onclick="closePay()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div>
+    <div class="modal-head"><div><b id="payRoomName">Deluxe Room</b><div style="font-size:11px;color:#78716C" id="payRoomPrice">₹1999 / night</div></div><div style="display:flex;gap:6px;align-items:center"><button id="payEditBtn" onclick="togglePayEdit()" style="padding:7px 12px;border-radius:20px;border:1.5px solid #C5A254;background:#FFFBEB;color:#92400E;font-weight:800;font-size:11px;cursor:pointer;white-space:nowrap">✏️ Edit</button><button onclick="closePay()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:800">✕</button></div></div>
     <div class="modal-body">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
         <div class="field"><label>Check-in *</label><input type="date" id="payCin"></div>
@@ -1000,7 +1030,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41322e2e33322938202c3728322936202a20332c20727601262c20282d6f222e2c">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="04776b6b76776c7d6569726d776c73656f657669653733446369656d682a676b69">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -1104,11 +1134,11 @@ service cloud.firestore {
     match /rooms/{id}{allow read:if true; allow create,update,delete:if true;}
     match /gallery/{id}{allow read:if true; allow create,update,delete:if true;}
     match /physicalRooms/{id}{allow read:if true; allow write:if true;}
-    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f3809c9c81809b8a929e859a809b84929892819e92c0c4b3949e929a9fdd909c9e">[email&#160;protected]</a>";}
-    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afdcc0c0dddcc7d6cec2d9c6dcc7d8cec4ceddc2ce9c98efc8c2cec6c381ccc0c2">[email&#160;protected]</a>";}
+    match /settings/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd8e92928f8e95849c908b948e958a9c969c8f909ccecabd9a909c9491d39e9290">[email&#160;protected]</a>";}
+    match /staffAccounts/{id}{allow read:if true; allow write:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="02716d6d70716a7b636f746b716a75636963706f63313542656f636b6e2c616d6f">[email&#160;protected]</a>";}
     match /staffSessions/{id}{allow read:if true; allow write:if true;}
-    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ceff3f3eeeff4e5fdf1eaf5eff4ebfdf7fdeef1fdafabdcfbf1fdf5f0b2fff3f1">[email&#160;protected]</a>";}
-    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cbb8a4a4b9b8a3b2aaa6bda2b8a3bcaaa0aab9a6aaf8fc8baca6aaa2a7e5a8a4a6">[email&#160;protected]</a>";}
+    match /reviews/{id}{allow read:if true; allow create:if true; allow update:if true; allow delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b081414090813021a160d1208130c1a101a09161a484c3b1c161a121755181416">[email&#160;protected]</a>";}
+    match /serviceRequests/{id}{allow create:if true; allow read,delete:if request.auth!=null && request.auth.token.email=="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cab9a5a5b8b9a2b3aba7bca3b9a2bdaba1abb8a7abf9fd8aada7aba3a6e4a9a5a7">[email&#160;protected]</a>";}
     match /menuItems/{id}{allow read:if true; allow create,update,delete:if true;}
     match /staffOtps/{id}{allow read,create,update,delete:if true;}
   }
@@ -1149,7 +1179,7 @@ service cloud.firestore {
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfccd0d0cdccd7c6ded2c9d6ccd7c8ded4decdd2de8c88ffd8d2ded6d391dcd0d2">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2c1ddddc0c1dacbd3dfc4dbc1dac5d3d9d3c0dfd38185f2d5dfd3dbde9cd1dddf">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -1246,7 +1276,7 @@ service cloud.firestore {
           <button onclick="adminAddCoupon()" class="btn-gold" style="padding:10px 14px;white-space:nowrap">+ Add Coupon</button>
         </div>
         <div class="field" style="margin-top:8px"><label>Description (optional)</label><input id="newCouponDesc" placeholder="e.g. Diwali Offer — 500 off on 2+ nights"></div>
-        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d6e72726f6e75647c706b746e756a7c767c6f707c2e2a5d7a707c7471337e7270">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
+        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b180404191803120a061d0218031c0a000a19060a585c2b0c060a020745080406">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
         <div style="display:none"><input id="setCoupon" value="HOTEL200"></div>
       </div><div class="field"><label>Tax % — Original GST (Auto)</label><input id="setTax" type="number" min="0" max="28" value="12"></div><div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:12px;padding:10px"><div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:8px">🎉 Banquet Hall Pricing — Admin Edit (Persons badhne par price badhega)</div><div class="field" style="margin-bottom:8px"><label>Banquet Base Price ₹ — (1 Guest ka base)</label><input id="setBanquetBase" type="number" min="1000" max="100000" value="6000" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div class="field" style="margin-bottom:0"><label>Per Person Extra ₹ — (Har extra person ka charge)</label><input id="setBanquetPerPerson" type="number" min="10" max="1000" value="110" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:6px">Formula: Base + PerPerson×Guests + tier extra → Final Price (GST extra) • 10 Guests → ~₹<span id="banquetPreviewHint">calculate</span></div></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase — Tax + Banquet Live</button></div>
         <div style="padding:14px;border-top:1px solid #F1F5F9;margin-top:8px">
@@ -1536,6 +1566,10 @@ h1,h2,h3,h4,p,span,div,td,th,label,b,strong { overflow-wrap:break-word; word-bre
 #restaurantTablesGrid, #staffTablesGrid { grid-template-columns:repeat(auto-fit,minmax(240px,1fr)) !important; }
 @media(max-width:640px){ #restaurantTablesGrid, #staffTablesGrid { grid-template-columns:1fr !important; } }
 
+
+/* Debug banner — shows site loaded OK */
+#debugBanner{ position:fixed; bottom:10px; right:10px; background:#0F172A; color:#fff; padding:8px 12px; border-radius:8px; font-size:11px; z-index:9999; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+#debugBanner.show{ display:block; }
 </style>
 <div id="billOverlay" class="modal-overlay" style="background:rgba(0,0,0,0.7)">
   <div class="modal" style="max-width:210mm;width:96%;max-height:96vh;overflow:auto;background:#fff;border-radius:8px">
@@ -1553,7 +1587,7 @@ h1,h2,h3,h4,p,span,div,td,th,label,b,strong { overflow-wrap:break-word; word-bre
     <div class="no-print" style="text-align:center;font-size:10px;color:#16A34A;font-weight:700;padding:6px;background:#F0FDF4;border-top:1px solid #6EE7B7">📄 A4 Original — Single Copy — Kuch katega nahi — Sab adjust hai — Print pe sirf Bill ayega</div>
   </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function printBillA4(){
   // SINGLE PAGE STRICT — 1 Page me pura bill, kuch katega nahi — auto scale if overflow
   const before = document.title;
@@ -1578,6 +1612,7 @@ function printBillA4(){
     document.title = before; 
   }, 800);
 }
+</script>
 <script>
 // Global error handler - prevent blank screen
 /* BUTTON FEEDBACK SAFE — har button pe instant feedback, kabhi dead na lage */
@@ -1704,6 +1739,29 @@ const ADMIN_EMAIL = "soorshyamvishwakarma37@gmail.com";
 let useFirebase=false, db=null, auth=null, storage=null;
 let bookingsCache=[], roomsCache=null, settingsCache=null, galleryCache=[], reviewsCache=[], menuCache=[], otpCache=[], serviceRequestsCache=[], authUser=null;
 // === SAFE HELPERS — har button kabhi crash nahi karega — barike se fix ===
+
+// SAFE PATCH: wrap all renders so one error never breaks buttons
+(function(){
+  const safeWrap = (fn, name) => {
+    return function(...args){
+      try{ return fn.apply(this, args); }
+      catch(e){ console.error('Render error in '+name+':', e); try{ showError('⚠️ '+name+' render fail: '+e.message.slice(0,60)); }catch(_){} return; }
+    };
+  };
+  try{
+    if(typeof renderRooms==='function') renderRooms = safeWrap(renderRooms, 'renderRooms');
+    if(typeof renderGallery==='function') renderGallery = safeWrap(renderGallery, 'renderGallery');
+    if(typeof renderGalleryAdmin==='function') renderGalleryAdmin = safeWrap(renderGalleryAdmin, 'renderGalleryAdmin');
+    if(typeof renderReviews==='function') renderReviews = safeWrap(renderReviews, 'renderReviews');
+    if(typeof renderRestaurantTables==='function') renderRestaurantTables = safeWrap(renderRestaurantTables, 'renderRestaurantTables');
+    if(typeof renderStaffTables==='function') renderStaffTables = safeWrap(renderStaffTables, 'renderStaffTables');
+    if(typeof renderBookings==='function') renderBookings = safeWrap(renderBookings, 'renderBookings');
+    if(typeof renderStaffDashboard==='function') renderStaffDashboard = safeWrap(renderStaffDashboard, 'renderStaffDashboard');
+    if(typeof isRoomAvailable==='function') isRoomAvailable = safeWrap(isRoomAvailable, 'isRoomAvailable');
+    console.log('✅ All renders wrapped safely');
+  }catch(e){ console.log('Wrap fail',e); }
+})();
+
 function safeEl(id){ return document.getElementById(id); }
 function safeVal(id, fallback=''){ const e=document.getElementById(id); return e? e.value : fallback; }
 function safeSetVal(id, val){ const e=document.getElementById(id); if(e) e.value=val; return e; }
@@ -2283,23 +2341,35 @@ function startListeners(){
     // Show Firebase required popup once
     setTimeout(()=>{ try{ if(!useFirebase) showPopup({type:'warning', title:'🔥 Firebase Required', message:'Firebase not configured — sabhi data Firebase me save hota hai (local storage disabled as per request). Firebase config kare taaki data permanent live rahe.', confirmText:'Samajh gaya'}); }catch(e){} }, 800);
     otpCache=lsGet('hotel4g_otps', []);
-    renderAll(); return;
+    renderAll();
+// Ensure render after DOM ready — fixes intermittent blank sections
+document.addEventListener('DOMContentLoaded', ()=>{ try{ console.log('DOMContentLoaded — re-render'); renderAll(); }catch(e){} });
+// Also re-render after 1s to catch Firebase delayed load
+setTimeout(()=>{ try{ renderAll(); }catch(e){} }, 1200); return;
   }
-  db.collection('rooms').onSnapshot(snap=>{
-    if(snap.empty){ defaultRooms.forEach(r=> db.collection('rooms').doc(r.id).set(r)); }
-    else { roomsCache=snap.docs.map(d=>{ const v=d.data(); if(v.img && !v.images) v.images=[v.img]; return v; }); renderRooms(); renderRoomEditor(); }
-  });
-  db.collection('settings').doc('main').onSnapshot(doc=>{
-    if(!doc.exists){ db.collection('settings').doc('main').set(defaultSettings); settingsCache={...defaultSettings};}
-    else { settingsCache={...defaultSettings,...doc.data()}; if(settingsCache.tax===undefined) settingsCache.tax=12; if(settingsCache.banquetBase===undefined) settingsCache.banquetBase=6000; if(settingsCache.banquetPerPerson===undefined) settingsCache.banquetPerPerson=110; document.getElementById('upiDisplay').textContent=settingsCache.upi; document.getElementById('qrUpi').textContent=settingsCache.upi; document.getElementById('setUpi').value=settingsCache.upi; document.getElementById('setRazorKey').value=settingsCache.razorKey; document.getElementById('setCoupon').value=settingsCache.coupon; const taxEl=document.getElementById('setTax'); if(taxEl) taxEl.value=settingsCache.tax; const bb=document.getElementById('setBanquetBase'); if(bb) bb.value=settingsCache.banquetBase; const bp=document.getElementById('setBanquetPerPerson'); if(bp) bp.value=settingsCache.banquetPerPerson; updatePaySummary(); try{ const hint=document.getElementById('banquetPreviewHint'); if(hint) hint.textContent='₹'+calcBanquetPrice(50).toLocaleString('en-IN')+' for 50 Guests'; }catch(e){} try{ applyHeroImage(settingsCache.heroImage); const hInput=document.getElementById('headerImageUrl'); if(hInput) hInput.value=settingsCache.heroImage||''; const hPreview=document.getElementById('headerPreview'); if(hPreview && settingsCache.heroImage) hPreview.src=settingsCache.heroImage; }catch(e){} }
-  });
-  db.collection('gallery').orderBy('createdAt','desc').onSnapshot(snap=>{
-    if(snap.empty && galleryCache.length===0){ defaultGallery.forEach(url=> db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp()})); }
-    else { galleryCache=snap.docs.map(d=>({id:d.id, ...d.data()})); renderGallery(); renderGalleryAdmin(); }
-  });
-  db.collection('bookings').orderBy('createdAt','desc').onSnapshot(snap=>{
-    bookingsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers(); try{ checkStaffBookingAlert(); }catch(e){} try{ updateGuestVisibility(); }catch(e){}
-  });
+  try{ // listener: rooms
+    db.collection('rooms').onSnapshot(snap=>{
+      if(snap.empty){ defaultRooms.forEach(r=> db.collection('rooms').doc(r.id).set(r)); }
+      else { roomsCache=snap.docs.map(d=>{ const v=d.data(); if(v.img && !v.images) v.images=[v.img]; return v; }); renderRooms(); renderRoomEditor(); }
+    });
+  }catch(e){ console.warn('listener rooms failed (recovered)', e); }
+  try{ // listener: settings
+    db.collection('settings').doc('main').onSnapshot(doc=>{
+      if(!doc.exists){ db.collection('settings').doc('main').set(defaultSettings); settingsCache={...defaultSettings};}
+      else { settingsCache={...defaultSettings,...doc.data()}; if(settingsCache.tax===undefined) settingsCache.tax=12; if(settingsCache.banquetBase===undefined) settingsCache.banquetBase=6000; if(settingsCache.banquetPerPerson===undefined) settingsCache.banquetPerPerson=110; document.getElementById('upiDisplay').textContent=settingsCache.upi; document.getElementById('qrUpi').textContent=settingsCache.upi; document.getElementById('setUpi').value=settingsCache.upi; document.getElementById('setRazorKey').value=settingsCache.razorKey; document.getElementById('setCoupon').value=settingsCache.coupon; const taxEl=document.getElementById('setTax'); if(taxEl) taxEl.value=settingsCache.tax; const bb=document.getElementById('setBanquetBase'); if(bb) bb.value=settingsCache.banquetBase; const bp=document.getElementById('setBanquetPerPerson'); if(bp) bp.value=settingsCache.banquetPerPerson; updatePaySummary(); try{ const hint=document.getElementById('banquetPreviewHint'); if(hint) hint.textContent='₹'+calcBanquetPrice(50).toLocaleString('en-IN')+' for 50 Guests'; }catch(e){} try{ applyHeroImage(settingsCache.heroImage); const hInput=document.getElementById('headerImageUrl'); if(hInput) hInput.value=settingsCache.heroImage||''; const hPreview=document.getElementById('headerPreview'); if(hPreview && settingsCache.heroImage) hPreview.src=settingsCache.heroImage; }catch(e){} }
+    });
+  }catch(e){ console.warn('listener settings failed (recovered)', e); }
+  try{ // listener: gallery
+    db.collection('gallery').orderBy('createdAt','desc').onSnapshot(snap=>{
+      if(snap.empty && galleryCache.length===0){ defaultGallery.forEach(url=> db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp()})); }
+      else { galleryCache=snap.docs.map(d=>({id:d.id, ...d.data()})); renderGallery(); renderGalleryAdmin(); }
+    });
+  }catch(e){ console.warn('listener gallery failed (recovered)', e); }
+  try{ // listener: bookings
+    db.collection('bookings').orderBy('createdAt','desc').onSnapshot(snap=>{
+      bookingsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderBookings(); updateStats(); renderCalendar(); renderAdminCalendar(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers(); try{ checkStaffBookingAlert(); }catch(e){} try{ updateGuestVisibility(); }catch(e){}
+    });
+  }catch(e){ console.warn('listener bookings failed (recovered)', e); }
   // Service Requests — all request/booking/enquiry admin+staff panel me turant
   try{
     db.collection('serviceRequests').orderBy('createdAt','desc').onSnapshot(snap=>{
@@ -2309,37 +2379,44 @@ function startListeners(){
       try{ renderServiceRequestsUnified(); }catch(e){}
     }, err=>{ console.log('serviceRequests listener',err); });
   }catch(e){ console.log('serviceRequests listener fail',e); }
-  db.collection('reviews').orderBy('createdAt','desc').onSnapshot(snap=>{
-    reviewsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderReviews();
-  });
-  db.collection('physicalRooms').onSnapshot(snap=>{
-    if(snap.empty){
-      defaultPhysicalRooms.forEach(r=> db.collection('physicalRooms').doc(r.number).set(r));
-    } else {
-      physicalRooms=snap.docs.map(d=>d.data());
-      physicalRooms.sort((a,b)=> a.number.localeCompare(b.number));
-      renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers();
-    }
-  });
-  db.collection('menuItems').onSnapshot(snap=>{
-    if(snap.empty && menuCache.length===0){
-      defaultMenuItems.forEach(m=> db.collection('menuItems').doc(m.id).set({...m, createdAt: firebase.firestore.FieldValue.serverTimestamp()}));
-    } else if(!snap.empty){
-      menuCache=snap.docs.map(d=>({id:d.id, ...d.data()}));
-      try{ renderMenuModal(); renderAdminMenuList(); renderStaffMenuList(); }catch(e){}
-    }
-  });
-  db.collection('staffOtps').orderBy('createdAt','desc').limit(20).onSnapshot(snap=>{
-    if(!snap.empty){
-      otpCache=snap.docs.map(d=>({id:d.id, ...d.data(), createdAt: d.data().createdAt?.toMillis ? d.data().createdAt.toMillis() : (d.data().createdAt||Date.now()) }));
-      // normalize timestamps if Firestore Timestamp
-      otpCache.forEach(o=>{ if(typeof o.createdAt!=='number') o.createdAt=Date.now(); if(!o.expiresAt) o.expiresAt=o.createdAt+5*60*1000; if(!o.createdAtStr) o.createdAtStr=new Date(o.createdAt).toLocaleString('en-IN'); });
-      /* Firebase only — hotel4g_otps local storage disabled as per request */
-      try{ renderAdminOtps(); }catch(e){}
-    }
-  }, err=>{ console.warn('staffOtps listener', err); });
+  try{ // listener: reviews
+    db.collection('reviews').orderBy('createdAt','desc').onSnapshot(snap=>{
+      reviewsCache=snap.docs.map(d=>({id:d.id,...d.data()})); renderReviews();
+    });
+  }catch(e){ console.warn('listener reviews failed (recovered)', e); }
+  try{ // listener: physicalRooms
+    db.collection('physicalRooms').onSnapshot(snap=>{
+      if(snap.empty){
+        defaultPhysicalRooms.forEach(r=> db.collection('physicalRooms').doc(r.number).set(r));
+      } else {
+        physicalRooms=snap.docs.map(d=>d.data());
+        physicalRooms.sort((a,b)=> a.number.localeCompare(b.number));
+        renderAdminPhysicalRooms(); renderRooms(); if(currentStaffId) renderStaffDashboard(); updateTravelRoomNumbers(); updatePayRoomNumbers();
+      }
+    });
+  }catch(e){ console.warn('listener physicalRooms failed (recovered)', e); }
+  try{ // listener: menuItems
+    db.collection('menuItems').onSnapshot(snap=>{
+      if(snap.empty && menuCache.length===0){
+        defaultMenuItems.forEach(m=> db.collection('menuItems').doc(m.id).set({...m, createdAt: firebase.firestore.FieldValue.serverTimestamp()}));
+      } else if(!snap.empty){
+        menuCache=snap.docs.map(d=>({id:d.id, ...d.data()}));
+        try{ renderMenuModal(); renderAdminMenuList(); renderStaffMenuList(); }catch(e){}
+      }
+    });
+  }catch(e){ console.warn('listener menuItems failed (recovered)', e); }
+  try{ // listener: staffOtps
+    db.collection('staffOtps').orderBy('createdAt','desc').limit(20).onSnapshot(snap=>{
+      if(!snap.empty){
+        otpCache=snap.docs.map(d=>({id:d.id, ...d.data(), createdAt: d.data().createdAt?.toMillis ? d.data().createdAt.toMillis() : (d.data().createdAt||Date.now()) }));
+        // normalize timestamps if Firestore Timestamp
+        otpCache.forEach(o=>{ if(typeof o.createdAt!=='number') o.createdAt=Date.now(); if(!o.expiresAt) o.expiresAt=o.createdAt+5*60*1000; if(!o.createdAtStr) o.createdAtStr=new Date(o.createdAt).toLocaleString('en-IN'); });
+        /* Firebase only — hotel4g_otps local storage disabled as per request */
+        try{ renderAdminOtps(); }catch(e){}
+      }
+    }, err=>{ console.warn('staffOtps listener', err); });
+  }catch(e){ console.warn('listener staffOtps failed (recovered)', e); }
 }
-startListeners();
 roomsCache=roomsCache||[...defaultRooms].map(r=> r.img&&!r.images?{...r,images:[r.img]}:r);
 settingsCache=settingsCache||{...defaultSettings};
 galleryCache=galleryCache.length?galleryCache: defaultGallery.map((url,i)=>({id:'g'+i,url}));
@@ -2546,7 +2623,8 @@ function signInWithGoogle(){
     document.getElementById('loginError').style.display='block'; document.getElementById('loginError').innerHTML='Error: '+msg+'<br><small>Try: Preview login manager/manager123</small>'; showError(msg); 
   });
 }
-function signOut(){ if(useFirebase&&auth) auth.signOut(); authUser=null; closeDashboard(); closeAdminLogin(); try{ updateGalleryDirectVisibility(); }catch(e){} try{ updateGuestVisibility(); }catch(e){} showSuccess('Logout','Bye! 👋')}
+function adminLogout(){ return signOut(); }
+  function signOut(){ if(useFirebase&&auth) auth.signOut(); authUser=null; closeDashboard(); closeAdminLogin(); try{ updateGalleryDirectVisibility(); }catch(e){} try{ updateGuestVisibility(); }catch(e){} showSuccess('Logout','Bye! 👋')}
  // ===== GUEST LOGIN SYSTEM — Full Screen Popup Before Reserve =====
 let pendingGuestAction=null;
 function requireGuestLogin(callback){
@@ -3133,7 +3211,10 @@ function openPayModalFromForm(){
   document.getElementById('payAdults').value=document.getElementById('fAdults').value; document.getElementById('payChildren').value=document.getElementById('fChildren').value;
   openPayModal(room,price);
 }
-function closePay(){document.getElementById('payOverlay').classList.remove('open'); try{ document.getElementById('payOverlay').classList.add('pay-locked'); payEditMode=false; const b=document.getElementById('payEditBtn'); if(b){ b.textContent='✏️ Edit'; b.style.background='#FFFBEB'; b.style.borderColor='#C5A254'; b.style.color='#92400E'; } }catch(e){}}
+function closePay(){
+  try{ const o=document.getElementById('payOverlay'); if(o) o.classList.remove('open'); }catch(e){}
+  try{ payEditMode=false; const b=document.getElementById('payEditBtn'); if(b){ b.textContent='✏️ Edit'; b.style.background='#FFFBEB'; b.style.borderColor='#C5A254'; b.style.color='#92400E'; } }catch(e){}
+}
 let payEditMode=false;
 function togglePayEdit(){ payEditMode=!payEditMode; const o=document.getElementById('payOverlay'); const b=document.getElementById('payEditBtn'); if(payEditMode){ o.classList.remove('pay-locked'); if(b){ b.textContent='🔒 Lock'; b.style.background='#DCFCE7'; b.style.borderColor='#16A34A'; b.style.color='#065F46'; } try{ showSuccess('Edit mode ON — Ab fields editable hai','✏️ Edit'); }catch(e){} } else { o.classList.add('pay-locked'); if(b){ b.textContent='✏️ Edit'; b.style.background='#FFFBEB'; b.style.borderColor='#C5A254'; b.style.color='#92400E'; } } }
 function selectPay(m){ currentPay.payMethod=m; document.getElementById('opt-upi').classList.toggle('active',m==='upi'); document.getElementById('opt-razor').classList.toggle('active',m==='razor'); document.getElementById('upiBox').style.display=m==='upi'?'block':'none'; document.getElementById('razorBox').style.display=m==='razor'?'block':'none';}
@@ -3389,7 +3470,7 @@ function handleBooking(e){
   if(!cin || !cout){ msg.className='avail-msg bad'; msg.style.display='block'; msg.textContent='❌ Check-in aur Check-out tareekh chune'; showError('Dates chune'); return; }
   if(parseDate(cin)>=parseDate(cout)){ msg.className='avail-msg bad'; msg.style.display='block'; msg.textContent='❌ Check-out, Check-in के बाद होना चाहिए'; showError('Check-out Check-in ke baad hona chahiye'); return;}
   const persons = parseInt(adults)+parseInt(children);
-  const rData=getRooms().find(r=>r.name_hi===room);
+  const rData=getRooms().find(r=>r.name_hi===room)||getRooms().find(r=>r.name===room)||getRooms()[0];
   if(rData && (parseInt(adults)>rData.maxAdults || persons > rData.maxAdults + rData.maxChildren)){
     msg.className='avail-msg bad'; msg.style.display='block'; msg.textContent=`⚠️ ${room} में ${rData.maxAdults} Adults + ${rData.maxChildren} Children तक — आप ${adults}A + ${children}C चुन रहे हैं। Family Suite देखें।`;
     showError(`Capacity: ${room} में ${rData.maxAdults} Adults तक — Family Suite बेहतर रहेगा।`);
@@ -3966,7 +4047,12 @@ function openPolicy(){ document.getElementById('policyOverlay').classList.add('o
 document.addEventListener('click', ()=>{ document.getElementById('navDotsMenu')?.classList.remove('open'); document.getElementById('adminDotsMenu')?.classList.remove('open'); });
 
 // ——— ADMIN ———
-function switchTab(tab){
+function openLightbox(src){ var o=document.getElementById('lightboxOverlay'); if(!o){ o=document.createElement('div'); o.id='lightboxOverlay'; o.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:99999'; o.innerHTML='<img src="" style="max-width:90vw;max-height:90vh;border-radius:12px"><button onclick="closeLightbox()" style="position:absolute;top:16px;right:16px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer">✕</button>'; o.onclick=function(e){ if(e.target===o) closeLightbox(); }; document.body.appendChild(o);} o.querySelector('img').src=src; o.style.display='flex'; o.classList.add('open'); }
+  function closeLightbox(){ var o=document.getElementById('lightboxOverlay'); if(o){ o.style.display='none'; o.classList.remove('open'); } }
+  function handleImageUpload(){ return handleHeaderUpload.apply(this, arguments); }
+  function generateBill(){ return staffGenerateBill.apply(this, arguments); }
+  function switchAdminTab(){ return switchTab.apply(this, arguments); }
+  function switchTab(tab){
   document.querySelectorAll('.admin-sidebar button').forEach(b=>b.classList.remove('active'));
   const _btn=document.getElementById('tab-btn-'+tab); if(_btn) _btn.classList.add('active');
   document.getElementById('panel-bookings').style.display=tab==='bookings'?'block':'none';
@@ -3976,6 +4062,8 @@ function switchTab(tab){
   document.getElementById('panel-calendar').style.display=tab==='calendar'?'block':'none';
   document.getElementById('panel-settings').style.display=tab==='settings'?'block':'none';
   document.getElementById('panel-stats').style.display=tab==='stats'?'block':'none';
+  const _pm=document.getElementById('panel-menu'); if(_pm) _pm.style.display=tab==='menu'?'block':'none';
+  try{ const _ad=document.getElementById('adminDashboard'); if(_ad){ if(tab==='bookings'){ _ad.classList.add('bookings-fullscreen'); } else { _ad.classList.remove('bookings-fullscreen'); } } }catch(e){}
   const aback=document.getElementById('adminInsideBack');
   if(aback) aback.style.display = (tab==='bookings') ? 'none' : 'block';
   if(tab==='requests') try{ renderAdminRequests(); }catch(e){}
@@ -3983,6 +4071,7 @@ function switchTab(tab){
   if(tab==='gallery') renderGalleryAdmin();
   if(tab==='settings') renderAdminStaffList();
   if(tab==='calendar') renderAdminCalendar();
+  if(tab==='menu') renderAdminMenuList();
   if(tab==='rooms'){ renderRoomEditor(); renderAdminPhysicalRooms(); }
   if(tab==='gallery') renderGalleryAdmin();
   if(tab==='settings') renderAdminStaffList();
@@ -5260,7 +5349,6 @@ async function staffLogin(){
     await completeStaffLogin(id); return;
   }
   showPopup({type:'info', title:'🔐 OTP Admin Panel me bheja gaya!', message:`Staff ${id} — 6-digit OTP Admin Panel → ⚙️ Settings → Staff OTPs Live me generate hua hai (5 min valid)\n\nAdmin se OTP poochhkar Verify karein — OTP Admin ko hi dikhega`, confirmText:'🔐 OTP Verify karein →', onConfirm: ()=> showStaffOtpVerify(id)});
-  setTimeout(()=> showStaffOtpVerify(id), 900);
 }
 function staffLogout(){
   if(!currentStaffId) currentStaffId=localStorage.getItem('currentStaffId');
@@ -5984,6 +6072,7 @@ function showStaffOtpVerify(staffId){
 }
 // — Staff Icon Tabs — Only one open — systematic —
 function switchStaffTab(tab){
+  try{ const _sd=document.getElementById('staffDashboard'); if(_sd){ if(tab==='bookings'){ _sd.classList.add('bookings-fullscreen'); _sd.style.overflow='hidden'; } else { _sd.classList.remove('bookings-fullscreen'); _sd.style.overflow='auto'; } } }catch(e){}
   try{ document.querySelectorAll('.staff-tab').forEach(b=>b.classList.remove('active')); const btn=document.getElementById('sTab-'+tab); if(btn) btn.classList.add('active'); }catch(e){}
   try{ document.querySelectorAll('[id^="staffPanel-"]').forEach(p=> p.style.display='none'); const panel=document.getElementById('staffPanel-'+tab); if(panel) panel.style.display='block'; }catch(e){}
   // Ensure data render on tab switch
@@ -6393,6 +6482,10 @@ try{
   });
 }catch(e){} }
 renderAll();
+// Ensure render after DOM ready — fixes intermittent blank sections
+document.addEventListener('DOMContentLoaded', ()=>{ try{ console.log('DOMContentLoaded — re-render'); renderAll(); }catch(e){} });
+// Also re-render after 1s to catch Firebase delayed load
+setTimeout(()=>{ try{ renderAll(); }catch(e){} }, 1200);
 try{ const s=getSettings(); if(s.heroImage) applyHeroImage(s.heroImage); }catch(e){}
 ['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay','formPopup','menuOverlay','reviewOverlay','galleryPickerOverlay','guestLoginOverlay','guestSettingsOverlay','guestRatingOverlay'].forEach(id=> document.getElementById(id)?.addEventListener('click',e=>{ if(e.target.id===id) document.getElementById(id).classList.remove('open'); if(e.target.id==='travelOverlay' || e.target.id==='payOverlay') document.body.style.overflow=''; }));
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['payOverlay','calOverlay','adminOverlay','helpOverlay','travelOverlay','policyOverlay','staffLoginOverlay','billOverlay','menuOverlay','reviewOverlay','customPopup','formPopup','galleryPickerOverlay','guestLoginOverlay','guestSettingsOverlay','guestRatingOverlay'].forEach(id=>document.getElementById(id)?.classList.remove('open')); if(document.getElementById('staffDashboard').style.display==='block'){ closeStaffDashboard(); } document.body.style.overflow=''; }});
@@ -6401,6 +6494,140 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['payOverlay','ca
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); document.getElementById('navLinks').classList.remove('open');}}}));
 // auto update room suggest on load
 updatePersonHints();
+// startListeners moved to END of script so ALL let/const state is initialized first (TDZ-safe)
+try{ startListeners(); }catch(e){ console.error('startListeners failed (recovered):', e); }
+setTimeout(()=>{ try{ renderAll(); }catch(e){ console.error('final renderAll failed', e); } }, 150);
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3ec12b91e500e98',t:'MTc5MDAyNTE5OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<div id="debugBanner">✅ Hotel 4G Loaded <span id="debugInfo"></span></div>
+<script>
+(function(){
+  const banner=document.getElementById('debugBanner');
+  const info=document.getElementById('debugInfo');
+  if(banner){
+    banner.classList.add('show');
+    const checks=[];
+    if(typeof renderRooms==='function') checks.push('Rooms');
+    if(typeof openTravel==='function') checks.push('Book');
+    if(typeof openAdmin==='function') checks.push('Admin');
+    if(typeof openStaffLogin==='function') checks.push('Staff');
+    if(typeof handleBooking==='function') checks.push('Form');
+    info.textContent='| '+checks.join(' • ')+' OK | '+new Date().toLocaleTimeString();
+    setTimeout(()=>{ banner.style.display='none'; }, 4000);
+    console.log('✅ Hotel 4G — All systems OK:', checks);
+  }
+})();
+
+// ===== BULLETPROOF OVERRIDES — STAFF/ADMIN/RESERVE/BOOKING — FIXED 2026-09-22 CLEAN =====
+(function(){
+  function _safeShow(id){
+    const el=document.getElementById(id);
+    if(el){ el.classList.add('open'); el.style.display='flex'; el.style.pointerEvents='auto'; document.body.style.overflow='hidden'; console.log('✅ Show',id); return true; }
+    console.error('❌ Missing element',id);
+    return false;
+  }
+  function _safeHide(id){
+    const el=document.getElementById(id);
+    if(el){ el.classList.remove('open'); el.style.display='none'; }
+    const anyOpen = document.querySelector('.modal-overlay.open');
+    const staffDash = document.getElementById('staffDashboard');
+    const adminDash = document.getElementById('adminDashboard');
+    if(!anyOpen && !(staffDash && staffDash.style.display==='block') && !(adminDash && adminDash.classList.contains('open'))){
+      document.body.style.overflow='';
+    }
+  }
+  window.openAdmin = function(){
+    console.log('▶️ openAdmin clicked');
+    try{ if(!_safeShow('adminOverlay')) throw new Error('adminOverlay not found'); try{ if(typeof updateLoginUI==='function') updateLoginUI(); }catch(e){ console.log('updateLoginUI skipped',e.message); } }catch(e){ console.error('openAdmin fail',e); const el=document.getElementById('adminOverlay'); if(el){ el.style.display='flex'; el.classList.add('open'); } }
+  };
+  window.closeAdminLogin = function(){ console.log('▶️ closeAdminLogin'); _safeHide('adminOverlay'); };
+  window.closeDashboard = function(){ console.log('▶️ closeDashboard'); const el=document.getElementById('adminDashboard'); if(el){ el.classList.remove('open'); el.style.display='none'; } document.body.style.overflow=''; };
+  window.openStaffLogin = function(){
+    console.log('▶️ openStaffLogin clicked');
+    try{
+      if(typeof currentStaffId !== 'undefined' && currentStaffId){
+        const sessKey='staffSession_'+currentStaffId;
+        let sess=null; try{ sess=JSON.parse(localStorage.getItem(sessKey)||'null'); }catch(e){}
+        if(sess && sess.active && sess.deviceId=== (typeof staffDeviceId!=='undefined'?staffDeviceId:'') && (Date.now()-sess.loginAt < 12*60*60*1000)){
+          const topEl=document.getElementById('staffTopId'); if(topEl) topEl.textContent=currentStaffId+' • Device: '+ (typeof staffDeviceId!=='undefined'?staffDeviceId.slice(0,8):'')+' • Auto-Login ✓';
+          const dash=document.getElementById('staffDashboard'); if(dash){ dash.style.display='block'; document.body.style.overflow='hidden'; }
+          if(typeof renderStaffDashboard==='function') try{ renderStaffDashboard(); }catch(e){}
+          console.log('✅ Staff auto-login dashboard opened');
+          return;
+        }
+      }
+      _safeShow('staffLoginOverlay');
+    }catch(e){ console.error('openStaffLogin fail',e); const el=document.getElementById('staffLoginOverlay'); if(el){ el.style.display='flex'; el.classList.add('open'); } }
+  };
+  const _origOpenTravel = window.openTravel;
+  window.openTravel = function(roomName, price){
+    console.log('▶️ openTravel/Reserve clicked',roomName,price);
+    try{
+      if(typeof _origOpenTravel==='function'){ try{ _origOpenTravel(roomName, price); }catch(e){ console.error('orig openTravel fail',e); } }
+      _safeShow('travelOverlay');
+      const rn=document.getElementById('travelRoomName'); if(rn && roomName) rn.textContent=roomName;
+      const rp=document.getElementById('travelRoomPrice'); if(rp && price) rp.textContent='₹'+price+' / night • Travel Info';
+      if(typeof updateTravelSummary==='function') try{ updateTravelSummary(); }catch(e){}
+      if(typeof updateTravelRoomNumbers==='function') try{ updateTravelRoomNumbers(); }catch(e){}
+    }catch(e){ console.error('openTravel fail',e); _safeShow('travelOverlay'); }
+  };
+  window.closeTravel = function(){ console.log('▶️ closeTravel'); _safeHide('travelOverlay'); };
+  if(typeof window.handleContact !== 'function'){
+    window.handleContact = function(e){
+      console.log('▶️ handleContact fallback');
+      if(e) e.preventDefault();
+      const name=document.getElementById('fName')?.value?.trim(), phone=document.getElementById('fPhone')?.value?.trim();
+      if(!name||!phone) { if(typeof showError==='function') showError('नाम और मोबाइल डालें'); else alert('नाम और मोबाइल डालें'); return; }
+      if(typeof realServiceRequest==='function') realServiceRequest('Room Enquiry — '+ (document.getElementById('fRoom')?.value||'Room'));
+      else if(typeof showPopup==='function') showPopup({type:'success',title:'✅ Enquiry Sent',message:'Enquiry mil gayi — Team 10 min me call karegi'});
+    };
+  }
+  if(typeof window.handleBooking !== 'function'){ window.handleBooking = window.handleContact; }
+  const _origOpenPay = window.openPayModal;
+  window.openPayModal = function(roomName, price){
+    console.log('▶️ openPayModal/Booking clicked',roomName,price);
+    try{
+      if(typeof _origOpenPay==='function'){ try{ _origOpenPay(roomName, price); }catch(e){ console.error('orig openPayModal fail',e); } }
+      _safeShow('payOverlay');
+      const rn=document.getElementById('payRoomName'); if(rn && roomName) rn.textContent=roomName;
+      const rp=document.getElementById('payRoomPrice'); if(rp && price) rp.textContent='₹'+price+' / night';
+      if(typeof updatePaySummary==='function') try{ updatePaySummary(); }catch(e){}
+    }catch(e){ console.error('openPayModal fail',e); _safeShow('payOverlay'); }
+  };
+  const _origClosePay = window.closePay; window.closePay = function(){ console.log('▶️ closePay'); try{ if(typeof _origClosePay==='function') _origClosePay(); }catch(e){} _safeHide('payOverlay'); };
+  document.addEventListener('click', e=>{
+    const btn=e.target.closest('button, a');
+    if(btn){
+      const onclick=btn.getAttribute('onclick')||'';
+      if(onclick.includes('openAdmin')||onclick.includes('openStaffLogin')||onclick.includes('openTravel')||onclick.includes('handleContact')||onclick.includes('handleBooking')||onclick.includes('openPayModal')){
+        console.log('🖱️ Button click:', (btn.textContent||'').slice(0,30), 'onclick:',onclick.slice(0,60));
+      }
+    }
+  });
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){
+      ['payOverlay','travelOverlay','adminOverlay','staffLoginOverlay','billOverlay','menuOverlay','reviewOverlay','calOverlay','policyOverlay','customPopup','formPopup'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el && el.classList.contains('open')){ el.classList.remove('open'); el.style.display='none'; }
+      });
+      const staffDash=document.getElementById('staffDashboard');
+      const adminDash=document.getElementById('adminDashboard');
+      if(!document.querySelector('.modal-overlay.open') && !(staffDash && staffDash.style.display==='block') && !(adminDash && adminDash.classList.contains('open'))){
+        document.body.style.overflow='';
+      }
+    }
+  });
+  const style=document.createElement('style');
+  style.textContent=' .modal-overlay.open{display:flex !important;pointer-events:auto !important;z-index:2000 !important} .modal{pointer-events:auto !important} .navbar{z-index:1000 !important} .firebase-banner{pointer-events:none} ';
+  document.head.appendChild(style);
+  console.log('✅ BULLETPROOF OVERRIDES INSTALLED — Admin/Staff/Reserve/Booking fixed');
+})();
+
+</script>
+
+<!-- Lightbox Overlay (static) -->
+<div id="lightboxOverlay" class="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;z-index:99999" onclick="if(event.target===this) closeLightbox()">
+  <img src="" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,0.5)">
+  <button onclick="closeLightbox()" style="position:absolute;top:16px;right:16px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3)">✕</button>
+</div>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eda292eea180b8',t:'MTc5MDA0MTU3Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
