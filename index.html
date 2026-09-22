@@ -284,6 +284,20 @@ footer a{color:#A1A1AA;font-size:12.5px;display:block;margin-bottom:5px;word-bre
 .copy span{ text-align:center; width:100%; display:block; min-width:0; }
 .copy a,.copy b{display:inline;margin-bottom:0;word-break:break-word;overflow-wrap:break-word}
 @media(min-width:900px){.copy{padding-bottom:18px}}
+/* AUTO-SCROLL BANNERS — staff editable */
+.banner-strip{overflow:hidden;margin:8px auto 14px;position:relative}
+.banner-strip::before,.banner-strip::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
+.banner-strip::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
+.banner-strip::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
+.banner-track{display:flex;width:max-content;animation:bannerScroll 32s linear infinite;padding:4px 0}
+.banner-strip:hover .banner-track{animation-play-state:paused}
+@keyframes bannerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.banner-item{display:inline-flex;align-items:center;white-space:nowrap;font-size:12.5px;font-weight:800;color:#0F172A;background:linear-gradient(135deg,#FFFBEB,#FDE68A);border:1.5px solid #FCD34D;border-radius:30px;padding:9px 18px;margin-right:12px;box-shadow:0 4px 14px rgba(197,162,84,0.15)}
+.banner-item.c1{background:linear-gradient(135deg,#ECFDF5,#A7F3D0);border-color:#6EE7B7;color:#065F46}
+.banner-item.c2{background:linear-gradient(135deg,#EFF6FF,#BFDBFE);border-color:#93C5FD;color:#1E40AF}
+.banner-item.c3{background:linear-gradient(135deg,#F5F3FF,#DDD6FE);border-color:#C4B5FD;color:#5B21B3}
+.banner-item.c4{background:linear-gradient(135deg,#0F172A,#1E293B);border-color:#0F172A;color:#FDE68A}
+@media(max-width:640px){.banner-item{font-size:11.5px;padding:8px 14px}}
 /* MODALS — systematic, no overlap */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,0.55);backdrop-filter:blur(10px);align-items:flex-start;justify-content:center;padding:12px;overflow-y:auto}
 @media(min-width:640px){.modal-overlay{padding:16px;align-items:center}}
@@ -680,20 +694,8 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
 </section>
 <!-- WEBSITE ICON TABS — Only one section open — like Admin/Staff — systematic -->
 <div class="container" style="padding-top:12px">
-  <div class="website-tabs" id="websiteTabs">
-    <button class="web-tab active" id="wTab-all" onclick="websiteSwitchTab('all')" data-i18n="sec_all">🏠 All</button>
-    <button class="web-tab" id="wTab-rooms" onclick="websiteSwitchTab('rooms')" data-i18n="sec_rooms">🛏 Rooms</button>
-    <button class="web-tab" id="wTab-banquet" onclick="websiteSwitchTab('banquet')" data-i18n="sec_banquet">🎉 Banquet</button>
-    <button class="web-tab" id="wTab-gallery" onclick="websiteSwitchTab('gallery')" data-i18n="sec_gallery">📸 Gallery</button>
-    <button class="web-tab" id="wTab-restaurant" onclick="websiteSwitchTab('restaurant')" data-i18n="sec_tables">🍽 Tables</button> <!-- Calendar ki jagah Restaurant -->
-    <button class="web-tab" id="wTab-dining" onclick="websiteSwitchTab('dining')" data-i18n="sec_dining">🍽 Dining</button>
-    <button class="web-tab" id="wTab-reviews" onclick="websiteSwitchTab('reviews')" data-i18n="sec_reviews">⭐ Reviews</button>
-    <button class="web-tab" id="wTab-contact" onclick="websiteSwitchTab('contact')" data-i18n="sec_contact">📞 Contact</button>
-    <button class="web-tab" id="wTab-location" onclick="websiteSwitchTab('location')" data-i18n="sec_location">📍 Location</button>
-  </div>
-  <div style="font-size:11px;color:#64748B;text-align:center;margin-bottom:10px;line-height:1.5" data-i18n="sec_hint">Icon पर tap करें — सिर्फ वही section खुलेगा, बाकी hide — Admin/Staff की तरह systematic • All पर वापस सब देखें • No overflow</div>
-  <div id="websiteBackBtn" style="display:none;text-align:center;margin:8px 0 12px">
-    <button onclick="websiteSwitchTab('all')" class="btn-wh" style="padding:9px 18px;font-size:12px;border:1.5px solid #C5A254;color:#92400E;background:#FFFBEB;box-shadow:0 4px 12px rgba(197,162,84,0.12)" data-i18n="btn_back_all">← Back to All — सभी Sections देखें</button>
+  <div id="bannerStrip" class="banner-strip" aria-label="Offers — auto scroll">
+    <div id="bannerTrack" class="banner-track"></div>
   </div>
 </div>
 <!-- ROOMS — MULTI PHOTO SIDE SCROLL -->
@@ -1408,6 +1410,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
       <button id="sTab-tables" class="staff-tab" onclick="switchStaffTab('tables')">🍽 Tables</button>
       <button id="sTab-bookings" class="staff-tab" onclick="switchStaffTab('bookings')">📋 Bookings</button>
       <button id="sTab-header" class="staff-tab" onclick="switchStaffTab('header')">🖼️ Header</button>
+      <button id="sTab-banners" class="staff-tab" onclick="switchStaffTab('banners')">📢 Banners</button>
       <button id="sTab-requests" class="staff-tab" onclick="switchStaffTab('requests')">📩 Requests</button>
       <button id="sTab-otp" class="staff-tab" onclick="switchStaffTab('otp')">🔐 OTP</button>
     </div>
@@ -1529,6 +1532,21 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <div id="headerProgressText" style="display:none"></div>
         <div style="font-size:10.5px;color:#16A34A;font-weight:700;margin-top:8px;text-align:center;background:#F0FDF4;border:1px solid #6EE7B7;padding:8px;border-radius:8px">Staff Panel se Header update — Auto Compress 72% → Firebase Settings → Website header turant live — Sirf Staff/Admin</div>
         <input id="headerImageUrl" style="display:none" value="">
+      </div>
+    </div></div>
+    <div id="staff-panel-banners" style="display:none"><div class="admin-card">
+      <div class="admin-card-head"><h4>📢 Auto-Scroll Banners — Staff Editable</h4><button onclick="renderStaffBanners()" class="icon-btn">↻</button></div>
+      <div style="padding:14px;display:grid;gap:10px">
+        <div style="background:#ECFDF5;border:1px solid #6EE7B7;color:#065F46;padding:8px 10px;border-radius:10px;font-size:11px">Ye banners hero photo ke neeche auto-scroll hote hain — add/edit/delete turant live (sab devices par)</div>
+        <div id="staffBannersList" style="display:grid;gap:8px"></div>
+        <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;padding:10px;display:grid;gap:8px">
+          <div style="font-size:11px;font-weight:800;color:#92400E">➕ Naya Banner Add Karein</div>
+          <input id="newBannerText" placeholder="e.g. 🎉 Diwali Offer — HOTEL200 se ₹200 off" style="width:100%;padding:10px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:12px;background:#fff">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <select id="newBannerColor" style="padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#fff;font-size:11px"><option value="">🟡 Gold</option><option value="c1">🟢 Green</option><option value="c2">🔵 Blue</option><option value="c3">🟣 Purple</option><option value="c4">⚫ Dark</option></select>
+            <button onclick="staffAddBanner()" class="btn-gold" style="padding:9px 14px;font-size:11px">+ Add Banner</button>
+          </div>
+        </div>
       </div>
     </div></div>
     <div id="staff-panel-requests" style="display:none"><div class="admin-card">
@@ -3059,6 +3077,9 @@ setTimeout(()=>{ try{ renderAll(); }catch(e){} }, 1200); return;
       else { settingsCache={...defaultSettings,...doc.data()}; if(settingsCache.tax===undefined) settingsCache.tax=12; if(!/^rzp_(live|test)_/.test(String(settingsCache.razorKey||''))){ settingsCache.razorKey='rzp_test_TYb2eg0TLvapOO'; try{ db.collection('settings').doc('main').update({razorKey:'rzp_test_TYb2eg0TLvapOO'}); console.log('Razorpay key fixed -> rzp_test_TYb2eg0TLvapOO'); }catch(e){} } if(settingsCache.banquetBase===undefined) settingsCache.banquetBase=6000; if(settingsCache.banquetPerPerson===undefined) settingsCache.banquetPerPerson=110; const _rk=document.getElementById('setRazorKey'); if(_rk) _rk.value=settingsCache.razorKey; document.getElementById('setCoupon').value=settingsCache.coupon; const taxEl=document.getElementById('setTax'); if(taxEl) taxEl.value=settingsCache.tax; const bb=document.getElementById('setBanquetBase'); if(bb) bb.value=settingsCache.banquetBase; const bp=document.getElementById('setBanquetPerPerson'); if(bp) bp.value=settingsCache.banquetPerPerson; updatePaySummary(); try{ const hint=document.getElementById('banquetPreviewHint'); if(hint) hint.textContent='₹'+calcBanquetPrice(50).toLocaleString('en-IN')+' for 50 Guests'; }catch(e){} try{ applyHeroImage(settingsCache.heroImage); const hInput=document.getElementById('headerImageUrl'); if(hInput) hInput.value=settingsCache.heroImage||''; const hPreview=document.getElementById('headerPreview'); if(hPreview && settingsCache.heroImage) hPreview.src=settingsCache.heroImage; }catch(e){} }
     });
   }catch(e){ console.warn('listener settings failed (recovered)', e); }
+  try{ // listener: banners
+    db.collection('banners').doc('main').onSnapshot(doc=>{ if(doc.exists && doc.data().list){ bannersCache=doc.data().list; } renderBanners(); try{ renderStaffBanners(); }catch(e){} });
+  }catch(e){ console.warn('listener banners failed (recovered)', e); }
   try{ // listener: gallery
     db.collection('gallery').orderBy('createdAt','desc').onSnapshot(snap=>{
       if(snap.empty && galleryCache.length===0){ defaultGallery.forEach(url=> db.collection('gallery').add({url, createdAt: firebase.firestore.FieldValue.serverTimestamp()})); }
@@ -3998,9 +4019,7 @@ async function addBooking(data){
   try{ updateGuestVisibility(); }catch(e){}
   // Reserve confirmation popup — detailed + auto forward to 6262224200
   setTimeout(()=> showReserveConfirm(savedData), 300);
-  if(savedData.status==='paid'){
-    setTimeout(()=>{ try{ forwardBookingTo6262224200(savedData); }catch(e){ console.log(e); } }, 900);
-  }
+  // WhatsApp/SMS auto-forward DISABLED — payment ke baad sirf on-screen confirmation box
   return savedData;
 }
 function hasMyBooking(){
@@ -4106,7 +4125,7 @@ function showReserveConfirm(b){
       </div>
 
       <div style="background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:12px;padding:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
-        <div style="flex:1;min-width:180px"><div style="font-size:11px;font-weight:800;color:#065F46">✅ Reserve Successfully Booked!</div><div style="font-size:10px;color:#57534E;margin-top:2px;line-height:1.5">Staff Panel → Room Box turant update • Bill checkout ke baad hi Room Available • Auto forward to 6262224200</div></div>
+        <div style="flex:1;min-width:180px"><div style="font-size:11px;font-weight:800;color:#065F46">✅ Reserve Successfully Booked!</div><div style="font-size:10px;color:#57534E;margin-top:2px;line-height:1.5">Room Box turant update — Booking AUTO-Confirmed ✅ • Room auto-occupy • Koi WhatsApp/SMS forward nahi</div></div>
         <div style="text-align:right;flex-shrink:0"><div style="font-size:10px;color:#64748B">Check-in 12PM • Out 11AM</div><div style="font-size:10px;color:#0F172A;font-weight:700">📍 MP Nagar Zone-1, Bhopal</div></div>
       </div>
 
@@ -6111,7 +6130,7 @@ function renderStaffRoomBoxes(){
       else if(isConf){ bg='#FEE2E2'; border='#FECACA'; badge='<span style="background:#DC2626;color:#fff;padding:2px 6px;border-radius:20px;font-size:10px">🔴 OCCUPIED</span>'; }
       else { bg='#FEE2E2'; border='#FECACA'; badge='<span style="background:#DC2626;color:#fff;padding:2px 6px;border-radius:20px;font-size:10px">🔴 BOOKED</span>'; }
       const customCount=(b.customItems||[]).length; const customTotal=b.customTotal!==undefined? b.customTotal : (b.customItems||[]).reduce((s,it)=>s+(it.total||0),0);
-      details=`<div style="font-size:11px;color:#334155;margin-top:6px;word-break:break-word"><b>${b.name||''}</b> • ${b.phone||''}<br>${b.cin} → ${b.cout} • ${b.adults||''}A ${b.children||0}C<br>₹${(b.amount||0).toLocaleString('en-IN')} • ${b.roomNumber? 'No.'+b.roomNumber:''}${customCount? `<br><span style="background:#FFFBEB;border:1px solid #FDE68A;padding:2px 6px;border-radius:20px;font-size:10px;color:#92400E">➕ ${customCount} Items = ₹${customTotal.toLocaleString('en-IN')}</span>`:''}${customCount? `<div style="font-size:10px;color:#92400E;margin-top:4px;word-break:break-word">${(b.customItems||[]).slice(0,2).map(it=> it.name+'×'+it.qty+'=₹'+it.total).join(' • ')}${customCount>2? ' • +'+(customCount-2)+' more':''} <a href="#" onclick="viewBookingDetail('${b.id}');return false" style="color:#2563EB">view</a></div>`:''}</div><div style="display:flex;gap:4px;margin-top:8px;flex-wrap:wrap"><button onclick="staffConfirmBooking('${b.id}')" class="icon-btn" style="font-size:10px;background:#DCFCE7">✓ Confirm</button><button onclick="staffCancelBooking('${b.id}')" class="icon-btn" style="font-size:10px;background:#FEE2E2;color:#991B1B">✕ Cancel</button><button onclick="staffAddCustomItem('${b.id}')" class="icon-btn" style="font-size:10px;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E">➕ Item</button>${customCount? `<button onclick="staffManageCustomItems('${b.id}')" class="icon-btn" style="font-size:10px;background:#FFF7ED;border:1px solid #FDBA74;color:#92400E">📋 ${customCount}</button>`:''}<button onclick="staffGenerateBill('${b.id}')" class="icon-btn" style="font-size:10px;background:#0F172A;color:#fff">🧾 Bill</button><button onclick="staffCompleteCheckout('${b.id}')" class="icon-btn" style="font-size:10px;background:#065F46;color:#fff">✅ Checkout</button></div>`;
+      details=`<div style="font-size:11px;color:#334155;margin-top:6px;word-break:break-word"><b>${b.name||''}</b> • ${b.phone||''}<br>${b.cin} → ${b.cout} • ${b.adults||''}A ${b.children||0}C<br>₹${(b.amount||0).toLocaleString('en-IN')} • ${b.roomNumber? 'No.'+b.roomNumber:''}${customCount? `<br><span style="background:#FFFBEB;border:1px solid #FDE68A;padding:2px 6px;border-radius:20px;font-size:10px;color:#92400E">➕ ${customCount} Items = ₹${customTotal.toLocaleString('en-IN')}</span>`:''}${customCount? `<div style="font-size:10px;color:#92400E;margin-top:4px;word-break:break-word">${(b.customItems||[]).slice(0,2).map(it=> it.name+'×'+it.qty+'=₹'+it.total).join(' • ')}${customCount>2? ' • +'+(customCount-2)+' more':''} <a href="#" onclick="viewBookingDetail('${b.id}');return false" style="color:#2563EB">view</a></div>`:''}</div><div style="display:flex;gap:4px;margin-top:8px;flex-wrap:wrap">${(b.status==='paid'||b.status==='confirmed')?'<span style="background:#DCFCE7;border:1px solid #86EFAC;color:#065F46;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:800">✅ Auto-Confirmed</span>':`<button onclick="staffConfirmBooking('${b.id}')" class="icon-btn" style="font-size:10px;background:#DCFCE7">✓ Confirm</button>`}<button onclick="staffCancelBooking('${b.id}')" class="icon-btn" style="font-size:10px;background:#FEE2E2;color:#991B1B">✕ Cancel</button><button onclick="staffAddCustomItem('${b.id}')" class="icon-btn" style="font-size:10px;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E">➕ Item</button>${customCount? `<button onclick="staffManageCustomItems('${b.id}')" class="icon-btn" style="font-size:10px;background:#FFF7ED;border:1px solid #FDBA74;color:#92400E">📋 ${customCount}</button>`:''}<button onclick="staffGenerateBill('${b.id}')" class="icon-btn" style="font-size:10px;background:#0F172A;color:#fff">🧾 Bill</button><button onclick="staffCompleteCheckout('${b.id}')" class="icon-btn" style="font-size:10px;background:#065F46;color:#fff">✅ Checkout</button></div>`;
     } else {
       bg='#F0FDF4'; border='#86EFAC'; badge='<span style="background:#16A34A;color:#fff;padding:2px 6px;border-radius:20px;font-size:10px">🟢 AVAILABLE</span>';
       details=`<div style="font-size:11px;color:#16A34A;margin-top:6px">Available • Checkout + Bill के बाद ही Free हुआ</div><div style="margin-top:8px"><button onclick="showPopup({type:'info',title:'Room ${pr.number}',message:'Type: ${pr.type} • Floor: ${pr.floor} • Available — नई booking पर auto-assign होगा'})" class="icon-btn" style="font-size:10px">ℹ Info</button></div>`;
@@ -6152,7 +6171,7 @@ function renderStaffBookings(){
         <button onclick="viewBookingDetail('${b.id}')" class="icon-btn" style="font-size:11px;background:#EFF6FF;color:#1E40AF;border:1px solid #93C5FD" title="Full Info">👁</button>
         <button onclick="staffAddCustomItem('${b.id}')" class="icon-btn" style="font-size:11px;background:#FFFBEB;color:#92400E;border:1px solid #FDE68A" title="Add Room Item/Service + Price">➕</button>
         ${customCount2? `<button onclick="staffManageCustomItems('${b.id}')" class="icon-btn" style="font-size:11px;background:#FFF7ED;border:1px solid #FDBA74;color:#92400E" title="Manage/Remove Custom Items">📋</button>`:''}
-        <button onclick="staffConfirmBooking('${b.id}')" class="icon-btn" style="font-size:11px">✓</button>
+        ${(b.status==='paid'||b.status==='confirmed')?'<span style="background:#DCFCE7;border:1px solid #86EFAC;color:#065F46;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:800">✅</span>':`<button onclick="staffConfirmBooking('${b.id}')" class="icon-btn" style="font-size:11px">✓</button>`}
         <button onclick="staffCancelBooking('${b.id}')" class="icon-btn" style="font-size:11px;color:#DC2626">✕</button>
         <button onclick="staffGenerateBill('${b.id}')" class="icon-btn" style="font-size:11px;background:#0F172A;color:#fff">🧾</button>
         <button onclick="downloadGuestBill('${b.id}')" class="icon-btn" style="font-size:11px;background:#C5A254;color:#fff" title="Download Bill">⬇️ Bill</button>
@@ -6542,8 +6561,6 @@ async function staffCompleteCheckout(bid){
     else { const arr=lsGet('hotel4g_bookings',[]); const idx=arr.findIndex(x=>String(x.id)===String(bid)); if(idx>-1){ arr[idx].status='checkedout'; arr[idx].checkedOutBy=currentStaffId||'staff'; arr[idx].checkedOutAt=new Date().toISOString(); /* Firebase only — hotel4g_bookings local storage disabled as per request */ bookingsCache=arr; } }
     renderStaffDashboard(); renderBookings(); renderRooms(); renderCalendar(); updateStats();
     showSuccess(`Checkout Complete — Room ${b.roomNumber||''} अब Available! 🎉`,'✅ Checked-out');
-    // also forward to 6262224200
-    try{ forwardBookingTo6262224200({...b, status:'checkedout'}); }catch(e){}
   }});
 }
 let confirmCheckoutAfterBill=false;
@@ -6661,9 +6678,7 @@ async function staffManualReserve(){
   const data={name, phone, cin, cout, room, roomNumber, nights:preview.nights, adults:parseInt(adults), children:parseInt(children), amount:preview.total, subtotal:preview.subtotal, tax:preview.tax, taxPercent:preview.taxPercent, discount:preview.disc, coupon, payment, txn: txn||'Manual-'+currentStaffId, status:'paid', verified:true, verification:'Staff Manual ✔ '+currentStaffId, createdAtStr:new Date().toLocaleString('en-IN')};
   showPopup({type:'confirm', title:'Manual Reserve Confirm?', message:`${name} • ${room} ${roomNumber?'#'+roomNumber:''} • ${cin}→${cout} • ₹${preview.total} • ${payment} — Create Paid Booking?`, confirmText:'✓ Create Paid ✓', showCancel:true, onConfirm: async()=>{
     const saved=await addBooking(data);
-    // payment gateway: Razorpay only
-    // forward to 6262224200
-    try{ forwardBookingTo6262224200(saved); }catch(e){}
+    // payment gateway: Razorpay only • koi auto WhatsApp/SMS forward nahi
     showSuccess(`Manual Reserve Created — ${name} • ${room} #${saved.roomNumber||''} • ₹${preview.total} — Bill & Checkout se Available होगा`,'Created! ✨');
     // clear form
     document.getElementById('staffManName').value=''; document.getElementById('staffManPhone').value=''; document.getElementById('staffManTxn').value='';
@@ -6793,10 +6808,11 @@ function switchStaffTab(tab){
     if(tab==='bookings') renderStaffBookings();
     if(tab==='requests') renderStaffRequests();
     if(tab==='otp') renderAdminOtps();
+    if(tab==='banners') renderStaffBanners();
   }catch(e){ console.log('switchStaffTab render',e); }
   // Original logic continues - will be duplicated but harmless
 
-  const tabs=['rooms','roomphotos','gallery','manual','menu','tables','bookings','requests','header','otp'];
+  const tabs=['rooms','roomphotos','gallery','manual','menu','tables','bookings','requests','header','otp','banners'];
   tabs.forEach(t=>{
     const p=document.getElementById('staff-panel-'+t);
     if(p) p.style.display=(t===tab)?'block':'none';
@@ -6821,6 +6837,7 @@ function switchStaffTab(tab){
     if(tab==='tables'){ renderStaffTables(); renderStaffTableBookings(); }
     if(tab==='bookings') renderStaffBookings();
     if(tab==='otp') renderAdminOtps();
+    if(tab==='banners') renderStaffBanners();
   }catch(e){}
 }
 // — Website Icon Tabs — Only one section open — same as Admin/Staff — systematic no overflow —
@@ -7180,7 +7197,60 @@ function updateBanquetCardPrice(){
     }
   }catch(e){}
 }
-function renderAll(){ updateBanquetCardPrice(); applyLang(currentLang); renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); try{ renderRestaurantTables(); renderStaffTables(); renderStaffTableBookings(); renderRestaurantBookingsList(); }catch(e){} renderBookings(); updateStats(); updatePaySummary(); updatePersonHints(); renderAdminStaffList(); renderReviews(); try{ renderAdminPhysicalRooms(); updateTravelRoomNumbers(); updatePayRoomNumbers(); renderAdminOtps(); renderAdminMenuList(); renderStaffMenuList(); renderAdminRequests(); renderStaffRequests(); }catch(e){} if(currentStaffId){ renderStaffDashboard(); try{ switchStaffTab('rooms'); }catch(e){} } try{ updateGalleryDirectVisibility(); }catch(e){} try{ updateGuestVisibility(); }catch(e){} 
+const DEFAULT_BANNERS=[
+  {id:'bn1',text:'🎉 Coupon HOTEL200 — ₹200 off', color:''},
+  {id:'bn2',text:'🍽 Pure Veg Restaurant — Table Booking Live', color:'c1'},
+  {id:'bn3',text:'🎊 Banquet Hall — 20-500 Guests • AC + DJ Lighting', color:'c3'},
+  {id:'bn4',text:'📸 Side-Scroll Multi Photos — Har Room me', color:'c2'},
+  {id:'bn5',text:'💳 Razorpay Secure — UPI • Card • Net Banking • Wallets', color:'c4'},
+];
+let bannersCache=[];
+function getBanners(){ return (bannersCache&&bannersCache.length)?bannersCache.slice():DEFAULT_BANNERS.slice(); }
+function renderBanners(){
+  const track=document.getElementById('bannerTrack'); if(!track) return;
+  const half=getBanners().map(b=>`<span class="banner-item ${b.color||''}">${b.text}</span>`).join('');
+  track.innerHTML=half+half;
+}
+async function saveBanners(list){
+  bannersCache=list||[];
+  if(useFirebase){ try{ await db.collection('banners').doc('main').set({list:bannersCache, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){} }
+  else { try{ localStorage.setItem('hotel4g_banners', JSON.stringify(bannersCache)); }catch(e){} }
+  renderBanners(); try{ renderStaffBanners(); }catch(e){}
+}
+function renderStaffBanners(){
+  const wrap=document.getElementById('staffBannersList'); if(!wrap) return;
+  const list=getBanners();
+  if(!list.length){ wrap.innerHTML='<div style="font-size:11px;color:#94A3B8;text-align:center;padding:10px">Koi banner nahi — neeche se add karein</div>'; return; }
+  wrap.innerHTML=list.map(b=>`<div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:12px;padding:8px;display:grid;gap:6px">
+    <div><span class="banner-item ${b.color||''}" style="padding:6px 12px;font-size:11px;margin-right:0">${b.text}</span></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+      <input id="banEdit_${b.id}" value="${(b.text||'').replace(/"/g,'&quot;')}" style="flex:1;min-width:140px;padding:8px 10px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:11px;background:#FFFBEB">
+      <select id="banColor_${b.id}" style="padding:8px;border:1.5px solid #E2E8F0;border-radius:10px;background:#fff;font-size:11px"><option value="">🟡</option><option value="c1">🟢</option><option value="c2">🔵</option><option value="c3">🟣</option><option value="c4">⚫</option></select>
+      <button onclick="staffUpdateBanner('${b.id}')" class="icon-btn" style="font-size:10px;background:#DCFCE7">💾 Save</button>
+      <button onclick="staffDeleteBanner('${b.id}')" class="icon-btn" style="font-size:10px;background:#FEE2E2;color:#991B1B">🗑</button>
+    </div></div>`).join('');
+  list.forEach(b=>{ const sel=document.getElementById('banColor_'+b.id); if(sel) sel.value=b.color||''; });
+}
+function staffAddBanner(){
+  const t=(document.getElementById('newBannerText')?.value||'').trim();
+  if(!t) return showError('Banner text likhein');
+  const c=document.getElementById('newBannerColor')?.value||'';
+  const list=getBanners(); list.push({id:'bn_'+Date.now().toString(36), text:t, color:c});
+  saveBanners(list); const inp=document.getElementById('newBannerText'); if(inp) inp.value='';
+  showSuccess('Banner Add — turant Live! 📢','Done!');
+}
+function staffUpdateBanner(id){
+  const t=(document.getElementById('banEdit_'+id)?.value||'').trim();
+  if(!t) return showError('Text khali nahi ho sakta');
+  const c=document.getElementById('banColor_'+id)?.value||'';
+  saveBanners(getBanners().map(b=> b.id===id?{...b,text:t,color:c}:b));
+  showSuccess('Banner Update — Live! 📢','Saved!');
+}
+function staffDeleteBanner(id){
+  saveBanners(getBanners().filter(b=>b.id!==id));
+  showSuccess('Banner Delete 🗑','Done!');
+}
+function renderAll(){ try{ renderBanners(); }catch(e){} updateBanquetCardPrice(); applyLang(currentLang); renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); try{ renderRestaurantTables(); renderStaffTables(); renderStaffTableBookings(); renderRestaurantBookingsList(); }catch(e){} renderBookings(); updateStats(); updatePaySummary(); updatePersonHints(); renderAdminStaffList(); renderReviews(); try{ renderAdminPhysicalRooms(); updateTravelRoomNumbers(); updatePayRoomNumbers(); renderAdminOtps(); renderAdminMenuList(); renderStaffMenuList(); renderAdminRequests(); renderStaffRequests(); }catch(e){} if(currentStaffId){ renderStaffDashboard(); try{ switchStaffTab('rooms'); }catch(e){} } try{ updateGalleryDirectVisibility(); }catch(e){} try{ updateGuestVisibility(); }catch(e){} 
 // Create missing placeholder elements if JS expects them (fixes 13 missing IDs)
 try{
   const missingIds=['banqPriceHint','heroTotal','guestUidDisplay','staffBadgeRequests','staffLoggedHint'];
@@ -7340,5 +7410,5 @@ setTimeout(()=>{ try{ renderAll(); }catch(e){ console.error('final renderAll fai
   <img src="" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,0.5)">
   <button onclick="closeLightbox()" style="position:absolute;top:16px;right:16px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3)">✕</button>
 </div>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eeabbb69d27143',t:'MTc5MDA1MjQzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f4b8b1bdd9bd55',t:'MTc5MDExNTg4Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eeabbb69d27143',t:'MTc5MDA1MjQzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f4eba938ac85c9',t:'MTc5MDExNzk3MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
