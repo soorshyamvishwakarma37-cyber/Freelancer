@@ -298,6 +298,9 @@ footer a{color:#A1A1AA;font-size:12.5px;display:block;margin-bottom:5px;word-bre
 .banner-item.c3{background:linear-gradient(135deg,#F5F3FF,#DDD6FE);border-color:#C4B5FD;color:#5B21B3}
 .banner-item.c4{background:linear-gradient(135deg,#0F172A,#1E293B);border-color:#0F172A;color:#FDE68A}
 @media(max-width:640px){.banner-item{font-size:11.5px;padding:8px 14px}}
+.banner-item.banner-photo{padding:0 !important;width:150px;height:64px;position:relative;overflow:hidden;background:#0F172A}
+.banner-item.banner-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.banner-item.banner-photo em{position:absolute;left:0;right:0;bottom:0;font-style:normal;background:rgba(15,23,42,.78);color:#fff;font-size:10px;font-weight:800;padding:2px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* MODALS — systematic, no overlap */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,0.55);backdrop-filter:blur(10px);align-items:flex-start;justify-content:center;padding:12px;overflow-y:auto}
 @media(min-width:640px){.modal-overlay{padding:16px;align-items:center}}
@@ -713,7 +716,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
     <div class="section-head"><span style="background:#FEE2E2;border-color:#FCA5A5;color:#991B1B" data-i18n="banquet_tag">🎉 BANQUET HALL — EVENTS</span><h2 data-i18n="banquet_title">शादी, पार्टी, <em>मीटिंग</em> — सब यहीं</h2><p>20-500 Guests • AC Hall • Decoration • Catering • Pure Veg • Real Booking — Minimum 20 • Turant Live</p></div>
     <div class="banquet-card">
       <div class="banquet-img">
-        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80" alt="Banquet Hall" loading="lazy">
+        <img id="svcImgBanquet" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80" alt="Banquet Hall" loading="lazy">
         <div class="banquet-badge" data-i18n="banquet_badge">★ MOST BOOKED • BHOPAL</div>
         <div style="position:absolute;bottom:10px;right:10px;background:rgba(15,23,42,0.88);color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800;backdrop-filter:blur(6px)" data-i18n="banquet_sub">👥 20-500 Guests • 📸 Events</div>
       </div>
@@ -824,15 +827,15 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
     <div class="section-head"><span data-i18n="dining_tag">🍽️ PURE VEG DINING & SERVICES</span><h2 data-i18n="dining_title">खाना + <em>सर्विस</em> — एक Click में</h2><p data-i18n="dining_desc">Restaurant, Room Service, Laundry, Pickup — सब Request यहीं से</p></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
       <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Restaurant">
+        <img id="svcImgRestaurant" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Restaurant">
         <div style="padding:14px"><h4 data-i18n="dining_rest_title">Pure Veg Restaurant</h4><p style="font-size:11px;color:#64748B" data-i18n="dining_rest_desc">Breakfast 7-10 AM, Lunch/Dinner A-la-carte</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button onclick="showRealMenu()" class="icon-btn" data-i18n="dining_menu">Menu देखें — Real</button><button onclick="realServiceRequest('Table Booking — Pure Veg Restaurant')" class="btn-gold guest-only" style="padding:6px 12px;font-size:11px" data-i18n="dining_book">Table बुक करें — Real</button></div><div class="outsider-menu-only" style="font-size:10px;color:#94A3B8;margin-top:6px" data-i18n="dining_viewonly">View Only — Table booking booked guests / Staff ke liye</div></div>
       </div>
       <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Room Service">
+        <img id="svcImgRoomService" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Room Service">
         <div style="padding:14px"><h4 data-i18n="dining_room_title">24x7 Room Service</h4><p style="font-size:11px;color:#64748B" data-i18n="dining_room_desc">Tea, Water, Towel, Extra Bed — Instant</p><div class="guest-only" style="display:flex;gap:6px;margin-top:8px"><button onclick="realServiceRequest('Room Service — 24x7')" class="btn-gold" style="padding:6px 12px;font-size:11px;flex:1" data-i18n="dining_request">Request भेजें — Real</button><button onclick="realServiceRequest('Laundry — Same Day')" class="icon-btn" data-i18n="dining_laundry">Laundry — Real</button></div><div class="outsider-menu-only" style="font-size:11px;color:#64748B;margin-top:8px;padding:8px;background:#FFFBEB;border:1px dashed #FDE68A;border-radius:10px;text-align:center" data-i18n="dining_room_lock">🔒 Room Service — Booked Guests & Staff Only — Bahar sirf Menu View</div></div>
       </div>
       <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,0.04)">
-        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Pickup">
+        <img id="svcImgPickup" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80" style="width:100%;height:140px;object-fit:cover" alt="Pickup">
         <div style="padding:14px"><h4 data-i18n="dining_pickup_title">Station/Airport Pickup</h4><p style="font-size:11px;color:#64748B" data-i18n="dining_pickup_desc">Bhopal Jn, Habibganj, Airport — On Time</p><div style="display:flex;gap:6px;margin-top:8px"><button onclick="openTravel('Deluxe Room',1999)" class="btn-gold guest-only" style="padding:6px 12px;font-size:11px;flex:1" data-i18n="dining_pickup_btn">Pickup के साथ Reserve</button><button onclick="showPopup({type:'info',title:'Pickup Charges',message:'Auto ₹199, Sedan ₹399, Innova ₹699 — Reserve popup में Pickup Yes चुनें!'})" class="icon-btn" data-i18n="btn_charges">Charges</button></div><div class="outsider-menu-only" style="display:none;font-size:10px;color:#94A3B8;margin-top:6px" data-i18n="pickup_hint">Pickup — Booking ke time select kare</div></div>
       </div>
     </div>
@@ -854,7 +857,6 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <div class="c-item"><div class="c-icon">📱</div><div><strong data-i18n="contact_resp">Responsive</strong><span style="color:#FDE68A" data-i18n="contact_resp_desc">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
           <a href="tel:+919876543210" class="btn-gold" style="flex:1;text-align:center;background:#fff;color:var(--dark);min-width:120px" data-i18n="btn_call">📞 Call</a>
-          <a href="https://wa.me/919876543210" target="_blank" style="flex:1;text-align:center;background:#25D366;color:#fff;padding:10px;border-radius:30px;font-weight:800;font-size:13px;min-width:120px" data-i18n="btn_wa">💬 WhatsApp</a>
         </div>
       </div>
       <form class="contact-form" onsubmit="handleContact(event)">
@@ -927,7 +929,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
     <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span data-i18n="copy_admin">Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c6dadac7c6ddccd4d8c3dcc6ddc2d4ded4c7d8d48682f5d2d8d4dcd99bd6dad8">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
-<a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
+
 
 <!-- TRAVEL INFO POPUP — ONLY ON RESERVE BUTTON -->
 <div id="travelOverlay" class="modal-overlay">
@@ -963,6 +965,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <div class="field" style="opacity:0.6"><label data-i18n="food_lbl">🍽️ Khana Order — Room Reserve Ke Baad Hi (Bill me auto add hoga)</label><textarea id="travelFoodOrder" rows="2" data-i18n-ph="ph_food" placeholder="Reserve ke baad hi khana order kar sakte hai — Abhi khali rakhe — Bill me sab add hoga" disabled style="background:#F1F5F9;cursor:not-allowed"></textarea><div style="font-size:10px;color:#DC2626;font-weight:700" data-i18n="food_hint">⚠️ Khana order sirf Room Reserve hone ke baad hi — Reserve ke baad Menu se order kare — Bill me GST ke saath auto add hoga</div></div>
         <div class="field"><label data-i18n="lbl_name_main">आपका नाम * (Main Guest)</label><input type="text" id="travelName" data-i18n-ph="ph_fullname" placeholder="पूरा नाम" required></div>
         <div class="field"><label>मोबाइल *</label><input type="tel" id="travelPhone" placeholder="+91 9XXXX XXXXX" required pattern="[0-9+ ]{10,15}"></div>
+        <div class="field"><label data-i18n="lbl_bill_email">📧 Email (Bill isi par aayega)</label><input type="email" id="travelEmail" placeholder="name@gmail.com"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div class="field"><label data-i18n="lbl_travel_mode">✈️ Travel Mode</label><select id="travelMode"><option value="Car" data-i18n="opt_mode_car">Car / Self</option><option value="Train" data-i18n="opt_mode_train">Train</option><option value="Bus" data-i18n="opt_mode_bus">Bus</option><option value="Flight" data-i18n="opt_mode_flight">Flight</option></select></div>
           <div class="field"><label data-i18n="lbl_pickup">🚕 Pickup चाहिए?</label><select id="travelPickup"><option value="No" data-i18n="opt_pickup_no">No — खुद आ जाएंगे</option><option value="Yes" data-i18n="opt_pickup_yes">Yes — Station/Airport Pickup</option></select></div>
@@ -1411,6 +1414,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
       <button id="sTab-bookings" class="staff-tab" onclick="switchStaffTab('bookings')">📋 Bookings</button>
       <button id="sTab-header" class="staff-tab" onclick="switchStaffTab('header')">🖼️ Header</button>
       <button id="sTab-banners" class="staff-tab" onclick="switchStaffTab('banners')">📢 Banners</button>
+      <button id="sTab-email" class="staff-tab" onclick="switchStaffTab('email')">📧 Email</button>
       <button id="sTab-requests" class="staff-tab" onclick="switchStaffTab('requests')">📩 Requests</button>
       <button id="sTab-otp" class="staff-tab" onclick="switchStaffTab('otp')">🔐 OTP</button>
     </div>
@@ -1505,6 +1509,15 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
       <div class="table-wrap"><table><thead><tr><th>#</th><th>Guest</th><th>Room & No.</th><th>Dates</th><th>Persons</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody id="staffBookingTbody"><tr><td colspan="8" style="text-align:center;padding:20px;color:#A8A29E">Loading...</td></tr></tbody></table></div>
     </div></div>
     <div id="staff-panel-header" style="display:none"><div class="admin-card">
+      <div class="admin-card-head"><h4>📸 Service Photos — Front Website Live</h4><span style="font-size:10px;background:#16A34A;color:#fff;padding:4px 8px;border-radius:20px">Turant Live • Permanent</span></div>
+      <div style="padding:10px 14px;font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #6EE7B7;border-radius:10px;margin:0 14px 10px">Har service ki photo yahan se update kare — save hote hi FRONT WEBSITE par sabhi visitors ke liye TURANT LIVE + Firebase me permanent (rooms/gallery/menu/header apne tabs me).</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:0 14px 14px">
+        <div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:8px;text-align:center"><div style="font-size:11px;font-weight:800;margin-bottom:6px">🎉 Banquet Hall</div><img id="svcPrev_banquet" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=300&q=60" style="width:100%;height:80px;object-fit:cover;border-radius:8px"><input type="file" id="svcFile_banquet" accept="image/*" hidden onchange="saveServicePhoto('banquet',this.files[0])"><label for="svcFile_banquet" style="display:block;margin-top:6px;background:#0F172A;color:#fff;padding:7px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer">📁 Photo Update</label></div>
+        <div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:8px;text-align:center"><div style="font-size:11px;font-weight:800;margin-bottom:6px">🍽 Restaurant</div><img id="svcPrev_restaurant" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=300&q=60" style="width:100%;height:80px;object-fit:cover;border-radius:8px"><input type="file" id="svcFile_restaurant" accept="image/*" hidden onchange="saveServicePhoto('restaurant',this.files[0])"><label for="svcFile_restaurant" style="display:block;margin-top:6px;background:#0F172A;color:#fff;padding:7px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer">📁 Photo Update</label></div>
+        <div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:8px;text-align:center"><div style="font-size:11px;font-weight:800;margin-bottom:6px">🛎 Room Service</div><img id="svcPrev_roomservice" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=300&q=60" style="width:100%;height:80px;object-fit:cover;border-radius:8px"><input type="file" id="svcFile_roomservice" accept="image/*" hidden onchange="saveServicePhoto('roomservice',this.files[0])"><label for="svcFile_roomservice" style="display:block;margin-top:6px;background:#0F172A;color:#fff;padding:7px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer">📁 Photo Update</label></div>
+        <div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:8px;text-align:center"><div style="font-size:11px;font-weight:800;margin-bottom:6px">🚗 Pickup / Travel</div><img id="svcPrev_pickup" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=300&q=60" style="width:100%;height:80px;object-fit:cover;border-radius:8px"><input type="file" id="svcFile_pickup" accept="image/*" hidden onchange="saveServicePhoto('pickup',this.files[0])"><label for="svcFile_pickup" style="display:block;margin-top:6px;background:#0F172A;color:#fff;padding:7px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer">📁 Photo Update</label></div>
+      </div>
+    </div><div class="admin-card">
       <div class="admin-card-head"><h4>🖼️ Header Photo — Website Hero (Live)</h4><span style="font-size:10px;background:#0F172A;color:#fff;padding:4px 8px;border-radius:20px">Staff/Admin</span></div>
       <div style="padding:14px">
         <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:10px;margin-bottom:12px">
@@ -1544,9 +1557,24 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
           <input id="newBannerText" placeholder="e.g. 🎉 Diwali Offer — HOTEL200 se ₹200 off" style="width:100%;padding:10px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:12px;background:#fff">
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <select id="newBannerColor" style="padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#fff;font-size:11px"><option value="">🟡 Gold</option><option value="c1">🟢 Green</option><option value="c2">🔵 Blue</option><option value="c3">🟣 Purple</option><option value="c4">⚫ Dark</option></select>
+            <input type="file" id="newBannerFile" accept="image/*" style="flex:1;min-width:110px;font-size:10px;background:#fff;border:1.5px solid #E2E8F0;border-radius:10px;padding:6px">
             <button onclick="staffAddBanner()" class="btn-gold" style="padding:9px 14px;font-size:11px">+ Add Banner</button>
           </div>
         </div>
+      </div>
+    </div></div>
+    <div id="staff-panel-email" style="display:none"><div class="admin-card">
+      <div class="admin-card-head"><h4>📧 Bill Auto-Email — Guest Gmail par</h4><span style="font-size:10px;background:#16A34A;color:#fff;padding:4px 8px;border-radius:20px">Auto</span></div>
+      <div style="padding:10px 14px;font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #6EE7B7;border-radius:10px;margin:0 14px 10px;line-height:1.6">🧾 Bill generate hote hi guest ke gmail par AUTO chala jata hai (reserve form wala email / guest login gmail). 100% background auto-send ke liye free EmailJS keys save kare (emailjs.com free plan). Keys ke bina: staff ka Gmail compose pre-filled khulta hai — 1 click Send.</div>
+      <div style="display:grid;gap:8px;padding:0 14px 14px">
+        <input id="ejService" placeholder="EmailJS Service ID (service_xxx)" style="padding:10px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:12px;background:#FFFBEB">
+        <input id="ejTemplate" placeholder="EmailJS Template ID (template_xxx)" style="padding:10px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:12px;background:#FFFBEB">
+        <input id="ejKey" placeholder="EmailJS Public Key (User ID)" style="padding:10px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:12px;background:#FFFBEB">
+        <div style="display:flex;gap:8px">
+          <button onclick="saveEmailJsSettings()" class="btn-gold" style="flex:1;padding:10px;font-size:12px">💾 Save Settings</button>
+          <button onclick="testEmailJs()" class="icon-btn" style="flex:1;font-size:12px;background:#EFF6FF;color:#1E40AF">📨 Test Email</button>
+        </div>
+        <div id="ejLastSent" style="font-size:10px;color:#64748B"></div>
       </div>
     </div></div>
     <div id="staff-panel-requests" style="display:none"><div class="admin-card">
@@ -2453,6 +2481,7 @@ const TRANSLATIONS={
     login_uid:"✅ Login ke baad hi Reserve hoga — Aapka UID <code id=\"guestLoginUid\" style=\"background:#0F172A;color:#FDE68A;padding:2px 6px;border-radius:6px\">-</code> se bookings save hongi",
     login_or:"या ईमेल से",
     lbl_email:"ईमेल *",
+    lbl_bill_email:"📧 ईमेल (बिल इसी पर आएगा)",
     lbl_pass:"पासवर्ड * (6+ अक्षर)",
     btn_login:"लॉगिन",
     btn_signup:"अकाउंट बनाएं",
@@ -2856,6 +2885,7 @@ const TRANSLATIONS={
     login_uid:"✅ Reserve works only after login — your UID <code id=\"guestLoginUid\" style=\"background:#0F172A;color:#FDE68A;padding:2px 6px;border-radius:6px\">-</code> will save the bookings",
     login_or:"or with Email",
     lbl_email:"Email *",
+    lbl_bill_email:"📧 Email (Bill will be sent here)",
     lbl_pass:"Password * (6+ chars)",
     btn_login:"Login",
     btn_signup:"Create Account",
@@ -3074,7 +3104,7 @@ setTimeout(()=>{ try{ renderAll(); }catch(e){} }, 1200); return;
   try{ // listener: settings
     db.collection('settings').doc('main').onSnapshot(doc=>{
       if(!doc.exists){ db.collection('settings').doc('main').set(defaultSettings); settingsCache={...defaultSettings};}
-      else { settingsCache={...defaultSettings,...doc.data()}; if(settingsCache.tax===undefined) settingsCache.tax=12; if(!/^rzp_(live|test)_/.test(String(settingsCache.razorKey||''))){ settingsCache.razorKey='rzp_test_TYb2eg0TLvapOO'; try{ db.collection('settings').doc('main').update({razorKey:'rzp_test_TYb2eg0TLvapOO'}); console.log('Razorpay key fixed -> rzp_test_TYb2eg0TLvapOO'); }catch(e){} } if(settingsCache.banquetBase===undefined) settingsCache.banquetBase=6000; if(settingsCache.banquetPerPerson===undefined) settingsCache.banquetPerPerson=110; const _rk=document.getElementById('setRazorKey'); if(_rk) _rk.value=settingsCache.razorKey; document.getElementById('setCoupon').value=settingsCache.coupon; const taxEl=document.getElementById('setTax'); if(taxEl) taxEl.value=settingsCache.tax; const bb=document.getElementById('setBanquetBase'); if(bb) bb.value=settingsCache.banquetBase; const bp=document.getElementById('setBanquetPerPerson'); if(bp) bp.value=settingsCache.banquetPerPerson; updatePaySummary(); try{ const hint=document.getElementById('banquetPreviewHint'); if(hint) hint.textContent='₹'+calcBanquetPrice(50).toLocaleString('en-IN')+' for 50 Guests'; }catch(e){} try{ applyHeroImage(settingsCache.heroImage); const hInput=document.getElementById('headerImageUrl'); if(hInput) hInput.value=settingsCache.heroImage||''; const hPreview=document.getElementById('headerPreview'); if(hPreview && settingsCache.heroImage) hPreview.src=settingsCache.heroImage; }catch(e){} }
+      else { settingsCache={...defaultSettings,...doc.data()}; if(settingsCache.tax===undefined) settingsCache.tax=12; if(!/^rzp_(live|test)_/.test(String(settingsCache.razorKey||''))){ settingsCache.razorKey='rzp_test_TYb2eg0TLvapOO'; try{ db.collection('settings').doc('main').update({razorKey:'rzp_test_TYb2eg0TLvapOO'}); console.log('Razorpay key fixed -> rzp_test_TYb2eg0TLvapOO'); }catch(e){} } if(settingsCache.banquetBase===undefined) settingsCache.banquetBase=6000; if(settingsCache.banquetPerPerson===undefined) settingsCache.banquetPerPerson=110; const _rk=document.getElementById('setRazorKey'); if(_rk) _rk.value=settingsCache.razorKey; document.getElementById('setCoupon').value=settingsCache.coupon; const taxEl=document.getElementById('setTax'); if(taxEl) taxEl.value=settingsCache.tax; const bb=document.getElementById('setBanquetBase'); if(bb) bb.value=settingsCache.banquetBase; const bp=document.getElementById('setBanquetPerPerson'); if(bp) bp.value=settingsCache.banquetPerPerson; updatePaySummary(); try{ const hint=document.getElementById('banquetPreviewHint'); if(hint) hint.textContent='₹'+calcBanquetPrice(50).toLocaleString('en-IN')+' for 50 Guests'; }catch(e){} try{ applyHeroImage(settingsCache.heroImage); const hInput=document.getElementById('headerImageUrl'); if(hInput) hInput.value=settingsCache.heroImage||''; const hPreview=document.getElementById('headerPreview'); if(hPreview && settingsCache.heroImage) hPreview.src=settingsCache.heroImage; }catch(e){} try{ applyServicePhotos(); }catch(e){} }
     });
   }catch(e){ console.warn('listener settings failed (recovered)', e); }
   try{ // listener: banners
@@ -4156,7 +4186,7 @@ function payWithRazorpay(){
   const extra2 = travelInfo2 ? {travelMode:travelInfo2.mode, pickup:travelInfo2.pickup, pickupDetail:travelInfo2.pickupDetail, travelNote:travelInfo2.note, travelData: travelInfo2.travelData, adultsDetails: travelInfo2.adultsDetails||[], childrenDetails: travelInfo2.childrenDetails||[], foodOrder: travelInfo2.foodOrder||'', personsText: travelInfo2.personsText||''} : {};
   const rzEmail=(travelInfo2&&travelInfo2.email)||(document.getElementById('fEmail')?document.getElementById('fEmail').value:'')||'';
   const rzpBtn=document.getElementById('razorPayBtn'); if(rzpBtn){ rzpBtn.disabled=true; rzpBtn.textContent='⏳ Razorpay Checkout खुल रहा है...'; }
-  const opts={key:key, amount:Math.round(currentPay.total*100), currency:"INR", name:"Hotel 4G Bhopal", description:currentPay.room+` - ${currentPay.nights}N, ${currentPay.adults}A ${currentPay.children}C + GST ${currentPay.taxPercent}%`, method:{upi:true,card:true,netbanking:true,wallet:true}, notes:{room:currentPay.room, roomNumber:selectedRoomNo2||'Auto', checkin:cin, checkout:cout, nights:String(currentPay.nights), adults:String(currentPay.adults), children:String(currentPay.children), coupon:(document.getElementById('payCoupon').value.trim().toUpperCase()||'-'), guestUid:(typeof getGuestUid==='function'?getGuestUid():'')}, handler: function(r){ const nm=(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'Razorpay Guest'; const ph=(travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'—'; addBooking({name:nm, phone:ph, cin,cout, time: (document.getElementById('payTime')?.value)||(travelInfo2&&travelInfo2.time)||'', room:currentPay.room, roomNumber: selectedRoomNo2||undefined, nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, subtotal:currentPay.subtotal, tax:currentPay.tax, taxPercent:currentPay.taxPercent, discount:currentPay.disc||0, coupon:document.getElementById('payCoupon').value.trim().toUpperCase(), payment:'Razorpay', txn:r.razorpay_payment_id, status:'paid', verified:true, verification:'Razorpay Auto ✔', razorpay_payment_id:r.razorpay_payment_id, ...extra2}).then(()=>{try{sessionStorage.removeItem('pendingTravel')}catch(e){}; closePay(); showSuccess('✅ Razorpay Auto Verified! Tax ₹'+(currentPay.tax||0)+' included — Booking Paid','Verified! ✔'); showBookingConfirmPopup({name:nm, phone:ph, cin:cin, cout:cout, room:currentPay.room, roomNumber:selectedRoomNo2||'', nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, tax:currentPay.tax, txn:r.razorpay_payment_id}); })}, prefill:{name:(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'', contact:String((travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'').replace(/[^0-9]/g,'').slice(-10), email:rzEmail}, theme:{color:"#C5A254"}, modal:{escape:true, ondismiss:function(){ try{ const b=document.getElementById('razorPayBtn'); if(b){ b.disabled=false; b.textContent='💳 Pay Now — Razorpay Secure Checkout'; } }catch(e){} }}};
+  const opts={key:key, amount:Math.round(currentPay.total*100), currency:"INR", name:"Hotel 4G Bhopal", description:currentPay.room+` - ${currentPay.nights}N, ${currentPay.adults}A ${currentPay.children}C + GST ${currentPay.taxPercent}%`, method:{upi:true,card:true,netbanking:true,wallet:true}, notes:{room:currentPay.room, roomNumber:selectedRoomNo2||'Auto', checkin:cin, checkout:cout, nights:String(currentPay.nights), adults:String(currentPay.adults), children:String(currentPay.children), coupon:(document.getElementById('payCoupon').value.trim().toUpperCase()||'-'), guestUid:(typeof getGuestUid==='function'?getGuestUid():'')}, handler: function(r){ const nm=(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'Razorpay Guest'; const ph=(travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'—'; addBooking({name:nm, phone:ph, email:(document.getElementById('travelEmail')?.value||'').trim()||(travelInfo2&&travelInfo2.email)||localStorage.getItem('hotel4g_guestEmail')||'', cin,cout, time: (document.getElementById('payTime')?.value)||(travelInfo2&&travelInfo2.time)||'', room:currentPay.room, roomNumber: selectedRoomNo2||undefined, nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, subtotal:currentPay.subtotal, tax:currentPay.tax, taxPercent:currentPay.taxPercent, discount:currentPay.disc||0, coupon:document.getElementById('payCoupon').value.trim().toUpperCase(), payment:'Razorpay', txn:r.razorpay_payment_id, status:'paid', verified:true, verification:'Razorpay Auto ✔', razorpay_payment_id:r.razorpay_payment_id, ...extra2}).then(()=>{try{sessionStorage.removeItem('pendingTravel')}catch(e){}; closePay(); showSuccess('✅ Razorpay Auto Verified! Tax ₹'+(currentPay.tax||0)+' included — Booking Paid','Verified! ✔'); showBookingConfirmPopup({name:nm, phone:ph, cin:cin, cout:cout, room:currentPay.room, roomNumber:selectedRoomNo2||'', nights:currentPay.nights, adults:currentPay.adults, children:currentPay.children, amount:currentPay.total, tax:currentPay.tax, txn:r.razorpay_payment_id}); })}, prefill:{name:(travelInfo2&&travelInfo2.name)||document.getElementById('fName').value||'', contact:String((travelInfo2&&travelInfo2.phone)||document.getElementById('fPhone').value||'').replace(/[^0-9]/g,'').slice(-10), email:rzEmail}, theme:{color:"#C5A254"}, modal:{escape:true, ondismiss:function(){ try{ const b=document.getElementById('razorPayBtn'); if(b){ b.disabled=false; b.textContent='💳 Pay Now — Razorpay Secure Checkout'; } }catch(e){} }}};
   const rzp=new Razorpay(opts);
   rzp.on('payment.failed', function(resp){ const d=(resp&&resp.error)||{}; try{ const b=document.getElementById('razorPayBtn'); if(b){ b.disabled=false; b.textContent='💳 Pay Now — Razorpay Secure Checkout'; } }catch(e){}
     showError('❌ Payment Failed — '+(d.description||'दोबारा कोशिश करें')+(d.code?' ('+d.code+')':'')+' • Amount नहीं कटा होगा'); });
@@ -6411,6 +6441,7 @@ async function staffGenerateBill(bid){
       }
     }catch(e){}
     renderStaffDashboard(); renderBookings(); renderRooms(); renderCalendar(); updateStats();
+    try{ autoEmailBill(b, finalBillTotal); }catch(e){ console.warn('autoEmailBill hook', e); }
     showSuccess(`Bill Generated — ${isMulti? guestBookings.length+' Bookings Combined': 'Room'}${customTotalAll? ` + ${customItemsAll.length} Custom Items ₹${customTotalAll}`:''} Available! UID ${guestUid.slice(-8)} Total ₹${finalBillTotal.toLocaleString('en-IN')} — Print करें`,'🧾');
     // Also auto-download for staff convenience
     try{ setTimeout(()=> downloadGuestBill(bid), 800); }catch(e){}
@@ -6809,10 +6840,11 @@ function switchStaffTab(tab){
     if(tab==='requests') renderStaffRequests();
     if(tab==='otp') renderAdminOtps();
     if(tab==='banners') renderStaffBanners();
+    if(tab==='email'){ try{ const s=getEmailJs(); if(s){ const e1=document.getElementById('ejService'); if(e1) e1.value=s.serviceId||''; const e2=document.getElementById('ejTemplate'); if(e2) e2.value=s.templateId||''; const e3=document.getElementById('ejKey'); if(e3) e3.value=s.publicKey||''; } }catch(e){} }
   }catch(e){ console.log('switchStaffTab render',e); }
   // Original logic continues - will be duplicated but harmless
 
-  const tabs=['rooms','roomphotos','gallery','manual','menu','tables','bookings','requests','header','otp','banners'];
+  const tabs=['rooms','roomphotos','gallery','manual','menu','tables','bookings','requests','header','otp','banners','email'];
   tabs.forEach(t=>{
     const p=document.getElementById('staff-panel-'+t);
     if(p) p.style.display=(t===tab)?'block':'none';
@@ -6838,6 +6870,7 @@ function switchStaffTab(tab){
     if(tab==='bookings') renderStaffBookings();
     if(tab==='otp') renderAdminOtps();
     if(tab==='banners') renderStaffBanners();
+    if(tab==='email'){ try{ const s=getEmailJs(); if(s){ const e1=document.getElementById('ejService'); if(e1) e1.value=s.serviceId||''; const e2=document.getElementById('ejTemplate'); if(e2) e2.value=s.templateId||''; const e3=document.getElementById('ejKey'); if(e3) e3.value=s.publicKey||''; } }catch(e){} }
   }catch(e){}
 }
 // — Website Icon Tabs — Only one section open — same as Admin/Staff — systematic no overflow —
@@ -7208,11 +7241,13 @@ let bannersCache=[];
 function getBanners(){ return (bannersCache&&bannersCache.length)?bannersCache.slice():DEFAULT_BANNERS.slice(); }
 function renderBanners(){
   const track=document.getElementById('bannerTrack'); if(!track) return;
-  const half=getBanners().map(b=>`<span class="banner-item ${b.color||''}">${b.text}</span>`).join('');
+  try{ applyServicePhotos(); }catch(e){}
+  const half=getBanners().map(b=> b.img? `<span class="banner-item banner-photo ${b.color||''}"><img src="${b.img}" alt="">${b.text? `<em>${b.text}</em>`:''}</span>` : `<span class="banner-item ${b.color||''}">${b.text}</span>`).join('');
   track.innerHTML=half+half;
 }
 async function saveBanners(list){
   bannersCache=list||[];
+  try{ const pl=JSON.stringify(bannersCache); if(pl.length>950000){ showError('⚠️ Banner data bahut bada ('+Math.round(pl.length/1024)+'KB) — purani banner photos 🚫 se hatayein'); } }catch(e){}
   if(useFirebase){ try{ await db.collection('banners').doc('main').set({list:bannersCache, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}); }catch(e){} }
   else { try{ localStorage.setItem('hotel4g_banners', JSON.stringify(bannersCache)); }catch(e){} }
   renderBanners(); try{ renderStaffBanners(); }catch(e){}
@@ -7222,21 +7257,27 @@ function renderStaffBanners(){
   const list=getBanners();
   if(!list.length){ wrap.innerHTML='<div style="font-size:11px;color:#94A3B8;text-align:center;padding:10px">Koi banner nahi — neeche se add karein</div>'; return; }
   wrap.innerHTML=list.map(b=>`<div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:12px;padding:8px;display:grid;gap:6px">
-    <div><span class="banner-item ${b.color||''}" style="padding:6px 12px;font-size:11px;margin-right:0">${b.text}</span></div>
+    <div style="display:flex;gap:6px;align-items:center">${b.img? `<img src="${b.img}" style="width:52px;height:34px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0">`:''}<span class="banner-item ${b.color||''}" style="padding:6px 12px;font-size:11px;margin-right:0">${b.text}</span></div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
       <input id="banEdit_${b.id}" value="${(b.text||'').replace(/"/g,'&quot;')}" style="flex:1;min-width:140px;padding:8px 10px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:11px;background:#FFFBEB">
       <select id="banColor_${b.id}" style="padding:8px;border:1.5px solid #E2E8F0;border-radius:10px;background:#fff;font-size:11px"><option value="">🟡</option><option value="c1">🟢</option><option value="c2">🔵</option><option value="c3">🟣</option><option value="c4">⚫</option></select>
+      <input type="file" id="banFile_${b.id}" accept="image/*" hidden onchange="staffBannerPhoto('${b.id}',this.files[0])">
+      <button onclick="document.getElementById('banFile_${b.id}').click()" class="icon-btn" style="font-size:10px;background:#EFF6FF" title="Banner photo lagayein">📷</button>${b.img? `<button onclick="staffBannerPhotoRemove('${b.id}')" class="icon-btn" style="font-size:10px;background:#FEE2E2" title="Photo hatayein">🚫</button>`:''}
       <button onclick="staffUpdateBanner('${b.id}')" class="icon-btn" style="font-size:10px;background:#DCFCE7">💾 Save</button>
       <button onclick="staffDeleteBanner('${b.id}')" class="icon-btn" style="font-size:10px;background:#FEE2E2;color:#991B1B">🗑</button>
     </div></div>`).join('');
   list.forEach(b=>{ const sel=document.getElementById('banColor_'+b.id); if(sel) sel.value=b.color||''; });
 }
-function staffAddBanner(){
+async function staffAddBanner(){
   const t=(document.getElementById('newBannerText')?.value||'').trim();
   if(!t) return showError('Banner text likhein');
   const c=document.getElementById('newBannerColor')?.value||'';
-  const list=getBanners(); list.push({id:'bn_'+Date.now().toString(36), text:t, color:c});
+  let img='';
+  const f=document.getElementById('newBannerFile')?.files?.[0];
+  if(f){ try{ img=await fileToSmallDataUrl(f); }catch(e){} }
+  const list=getBanners(); list.push({id:'bn_'+Date.now().toString(36), text:t, color:c, img:img||undefined});
   saveBanners(list); const inp=document.getElementById('newBannerText'); if(inp) inp.value='';
+  try{ const fi=document.getElementById('newBannerFile'); if(fi) fi.value=''; }catch(e){}
   showSuccess('Banner Add — turant Live! 📢','Done!');
 }
 function staffUpdateBanner(id){
@@ -7249,6 +7290,145 @@ function staffUpdateBanner(id){
 function staffDeleteBanner(id){
   saveBanners(getBanners().filter(b=>b.id!==id));
   showSuccess('Banner Delete 🗑','Done!');
+}
+
+// ============ SERVICE PHOTOS — LIVE + PERMANENT (settings.servicePhotos) ============
+const SVC_PHOTO_IDS={banquet:'svcImgBanquet',restaurant:'svcImgRestaurant',roomservice:'svcImgRoomService',pickup:'svcImgPickup'};
+function getServicePhotos(){
+  let sp=null;
+  try{ sp=(settingsCache&&settingsCache.servicePhotos)||null; }catch(e){}
+  if(!sp){ try{ sp=JSON.parse(localStorage.getItem('hotel4g_servicePhotos')||'null'); }catch(e){} }
+  return sp||{};
+}
+function applyServicePhotos(){
+  const sp=getServicePhotos();
+  Object.keys(SVC_PHOTO_IDS).forEach(k=>{
+    const el=document.getElementById(SVC_PHOTO_IDS[k]); if(el&&sp[k]) el.src=sp[k];
+    const pv=document.getElementById('svcPrev_'+k); if(pv&&sp[k]) pv.src=sp[k];
+  });
+}
+function fileToSmallDataUrl(file, maxW, q){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onerror=()=>rej(new Error('read fail'));
+    fr.onload=async()=>{
+      try{
+        const img=new Image();
+        img.onload=()=>{
+          try{
+            const scale=Math.min(1,(maxW||640)/img.width);
+            const cv=document.createElement('canvas');
+            cv.width=Math.round(img.width*scale); cv.height=Math.round(img.height*scale);
+            cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
+            res(cv.toDataURL('image/jpeg', q||0.68));
+          }catch(e){ res(fr.result); }
+        };
+        img.onerror=()=>res(fr.result);
+        img.src=fr.result;
+      }catch(e){ res(fr.result); }
+    };
+    fr.readAsDataURL(file);
+  });
+}
+async function saveServicePhoto(cat, file){
+  if(!currentStaffId && !(authUser && authUser.email && String(authUser.email).toLowerCase()===String(typeof ADMIN_EMAIL!=='undefined'?ADMIN_EMAIL:'').toLowerCase())) return showPopup({type:'error', title:'⛔ Access Denied', message:'Photo save sirf Staff/Admin', confirmText:'ठीक है'});
+  if(!file || !(file.type||'').startsWith('image/')) return showError('Sirf image file chune (JPG/PNG)');
+  try{
+    const dataUrl=await fileToSmallDataUrl(file, 900, 0.6);
+    const sp=Object.assign({}, getServicePhotos()); sp[cat]=dataUrl;
+    settingsCache=Object.assign({}, settingsCache||{}, {servicePhotos:sp});
+    applyServicePhotos();
+    if(useFirebase){
+      try{ await db.collection('settings').doc('main').set({servicePhotos:sp}, {merge:true}); showSuccess('📸 '+cat+' photo TURANT LIVE — sab devices par permanent!','Live!'); }
+      catch(e){
+        let url=dataUrl;
+        try{ const ref=storage.ref('service/'+Date.now()+'_'+cat+'.jpg'); const cf=await compressImage(file,900,0.6); await ref.put(cf); url=await ref.getDownloadURL(); }catch(_){}
+        sp[cat]=url; settingsCache=Object.assign({}, settingsCache||{}, {servicePhotos:sp}); applyServicePhotos();
+        try{ await db.collection('settings').doc('main').set({servicePhotos:sp}, {merge:true}); showSuccess('📸 Photo Live (Storage URL)','Live!'); }catch(e2){ showError('Save fail: '+e2.message); }
+      }
+    } else {
+      try{ localStorage.setItem('hotel4g_servicePhotos', JSON.stringify(sp)); }catch(e){}
+      showSuccess('📸 Photo update (local) — Firebase connect hote hi sabke liye live','Saved');
+    }
+  }catch(e){ showError('Photo save fail: '+e.message); }
+}
+// ============ BANNER PHOTOS ============
+async function staffBannerPhoto(id, file){
+  if(!file || !(file.type||'').startsWith('image/')) return showError('Sirf image file chune');
+  try{
+    const url=await fileToSmallDataUrl(file, 640, 0.66);
+    saveBanners(getBanners().map(b=> b.id===id? Object.assign({},b,{img:url}) : b));
+    showSuccess('📷 Banner photo live!','Done!');
+  }catch(e){ showError('Photo fail: '+e.message); }
+}
+function staffBannerPhotoRemove(id){
+  saveBanners(getBanners().map(b=>{ if(b.id!==id) return b; const n=Object.assign({},b); delete n.img; return n; }));
+  showSuccess('Banner photo hat gayi','Done!');
+}
+// ============ BILL AUTO-EMAIL — GUEST GMAIL ============
+function getEmailJs(){
+  try{ const s=(settingsCache&&settingsCache.emailjs)||null; if(s&&s.serviceId&&s.templateId&&s.publicKey) return s; }catch(e){}
+  try{ const l=JSON.parse(localStorage.getItem('hotel4g_emailjs')||'null'); if(l&&l.serviceId&&l.templateId&&l.publicKey) return l; }catch(e){}
+  return null;
+}
+function saveEmailJsSettings(){
+  const s={serviceId:(document.getElementById('ejService')?.value||'').trim(), templateId:(document.getElementById('ejTemplate')?.value||'').trim(), publicKey:(document.getElementById('ejKey')?.value||'').trim()};
+  if(!s.serviceId||!s.templateId||!s.publicKey) return showError('Teeno fields bhare — emailjs.com free dashboard se');
+  try{ localStorage.setItem('hotel4g_emailjs', JSON.stringify(s)); }catch(e){}
+  if(useFirebase){ try{ db.collection('settings').doc('main').set({emailjs:s},{merge:true}); }catch(e){} }
+  settingsCache=Object.assign({}, settingsCache||{}, {emailjs:s});
+  showSuccess('📧 EmailJS Save — ab bill 100% AUTO email hoga!','Saved!');
+}
+function buildBillEmailText(b, total){
+  const L=[];
+  L.push('Namaste '+(b.name||'Guest')+' ji,');
+  L.push('Hotel 4G Bhopal — Aapka Bill Ready Hai');
+  L.push('');
+  L.push('Booking: '+(b.room||'')+' | Room No. '+(b.roomNumber||'auto'));
+  L.push('Check-In: '+(b.cin||'')+'   Check-Out: '+(b.cout||''));
+  L.push('Guests: '+(b.adults||1)+' Adults, '+(b.children||0)+' Children');
+  (b.customItems||[]).forEach(it=> L.push('  - '+it.name+' x'+it.qty+' = Rs.'+it.total));
+  L.push('');
+  L.push('TOTAL PAYABLE: Rs.'+Number(total||b.amount||0).toLocaleString('en-IN')+' (GST included)');
+  L.push('Payment: '+(b.payment||'-')+' | Txn: '+(b.txn||'-'));
+  L.push('');
+  L.push('Dhanyavaad! — Hotel 4G, MP Nagar Zone-1, Bhopal');
+  return L.join('\n');
+}
+async function sendBillEmailTo(to, b, total){
+  const subj='Hotel 4G Bhopal — Aapka Bill (Rs.'+Number(total||b.amount||0).toLocaleString('en-IN')+')';
+  const msg=buildBillEmailText(b, total);
+  const ej=getEmailJs();
+  if(ej){
+    try{
+      const r=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:ej.serviceId, template_id:ej.templateId, user_id:ej.publicKey, template_params:{to_email:to, to_name:b.name||'Guest', subject:subj, message:msg}})});
+      if(r.ok){
+        showSuccess('📧 Bill AUTO-Email ho gaya → '+to,'Sent!');
+        try{ localStorage.setItem('hotel4g_lastBillEmail', JSON.stringify({to:to, at:new Date().toLocaleString('en-IN')})); const el=document.getElementById('ejLastSent'); if(el) el.textContent='Last: '+to+' • '+new Date().toLocaleString('en-IN'); }catch(e){}
+        return true;
+      }
+      const t=await r.text(); showError('EmailJS error: '+String(t).slice(0,140));
+    }catch(e){ showError('Email send fail: '+e.message); }
+  }
+  try{
+    const url='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(to)+'&su='+encodeURIComponent(subj)+'&body='+encodeURIComponent(msg);
+    window.open(url,'_blank');
+    showPopup({type:'success', title:'📧 Gmail Compose Ready', message:'Bill '+to+' ke liye pre-filled khul gaya — Send dabayein. 100% auto ke liye: Staff Panel → 📧 Email tab → free EmailJS keys save karein.', confirmText:'ठीक है'});
+  }catch(e){}
+  return false;
+}
+async function autoEmailBill(b, total){
+  try{
+    const to=String(b.email||'').trim()||localStorage.getItem('hotel4g_guestEmail')||'';
+    if(!to){
+      showPopup({type:'warning', title:'📧 Guest Email Chahiye', message:'Is booking me guest ka email nahi hai — email type kare, bill turant bhejenge', confirmText:'📧 Email Bhejo', onConfirm:()=> showFormPopup({type:'info', title:'📧 Guest Gmail', desc:'Bill isi gmail par send hoga', fields:[{id:'billEmailTo', label:'Guest Gmail *', type:'text', placeholder:'name@gmail.com', required:true}], confirmText:'📧 Send Bill', onSubmit:(v)=> sendBillEmailTo(String(v.billEmailTo||'').trim(), b, total)})});
+      return;
+    }
+    await sendBillEmailTo(to, b, total);
+  }catch(e){ console.warn('autoEmailBill', e); }
+}
+function testEmailJs(){
+  showFormPopup({type:'info', title:'📨 Test Email', desc:'Apna gmail dalein — test bill message jayega', fields:[{id:'testEmailTo', label:'Test Gmail *', type:'text', placeholder:'name@gmail.com', required:true}], confirmText:'📨 Bhejo', onSubmit:(v)=> sendBillEmailTo(String(v.testEmailTo||'').trim(), {name:'Test Guest', room:'Deluxe Room', roomNumber:'101', cin:'2026-01-01', cout:'2026-01-02', adults:2, children:0, payment:'Razorpay', txn:'test_123'}, 2239)});
 }
 function renderAll(){ try{ renderBanners(); }catch(e){} updateBanquetCardPrice(); applyLang(currentLang); renderRooms(); renderGallery(); renderGalleryAdmin(); renderCalendar(); renderAdminCalendar(); try{ renderRestaurantTables(); renderStaffTables(); renderStaffTableBookings(); renderRestaurantBookingsList(); }catch(e){} renderBookings(); updateStats(); updatePaySummary(); updatePersonHints(); renderAdminStaffList(); renderReviews(); try{ renderAdminPhysicalRooms(); updateTravelRoomNumbers(); updatePayRoomNumbers(); renderAdminOtps(); renderAdminMenuList(); renderStaffMenuList(); renderAdminRequests(); renderStaffRequests(); }catch(e){} if(currentStaffId){ renderStaffDashboard(); try{ switchStaffTab('rooms'); }catch(e){} } try{ updateGalleryDirectVisibility(); }catch(e){} try{ updateGuestVisibility(); }catch(e){} 
 // Create missing placeholder elements if JS expects them (fixes 13 missing IDs)
@@ -7410,5 +7590,5 @@ setTimeout(()=>{ try{ renderAll(); }catch(e){ console.error('final renderAll fai
   <img src="" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,0.5)">
   <button onclick="closeLightbox()" style="position:absolute;top:16px;right:16px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3)">✕</button>
 </div>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eeabbb69d27143',t:'MTc5MDA1MjQzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f4eba938ac85c9',t:'MTc5MDExNzk3MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3eeabbb69d27143',t:'MTc5MDA1MjQzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f522b2cc2b3c04',t:'MTc5MDEyMDIyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
