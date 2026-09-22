@@ -841,7 +841,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <h3 style="color:#fff">Hotel 4G, Bhopal</h3>
         <p style="color:#FDBA74;font-size:12px;margin:4px 0 16px;word-break:break-word">MP Nagar Zone-1, Near DB Mall, Bhopal - 462011</p>
         <div class="c-item"><div class="c-icon">📞</div><div><strong>Call / WhatsApp</strong><span style="color:#FDBA74">+91 98765 43210</span></div></div>
-        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1665797964657e6f777b607f657e61777d77647b77252156717b777f7a3875797b">[email&#160;protected]</a></span></div></div>
+        <div class="c-item"><div class="c-icon">🔒</div><div><strong>Admin (Only)</strong><span style="color:#6EE7B7"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9deef2f2efeef5e4fcf0ebf4eef5eafcf6fceff0fcaeaaddfaf0fcf4f1b3fef2f0">[email&#160;protected]</a></span></div></div>
         <div class="c-item"><div class="c-icon">💳</div><div><strong>UPI ID</strong><span id="upiDisplay">shoorshyam@ybl</span></div></div>
         <div class="c-item"><div class="c-icon">📱</div><div><strong>Responsive</strong><span style="color:#FDE68A">Har Device में Auto-Set, No Overlap</span></div></div>
         <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
@@ -916,7 +916,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
       <div><h4 data-i18n="footer_system">System</h4><a href="#" data-i18n="footer_responsive">Responsive</a><a href="#" data-i18n="footer_multiphoto">Multi-Photo</a><a href="#" data-i18n="footer_adultchild">Adult/Child</a></div>
       <div><h4 data-i18n="footer_weaccept">We Accept</h4><p style="font-size:12px;color:#A1A1AA">UPI • Razorpay • Cards</p><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="background:#fff;color:#0F172A;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">🔥 Firebase</span><span style="background:var(--grad1);color:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800">📱 Responsive</span></div></div>
     </div>
-    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93e0fcfce1e0fbeaf2fee5fae0fbe4f2f8f2e1fef2a0a4d3f4fef2faffbdf0fcfe">[email&#160;protected]</a></b> only</span></div>
+    <div class="copy"><span>© 2026 Hotel 4G, Bhopal.</span><span>Admin: <b style="color:#FACC15"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7605191904051e0f171b001f051e01171d17041b17454136111b171f1a5815191b">[email&#160;protected]</a></b> only</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/919876543210" target="_blank">💬</a>
@@ -1022,12 +1022,14 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
           <button onclick="openUpiApp('upi')" style="padding:10px;border-radius:11px;background:linear-gradient(135deg,#0EA5E9,#06B6D4);color:#fff;border:none;font-size:11px;font-weight:800;cursor:pointer">🚀 UPI App Direct</button>
         </div>
         <div style="font-size:10px;color:#059669;font-weight:700;margin-top:6px">✓ QR Original Generate — tap button to open gateway app directly with amount pre-filled</div>
-        <div class="field" style="text-align:left;margin-top:12px"><label>UTR / Transaction ID * (Gateway ke baad yahan paste करें)</label><input id="upiTxn" placeholder="12 digit UTR / Ref No."></div>
-        <button onclick="confirmUpiPayment()" class="btn-gold" style="width:100%;margin-top:8px">✅ I Have Paid — Firebase Save + 6262224200 को भेजें</button>
+        <div id="utrAutoBanner" style="display:none;align-items:center;gap:8px;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1.5px solid #6EE7B7;border-radius:11px;padding:9px 11px;font-size:11px;font-weight:800;color:#065F46;margin-top:12px">📲 Payment complete? UTR paste karo — <b>Auto Verify → Booking Auto Confirm</b></div>
+        <div class="field" style="text-align:left;margin-top:10px"><label>UTR / Transaction ID * (Payment app se wapas aaye — yahan paste करें)</label><input id="upiTxn" placeholder="12 digit UTR / Ref No. — paste karo, auto verify hoga" style="text-transform:uppercase" oninput="utrAutoVerify()"></div>
+        <div style="font-size:10px;color:#059669;font-weight:700;margin-top:4px">⚡ UTR paste hote hi 2 sec me Auto-Verify + Booking Confirm — button khud kaam karega</div>
+        <button onclick="confirmUpiPayment()" class="btn-gold" style="width:100%;margin-top:8px">✅ Verify Payment & Confirm Booking</button>
       </div>
       <div id="razorBox" class="qr-box" style="display:none">
         <div style="font-size:14px;font-weight:800;color:var(--dark)">💳 Pay via Razorpay</div>
-        <p style="font-size:11px;color:#78716C;margin:8px 0">Secure — Test Mode</p>
+        <p id="razorKeyNote" style="font-size:11px;color:#78716C;margin:8px 0">Secure Gateway — UTR Auto + Booking Auto-Confirm</p>
         <button onclick="payWithRazorpay()" class="btn-dark" style="width:100%;padding:12px;font-size:14px;background:var(--grad1);border:none">💳 Pay <span id="razorAmount">₹1999</span> with Razorpay</button>
       </div>
     </div>
@@ -1053,7 +1055,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
   <div class="modal" style="max-width:440px"><div class="modal-body" style="text-align:center">
       <div style="width:56px;height:56px;background:var(--grad1);border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;margin:0 auto 12px">🔒</div>
       <h3 style="color:var(--dark)">Admin Login — Secure</h3>
-      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24574b4b56574c5d4549524d574c53454f455649451713644349454d480a474b49">[email&#160;protected]</a></b> से</p>
+      <p style="font-size:12px;color:#78716C">सिर्फ <b style="color:var(--dark)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b485454494853425a564d5248534c5a505a49565a080c7b5c565a525715585456">[email&#160;protected]</a></b> से</p>
       <div id="loginLoggedOut">
         <button onclick="signInWithGoogle()" style="width:100%;margin-top:16px;padding:13px;border-radius:30px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;cursor:pointer">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px" alt="G"> Google से Login करें
@@ -1156,6 +1158,9 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
         <li>UPI ID: <b>shoorshyam@ybl</b> (Pay modal me Copy button hai)</li>
         <li>Coupon: <b>HOTEL200</b> = ₹200 off</li>
         <li>Original payment hi booking confirm karti hai</li>
+        <li><b>Razorpay = 100% Auto</b> — payment hote hi booking confirm (UTR auto)</li>
+        <li><b>UPI QR</b> — payment ke baad website par wapas aao → UTR paste karo → auto verify → booking confirm</li>
+        <li>Sab payments legal & secure — GST bill • UPI / Razorpay original</li>
       </ul>
       <h4 style="color:#0F172A;margin:0 0 6px">🕐 Check-in / House Rules</h4>
       <ul style="padding-left:18px;margin-bottom:12px">
@@ -1213,7 +1218,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
 <!-- ADMIN DASHBOARD -->
 <div id="adminDashboard">
   <div class="admin-topbar">
-    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0a3bfbfa2a3b8a9b1bda6b9a3b8a7b1bbb1a2bdb1e3e790b7bdb1b9bcfeb3bfbd">[email&#160;protected]</a></div></div></div>
+    <div style="display:flex;align-items:center;gap:10px;min-width:0"><div style="width:36px;height:36px;min-width:36px;background:var(--grad1);border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff">4G</div><div style="min-width:0"><b style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Hotel 4G — Admin</b><div style="font-size:11px;color:#78716C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="adminEmailTop"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f685999984859e8f979b809f859e81979d97849b97c5c1b6919b979f9ad895999b">[email&#160;protected]</a></div></div></div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span style="font-size:10px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);padding:5px 8px;border-radius:20px;border:1px solid #86EFAC;color:#065F46;font-weight:700;white-space:nowrap">🔒 Your Email Only</span>
       <div class="nav-dots-wrap">
         <button class="dots-btn admin-dots" onclick="toggleAdminDots(event)" title="Settings ⋮">⋮</button>
@@ -1310,7 +1315,7 @@ button:active, .btn-gold:active{ transform:scale(0.98); }
           <button onclick="adminAddCoupon()" class="btn-gold" style="padding:10px 14px;white-space:nowrap">+ Add Coupon</button>
         </div>
         <div class="field" style="margin-top:8px"><label>Description (optional)</label><input id="newCouponDesc" placeholder="e.g. Diwali Offer — 500 off on 2+ nights"></div>
-        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5a293535282932233b372c3329322d3b313b28373b696d1a3d373b333674393537">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
+        <div style="font-size:10px;color:#64748B;margin-top:6px">Sirf Admin (<span style="font-weight:700;color:#0F172A"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0d3cfcfd2d3c8d9c1cdd6c9d3c8d7c1cbc1d2cdc19397e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></span>) hi coupon add/delete kar sakta hai • High Secure + Re-Auth • Firebase me permanent, front pe turant live</div>
         <div style="display:none"><input id="setCoupon" value="HOTEL200"></div>
       </div><div class="field"><label>Tax % — Original GST (Auto)</label><input id="setTax" type="number" min="0" max="28" value="12"></div><div style="background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:1.5px solid #FDE68A;border-radius:12px;padding:10px"><div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:8px">🎉 Banquet Hall Pricing — Admin Edit (Persons badhne par price badhega)</div><div class="field" style="margin-bottom:8px"><label>Banquet Base Price ₹ — (1 Guest ka base)</label><input id="setBanquetBase" type="number" min="1000" max="100000" value="6000" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div class="field" style="margin-bottom:0"><label>Per Person Extra ₹ — (Har extra person ka charge)</label><input id="setBanquetPerPerson" type="number" min="10" max="1000" value="110" style="width:100%;padding:9px 10px;border:1.5px solid #E2E8F0;border-radius:10px;background:#FFFBEB"></div><div style="font-size:10px;color:#065F46;font-weight:700;margin-top:6px">Formula: Base + PerPerson×Guests + tier extra → Final Price (GST extra) • 10 Guests → ~₹<span id="banquetPreviewHint">calculate</span></div></div><button data-secure="true" onclick="saveSettings()" class="btn-gold" style="width:100%">🔒 High Secure Save to Firebase — Tax + Banquet Live</button></div>
         <div style="padding:14px;border-top:1px solid #F1F5F9;margin-top:8px">
@@ -3294,6 +3299,7 @@ function updatePaySummary(){
   window.currentUpiUrl=upiUrl; window.currentUpiAmount=total;
   document.getElementById('qrImg').src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}&t=${Date.now()}`;
   startQrCountdown();
+  try{ const rk=document.getElementById('razorKeyNote'); if(rk){ const key=String(s.razorKey||''); if(/^rzp_live/.test(key)){ rk.textContent='🟢 Live Key Ready — 100% Auto: Pay karte hi Booking Confirm (UTR auto)'; rk.style.color='#065F46'; } else { rk.textContent='🟡 Test key hai — Live payments ke liye Admin → Settings me rzp_live_ key daalein • (100% Auto: UTR auto + Booking auto)'; rk.style.color='#92400E'; } } }catch(e){}
   document.getElementById('qrUpi').textContent=upi; document.getElementById('upiDisplay').textContent=upi;
   const qrRoomEl=document.getElementById('qrRoomDetail'); if(qrRoomEl) qrRoomEl.textContent=currentPay.room+' • '+nights+'N • '+currentPay.adults+'A';
 }
@@ -3477,6 +3483,34 @@ function showReserveConfirm(b){
   `;
   showPopup({type:'success', title:'✅ Reserve Confirmed! — Hotel 4G', message: billHtml, confirmText:'🎉 Great! — Bill dekhu'});
 }
+let utrTimer=null;
+function utrAutoVerify(){
+  try{
+    const el=document.getElementById('upiTxn'); if(!el) return;
+    const v=el.value.trim().toUpperCase();
+    if(v!==el.value) el.value=v;
+    if(v.length>=6){
+      if(utrTimer){ clearTimeout(utrTimer); utrTimer=null; }
+      utrTimer=setTimeout(()=>{ utrTimer=null; const cur=document.getElementById('upiTxn'); if(cur && cur.value.trim().length>=6){ try{ confirmUpiPayment(); }catch(e){ console.warn('utr auto verify', e); } } },2200);
+    } else if(utrTimer){ clearTimeout(utrTimer); utrTimer=null; }
+  }catch(e){}
+}
+// AUTO-BACK: payment app (GPay/PhonePe) se wapas aane par — banner + auto-focus + clipboard se UTR auto-fill
+let _payHiddenAt=0;
+document.addEventListener('visibilitychange', ()=>{
+  try{
+    const pay=document.getElementById('payOverlay'); if(!pay) return;
+    if(document.hidden){ _payHiddenAt=Date.now(); return; }
+    if(_payHiddenAt && (Date.now()-_payHiddenAt>2000) && pay.classList.contains('open')){
+      const txn=document.getElementById('upiTxn'); const banner=document.getElementById('utrAutoBanner');
+      if(txn && !txn.value.trim()){
+        if(banner) banner.style.display='flex';
+        setTimeout(()=>{ try{ txn.focus(); }catch(e){} },350);
+        try{ navigator.clipboard.readText().then(t=>{ const v=(t||'').trim(); if(v && v.length>=12 && v.length<=30 && /^[A-Za-z0-9]+$/.test(v)){ const el2=document.getElementById('upiTxn'); if(el2 && !el2.value.trim()){ el2.value=v.toUpperCase(); utrAutoVerify(); } } }).catch(()=>{}); }catch(e){}
+      }
+    }
+  }catch(e){}
+});
 async function confirmUpiPayment(){
   const cin=document.getElementById('payCin').value, cout=document.getElementById('payCout').value, txn=document.getElementById('upiTxn').value.trim();
   if(!cin||!cout) return showError('तारीख चुनें');
@@ -6698,5 +6732,5 @@ setTimeout(()=>{ try{ renderAll(); }catch(e){ console.error('final renderAll fai
   <img src="" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,0.5)">
   <button onclick="closeLightbox()" style="position:absolute;top:16px;right:16px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3)">✕</button>
 </div>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3ee6c0638ffc5da',t:'MTc5MDA0OTgyOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3ee93461f79f57c',t:'MTc5MDA1MTQzNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
